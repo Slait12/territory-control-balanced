@@ -58,7 +58,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Revolver", "$revolver$", "revolver", "A compact firearm for those with small pockets.\n\nUses Lowcal Rounds.");
+		ShopItem@ s = addShopItem(this, "Revolver", "$revolver$", "revolver", "A compact firearm for those with small pockets. $icon_pistolammo$\n\nAmmo Capacity = 6\n\nDamage = 1.25\n\nFire Rate = 6");
 		AddRequirement(s.requirements, "coin", "", "Coins", 50);
 
 		s.customButton = true;
@@ -68,7 +68,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Bobby Gun", "$smg$", "smg", "A submachine gun.\n\nUses Lowcal Rounds.");
+		ShopItem@ s = addShopItem(this, "Bobby Gun", "$smg$", "smg", "A submachine gun. $icon_pistolammo$\n\nAmmo Capacity = 30\n\nDamage = 0.5\n\nFire Rate = 10");
 		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
 		s.customButton = true;
@@ -84,7 +84,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Bolt Action Rifle", "$rifle$", "rifle", "A handy bolt action rifle.\n\nUses Highcal Rounds.");
+		ShopItem@ s = addShopItem(this, "Bolt Action Rifle", "$rifle$", "rifle", "A handy bolt action rifle. $icon_rifleammo$\n\nAmmo Capacity = 5\n\nDamage = 3.5\n\nFire Rate = 0.75");
 		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
 		s.customButton = true;
@@ -94,7 +94,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Lever Action Rifle", "$leverrifle$", "leverrifle", "A speedy lever action rifle.\n\nUses Highcal Rounds.");
+		ShopItem@ s = addShopItem(this, "Lever Action Rifle", "$leverrifle$", "leverrifle", "A speedy lever action rifle. $icon_rifleammo$\n\nAmmo Capacity = 8\n\nDamage = 2.5\n\nFire Rate = 2");
 		AddRequirement(s.requirements, "coin", "", "Coins", 300);
 
 		s.customButton = true;
@@ -110,7 +110,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Boomstick", "$icon_boomstick$", "boomstick", "You see this? A boomstick! The twelve-gauge double-barreled Bobington.\n\nUses Shotgun Shells.");
+		ShopItem@ s = addShopItem(this, "Boomstick", "$icon_boomstick$", "boomstick", "You see this? A boomstick! The twelve-gauge double-barreled Bobington. $icon_shotgunammo$\n\nAmmo Capacity = 2\n\nDamage = 3.75\n\nFire Rate = 3");
 		AddRequirement(s.requirements, "coin", "", "Coins", 250); //300c
 		//AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8); //80c
 		//AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2); //20c
@@ -123,7 +123,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Shotgun", "$icon_shotgun$", "shotgun", "A short-ranged weapon that deals devastating damage.\n\nUses Shotgun Shells.");
+		ShopItem@ s = addShopItem(this, "Shotgun", "$icon_shotgun$", "shotgun", "A short-ranged weapon that deals devastating damage. $icon_shotgunammo$\n\nAmmo Capacity = 4\n\nDamage = 5.25\n\nFire Rate = 0.85");
 		AddRequirement(s.requirements, "coin", "", "Coins", 350); 
 		//AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 120); //324c
 		//AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4); //200c
@@ -141,7 +141,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians.\n\nUses Gatling Ammo.");
+		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians. $icon_gatlingammo$\n\nAmmo Capacity = 50\n\nDamage = 0.75\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "coin", "", "Coins", 800); //1000c
 		//AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150); //405c
 		//AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2); //20c
@@ -160,7 +160,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Big iron", "$truerevolver$", "truerevolver", "If a cowboy wants a cool handgun - he gets it no matter what.\n\nUses High Power Rounds.");
+		ShopItem@ s = addShopItem(this, "Big iron", "$truerevolver$", "truerevolver", "If a cowboy wants a cool handgun - he gets it no matter what. $icon_sniperammo$\n\nAmmo Capacity = 6\n\nDamage = 3.25\n\nFire Rate = 3");
 		AddRequirement(s.requirements, "coin", "", "Coins", 750);
 
 		s.customButton = true;
