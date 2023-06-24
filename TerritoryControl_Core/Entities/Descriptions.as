@@ -62,7 +62,7 @@ const string[] descriptions =
 	/* 56  */               "Archer workshop for building arrows and changing class to Archer",         // Archershop
 	/* 57  */               "Siege workshop for building wheeled siege engines",         // vehicleshop
 	/* 58  */               "Naval workshop for building boats",         // boatshop
-	/* 59  */               "A building that produces food",         // kitchen
+	/* 59  */               "Place of merriment and healing",         // quarters/inn
 	/* 60  */               "A Cache for storing your materials, items and armaments.",         // storage cache
 };
 

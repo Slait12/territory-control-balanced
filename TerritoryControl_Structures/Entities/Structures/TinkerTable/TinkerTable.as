@@ -303,14 +303,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Codebreaker", "$codebreaker$", "codebreaker", "Used for resetting password in reactor's console.\nTakes 15 seconds.");
-		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
-		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 20);
-		AddRequirement(s.requirements, "coin", "", "Coins", 750);
-
-		s.customButton = true;
-		s.buttonwidth = 1;
-		s.buttonheight = 1;
+		ShopItem@ s = addShopItem(this, "Gregor Remote Detonator", "$icon_claymoreremote$", "claymoreremote-1", "A device used to remotely detonate Gregors.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 
 		s.spawnNothing = true;
 	}
