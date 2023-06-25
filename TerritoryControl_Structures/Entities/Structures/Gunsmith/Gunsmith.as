@@ -160,7 +160,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Big iron", "$truerevolver$", "truerevolver", "If a cowboy wants a cool handgun - he gets it no matter what. $icon_sniperammo$\n\nAmmo Capacity = 6\n\nDamage = 3.25\n\nFire Rate = 3");
+		ShopItem@ s = addShopItem(this, "Big iron", "$truerevolver$", "truerevolver", "If a cowboy wants a cool handgun - he gets it no matter what. $icon_sniperammo$\n\nAmmo Capacity = 6\n\nDamage = 4\n\nFire Rate = 3");
 		AddRequirement(s.requirements, "coin", "", "Coins", 750);
 
 		s.customButton = true;
