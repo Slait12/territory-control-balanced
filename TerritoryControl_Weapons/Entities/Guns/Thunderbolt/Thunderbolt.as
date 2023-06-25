@@ -37,7 +37,6 @@ void onInit(CBlob@ this)
 
 	this.getCurrentScript().tickFrequency = 1;
 	this.getCurrentScript().runFlags |= Script::tick_attached;
-	this.Tag("pistol");
 }
 
 void onTick(CBlob@ this)
@@ -60,9 +59,10 @@ void onTick(CBlob@ this)
 
 			if (lmb && this.get_u32("nextShoot") <= getGameTime() && HasAmmo(holder, true, this.get_string("ammoBlob")))
 			{
+				CMap@ map = getMap();
+
 				Vec2f aimDir = holder.getAimPos() - this.getPosition();
 				aimDir.Normalize();
-
 				Vec2f hitPos;
 				f32 length;
 				bool flip = this.isFacingLeft();
@@ -79,6 +79,7 @@ void onTick(CBlob@ this)
 				HitInfo@[] blobs;
 				if (getMap().getHitInfosFromRay(startPos, angle + (flip ? 180 : 0), maxDistance, holder, blobs))
 				{
+					map.server_setFireWorldspace(hitPos, true);
 					for (int i = 0; i < blobs.length; i++)
 					{
 						CBlob@ b = blobs[i].blob;

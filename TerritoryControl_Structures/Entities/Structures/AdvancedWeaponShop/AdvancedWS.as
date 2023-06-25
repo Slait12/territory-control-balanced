@@ -306,7 +306,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$tkb521$", "TKB-521.png", Vec2f(34, 14), 0, teamnum);
 	AddIconToken("$m712$", "M712.png", Vec2f(19, 11), 0, teamnum);
 	AddIconToken("$icon_grenadelauncher$", "PumpActionGrenadeLauncher.png", Vec2f(22, 9), 0, teamnum);
-	AddIconToken("$icon_thunderbolt$", "Thunderbolt.png", Vec2f(16, 8), 0, teamnum);
+	AddIconToken("$icon_thunderbolt$", "Thunderbolt.png", Vec2f(24, 16), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
