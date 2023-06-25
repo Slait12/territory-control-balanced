@@ -99,7 +99,7 @@ void onTick(CBlob@ this)
 
 						if (isServer())
 						{
-							this.server_Hit(b, b.getPosition(), Vec2f(0, 0), damage, HittersTC::electric, true);
+							this.server_Hit(b, b.getPosition(), Vec2f(0, 0), damage, HittersTC::crush, true);
 						}
 
 						break;
