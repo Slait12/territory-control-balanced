@@ -34,11 +34,11 @@ u8 getHealingAmount(CBlob@ food)
 			break;
 		// foodcan
 		case 1260223417:
-			heal_amount = 3;
+			heal_amount = 2;
 			break;
 		// grain
 		case -1788840884:
-			heal_amount = 1;
+			heal_amount = 0.8;
 			break;
 		// ratfood
 		case 1197821324:
@@ -46,7 +46,7 @@ u8 getHealingAmount(CBlob@ food)
 			break;
 		// ratburger
 		case -527037763:
-			heal_amount = 4;
+			heal_amount = 3;
 			break;
 		// pumpkin
 		case -642166209:

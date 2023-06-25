@@ -92,11 +92,11 @@ void Heal(CBlob@ this, CBlob@ blob)
 				break;
 			// foodcan
 			case 1260223417:
-				heal_amount = 3; // more sense to use expensive food?
+				heal_amount = 2;
 				break;
 			// grain
 			case -1788840884:
-				heal_amount = 1;
+				heal_amount = 0.8;
 				break;
 			// ratfood
 			case 1197821324:
@@ -104,7 +104,7 @@ void Heal(CBlob@ this, CBlob@ blob)
 				break;
 			// ratburger
 			case -527037763:
-				heal_amount = 4;
+				heal_amount = 3;
 				break;
 			// pumpkin
 			case -642166209:
@@ -116,7 +116,7 @@ void Heal(CBlob@ this, CBlob@ blob)
 				break;
 			// icecream
 			case 258075966:	
-				heal_amount = 1;
+				heal_amount = 2;
 				break;
 			// doritos
 			case 739538537:	
@@ -205,4 +205,25 @@ void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 	{
 		Heal(this, detached);
 	}
+}
+
+bool canBePutInInventory(CBlob@ this, CBlob@ inventoryBlob)
+{
+	if (inventoryBlob !is null && (inventoryBlob.hasTag("flesh") || inventoryBlob.hasTag("player")) && this !is null)
+	{
+		CInventory@ inv = inventoryBlob.getInventory();
+		if (inv !is null)
+		{
+			u8 counter = 1;
+			u16 foodq = inv.getItemsCount();
+			for (u16 i = 0; i < foodq; i++)
+			{
+				CBlob@ item = inv.getItem(i);
+				if (item is null) continue;
+				if (item.hasTag("food")) counter++;
+			}
+			return counter <= 4;
+		}
+	}
+	return true;
 }
