@@ -28,8 +28,6 @@ void onInit(CBlob@ this)
     this.SetLight(true);
 
 	AddIconToken("$icon_sniperammo$", "AmmoIcon_Sniper.png", Vec2f(24,24), 255);
-	AddIconToken("$damage_icon$", "damage_icon.png", Vec2f(15,26), 255);
-
  	{
 		ShopItem@ s = addShopItem(this, "Salt pebbles (20)", "$icon_banditammo$", "mat_banditammo-20", "Bullets for shit guns!");
 		AddRequirement(s.requirements, "blob", "mat_stone", "Stone", 40);
@@ -245,7 +243,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 
 		s.customButton = true;
-		s.buttonwidth = 3;
+		s.buttonwidth = 2;
 		s.buttonheight = 1;
 
 		s.spawnNothing = true;
@@ -259,7 +257,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 4000);
 
 		s.customButton = true;
-		s.buttonwidth = 3;
+		s.buttonwidth = 2;
 		s.buttonheight = 1;
 
 		s.spawnNothing = true;
@@ -271,6 +269,20 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 12);
 		AddRequirement(s.requirements, "coin", "", "Coins", 4000);
+
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Thunderbolt", "$icon_thunderbolt$", "thunderbolt", "Electromagnetic force, nature's force!\n\nIgnores Armor.\n\nUses Batteries");
+		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
+		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 50);
+		AddRequirement(s.requirements, "blob", "mat_battery", "Voltron Battery Plus", 100);
+		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -294,6 +306,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$tkb521$", "TKB-521.png", Vec2f(34, 14), 0, teamnum);
 	AddIconToken("$m712$", "M712.png", Vec2f(19, 11), 0, teamnum);
 	AddIconToken("$icon_grenadelauncher$", "PumpActionGrenadeLauncher.png", Vec2f(22, 9), 0, teamnum);
+	AddIconToken("$icon_thunderbolt$", "Thunderbolt.png", Vec2f(16, 8), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
