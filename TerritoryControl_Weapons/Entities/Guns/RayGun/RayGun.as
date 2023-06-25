@@ -5,7 +5,7 @@
 
 f32 maxDistance = 400;
 const int mothrildelay = 6; //less value -> faster
-f32 damage = 1.00f / 16.00f;
+f32 damage = 1.00f / 12.00f;
 
 void onInit(CBlob@ this)
 {
