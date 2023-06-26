@@ -4,7 +4,7 @@
 #include "Knocked.as";
 
 const f32 maxDistance = 300;
-const f32 damage = 0.5f;
+const f32 damage = 0.8f;
 const u32 delay = 5;
 
 void onInit(CBlob@ this)
@@ -145,7 +145,7 @@ bool HasAmmo(CBlob@ this, bool take, string ammoBlob)
 				{
 					if (take)
 					{
-						if (quantity >= 2) item.server_SetQuantity(quantity - 2);
+						if (quantity >= 1) item.server_SetQuantity(quantity - 1);
 						else
 						{
 							item.server_SetQuantity(0);
