@@ -73,19 +73,19 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans.");
+		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans. $icon_pistolammo$\n\nAmmo Capacity = 30\n\nDamage = 1.15\n\nFire Rate = 10");
 		AddRequirement(s.requirements, "coin", "", "Coins", 1199);
 
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF Carbine", "$carbine$", "carbine", "UPF Carbine. Used to penetrate humans from afar.");
+		ShopItem@ s = addShopItem(this, "UPF Carbine", "$carbine$", "carbine", "UPF Carbine. Used to penetrate humans from afar. $icon_rifleammo$\n\nAmmo Capacity = 30\n\nDamage = 1.25\n\nFire Rate = 10");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2299);
 
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF Assault Rifle", "$assaultrifle$", "assaultrifle", "Assault Rifle. Used to assault humans.");
+		ShopItem@ s = addShopItem(this, "UPF Assault Rifle", "$assaultrifle$", "assaultrifle", "Assault Rifle. Used to assault humans. $icon_rifleammo$\n\nAmmo Capacity = 20\n\nDamage = 1.5\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2999);
 
 		s.customButton = true;
@@ -95,13 +95,13 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF Suppressed Rifle", "$silencedrifle$", "silencedrifle", "A rifle with a suppressor. Used for assassination of humans.");
+		ShopItem@ s = addShopItem(this, "UPF Suppressed Rifle", "$silencedrifle$", "silencedrifle", "A rifle with a suppressor. Used for assassination of humans. $icon_rifleammo$\n\nAmmo Capacity = 10\n\nDamage = 2.5\n\nFire Rate = 6");
 		AddRequirement(s.requirements, "coin", "", "Coins", 1999);
 
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF Assault Shotgun", "$autoshotgun$", "autoshotgun", "Automatic Shotgun. Used to destroy humans.");
+		ShopItem@ s = addShopItem(this, "UPF Assault Shotgun", "$autoshotgun$", "autoshotgun", "Automatic Shotgun. Used to destroy humans. $icon_shotgunammo$\n\nAmmo Capacity = 8\n\nDamage = 6.75\n\nFire Rate = 3.75");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2499);
 
 		s.customButton = true;
@@ -111,7 +111,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF Sniper Rifle", "$sniper$", "sniper", "Sniper Rifle. Used for sniping humans.");
+		ShopItem@ s = addShopItem(this, "UPF Sniper Rifle", "$sniper$", "sniper", "Sniper Rifle. Used for sniping humans. $icon_sniperammo$\n\nAmmo Capacity = 4\n\nDamage = 9\n\nFire Rate = 0.75");
 		AddRequirement(s.requirements, "coin", "", "Coins", 5999);
 
 		s.spawnNothing = true;
