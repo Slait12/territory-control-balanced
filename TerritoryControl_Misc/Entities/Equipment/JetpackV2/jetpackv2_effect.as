@@ -47,7 +47,7 @@ void onTick(CBlob@ this)
 		if (shift)
 			if (this.get_f32("fuel_count") > 0)
 			{
-				this.set_f32("fuel_count", this.get_f32("fuel_count") - 3);
+				this.set_f32("fuel_count", this.get_f32("fuel_count") - 2);
 				if (this.get_f32("fuel_count") < 0) this.set_f32("fuel_count", 0);
 			}
 	//if (this.get_u32("timer") > 0) this.set_u32("timer", this.get_u32("timer") - 1);

@@ -150,7 +150,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Rocket Pack", "$icon_jetpack$", "jetpack", "A small rocket-propelled backpack.\nOccupies the Torso slot.\nPress [Shift] to jump!");
-		AddRequirement(s.requirements, "blob", "mat_smallrocket", "Small Rocket", 2);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
 		AddRequirement(s.requirements, "blob", "mat_oil", "Oil", 50);
 		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 
