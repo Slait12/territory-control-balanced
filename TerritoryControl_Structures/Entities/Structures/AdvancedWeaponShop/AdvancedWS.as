@@ -171,7 +171,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Tesla Ray", "$icon_thunderbolt$", "thunderbolt", "Electromagnetic force, nature's force!\n\nIgnores Armor.\n\nUses Batteries");
+		ShopItem@ s = addShopItem(this, "Tesla Ray", "$icon_thunderbolt$", "thunderbolt", "Electromagnetic force, nature's force!\n\nPenetrates Armor.\n\nUses Batteries.");
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 50);

@@ -298,11 +298,10 @@ void onInit(CBlob@ this)
 		s.buttonheight = 3;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Journalist copter", "$jourcopicon$", "jourcop", "$jourcopicon$\n\n\n\n\n\nWatch the battlefield dramas, but don't forget about the *birdies*!", false, true);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 28);
-		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 6);
-		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 40);
-		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
+		ShopItem@ s = addShopItem(this, "Self Propelled Howitzer", "$icon_sfcannon$", "sfcannon", "$icon_sfcannon$\n\n\n\n\n" + "A huge gun on its own propulsion system.\nDesigned to destroy heavily armored fortifications.\nUses high caliber shells.", false, true);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 48);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
+		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
 
 		s.crate_icon = 0;
 		s.customButton = true;
@@ -321,19 +320,8 @@ void onInit(CBlob@ this)
 		s.buttonheight = 3;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Self Propelled Howitzer", "$icon_sfcannon$", "sfcannon", "$icon_sfcannon$\n\n\n\n\n" + "A huge gun on its own propulsion system.\nDesigned to destroy heavily armored fortifications.\nUses high caliber shells.", false, true);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 48);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
-		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
-
-		s.crate_icon = 0;
-		s.customButton = true;
-		s.buttonwidth = 8;
-		s.buttonheight = 3;
-	}
-	{
 		ShopItem@ s = addShopItem(this, "Autocannon", "$icon_autocannon$", "autocannon", "A slow and sturdy wooden monstrosity.", false, true);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 14);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1000);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
@@ -351,7 +339,7 @@ void onInit(CBlob@ this)
 
 		//s.crate_icon = 0;
 		s.customButton = true;
-		s.buttonwidth = 12;
+		s.buttonwidth = 8;
 		s.buttonheight = 3;
 	}
 }
