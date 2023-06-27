@@ -60,8 +60,9 @@ const GramophoneRecord@[] records =
 	GramophoneRecord("Circus Ambience", "Disc_CircusMusic.ogg"),// 44
 	GramophoneRecord("Kalambur", "Disc_Kalambur.ogg"),// 45
 	GramophoneRecord("Red Sun in The Sky", "Disc_RedSunInTheSky.ogg"),// 46
-	GramophoneRecord("Heaven Pierce Her - Versus", "Disc_Versus.ogg"),// 47
-	GramophoneRecord("Heaven Pierce Her - ORDER", "Disc_Order.ogg")// 48
+	GramophoneRecord("Mindustry - Game 8", "Disc_Mindustry-Game8.ogg"),// 47	
+	GramophoneRecord("Heaven Pierce Her - Versus", "Disc_Versus.ogg"),// 48
+	GramophoneRecord("Heaven Pierce Her - ORDER", "Disc_Order.ogg")// 49
 };
 // type !disc NUMBER_OF_TRACK_FROM_LIST_ABOVE
 // example: !disc 0 will give you mountain king
