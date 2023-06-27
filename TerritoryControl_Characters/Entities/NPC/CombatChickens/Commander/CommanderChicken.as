@@ -194,68 +194,6 @@ void onTick(CBlob@ this)
 		this.getCurrentScript().runFlags |= Script::remove_after_this;
 	}
 
-	if (isServer())
-	{
-		if (getGameTime() >= next_commander_event)
-		{
-			CBlob@[] bases;
-			getBlobsByTag("faction_base", @bases);
-			u16 base_netid = 0;
-
-			if (bases.length > 0) 
-			{
-				CBlob@ base = bases[XORRandom(bases.length)];
-				if (base !is null)
-				{
-					next_commander_event = getGameTime() + (30 * 60 * 5) + XORRandom(30 * 60 * 20);
-					if(dry_shot)
-					{
-						dry_shot = false;
-					}
-					else
-					{
-						f32 map_width = getMap().tilemapwidth * 8;
-						f32 initial_position_x = Maths::Clamp(base.getPosition().x + (80 - XORRandom(160)) * 8.00f, 256.00f, map_width - 256.00f);
-
-						CBitStream stream;
-						stream.write_u16(base.getNetworkID());
-						this.SendCommand(this.getCommandID("commander_order_recon_squad"), stream);
-
-						for (int i = 0; i < 5; i++)
-						{
-							CBlob@ blob = server_MakeCrateOnParachute(XORRandom(2) == 0 ? "soldierchicken" : "scoutchicken", "SpaceStar Ordering Recon Squad", 0, 250, Vec2f(initial_position_x + (256.0f - XORRandom(512)), XORRandom(32)));
-							if (XORRandom(20) == 0)
-							{
-								CBlob@ blob1 = server_MakeCrateOnParachute("heavychicken", "SpaceStar Ordering Recon Squad", 0, 250, Vec2f(initial_position_x + (256.0f - XORRandom(512)), XORRandom(32)));
-								blob1.Tag("unpack on land");
-								blob1.Tag("destroy on touch");
-							}
-							blob.Tag("unpack on land");
-							blob.Tag("destroy on touch");
-						}
-
-						if (XORRandom(3) == 0)
-						{
-							{
-								for (int i = 0; i < 15; i++)
-								{
-									CBlob@ blob = server_MakeCrateOnParachute("mine", "SpaceStar Ordering Mines", 0, 250, Vec2f(base.getPosition().x + (378 - XORRandom(756)), XORRandom(64)));
-									blob.Tag("unpack on land");
-									blob.Tag("destroy on touch");
-								}
-							}
-						}
-					}
-				}
-			}
-			else
-			{
-				next_commander_event = getGameTime() + 2*((30 * 60 * 5) + XORRandom(30 * 60 * 20));
-				dry_shot = true;
-			}
-		}
-	}
-
 	if (isClient())
 	{
 		if (getGameTime() > this.get_u32("next sound") && XORRandom(100) < 5)

@@ -22,7 +22,7 @@ void onTick(CBlob@ this)
 		return;
 	}
 
-	if (this.get_string("equipment_torso") != "" && this.get_string("equipment2_torso") != "")
+	if ((this.get_string("equipment_torso") == "bulletproofvest" || this.get_string("equipment_torso") == "carbonvest" || this.get_string("equipment_torso") == "wilmetvest") && (this.get_string("equipment2_torso") == "bulletproofvest" || this.get_string("equipment2_torso") == "carbonvest" || this.get_string("equipment2_torso") == "wilmetvest"))
 	{
 		moveVars.walkFactor *= 0.9f;
 		moveVars.jumpFactor *= 0.95f;
