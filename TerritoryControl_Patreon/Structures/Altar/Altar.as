@@ -7,26 +7,6 @@
 
 // A script by TFlippy
 
-// Mithrios
-	// Bonuses: Mithrios head for followers, +5% running speed with each follower, 20% damage resistance
-	// Offering: Meat
-	
-// Ivan
-	// Bonuses: Drunken speech for followers, shrine plays old tavern music, slaving immunity, ???
-	// Offering: Vodka
-	
-// Gregor Builder
-	// Bonuses: 
-	// Offering: 
-
-// Barsuk
-	// Bonuses: 
-	// Offering: 
-	
-// Barlth
-	// Bonuses: 
-	// Offering: 
-
 void onInit(CSprite@ this)
 {
 	
@@ -47,7 +27,7 @@ void onInit(CBlob@ this)
 	
 	if (this.getName() == "altar")
 	{
-		this.set_Vec2f("shop menu size", Vec2f(10, 4));
+		this.set_Vec2f("shop menu size", Vec2f(16, 2));
 		this.set_string("shop description", "Select a Deity");
 		this.set_u8("shop icon", 15);
 		this.Tag(SHOP_AUTOCLOSE);
@@ -150,28 +130,6 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "Dragonfriend, God of Greed", "$icon_dragonfriend$", "altar_dragonfriend", "The god of wealth, power and greed.\n\n- Stonks Trading\n- Fire Resistance up to 100%\n- Summon a meteor\n\nPress V to conjure a fireball");
 			AddRequirement(s.requirements, "no more global", "altar_dragonfriend", "Altar of the Dragon", 1);
 			AddRequirement(s.requirements, "coin", "", "Coins", 8000);
-			s.customButton = true;
-			s.buttonwidth = 2;	
-			s.buttonheight = 2;
-			
-			s.spawnNothing = true;
-		}
-		{
-			ShopItem@ s = addShopItem(this, "trollbird, God of Trolling", "$icon_trollbird$", "altar_troll", "The god of trolling. I bet you its a worth investment");
-			AddRequirement(s.requirements, "no more global", "altar_troll", "Altar of the trollbird", 1);
-			AddRequirement(s.requirements, "coin", "", "Coins", 5000);
-			AddRequirement(s.requirements, "blob", "mat_dirt", "Dirt", 5000);
-			s.customButton = true;
-			s.buttonwidth = 2;	
-			s.buttonheight = 2;
-			
-			s.spawnNothing = true;
-		}
-		{
-			ShopItem@ s = addShopItem(this, "Leutnant, God of War Crimes", "$icon_leutnant$", "altar_leutnant", "*Essay about how Skemonde is actually a supervillain*");
-			AddRequirement(s.requirements, "coin", "", "Coins", 666);
-			AddRequirement(s.requirements, "blob", "c96", "Klauser C96", 1);
-			//AddRequirement(s.requirements, "blob", "shito", "WHY?", 1);
 			s.customButton = true;
 			s.buttonwidth = 2;	
 			s.buttonheight = 2;
