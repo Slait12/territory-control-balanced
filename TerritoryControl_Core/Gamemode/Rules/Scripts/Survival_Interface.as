@@ -135,7 +135,7 @@ void onRenderScoreboard(CRules@ this)
 		GUI::SetFont("menu");
 		GUI::DrawText("General Rules and Notes", Vec2f(mid- 100,tl.y + 10), white);
 		GUI::DrawText("- Don't block neutral spawn, only wood or stone can be used but the player should be allowed to leave it.", Vec2f(tO, tl.y + 30), white);
-		GUI::DrawText("- Players genocide and enslavement is permitted.", Vec2f(tO, tl.y + 45), white);
+		GUI::DrawText("- Players genocide is permitted, but try not to do it..", Vec2f(tO, tl.y + 45), white);
 		GUI::DrawText("- Don't steal someone else faction.", Vec2f(tO, tl.y + 60), white);
 		GUI::DrawText("- Don't intentionally lag the server.", Vec2f(tO, tl.y + 75), white);
 		GUI::DrawText("- For more information about rules, go to server Discord.", Vec2f(tO,tl.y + 90), white);
@@ -664,7 +664,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://github.com/franktc1/territory-control");
+				OpenWebsite("https://github.com/Slait12/territory-control-balanced");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
@@ -705,7 +705,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://discord.com/channels/939523236700508200/939523360956751912");
+				OpenWebsite("https://discord.com/channels/1120062272128159746/1120081753395167393");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
