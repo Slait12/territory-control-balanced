@@ -30,7 +30,7 @@ void onInit(CBlob@ this)
 	addTokens(this); //colored shop icons
 
 	this.set_Vec2f("shop offset", Vec2f(0,0));
-	this.set_Vec2f("shop menu size", Vec2f(8, 5));
+	this.set_Vec2f("shop menu size", Vec2f(8, 6));
 	this.set_string("shop description", "Mechanist's Workshop");
 	this.set_u8("shop icon", 15);
 
@@ -68,9 +68,12 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Mustard Gas", "$icon_mustard$", "mat_mustard-50", "A bottle of a highly poisonous gas. Causes blisters, blindness and lung damage.");
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
-		AddRequirement(s.requirements, "coin", "", "Coins", 100);
+		ShopItem@ s = addShopItem(this, "Accelerated Gyromat", "$icon_gyromat$", "gyromat", "A device capable of accelerating the work of various mechanisms and some vehicles.");
+		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 50);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 10);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 
 		s.spawnNothing = true;
 	}
@@ -271,7 +274,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Autonomous Activator", "$icon_automat$", "automat", "A magic-operated contraption that uses anything in its tiny hands. May be only carried around when not holding anything.");
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
-		AddRequirement(s.requirements, "blob", "bubblegem", "Bubble gem", 1);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
 
 		s.spawnNothing = true;
@@ -323,15 +326,45 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_plasteel", "Plasteel Sheet", 125);
 		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 12);
 		s.spawnNothing = true;
-	}/*
+	}
 	{
-		ShopItem@ s = addShopItem(this, "Grappling Hook For Dummies", "$grapplingcertificate$", "grapplingcertificate", "A knight without shield, but with hook!");
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 10);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
-		AddRequirement(s.requirements, "coin", "", "Coins", 500);
+		ShopItem@ s = addShopItem(this, "Gas Spreader XS-65", "$icon_gasweapon$", "gasthrower", "A device for spraying various gases.\nPut it on the ground and press E with gas in your hands to change the type of ammo.");
+                AddRequirement(s.requirements, "blob", "gasextractor", "Zapthrottle Gas Extractor", 1);
+                AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
+		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
+		s.customButton = true;
+		s.buttonwidth = 2;	
+		s.buttonheight = 1;
+		
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Mustard Gas", "$icon_mustard$", "mat_mustard-50", "A bottle of a highly poisonous gas. Causes blisters, blindness and lung damage.");
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
 		s.spawnNothing = true;
-	}*/
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Artillery Shell (4)", "$icon_tankshell$", "mat_tankshell-4", "A highly explosive shell used by the artillery.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 40);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Howitzer Shell (2)", "$icon_howitzershell$", "mat_howitzershell-2", "A large howitzer shell capable of annihilating a cottage.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 100);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Gregor (1)", "$icon_claymore$", "claymore-1", "A remotely triggered explosive device covered in some sort of slime. Sticks to surfaces.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 70);
+
+		s.spawnNothing = true;
+	}
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -356,6 +389,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_catalyzer$", "Catalyzer.png", Vec2f(9, 11), 0, teamnum);
 	AddIconToken("$icon_drill$", "Drill.png", Vec2f(32, 16), 0, teamnum);
 	AddIconToken("$icon_refrigerant$", "RefrigerantIcon", Vec2f(8, 14), 0, teamnum);
+	AddIconToken("$icon_gasweapon$", "GasThrower.png", Vec2f(24, 13), 0, teamnum);
 }
 
 void onTick(CBlob@ this)
