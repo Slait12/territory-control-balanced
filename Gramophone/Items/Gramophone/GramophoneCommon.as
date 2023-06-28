@@ -35,34 +35,33 @@ const GramophoneRecord@[] records =
 	GramophoneRecord("Johny", "Disc_Johny.ogg"),//19
 	GramophoneRecord("Pirate Tavern", "Disc_PirateTavern.ogg"),//20
 	GramophoneRecord("Wo Alle Strassen Enden", "Disc_WoAlleStrassenEnden.ogg"),//21
-	GramophoneRecord("Super Idol", "SUPER_IDOL!!11!!!1.ogg"),//22
-	GramophoneRecord("Arbeiter, Bauern, nehmt die Gewehre", "Disc_ArbeiterBauernnehmtdieGewehr.ogg"),//23
-	GramophoneRecord("Chip 'n Dale 2 Western World by Intender", "Disc_Chip'nDaleWesternWorld.ogg"),//24
-	GramophoneRecord("FFVI Devil's Lab by Chronamut", "Disc_DevilsLab.ogg"),//25
-	GramophoneRecord("Moyuru ōzora - Burning sky", "Disc_MoyuruOzora.ogg"),//26
-	GramophoneRecord("VC1 Against The Odds", "Disc_AgainstTheOdds.ogg"),//27
-	GramophoneRecord("Kitasakaba", "Disc_Kitasakaba.ogg"),//28
-	GramophoneRecord("J'aime L'oignon", "Disc_JaimeLoignon.ogg"),//29
-	GramophoneRecord("Better Call Saul - Little Barrie", "BetterCallSaul_LittleBarrie.ogg"),//30
-	GramophoneRecord("Molotov Cop - Little Barrie", "MolotovCop_LittleBarrie.ogg"),//31
-	GramophoneRecord("Greened Pastures - Little Barrie", "GreenerPastures_LittleBarrie.ogg"),//32
-	GramophoneRecord("Why don't you do it? - Little Barrie", "WhyDontYouDoIt_LittleBarrie.ogg"),//33
-	GramophoneRecord("A Stranger I Remain", "A_Stranger_I_Remain.ogg"),// 34
-	GramophoneRecord("Collective Consciouness", "Collective_Consciouness.ogg"),//35
-	GramophoneRecord("It Has To Be This Way", "It_Has_To_Be_This_Way.ogg"),// 36
-	GramophoneRecord("The Only Thing I Know For Real", "The_Only_Thing_I_Know_For_Real.ogg"),// 37
-	GramophoneRecord("Battotai - Imperial Japanese Army March", "Disc_Battotai.ogg"),// 38
-	GramophoneRecord("Paul Engemann - Push It To The Limit (Scarface)", "Disc_PushToTheLimit.ogg"),// 39
-	GramophoneRecord("Bella Ciao", "Disc_BellaCiao.ogg"),// 40
-	GramophoneRecord("Warszawianka", "Disc_Warszawianka.ogg"),// 41
-	GramophoneRecord("Famous Opera", "Disc_Opera.ogg"),// 42
-	GramophoneRecord("II Magnifico Cornuto (M11)", "Disc_II-Magnifico-Cornuto(M11).ogg"),// 43
-	GramophoneRecord("Circus Ambience", "Disc_CircusMusic.ogg"),// 44
-	GramophoneRecord("Kalambur", "Disc_Kalambur.ogg"),// 45
-	GramophoneRecord("Red Sun in The Sky", "Disc_RedSunInTheSky.ogg"),// 46
-	GramophoneRecord("Mindustry - Game 8", "Disc_Mindustry-Game8.ogg"),// 47	
-	GramophoneRecord("Heaven Pierce Her - Versus", "Disc_Versus.ogg"),// 48
-	GramophoneRecord("Heaven Pierce Her - ORDER", "Disc_Order.ogg")// 49
+	GramophoneRecord("Arbeiter, Bauern, nehmt die Gewehre", "Disc_ArbeiterBauernnehmtdieGewehr.ogg"),//22
+	GramophoneRecord("Chip 'n Dale 2 Western World by Intender", "Disc_Chip'nDaleWesternWorld.ogg"),//23
+	GramophoneRecord("FFVI Devil's Lab by Chronamut", "Disc_DevilsLab.ogg"),//24
+	GramophoneRecord("Moyuru ōzora - Burning sky", "Disc_MoyuruOzora.ogg"),//25
+	GramophoneRecord("VC1 Against The Odds", "Disc_AgainstTheOdds.ogg"),//26
+	GramophoneRecord("Kitasakaba", "Disc_Kitasakaba.ogg"),//27
+	GramophoneRecord("J'aime L'oignon", "Disc_JaimeLoignon.ogg"),//28
+	GramophoneRecord("Better Call Saul - Little Barrie", "BetterCallSaul_LittleBarrie.ogg"),//29
+	GramophoneRecord("Molotov Cop - Little Barrie", "MolotovCop_LittleBarrie.ogg"),//30
+	GramophoneRecord("Greened Pastures - Little Barrie", "GreenerPastures_LittleBarrie.ogg"),//31
+	GramophoneRecord("Why don't you do it? - Little Barrie", "WhyDontYouDoIt_LittleBarrie.ogg"),//32
+	GramophoneRecord("A Stranger I Remain", "A_Stranger_I_Remain.ogg"),// 33
+	GramophoneRecord("Collective Consciouness", "Collective_Consciouness.ogg"),//34
+	GramophoneRecord("It Has To Be This Way", "It_Has_To_Be_This_Way.ogg"),// 35
+	GramophoneRecord("The Only Thing I Know For Real", "The_Only_Thing_I_Know_For_Real.ogg"),// 36
+	GramophoneRecord("Battotai - Imperial Japanese Army March", "Disc_Battotai.ogg"),// 37
+	GramophoneRecord("Paul Engemann - Push It To The Limit (Scarface)", "Disc_PushToTheLimit.ogg"),// 38
+	GramophoneRecord("Bella Ciao", "Disc_BellaCiao.ogg"),// 39
+	GramophoneRecord("Warszawianka", "Disc_Warszawianka.ogg"),// 40
+	GramophoneRecord("Famous Opera", "Disc_Opera.ogg"),// 41
+	GramophoneRecord("II Magnifico Cornuto (M11)", "Disc_II-Magnifico-Cornuto(M11).ogg"),// 42
+	GramophoneRecord("Circus Ambience", "Disc_CircusMusic.ogg"),// 43
+	GramophoneRecord("Kalambur", "Disc_Kalambur.ogg"),// 44
+	GramophoneRecord("Red Sun in The Sky", "Disc_RedSunInTheSky.ogg"),// 45
+	GramophoneRecord("Mindustry - Game 8", "Disc_Mindustry-Game8.ogg"),// 46
+	GramophoneRecord("Heaven Pierce Her - Versus", "Disc_Versus.ogg"),// 47
+	GramophoneRecord("Heaven Pierce Her - ORDER", "Disc_Order.ogg")// 48
 };
 // type !disc NUMBER_OF_TRACK_FROM_LIST_ABOVE
 // example: !disc 0 will give you mountain king
