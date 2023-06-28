@@ -306,8 +306,9 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Gregor Remote Detonator", "$icon_claymoreremote$", "claymoreremote-1", "A device used to remotely detonate Gregors.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 150);
+		ShopItem@ s = addShopItem(this, "Mustard Gas", "$icon_mustard$", "mat_mustard-50", "A bottle of a highly poisonous gas. Causes blisters, blindness and lung damage.");
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
 		s.spawnNothing = true;
 	}
@@ -338,31 +339,6 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;	
 		s.buttonheight = 1;
 		
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Mustard Gas", "$icon_mustard$", "mat_mustard-50", "A bottle of a highly poisonous gas. Causes blisters, blindness and lung damage.");
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
-		AddRequirement(s.requirements, "coin", "", "Coins", 100);
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Artillery Shell (4)", "$icon_tankshell$", "mat_tankshell-4", "A highly explosive shell used by the artillery.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 40);
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Howitzer Shell (2)", "$icon_howitzershell$", "mat_howitzershell-2", "A large howitzer shell capable of annihilating a cottage.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 100);
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Gregor (1)", "$icon_claymore$", "claymore-1", "A remotely triggered explosive device covered in some sort of slime. Sticks to surfaces.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 70);
-
 		s.spawnNothing = true;
 	}
 }

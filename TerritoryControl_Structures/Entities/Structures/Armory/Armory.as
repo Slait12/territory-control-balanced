@@ -34,7 +34,7 @@ void onInit(CBlob@ this)
 	addTokens(this); //colored shop icons
 
 	this.set_Vec2f("shop offset", Vec2f(0,0));
-	this.set_Vec2f("shop menu size", Vec2f(6, 5));
+	this.set_Vec2f("shop menu size", Vec2f(6, 6));
 	this.set_string("shop description", "Armory");
 	this.set_u8("shop icon", 15);
 
@@ -237,6 +237,30 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "klaxon", "klaxon", 1);
 		AddRequirement(s.requirements, "blob", "animalbox", "Animal box", 1);
 		AddRequirement(s.requirements, "blob", "bobomax", "Bobomax", 1);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Gregor Remote Detonator", "$icon_claymoreremote$", "claymoreremote-1", "A device used to remotely detonate Gregors.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 150);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Artillery Shell (4)", "$icon_tankshell$", "mat_tankshell-4", "A highly explosive shell used by the artillery.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 40);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Howitzer Shell (2)", "$icon_howitzershell$", "mat_howitzershell-2", "A large howitzer shell capable of annihilating a cottage.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 100);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Gregor (1)", "$icon_claymore$", "claymore-1", "A remotely triggered explosive device covered in some sort of slime. Sticks to surfaces.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 70);
 
 		s.spawnNothing = true;
 	}
