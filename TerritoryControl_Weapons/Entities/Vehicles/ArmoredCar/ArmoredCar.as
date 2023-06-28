@@ -141,19 +141,6 @@ f32 fixAngle(f32 x)
     return x - 180;
 }
 
-void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
-{
-	if (attached.hasTag("bomber")) return;
-
-	attached.Tag("invincible");
-}
-
-void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
-{
-	if (detached.hasTag("bomber")) return;
-
-	detached.Untag("invincible");
-}
 
 void onTick(CBlob@ this)
 {
