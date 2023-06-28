@@ -119,6 +119,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 				{
 					sprite.RewindEmitSound();
 					sprite.SetEmitSound(record.filename);
+					sprite.SetEmitSoundVolume(4.0f);
 					sprite.SetEmitSoundPaused(false);
 					
 					sprite.SetAnimation("playing");
