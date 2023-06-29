@@ -12,14 +12,13 @@ void onInit(CBlob@ this)
 	this.getSprite().SetZ(-50); //background
 
 	// this.getCurrentScript().runFlags |= Script::tick_not_attached;
-	this.server_setTeamNum(-1);
 	
 	this.Tag("builder always hit");
 }
 
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 {
-	if (blob !is null && blob.hasTag("flesh"))
+	if (blob !is null && blob.hasTag("flesh") && blob.getTeamNum() != this.getTeamNum())
 	{
 		if (isServer()) this.server_Hit(blob, this.getPosition(), Vec2f(0, 0), 0.125f, Hitters::spikes, true);
 	}
