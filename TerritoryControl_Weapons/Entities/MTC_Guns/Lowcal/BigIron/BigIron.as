@@ -27,10 +27,10 @@ void onInit(CBlob@ this)
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
 
 	//Recoil
-	settings.G_RECOIL = -40; //0 is default, adds recoil aiming up
+	settings.G_RECOIL = -60; //0 is default, adds recoil aiming up
 	//settings.G_RANDOMX = true; //Should we randomly move x
 	//settings.G_RANDOMY = false; //Should we randomly move y, it ignores g_recoil
-	settings.G_RECOILT = 10; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
+	settings.G_RECOILT = 5; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
 	settings.G_BACK_T = 0; //Should we recoil the arm back time? (aim goes up, then back down with this, if > 0, how long should it last)
 
 	//Sound
