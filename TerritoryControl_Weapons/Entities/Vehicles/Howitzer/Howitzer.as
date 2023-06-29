@@ -231,13 +231,3 @@ bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
 	return forBlob.getCarriedBlob() is null && (inv !is null ? inv.getItem(v.ammo_name) is null : true);
 }
 
-void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
-{
-	if (attached.hasTag("bomber")) return;
-	this.set_u32("no_shoot", getGameTime()+120);
-}
-
-void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
-{
-
-}
