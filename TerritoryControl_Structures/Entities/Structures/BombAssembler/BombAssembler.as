@@ -218,15 +218,6 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("nuke", 1, "R.O.F.L.");
-		AddRequirement(i.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 16);
-		AddRequirement(i.reqs, "blob", "mat_mithrilenriched", "Enriched Mithril", 100);
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
-		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 16);
-		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 250);
-		items.push_back(i);
-	}
-	{
 		AssemblerItem i("mat_dynamite", 2, "Dynamite (2)");
 		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 100);
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 50);
