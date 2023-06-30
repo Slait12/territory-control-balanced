@@ -16,7 +16,6 @@ LootItem@[] c_items =
 	LootItem("landfish", 1, 1, 450),
 	LootItem("cowo", 0, 1, 55),
 	LootItem("chicken", 1, 2, 125),
-	//LootItem("rope", 1, 0, 150),
 	LootItem("mat_mithril", 0, 100, 250),
 	LootItem("lantern", 1, 1, 500),
 	LootItem("bomb", 1, 2, 675),
@@ -61,9 +60,7 @@ LootItem@[] c_items =
 	LootItem("juggernauthammer", 1, 1, 50),
 	LootItem("gyromat", 1, 1, 500),
 	LootItem("bp_chemistry", 1, 1, 175),
-	LootItem("hobo", 1, 1, 122),
-	LootItem("illegalgunpart", 1, 1, 122),
-	LootItem("cube", 1, 0, 1) //poggers 
+	LootItem("hobo", 1, 1, 122), 
 };
 
 LootItem@[] a_items =
@@ -81,7 +78,6 @@ LootItem@[] a_items =
 	LootItem("zatniktel", 1, 1, 135),
 	LootItem("drone", 1, 2, 125),
 	LootItem("scyther", 1, 0, 50),
-	LootItem("cube", 1, 0, 25) //poggers 
 };
 
 void onInit(CBlob@ this)
