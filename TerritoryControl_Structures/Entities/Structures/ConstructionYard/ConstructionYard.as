@@ -73,15 +73,6 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;
 		s.buttonheight = 2;
 	}
-	// {
-		// ShopItem@ s = addShopItem(this, "Ballista Ammo", "$mat_bolts$", "mat_bolts", "$mat_bolts$\n\n\n" + descriptions[15], false, false);
-		// s.crate_icon = 5;
-		// s.customButton = true;
-		// s.buttonwidth = 2;
-		// s.buttonheight = 2;
-		// AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 160);
-		// AddRequirement(s.requirements, "blob", "mat_stone", "Stone", 80);
-	// }
 	{
 		ShopItem@ s = addShopItem(this, "Dinghy", "$icon_dinghy$", "dinghy", "$dinghy$\n\n\n" + descriptions[10]);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
@@ -92,13 +83,6 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;
 		s.buttonheight = 2;
 	}
-	// {
-		// ShopItem@ s = addShopItem(this, "Buoy", "$buoy_icon$", "buoy", "Useful for anchoring.");
-		// AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
-		// AddRequirement(s.requirements, "blob", "mat_gold", "Gold", 100);
-		// AddRequirement(s.requirements, "blob", "mat_stone", "Stone", 100);
-		// s.spawnNothing = true;
-	// }
 	{
 		ShopItem@ s = addShopItem(this, "Longboat", "$icon_longboat$", "longboat", "$longboat$\n\n\n" + descriptions[33], false, true);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
@@ -195,17 +179,6 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 4;
 		s.buttonheight = 2;
 	}
-	//{
-		//ShopItem@ s = addShopItem(this, "Anti-air turret", "$antiair$", "antiair", "A strong machinegun, that is very useful against aerial targets.", false, true);
-		//AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
-		//AddRequirement(s.requirements, "blob", "mat_steelingot", "Iron Ingot", 8);
-		//AddRequirement(s.requirements, "coin", "", "Coins", 500);
-
-		//s.crate_icon = 0;
-		//s.customButton = true;
-		//s.buttonwidth = 2;
-		//s.buttonheight = 2;
-	//}
 	{
 		ShopItem@ s = addShopItem(this, "Spotter Airplane", "$icon_triplane$", "triplane", "$icon_triplane$\n\n\n\n" + "A fast airplane used for scouting and light bombing.\n\n[W]/[D] to accelerate\n[LMB] to shoot\n[Space] to drop items out of inventory\n[C] to leave", false, true);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 250);
@@ -271,19 +244,7 @@ void onInit(CBlob@ this)
 		s.customButton = true;
 		s.buttonwidth = 4;
 		s.buttonheight = 2;
-	}
-	/*
-	{
-		ShopItem@ s = addShopItem(this, "Incendiary Mortar", "$icon_incendiarymortar$", "incendiarymortar", "Trenches won't save you....", false, true);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Iron Ingot", 24);
-		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
-
-		s.crate_icon = 3;
-		s.customButton = true;
-		s.buttonwidth = 2;
-		s.buttonheight = 2;
-	}
-	*/	
+	}	
 	{
 		ShopItem@ s = addShopItem(this, "Charge Drill", "$chargedrill$", "chargedrill", "$chargedrill$\n\n\n\n\n" + "A giant drill that is capable to dig giant tunnels and omoron heartstones.\nYou can roll it while driving, press [DOWN] button.\nYou can reverse modes while driving, press [SPACEBAR] button.", false, false);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);

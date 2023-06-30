@@ -225,6 +225,6 @@ bool Vehicle_canFire(CBlob@ this, VehicleInfo@ v, bool isActionPressed, bool was
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
-	if (hitterBlob !is null && (hitterBlob.getName() == "tankshell" || hitterBlob.getName() == "smallrocket")) return damage * 4;
+	if (hitterBlob !is null && (hitterBlob.getName() == "tankshell")) return damage * 4;
 	return damage;
 }
