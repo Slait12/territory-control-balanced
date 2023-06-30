@@ -40,7 +40,6 @@ const string[] randomBlobs = {
 	"civillianchicken",
 	"commanderchicken",
 	"soldierchicken",
-	"amogus",
 	"freak",
 	"mound",
 	"hoob"
