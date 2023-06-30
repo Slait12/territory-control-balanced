@@ -211,14 +211,6 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 	}
-
-	if (rand.NextRanged(100) < 30)
-	{
-		ShopItem@ s = addShopItem(this, "vehry neat stufff phe GHAa", "$icon_illegalshit$", "illegalgunpart", "ok so now listen carefully my dear this is illegal as fUCK");
-		AddRequirement(s.requirements, "coin", "", "Coins", 5000 + rand.NextRanged(2000));
-		s.spawnNothing = true;
-		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
-	}
 	if (rand.NextRanged(100) < 30)
 	{
 		ShopItem@ s = addShopItem(this, "same sheeeeeesht parody", "$macrogun$", "macrogun", "dumb toy shot mAh nosee offf");
