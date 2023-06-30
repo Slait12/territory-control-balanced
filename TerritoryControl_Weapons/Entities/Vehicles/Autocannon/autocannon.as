@@ -1,4 +1,7 @@
 #include "VehicleCommon.as"
+#include "CargoAttachmentCommon.as"
+#include "Hitters.as";
+#include "Explosion.as";
 //made by Pankov
 // Mounted Bow logic
 
@@ -6,12 +9,9 @@ const Vec2f arm_offset = Vec2f(-36, -14);
 
 void onInit(CBlob@ this)
 {
-	this.Tag("usable by anyone");
-	this.Tag("turret");
-
 	Vehicle_Setup(this,
 	              65.0f, // move speed
-	              0.1f,  // turn speed
+	              0.2f,  // turn speed
 	              Vec2f(0.0f, 0.0f), // jump out velocity
 	              false  // inventory access
 	             );
@@ -31,7 +31,6 @@ void onInit(CBlob@ this)
 	v.charge = 400;
 	// init arm
 
-	this.getShape().SetRotationsAllowed(true);
 	this.set_string("autograb blob", "mat_tankshell");
 
 		Vehicle_SetupGroundSound(this, v, "WoodenWheelsRolling",  // movement sound
@@ -97,7 +96,8 @@ f32 getAimAngle(CBlob@ this, VehicleInfo@ v)
 
 		if (this.isAttached())
 		{
-			return 0;
+			if (facing_left) aim_vec.x = -aim_vec.x;
+			angle = (-(aim_vec).getAngle() + 180.0f);
 		}
 		else
 		{
@@ -107,7 +107,7 @@ f32 getAimAngle(CBlob@ this, VehicleInfo@ v)
 				if (aim_vec.x > 0) aim_vec.x = -aim_vec.x;
 
 				targetAngle = (-(aim_vec).getAngle() + 180.0f);
-				targetAngle = Maths::Max(-35.0f, Maths::Min(targetAngle, 35.0f));
+				targetAngle = Maths::Max(-180.0f, Maths::Min(targetAngle, 180.0f));
 
 				if (angle >= targetAngle-1 && angle <= targetAngle+1) return angle;
 				else if (angle > targetAngle) angle--;
@@ -147,16 +147,8 @@ void onTick(CBlob@ this)
 
 		Vehicle_StandardControls(this, v);
 	}
-	if (this.hasTag("invincible") && this.isAttached())
-	{
-		CBlob@ gunner = this.getAttachmentPoint(0).getOccupied();
-		if (gunner !is null)
-		{
-			gunner.Tag("invincible");
-			gunner.Tag("invincibilityByVehicle");
-		}
-	}
 }
+
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {
@@ -181,7 +173,7 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 		f32 angle = this.getAngleDegrees() + Vehicle_getWeaponAngle(this, v);
 		angle = angle * (this.isFacingLeft() ? -1 : 1);
 
-		Vec2f vel = Vec2f((30.0f + (XORRandom(40) / 1000.0f) * 2.0f ) * (this.isFacingLeft() ? -1 : 1), 0.0f).RotateBy(angle);
+		Vec2f vel = Vec2f((20.0f + (XORRandom(40) / 1000.0f) * 2.0f ) * (this.isFacingLeft() ? -1 : 1), 0.0f).RotateBy(angle);
 		bullet.setVelocity(vel);
 
 		Vec2f offset = Vec2f((this.isFacingLeft() ? -1 : 1) * 68, -14);
@@ -214,7 +206,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 
 bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
 {
-	return true;
+	return false;
 	// return this.getTeamNum() == byBlob.getTeamNum();
 }
 
@@ -225,7 +217,10 @@ bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 {
-	if (blob !is null) TryToAttachVehicle(this, blob);
+	if (blob !is null)
+	{
+		TryToAttachCargo(this, blob);
+	}
 }
 
 bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
@@ -238,25 +233,4 @@ bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
 	return forBlob.getCarriedBlob() is null && (inv !is null ? inv.getItem(v.ammo_name) is null : true);
 }
 
-void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
-{
-	if (attached.hasTag("bomber")) return;
 
-	if (attached.getPlayer() !is null && this.hasTag("invincible"))
-	{
-		if (this.isAttached())
-		{
-			attached.Tag("invincible");
-			attached.Tag("invincibilityByVehicle");
-		}
-	}
-}
-
-void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
-{
-	if (detached.hasTag("invincibilityByVehicle"))
-	{
-		detached.Untag("invincible");
-		detached.Untag("invincibilityByVehicle");
-	}
-}

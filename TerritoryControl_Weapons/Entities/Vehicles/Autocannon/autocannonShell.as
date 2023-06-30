@@ -52,67 +52,6 @@ void onTick(CBlob@ this)
 	this.getSprite().SetEmitSoundVolume(Maths::Max(0, modifier));
 }
 
-void Pierce(CBlob@ this, Vec2f velocity, const f32 angle)
-{
-	CMap@ map = this.getMap();
-
-	const f32 speed = velocity.getLength();
-
-	Vec2f direction = velocity;
-	direction.Normalize();
-
-	Vec2f position = this.getPosition();
-	Vec2f tip_position = position + direction * 4.0f;
-	Vec2f tail_position = position + direction * -4.0f;
-
-	Vec2f[] positions =
-	{
-		position,
-		tip_position,
-		tail_position
-	};
-
-	for (uint i = 0; i < positions.length; i ++)
-	{
-		Vec2f temp_position = positions[i];
-		TileType type = map.getTile(temp_position).type;
-		const u32 offset = map.getTileOffset(temp_position);
-
-		if (map.hasTileFlag(offset, Tile::SOLID))
-		{
-			onCollision(this, null, true);
-		}
-
-		// if (map.isTileSolid(type))
-		// {
-			// const u32 offset = map.getTileOffset(temp_position);
-			// onCollision(this, null, true);
-		// }
-	}
-
-	HitInfo@[] infos;
-
-	if (map.getHitInfosFromArc(tail_position, -angle, 10, (tip_position - tail_position).getLength(), this, false, @infos))
-	{
-		for (uint i = 0; i < infos.length; i ++)
-		{
-			CBlob@ blob = infos[i].blob;
-			Vec2f hit_position = infos[i].hitpos;
-
-			if (blob !is null)
-			{
-				onCollision(this, blob, false);
-			}
-		}
-	}
-}
-
-bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
-{
-	if (blob !is null) return (this.getTickSinceCreated() > 5 && this.getTeamNum() != blob.getTeamNum() && blob.isCollidable());
-	else return false;
-}
-
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 {
 	if (isServer())
@@ -141,7 +80,7 @@ void DoExplosion(CBlob@ this)
 	// print("Modifier: " + modifier + "; Quantity: " + this.getQuantity());
 
 	this.set_f32("map_damage_radius", 32.0f);
-	this.set_f32("map_damage_ratio", 0.25f);
+	this.set_f32("map_damage_ratio", 0.10f);
 
 	Explode(this, 64.0f, 6.0f);
 
