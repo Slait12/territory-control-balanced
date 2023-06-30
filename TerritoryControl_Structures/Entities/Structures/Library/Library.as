@@ -62,7 +62,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
     {
-		ShopItem@ s = addShopItem(this, "Weapons Blueprint", "$bp_we_icon$", "bp_weapons", "The blueprint for special UPF weapon shop.", true);
+		ShopItem@ s = addShopItem(this, "Weapons Blueprint", "$bp_we_icon$", "bp_weapons", "The blueprint for various advanced weapons.", true);
 		AddRequirement(s.requirements, "blob", "gaussrifle", "Gauss rifle", 2);
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 

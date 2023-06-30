@@ -331,10 +331,11 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Gas Spreader XS-65", "$icon_gasweapon$", "gasthrower", "A device for spraying various gases.\nPut it on the ground and press E with gas in your hands to change the type of ammo.");
                 AddRequirement(s.requirements, "blob", "gasextractor", "Zapthrottle Gas Extractor", 1);
+		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
                 AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
-		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
 		s.customButton = true;
 		s.buttonwidth = 2;	
 		s.buttonheight = 1;
