@@ -1,6 +1,7 @@
 #include "Hitters.as";
 #include "Explosion.as";
 #include "VehicleFuel.as";
+#include "GunCommon.as";
 
 // const u32 fuel_timer_max = 30 * 600;
 const f32 SPEED_MAX = 100;
@@ -24,6 +25,18 @@ string[] smokes =
 
 void onInit(CBlob@ this)
 {
+	GunSettings settings = GunSettings();
+
+	settings.B_GRAV = Vec2f(0, 0.006); //Bullet Gravity
+	settings.B_TTL = 11; //Bullet Time to live
+	settings.B_SPEED = 70; //Bullet speed
+	settings.B_DAMAGE = 2.5f; //Bullet damage
+	settings.G_RECOIL = 0;
+	settings.FIRE_SOUND = "GatlingGun-Shoot0.ogg";
+	settings.MUZZLE_OFFSET = Vec2f(-38, 8.5); //Where muzzle flash and bullet spawn
+
+	this.set("gun_settings", @settings);
+
 	this.set_f32("velocity", 0.0f);
 	
 	this.set_string("custom_explosion_sound", "bigbomb_explosion.ogg");
@@ -48,19 +61,21 @@ void onInit(CBlob@ this)
 
 void onInit(CSprite@ this)
 {
-	//this.RemoveSpriteLayer("tracer");
-	//CSpriteLayer@ tracer = this.addSpriteLayer("tracer", "GatlingGun_Tracer.png", 32, 1, this.getBlob().getTeamNum(), 0);
-//
-	//if (tracer !is null)
-	//{
-	//	Animation@ anim = tracer.addAnimation("default", 0, false);
-	//	anim.AddFrame(0);
-	//	
-	//	tracer.SetOffset(gun_offset);
-	//	tracer.SetRelativeZ(-1.0f);
-	//	tracer.SetVisible(false);
-	//	tracer.setRenderStyle(RenderStyle::additive);
-	//}
+	// Add muzzle flash
+	CSpriteLayer@ flash = this.addSpriteLayer("muzzle_flash", "flash_bullet.png", 16, 8);
+	if (flash !is null)
+	{
+		GunSettings@ settings;
+		this.getBlob().get("gun_settings", @settings);
+
+		Animation@ anim = flash.addAnimation("default", 1, false);
+		int[] frames = {0, 1, 2, 3, 4, 5, 6, 7};
+		anim.AddFrames(frames);
+		flash.SetRelativeZ(1.0f);
+		flash.SetOffset(settings.MUZZLE_OFFSET);
+		flash.SetVisible(false);
+		// flash.setRenderStyle(RenderStyle::additive);
+	}
 }
 
 void onTick(CBlob@ this)
@@ -216,85 +231,52 @@ void Shoot(CBlob@ this)
 {
 	if (getGameTime() < this.get_u32("fireDelay")) return;
 
-	f32 sign = (this.isFacingLeft() ? -1 : 1);
-	f32 angleOffset = (15 * sign);
-	f32 angle = this.getAngleDegrees() + ((XORRandom(200) - 100) / 100.0f) + angleOffset;
-		
-	Vec2f dir = Vec2f(sign, 0.0f).RotateBy(angle);
-	
-	Vec2f offset = gun_offset;
-	offset.x *= -sign;
-	
-	Vec2f startPos = this.getPosition() + offset.RotateBy(angle);
-	Vec2f endPos = startPos + dir * 500;
-	Vec2f hitPos;
-	
-	bool flip = this.isFacingLeft();		
-	HitInfo@[] hitInfos;
-	
-	bool mapHit = getMap().rayCastSolid(startPos, endPos, hitPos);
-	f32 length = (hitPos - startPos).Length();
-	
-	bool blobHit = getMap().getHitInfosFromRay(startPos, angle + (flip ? 180.0f : 0.0f), length, this, @hitInfos);
-		
-	if (isClient())
-	{
-		//DrawLine(this.getSprite(), startPos, length / 32, angleOffset, this.isFacingLeft());
-		this.getSprite().PlaySound("GatlingGun-Shoot0", 1.00f, 1.00f);
-		
-		// Vec2f mousePos = getControls().getMouseScreenPos();
-		// getControls().setMousePosition(Vec2f(mousePos.x, mousePos.y - 10));
-	}
-	
+	GunSettings@ settings;
+	this.get("gun_settings", @settings);
+
 	if (isServer())
 	{
-		if (blobHit)
+		// Angle shittery
+		f32 angle = this.getAngleDegrees() + ((XORRandom(500) - 100) / 100.0f) + (this.isFacingLeft() ? -10.0f : 10.0f);
+
+		// Muzzle
+		Vec2f fromBarrel = Vec2f((settings.MUZZLE_OFFSET.x / 3) * (this.isFacingLeft() ? 1 : -1), settings.MUZZLE_OFFSET.y + 1);
+		fromBarrel = fromBarrel.RotateBy(angle);
+
+		CBlob@ gunner = this.getAttachmentPoint(0).getOccupied();
+		if (gunner !is null)
 		{
-			f32 falloff = 1;
-			for (u32 i = 0; i < hitInfos.length; i++)
-			{
-				if (hitInfos[i].blob !is null)
-				{	
-					CBlob@ blob = hitInfos[i].blob;
-					
-					if ((blob.isCollidable() || blob.hasTag("flesh")) && blob.getTeamNum() != this.getTeamNum())
-					{
-						// print("Hit " + blob.getName() + " for " + damage * falloff);
-						this.server_Hit(blob, blob.getPosition(), Vec2f(0, 0), damage * Maths::Max(0.1, falloff), Hitters::arrow);
-						falloff = falloff * 0.5f;			
-					}
-				}
-			}
-		}
-		
-		if (mapHit)
-		{
-			CMap@ map = getMap();
-			TileType tile =	map.getTile(hitPos).type;
-			
-			if (!map.isTileBedrock(tile) && tile != CMap::tile_ground_d0 && tile != CMap::tile_stone_d0)
-			{
-				map.server_DestroyTile(hitPos, damage * 0.125f);
-			}
+			shootGun(this.getNetworkID(), angle, gunner.getNetworkID(), this.getPosition() + fromBarrel);
 		}
 	}
-	
-	this.set_u32("fireDelay", getGameTime() + shootDelay);
+
+	if (isClient())
+	{
+		this.getSprite().PlaySound(settings.FIRE_SOUND, 2.0f);
+
+		CSpriteLayer@ flash = this.getSprite().getSpriteLayer("muzzle_flash");
+		if (flash !is null)
+		{
+			//Turn on muzzle flash
+			flash.SetFrameIndex(0);
+			flash.SetVisible(true);
+		}
+	}
+	this.set_u32("fireDelay", getGameTime() + 3);
 }
 
-void DrawLine(CSprite@ this, Vec2f startPos, f32 length, f32 angle, bool flip)
+void shootGun(const u16 gunID, const f32 aimangle, const u16 hoomanID, const Vec2f pos) 
 {
-	CSpriteLayer@ tracer = this.getSpriteLayer("tracer");
-	
-	if (tracer !is null)
-	{
-		tracer.SetVisible(true);
+	CRules@ rules = getRules();
+	CBitStream params;
 
-		tracer.ResetTransform();
-		tracer.ScaleBy(Vec2f(length, 1.0f));
-		tracer.TranslateBy(Vec2f(length * 16.0f, 0.0f));
-		tracer.RotateBy(angle + (flip ? 180 : 0), Vec2f());
-	}
+	params.write_netid(hoomanID);
+	params.write_netid(gunID);
+	params.write_f32(aimangle);
+	params.write_Vec2f(pos);
+	params.write_u32(getGameTime());
+
+	rules.SendCommand(rules.getCommandID("fireGun"), params);
 }
 
 void onDie(CBlob@ this)
