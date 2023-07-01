@@ -1094,6 +1094,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 	if (customData == Hitters::builder)
 	{
 		return hitterBlob.isOverlapping(this) ? damage *= 10.0f : 0;
+	if (hitterBlob !is null && (hitterBlob.getName() == "howitzershell" || hitterBlob.getName() == "tankshell")) return damage * 1.25;
 	}
 
 	return damage;

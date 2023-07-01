@@ -17,7 +17,6 @@ void onInit(CRules@ this)
 	this.addCommandID("mute_cl");
 	this.addCommandID("playsound");
 	this.addCommandID("nukevent");
-	this.addCommandID("callputin");
 	this.addCommandID("nightevent");
 	//this.addCommandID("startInfection");
 	//this.addCommandID("endInfection");
@@ -467,12 +466,6 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 							}
 						}
 					}
-					return false;
-				}
-				else if ((tokens[0]=="!callputin"))
-				{
-					CBitStream params;
-					this.SendCommand(getRules().getCommandID("callputin"), params);
 					return false;
 				}
 				else if ((tokens[0]=="!nightevent"))
