@@ -1,3 +1,0 @@
-void onInit(CBlob@ this)
-{
-}
