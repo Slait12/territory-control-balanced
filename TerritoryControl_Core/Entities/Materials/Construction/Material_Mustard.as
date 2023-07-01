@@ -3,7 +3,7 @@
 
 void onInit(CBlob@ this)
 {
-	this.maxQuantity = 100;
+	this.maxQuantity = 50;
 	this.Tag("dangerous");
 	this.Tag("mat_gas");
 }
