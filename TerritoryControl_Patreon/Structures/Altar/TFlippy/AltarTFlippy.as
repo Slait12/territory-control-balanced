@@ -100,7 +100,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Retro RPG", "$rpgr$", "rpgr", "An old RPG with 4 barrels.\n\nUses Grenades.");
 		AddRequirement(s.requirements, "blob", "rpg", "RPG", 1);
-		AddRequirement(s.requirements, "blob", "illegalgunpart", "Definitely Legal Gun Part", 1);
+		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -111,7 +111,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Retro MegaGun", "$minigunr$", "minigunr", "An old MEGAgun, boy!\n\nUses Gatling Ammo.");
 		AddRequirement(s.requirements, "blob", "minigun", "MegaGun", 1);
-		AddRequirement(s.requirements, "blob", "illegalgunpart", "Definitely Legal Gun Part", 1);
+		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
