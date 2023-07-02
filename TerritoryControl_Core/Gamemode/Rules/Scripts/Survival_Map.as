@@ -3,8 +3,7 @@
 
 const string[] OffiMaps = {
 	"TFlippy_TC_Thomas",
-    "Xeno_Plains&Hills",
-	"Xeno_TC_Graveyard",
+        "Xeno_Plains&Hills",
 	"TFlippy_TC_Reign",
 	"TFlippy_TC_Mesa",
 	"TFlippy_TC_Bobox",
@@ -27,6 +26,7 @@ const string[] OffiMaps = {
 	"Ginger_TC_Samurai.png",
 	"JmD_TC_Poultry_v6",
 	"Tenshi_TC_WellOiledMachine_v2",
+	"Balanced_TC_FallenIslands",
 };
 
 const string[] MemeMaps = {
@@ -49,6 +49,8 @@ const string[] MemeMaps = {
 	"sus"
 	"Skemonde_TC_Gooby_v3fM",
 	"Skemonde_TC_Morgenland_v3",
+	"TFlippy_TC_Dung",
+	"Xeno_TC_Graveyard",
 };
 
 const string[] OldMaps = {
