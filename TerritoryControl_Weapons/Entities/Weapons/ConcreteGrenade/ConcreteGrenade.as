@@ -1,6 +1,7 @@
 #include "Hitters.as";
 #include "Knocked.as";
 #include "Explosion.as";
+#include "CustomBlocks.as";
 
 const f32 max_range = 128.00f;
 
@@ -21,19 +22,39 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 	}
 
 	const f32 vellen = this.getOldVelocity().Length();
+	CShape@ shape = this.getShape();
 	if (vellen > 1.7f)
 	{
 		Sound::Play("/BombBounce.ogg", this.getPosition(), Maths::Min(vellen / 8.0f, 1.1f), 1.2f);
+		this.setVelocity(Vec2f(0, 0));
+		shape.SetStatic(true);
+			shape.getConsts().collidable = false;
 	}
 }
+
+
 
 void onDie(CBlob@ this)
 {
 	if (isServer()) 
 	{
-		CBlob@ blob = server_CreateBlob("liquidconcrete", -1, this.getPosition());
+		Explode(this, 0.01f, 0.00f);
+		CMap@ map = this.getMap();
+		Vec2f pos = this.getPosition();
+		for (int y = 0; y < 3; y++)
+		{
+			for (int x = 0; x < 3; x++)
+			{
+				Vec2f offset = pos + (Vec2f(x - 1, y - 1) * 8.00f);
+				if (!map.isTileSolid(offset))
+				{
+					map.server_SetTile(offset, CMap::tile_concrete);
+					this.Tag("dead");
+					this.server_Die();
+				}
+			}
+		}
 	}
-	Explode(this, 0.01f, 0.00f);
 }
 
 void DoExplosion(CBlob@ this)
