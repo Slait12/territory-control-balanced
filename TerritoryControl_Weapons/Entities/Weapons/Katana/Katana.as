@@ -141,7 +141,7 @@ void onTick(CBlob@ this)
 						{
 							if (isServer())
 							{
-								holder.server_Hit(blob, blob.getPosition(), Vec2f(), 1.0f, Hitters::sword, true);
+								holder.server_Hit(blob, blob.getPosition(), Vec2f(), 2.5f, Hitters::sword, true);
 							}
 						}
 					}
