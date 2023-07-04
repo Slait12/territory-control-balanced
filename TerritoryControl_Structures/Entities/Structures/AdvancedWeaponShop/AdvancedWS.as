@@ -162,7 +162,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 40);
 		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 10);
-		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -171,7 +171,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Tesla Ray", "$icon_thunderbolt$", "thunderbolt", "Electromagnetic force, nature's force!\n\nPenetrates Armor.\n\nUses Batteries.");
+		ShopItem@ s = addShopItem(this, "Tesla Ray", "$icon_thunderbolt$", "thunderbolt", "Electromagnetic force, nature's force!\n\nPenetrates Armor. Sets the earth on fire.\n\nUses Batteries.");
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 50);
