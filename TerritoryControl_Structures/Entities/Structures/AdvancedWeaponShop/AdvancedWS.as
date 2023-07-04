@@ -255,7 +255,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 16);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 16);
 		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
-		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
+		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.customButton = true;
 		s.buttonwidth = 3;
