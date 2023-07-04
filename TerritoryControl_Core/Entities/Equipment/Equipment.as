@@ -158,6 +158,10 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream@ params)
 			}
 			else if (getEquipmentType(item) == "torso" && cmd == this.getCommandID("equip2_torso"))
 			{
+				if (eqName == "bulletproofvest" || eqName == "carbonvest" || eqName == "wilmetvest")
+				{
+					return;
+				}
 				add2Torso(caller, eqName);
 				if (eqName == "bulletproofvest" || eqName == "carbonvest" || eqName == "wilmetvest" || eqName == "keg") caller.set_f32(eqName+"_health", item.get_f32("health"));
 				item.server_Die();
