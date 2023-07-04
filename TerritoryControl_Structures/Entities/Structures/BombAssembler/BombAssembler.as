@@ -243,8 +243,8 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("mat_concretegrenade", 1, "Concrete Grenade (1)");
-		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 100);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
+		AddRequirement(i.reqs, "blob", "mat_concrete", "Concrete", 75);
 		items.push_back(i);
 	}
 	{
