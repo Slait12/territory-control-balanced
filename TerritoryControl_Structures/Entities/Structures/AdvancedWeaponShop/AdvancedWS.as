@@ -84,7 +84,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Soviet PPSH", "$ppsh$", "ppsh", "WW2 most-used russian weapon. $icon_pistolammo$\n\nAmmo Capacity = 30\n\nDamage = 1\n\nFire Rate = 15");
+		ShopItem@ s = addShopItem(this, "Soviet PPSH", "$ppsh$", "ppsh", "WW2 most-used russian weapon.\n\nСheap and weak. $icon_pistolammo$\n\nAmmo Capacity = 30\n\nDamage = 1\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 10);
 		AddRequirement(s.requirements, "coin", "", "Coins", 750);
@@ -96,7 +96,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Brand-new AK", "$bnak$", "bnak", "Popular russian weapon. $icon_rifleammo$\n\nAmmo Capacity = 20\n\nDamage = 1.5\n\nFire Rate = 10");
+		ShopItem@ s = addShopItem(this, "Brand-new AK", "$bnak$", "bnak", "Popular russian weapon.\n\nPerfect value for money. $icon_rifleammo$\n\nAmmo Capacity = 20\n\nDamage = 1.5\n\nFire Rate = 10");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 250);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 2);
@@ -109,7 +109,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy. $icon_rifleammo$\n\nAmmo Capacity = 50\n\nDamage = 3.25\n\nFire Rate = 5");
+		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy.\n\nGood for medium range combat and long shootouts. $icon_rifleammo$\n\nAmmo Capacity = 50\n\nDamage = 3.25\n\nFire Rate = 5");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 4);
@@ -122,7 +122,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and medium damage. $icon_rifleammo$\n\nAmmo Capacity = 100\n\nDamage = 1.5\n\nFire Rate = 15");
+		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and high damage.\n\nDeals a lot of damage and is good for suppressive fire. $icon_rifleammo$\n\nAmmo Capacity = 100\n\nDamage = 1.5\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
@@ -144,7 +144,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Nitro 700", "$nitro700$", "nitro700", "Strong shotgun used to take down buffalos, not badgers. $icon_sniperammo$\n\nAmmo Capacity = 2\n\nDamage = 6.8\n\nFire Rate = 1");
+		ShopItem@ s = addShopItem(this, "Nitro 700", "$nitro700$", "nitro700", "Strong shotgun used to take down buffalos, not badgers.\n\nSmall ammunition, but high rate of fire allows you to deal more damage during the time outside of shelters. $icon_sniperammo$\n\nAmmo Capacity = 2\n\nDamage = 6.8\n\nFire Rate = 1");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 350);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 16);
@@ -157,7 +157,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.n\nAmmo Capacity = 1\n\nDamage = 7.56\n\nFire Rate = 0.75\n\nUses Titanium Ingots.");
+		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.\n\nIdeal for breaking through walls and has strong knockback..n\nAmmo Capacity = 1\n\nDamage = 7.56\n\nFire Rate = 0.75\n\nUses Titanium Ingots.");
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 40);
