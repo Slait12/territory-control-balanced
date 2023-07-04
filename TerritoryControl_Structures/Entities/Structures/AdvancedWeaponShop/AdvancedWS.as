@@ -49,13 +49,6 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sticky Grenades (4)", "$stickygrenade$", "mat_stickygrenade-4", "Sticky grenades for grenadelaunchers");
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
-
-		s.spawnNothing = true;
-	}
-	{
 		ShopItem@ s = addShopItem(this, "Shotgun Shells (8)", "$icon_shotgunammo$", "mat_shotgunammo-8", "Shotgun Shells for... Shotguns.");
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
