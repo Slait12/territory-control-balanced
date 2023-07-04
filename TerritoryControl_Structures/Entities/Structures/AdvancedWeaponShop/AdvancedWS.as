@@ -148,7 +148,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 350);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 16);
-		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 		
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -162,7 +162,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 40);
 		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 10);
-		AddRequirement(s.requirements, "coin", "", "Coins", 750);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
