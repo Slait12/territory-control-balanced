@@ -92,7 +92,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			break;
 
 		case Hitters::burn:
-			dmg *= 1.45f;
+			dmg *= 1.6f;
 			break;
 
 	}
