@@ -49,6 +49,13 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "Sticky Grenades (4)", "$stickygrenade$", "mat_stickygrenade-4", "Sticky grenades for grenadelaunchers");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "Shotgun Shells (8)", "$icon_shotgunammo$", "mat_shotgunammo-8", "Shotgun Shells for... Shotguns.");
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
@@ -197,7 +204,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Grenade Launcher M79", "$icon_grenadelauncher$", "grenadelauncher", "A short-ranged weapon that launches grenades.\n\nUses Grenades.");
+		ShopItem@ s = addShopItem(this, "Grenade Launcher M79", "$icon_grenadelauncher$", "grenadelauncher", "A short-ranged weapon that launches grenades. Empty clip before switching ammo type.\n\nUses Grenades.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 350);

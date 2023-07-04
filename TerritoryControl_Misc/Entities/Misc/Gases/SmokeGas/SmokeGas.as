@@ -3,7 +3,7 @@ void onInit(CBlob@ this)
 	this.Tag("smoke");
 	this.Tag("gas");
 
-	this.getShape().SetGravityScale(-0.1f);
+	this.getShape().SetGravityScale(-0.01f);
 
 	this.getSprite().SetZ(10.0f);
 
@@ -28,7 +28,7 @@ void MakeParticle(CBlob@ this, const string filename = "LargeSmoke")
 {
 	if (!isClient() && !this.isOnScreen()) return;
 
-	ParticleAnimated(filename, this.getPosition() + Vec2f(XORRandom(200) / 10.0f - 10.0f, XORRandom(200) / 10.0f - 10.0f), Vec2f(), float(XORRandom(360)), 1.0f + (XORRandom(50) / 100.0f), 3, 0.0f, false);
+	ParticleAnimated(filename, this.getPosition() + Vec2f(XORRandom(200) / 10.0f - 10.0f, XORRandom(200) / 10.0f - 10.0f), Vec2f(), float(XORRandom(360)), 2.0f + (XORRandom(50) / 100.0f), 3, 0.0f, false);
 }
 
 bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
