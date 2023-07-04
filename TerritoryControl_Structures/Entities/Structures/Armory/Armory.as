@@ -191,7 +191,11 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Concrete Grenade (1)", "$icon_concretegrenade$", "mat_concretegrenade-1", "A concrete grenade. Explodes with foam-concrete that hardens after some time.");
+		ShopItem@ s = addShopItem(this, "Concrete Grenade (1)", "$icon_concretegrenade$", "mat_concretegrenade-1", "A sticky concrete grenade. Сreates a concrete cube when it explodes.
+
+.
+
+.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 		AddRequirement(s.requirements, "blob", "mat_concrete", "Concrete", 75);
 
