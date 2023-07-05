@@ -270,12 +270,12 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-	{
-		ShopItem@ s = addShopItem(this, "Sticky Grenades (2)", "$stickygrenade$", "mat_stickygrenade-2", "A small, timed explosive device used by grenade launchers. Sticks to surfaces instead of jumping.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 150);
-
-		s.spawnNothing = true;
-	}
+//	{
+//		ShopItem@ s = addShopItem(this, "Sticky Grenades (2)", "$stickygrenade$", "mat_stickygrenade-2", "A small, timed explosive device used by grenade launchers. Sticks to surfaces instead of jumping.");
+//		AddRequirement(s.requirements, "coin", "", "Coins", 150);
+//
+//		s.spawnNothing = true;
+//	}
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
