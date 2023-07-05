@@ -191,11 +191,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Concrete Grenade (1)", "$icon_concretegrenade$", "mat_concretegrenade-1", "A sticky concrete grenade. Сreates a concrete cube when it explodes.
-
-.
-
-.");
+		ShopItem@ s = addShopItem(this, "Concrete Grenade (1)", "$icon_concretegrenade$", "mat_concretegrenade-1", "A sticky concrete grenade. Сreates a concrete cube when it explodes.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 		AddRequirement(s.requirements, "blob", "mat_concrete", "Concrete", 75);
 
@@ -280,7 +276,6 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
