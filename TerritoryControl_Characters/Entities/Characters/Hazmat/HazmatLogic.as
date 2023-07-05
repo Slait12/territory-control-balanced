@@ -197,7 +197,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			break;
 			
 		default:
-			damage *= 0.80f;
+			damage *= 1.00f;
 			break;
 	}
 

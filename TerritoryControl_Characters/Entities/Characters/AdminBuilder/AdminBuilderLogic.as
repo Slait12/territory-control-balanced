@@ -5,7 +5,7 @@ void onInit(CBlob@ this)
 {
 	//this.Tag("human");
 
-	this.set_f32("mining_multiplier", 0.00f);
+	this.set_f32("mining_multiplier", 1.00f);
 	this.set_u8("mining_hardness", 100);
 	this.set_f32("max_build_length", 7.00f);
 	this.set_u32("build delay", 1);
