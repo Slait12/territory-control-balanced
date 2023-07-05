@@ -293,8 +293,8 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Zeppelin", "$icon_zeppelin$", "zepplin", "$icon_zeppelin$\n\n\n\n\n\n\n\n\n\n\n" + "A large zeppelin.\n\nYou can shoot from gatling gun.\nUses gatling ammo on the first inventory slot.", false, false);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 48);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 28);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 14);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1250);
 		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
 
