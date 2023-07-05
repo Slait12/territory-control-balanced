@@ -210,7 +210,6 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("mat_mininuke", 1, "L.O.L. Warhead (1)");
-		AddRequirement(i.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
 		AddRequirement(i.reqs, "blob", "mat_mithrilenriched", "Enriched Mithril", 30);
 		AddRequirement(i.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 8);
