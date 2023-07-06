@@ -45,6 +45,5 @@ void onInit(CBlob@ this)
 	//Custom
 	this.Tag("CustomSemiAuto");
 	this.Tag("medium weight");
-	this.Tag("sniper");
 	this.Tag("powerful");
 }

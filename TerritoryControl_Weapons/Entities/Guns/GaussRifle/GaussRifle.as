@@ -48,5 +48,4 @@ void onInit(CBlob@ this)
 	this.set_u8("CustomPenetration", 1);
 	this.set_u8("CustomKnock", 15);
 	this.Tag("medium weight");
-	this.Tag("sniper");
 }

@@ -111,7 +111,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF Sniper Rifle", "$sniper$", "sniper", "Sniper Rifle. Used for sniping humans. $icon_sniperammo$\n\nAmmo Capacity = 4\n\nDamage = 9\n\nFire Rate = 0.75");
+		ShopItem@ s = addShopItem(this, "UPF Sniper Rifle", "$sniper$", "sniper", "Sniper Rifle. Used for sniping humans.\n\nDeal full damage only when shooting from a long distance.$icon_sniperammo$\n\nAmmo Capacity = 4\n\nDamage = 11\n\nFire Rate = 0.6");
 		AddRequirement(s.requirements, "coin", "", "Coins", 5999);
 
 		s.spawnNothing = true;

@@ -135,7 +135,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{	
-		ShopItem@ s = addShopItem(this, "Sniper Rifle Dragunova", "$svd$", "svd", "A strong semi-auto half-sniper rifle. $icon_sniperammo$\n\nAmmo Capacity = 10\n\nDamage = 8\n\nFire Rate = 0.75");
+		ShopItem@ s = addShopItem(this, "Sniper Rifle Dragunova", "$svd$", "svd", "A strong semi-auto half-sniper rifle.\n\nDeal full damage only when shooting from a long distance.$icon_sniperammo$\n\nAmmo Capacity = 10\n\nDamage = 9\n\nFire Rate = 0.6");
 		AddRequirement(s.requirements, "blob",  "mat_wood", "Wood", 200);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
@@ -157,7 +157,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.\n\nIdeal for breaking through walls and has strong knockback..n\nAmmo Capacity = 1\n\nDamage = 7.56\n\nFire Rate = 0.75\n\nUses Titanium Ingots.");
+		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.\n\nIdeal for breaking through walls and has strong knockback.n\nAmmo Capacity = 1\n\nDamage = 7.56\n\nFire Rate = 0.75\n\nUses Titanium Ingots.");
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 40);
