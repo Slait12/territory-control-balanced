@@ -1,7 +1,7 @@
 #include "Hitters.as";
 #include "Explosion.as";
 
-const u32 fuel_timer_max = 30 * 0.50f;
+const u32 fuel_timer_max = 45 * 0.50f;
 
 void onInit(CBlob@ this)
 {
@@ -20,7 +20,7 @@ void onInit(CBlob@ this)
 
 	this.SetMapEdgeFlags(CBlob::map_collide_left | CBlob::map_collide_right);
 
-	this.set_u32("fuel_timer", getGameTime() + fuel_timer_max + XORRandom(15));
+	this.set_u32("fuel_timer", getGameTime() + fuel_timer_max);
 
 	CSprite@ sprite = this.getSprite();
 	sprite.SetEmitSound("Rocket_Idle.ogg");
