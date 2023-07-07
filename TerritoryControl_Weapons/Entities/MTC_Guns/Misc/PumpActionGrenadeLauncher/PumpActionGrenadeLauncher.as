@@ -60,7 +60,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 
 	params.write_u16(caller.getNetworkID());
 	CButton@ button = caller.CreateGenericButton(17, Vec2f(0, 0), this, this.getCommandID("set_grenade"), "Change grenade type", params);
-	if (button !is null) button.SetEnabled(carried !is null && (carried.getName() == "mat_grenade" || carried.getName() == "mat_stickygrenade"));
+	if (button !is null) button.SetEnabled(carried !is null && (carried.getName() == "mat_grenade" || carried.getName() == "mat_stickygrenade" || carried.getName() == "mat_acidgrenade" || carried.getName() == "mat_flamegrenade"));
 }
 
 
@@ -81,7 +81,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 			{
 				if (carried.getName() == "mat_stickygrenade")
 				{
-					this.setInventoryName("Grenade Launcher (Sticky grenade)");
+					this.setInventoryName("Grenade Launcher (Sticky Grenade)");
 					settings.AMMO_BLOB = "mat_stickygrenade";
 					this.set_string("ProjBlob", "stickygrenade");
 				}
@@ -90,6 +90,18 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 					this.setInventoryName("Grenade Launcher (Grenade)");
 					settings.AMMO_BLOB = "mat_grenade";
 					this.set_string("ProjBlob", "grenade");
+				}
+				else if (carried.getName() == "mat_acidgrenade")
+				{
+					this.setInventoryName("Grenade Launcher (Acid Grenade)");
+					settings.AMMO_BLOB = "mat_acidgrenade";
+					this.set_string("ProjBlob", "acidgrenade");
+				}
+				else if (carried.getName() == "mat_flamegrenade")
+				{
+					this.setInventoryName("Grenade Launcher (Flame Grenade)");
+					settings.AMMO_BLOB = "mat_flamegrenade";
+					this.set_string("ProjBlob", "flamegrenade");
 				}
 			}
 			this.set_u8("clip", 0);

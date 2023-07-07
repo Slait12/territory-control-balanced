@@ -77,6 +77,31 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "Sticky Grenades (4)", "$stickygrenade$", "mat_stickygrenade-4", "Sticky grenades for grenadelaunchers");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Acid Grenades (2)", "$acidgrenade$", "mat_acidgrenade-2", "Acid grenades for grenadelaunchers");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(s.requirements, "blob", "mat_acid", "Acid", 50);
+		
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Flame Grenades (2)", "$flamegrenade$", "mat_flamegrenade-4", "Flame grenades for grenadelaunchers");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(s.requirements, "blob", "mat_oil", "Oil", 50);
+		
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "Rockets (2)", "$mat_smallrocket$", "mat_smallrocket-2", "Small rocket for rocketlaunchers.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 1);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 25);

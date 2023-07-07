@@ -71,28 +71,32 @@ void onTick(CBlob@ this)
 							for (int i = 0; i < blobs.length; i++)
 							{
 								CBlob@ b = blobs[i].blob;
-								if (b !is null && b !is holder)
+								if (b.solid(true)) return;
+
+								if (b !is null && b !is holder && b.hasTag("flesh"))
 								{
-									if (b.hasTag("flesh"))
+									if (isServer())
 									{
-										this.server_Hit(b, b.getPosition(), dir, damage, Hitters::arrow, true);
+									this.server_Hit(b, b.getPosition(), dir, damage, Hitters::arrow, true);
+
 										CBitStream stream;
 										stream.write_u16(b.getNetworkID());
 										ammoBlob.SendCommand(ammoBlob.getCommandID("consume"), stream);
-										SetKnocked(b, 90);
-										length = blobs[i].distance + 8;
-										if (isClient())
-										{
-										Sound::Play("DartGun_Hit.ogg", b.getPosition(), 1.00f, 1.00f);
-										}
 									}
-									else
+
+									if (isClient())
 									{
-										break;
+										Sound::Play("DartGun_Hit.ogg", b.getPosition(), 1.00f, 1.00f);
 									}
+
+									SetKnocked(b, 90);
+									length = blobs[i].distance + 8;
+
+									break;
 								}
 							}
 						}
+
 						if (isClient())
 						{
 							sprite.PlaySound("DartGun_Shoot", 1.00f, 1.00f);
@@ -116,8 +120,6 @@ void onTick(CBlob@ this)
 		}
 	}
 }
-
-							
 
 CBlob@ GetAmmoBlob(CBlob@ this)
 {
