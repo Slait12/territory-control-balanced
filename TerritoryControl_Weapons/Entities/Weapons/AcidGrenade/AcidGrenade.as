@@ -75,20 +75,24 @@ bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
 
 void DoExplosion(CBlob@ this)
 {
-	CRules@ rules = getRules();
-	if (!shouldExplode(this, rules))
+
+	if (isServer()) 
 	{
-		addToNextTick(this, rules, DoExplosion);
-		return;
-	}
+		CRules@ rules = getRules();
+		if (!shouldExplode(this, rules))
+		{
+			addToNextTick(this, rules, DoExplosion);
+			return;
+		}
 	
-	CBlob@ blob = server_CreateBlobNoInit("acidgas");
-	blob.server_setTeamNum(-1);
-	blob.setPosition(this.getPosition());
-	blob.setVelocity(Vec2f(XORRandom(16) - 8, -XORRandom(5)));
-	blob.set_u16("acid_strength", 200);
-	blob.Init();
-	blob.server_SetTimeToDie(20 + XORRandom(10));
+		CBlob@ blob = server_CreateBlobNoInit("acidgas");
+		blob.server_setTeamNum(-1);
+		blob.setPosition(this.getPosition());
+		blob.setVelocity(Vec2f(XORRandom(16) - 8, -XORRandom(5)));
+		blob.set_u16("acid_strength", 200);
+		blob.Init();
+		blob.server_SetTimeToDie(20 + XORRandom(10));
+	}
 }
 void MakeParticle(CBlob@ this, const Vec2f pos, const Vec2f vel, const string filename = "SmallSteam")
 {
