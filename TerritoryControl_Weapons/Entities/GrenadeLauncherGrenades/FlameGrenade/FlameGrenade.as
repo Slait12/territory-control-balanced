@@ -81,18 +81,56 @@ void DoExplosion(CBlob@ this)
 		addToNextTick(this, rules, DoExplosion);
 		return;
 	}
-	
-	Explode(this, 16.0f, 2.0f);
-	if (this.hasTag("dead")) return;
-	this.Tag("dead");
-	CBlob@ blob = server_CreateBlob("flame", -1, this.getPosition());
-	blob.setVelocity(Vec2f(XORRandom(10) - 5, -XORRandom(6)));
-	blob.server_SetTimeToDie(5 + XORRandom(6));
+	f32 random = XORRandom(16);
+	f32 modifier = 1 + Maths::Log(this.getQuantity());
+	Vec2f pos = this.getPosition();
+	CMap@ map = getMap();
+	f32 angle = this.getAngleDegrees() - this.get_f32("bomb angle");
+	this.set_f32("map_damage_radius", (24.0f + random) * modifier);
+	this.set_f32("map_damage_ratio", 0.25f);
+	Explode(this, 24.0f + random, 3.0f);
+	if (isServer())
+	{
+		CBlob@[] blobs;
+
+		if (map.getBlobsInRadius(pos, 32.0f, @blobs))
+		{
+			for (int i = 0; i < blobs.length; i++)
+			{
+				CBlob@ blob = blobs[i];
+				if (blob !is null && (blob.hasTag("flesh") || blob.hasTag("plant"))) 
+				{
+					map.server_setFireWorldspace(blob.getPosition(), true);
+					blob.server_Hit(blob, blob.getPosition(), Vec2f(0, 0), 0.5f, Hitters::fire);
+				}
+			}
+		}
+
+		for (int i = 0; i < (3) * modifier; i++)
+		{
+			CBlob@ blob = server_CreateBlob("flame", -1, this.getPosition());
+			blob.setVelocity(Vec2f(XORRandom(10) - 5, -XORRandom(10)));
+			blob.server_SetTimeToDie(20 + XORRandom(10));
+		}
+		for(int a = 0; a < 30; a++)
+		{
+			map.server_setFireWorldspace(pos + Vec2f(4 - XORRandom(8), 4 - XORRandom(8)) * 4, true);
+		}
+	}
+
+	if (isClient() && this.isOnScreen())
+	{
+		for (int i = 0; i < 30; i++)
+		{
+
+			MakeParticle(this, Vec2f( XORRandom(64) - 32, XORRandom(80) - 60), getRandomVelocity(angle, XORRandom(400) * 0.01f, 70), particles[XORRandom(particles.length)]);
+			// ParticleAnimated("Entities/Effects/Sprites/FireFlash.png", this.getPosition() + Vec2f(0, -4), Vec2f(0, 0.5f), 0.0f, 1.0f, 2, 0.0f, true);
+		}
+		this.getSprite().Gib();
+	}
 }
 
 void MakeParticle(CBlob@ this, const Vec2f pos, const Vec2f vel, const string filename = "SmallSteam")
 {
-	if (!isClient()) return;
-
-	ParticleAnimated(filename, this.getPosition() + pos, vel, float(XORRandom(360)), 1.0f + XORRandom(100) * 0.01f, 2 + XORRandom(4), XORRandom(100) * -0.00005f, true);
+	ParticleAnimated(filename, this.getPosition() + pos, vel, float(XORRandom(360)), 1.0f, 2 + XORRandom(3), XORRandom(100) * -0.00005f, true);
 }
