@@ -337,6 +337,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 		this.set_Vec2f("shop offset", Vec2f(8, 0));
 		this.set_bool("shop available", this.isOverlapping(caller));
 
+		/*
 		CBitStream params;
 		params.write_u16(caller.getNetworkID());
 
@@ -360,6 +361,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 				}
 			}
 		}
+		*/
 	}
 	else
 	{
@@ -442,9 +444,9 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 	if (cmd == this.getCommandID("sv_store"))
 	{
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		if (isServer())
 		{
-			CBlob@ caller = getBlobByNetworkID(params.read_u16());
 			if (caller !is null)
 			{
 				CInventory @inv = caller.getInventory();
@@ -474,5 +476,25 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 				}
 			}
 		}
+
+		if (caller !is null && caller.isMyPlayer())
+		{
+			caller.ClearButtons();
+			caller.ClearGridMenus();
+		}
 	}
+}
+
+void onCreateInventoryMenu(CBlob@ this, CBlob@ forBlob, CGridMenu@ gridmenu)
+{
+	if (forBlob is null) return;
+	if (forBlob.getControls() is null) return;
+	Vec2f mscpos = forBlob.getControls().getMouseScreenPos(); 
+
+	Vec2f MENU_POS = mscpos+Vec2f(-200,-96);
+	CGridMenu@ sv = CreateGridMenu(MENU_POS, this, Vec2f(1, 1), "Store ");
+	
+	CBitStream params;
+	params.write_u16(forBlob.getNetworkID());
+	CGridButton@ store = sv.AddButton("$str$", "Store ", this.getCommandID("sv_store"), Vec2f(1, 1), params);
 }
