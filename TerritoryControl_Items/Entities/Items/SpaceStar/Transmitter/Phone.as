@@ -58,7 +58,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "UPF Weapon Package!", "$ss_guns$", "gun_package", "Assorted gun collection! Become a proud owner of UPF's best-selling armaments, now with a huge discount!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 8999);
+		AddRequirement(s.requirements, "coin", "", "Coins", 5999);
 		
 		s.spawnNothing = true;
 	}
