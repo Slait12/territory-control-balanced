@@ -259,6 +259,11 @@ void onInit(CBlob@ this)
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 15);
 		items.push_back(i);
 	}
+	{
+		AssemblerItem i("mat_shrapnelbomb", 8, "Anti-personel Shrapnel Bomb (8)");
+		AddRequirement(i.reqs, "blob", "mat_goldingot", "Gold Ingot", 1);
+		items.push_back(i);
+	}
 	this.set("items", items);
 
 	this.set_TileType("background tile", CMap::tile_castle_back);
