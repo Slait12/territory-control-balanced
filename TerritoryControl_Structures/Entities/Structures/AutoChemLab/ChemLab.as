@@ -285,6 +285,7 @@ void React(CBlob@ this)
 			CBlob@ steroid_blob = inv.getItem("steroid");
 			CBlob@ pumpkin_blob = inv.getItem("pumpkin");
 			CBlob@ mat_boof = inv.getItem("mat_boof");
+			CBlob@ lemon_blob = inv.getItem("lemon");
 
 			bool hasOil = oil_blob !is null;
 			bool hasMethane = methane_blob !is null;
@@ -311,6 +312,7 @@ void React(CBlob@ this)
 			bool hasSteroid = steroid_blob !is null;
 			bool hasPumpkin = pumpkin_blob !is null;
 			bool hasBoof = mat_boof !is null;
+			bool hasLemon = lemon_blob !is null;
 
 			// Boof Gas Recipe
 			if (pressure > 1000 && heat > 700 && hasGanjaPod)
@@ -547,7 +549,7 @@ void React(CBlob@ this)
 				{
 					meat_blob.server_SetQuantity(Maths::Max(meat_blob.getQuantity() - count * 0.25f, 0));
 					Material::createFor(this, "mat_methane", count * 0.75f);
-					Material::createFor(this, "mat_acid", count * 0.75f);
+					Material::createFor(this, "mat_acid", count * 0.25f);
 				}
 
 				ShakeScreen(10.0f, 20, this.getPosition());
@@ -829,6 +831,18 @@ void React(CBlob@ this)
 
 				ShakeScreen(30.0f, 60, this.getPosition());
 				this.getSprite().PlaySound("DrugLab_Create_Acidic.ogg", 1.00f, 1.00f);
+			}
+			//Acid mat reciepe using lemons
+			if (heat > 1000 && hasLemon)
+			{
+				if (isServer())
+				{
+					if (lemon_blob.getQuantity() <= 2) lemon_blob.server_Die();
+					else lemon_blob.server_SetQuantity(Maths::Max(lemon_blob.getQuantity() - 2, 0));
+					Material::createFor(this, "mat_acid", 10+XORRandom(4));
+				}
+				ShakeScreen(30.0f, 15, this.getPosition());
+				this.getSprite().PlaySound("DrugLab_Create_Liquid.ogg", 1.00f, 1.00f);
 			}
 		}
 	}

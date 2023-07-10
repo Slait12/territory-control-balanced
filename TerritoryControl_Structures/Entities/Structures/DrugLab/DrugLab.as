@@ -225,6 +225,7 @@ void React(CBlob@ this)
 			CBlob@ stim_blob = inv.getItem("stim");
 			CBlob@ love_blob = inv.getItem("love");
 			CBlob@ grain_blob = inv.getItem("grain");
+			CBlob@ lemon_blob = inv.getItem("lemon");
 			CBlob@ rippio_blob = inv.getItem("rippio");
 			CBlob@ rippiogas_blob = inv.getItem("mat_rippio");
 			CBlob@ ganja_blob = inv.getItem("mat_ganja");
@@ -253,6 +254,7 @@ void React(CBlob@ this)
 			bool hasStim = stim_blob !is null;
 			bool hasLove = love_blob !is null;
 			bool hasGrain = grain_blob !is null;
+			bool hasLemon = lemon_blob !is null;
 			bool hasRippio = rippio_blob !is null;
 			bool hasRippioGas = rippiogas_blob !is null;
 			bool hasGanja = ganja_blob !is null;
@@ -480,7 +482,7 @@ void React(CBlob@ this)
 				{
 					meat_blob.server_SetQuantity(Maths::Max(meat_blob.getQuantity() - count * 0.25f, 0));
 					Material::createFor(this, "mat_methane", count * 0.75f);
-					Material::createFor(this, "mat_acid", count * 0.75f);
+					Material::createFor(this, "mat_acid", count * 0.25f);
 				}
 
 				ShakeScreen(10.0f, 20, this.getPosition());
@@ -678,25 +680,6 @@ void React(CBlob@ this)
 				this.getSprite().PlaySound("DrugLab_Create_Solid.ogg", 1.00f, 1.00f);
 			}
 
-			if (pressure < 100000 && heat > 500 && hasAcid && hasCoal && hasSulphur && acid_count >= 25 && sulphur_count >= 50 && coal_count >= 10)
-			{
-				if (isServer())
-				{
-					acid_blob.server_SetQuantity(Maths::Max(acid_blob.getQuantity() - 25, 0));
-					sulphur_blob.server_SetQuantity(Maths::Max(sulphur_blob.getQuantity() - 100, 0));
-					coal_blob.server_SetQuantity(Maths::Max(coal_blob.getQuantity() - 10, 0));
-
-					Material::createFor(this, "propesko", 1 + XORRandom(4));
-					if (XORRandom(100) < 10)
-					{
-						Material::createFor(this, "love", 2);
-					}
-				}
-
-				ShakeScreen(60.0f, 90, this.getPosition());
-				this.getSprite().PlaySound("DrugLab_Create_Creamy.ogg", 1.00f, 1.00f);
-			}
-
 			if (pressure > 40000 && heat > 2000 && hasOil && hasMithril && oil_count >= 25 && mithril_count >= 25)
 			{
 				if (isServer())
@@ -811,6 +794,19 @@ void React(CBlob@ this)
 
 				ShakeScreen(30.0f, 60, this.getPosition());
 				this.getSprite().PlaySound("DrugLab_Create_Acidic.ogg", 1.00f, 1.00f);
+			} 
+			//Acid mat reciepe using lemons
+
+			if (heat > 1000 && hasLemon)
+			{
+				if (isServer())
+				{
+					if (lemon_blob.getQuantity() <= 2) lemon_blob.server_Die();
+					else lemon_blob.server_SetQuantity(Maths::Max(lemon_blob.getQuantity() - 2, 0));
+					Material::createFor(this, "mat_acid", 10+XORRandom(4));
+				}
+				ShakeScreen(30.0f, 15, this.getPosition());
+				this.getSprite().PlaySound("DrugLab_Create_Liquid.ogg", 1.00f, 1.00f);
 			}
 		}
 	}
