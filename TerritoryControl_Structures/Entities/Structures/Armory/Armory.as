@@ -12,6 +12,7 @@ Random traderRandom(Time());
 void onInit(CBlob@ this)
 {
 	this.set_TileType("background tile", CMap::tile_castle_back);
+	AddIconToken("$str$", "StoreAll.png", Vec2f(16, 16), 0);
 
 	//this.Tag("upkeep building");
 	//this.set_u8("upkeep cap increase", 0);
@@ -39,7 +40,7 @@ void onInit(CBlob@ this)
 	this.set_u8("shop icon", 15);
 
 	{
-		ShopItem@ s = addShopItem(this, "Combat Helmet", "$icon_militaryhelmet$", "militaryhelmet", "A light combat helmet.\nCheap and practical. Good against all bullets.\n\nOccupies the Head slot");
+		ShopItem@ s = addShopItem(this, "Combat Helmet", "$icon_militaryhelmet$", "militaryhelmet", "An universal combat helmet.\nNice and practical. Good against all bullets.\n\nOccupies the Head slot");
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 2);
 		AddRequirement(s.requirements, "coin", "", "Coins", 50);
 
@@ -53,7 +54,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Wilmet Helmet", "$icon_wilmethelmet$", "wilmethelmet", "An universal combat helmet.\nVery good against plasma, electricity, radiation,\nbut moderately good against everything else.\n\nOccupies the Head slot");
+		ShopItem@ s = addShopItem(this, "Wilmet Helmet", "$icon_wilmethelmet$", "wilmethelmet", "A strong combat helmet.\nVery good against plasma, electricity, radiation,\nbut moderately good against everything else.\n\nOccupies the Head slot");
 		AddRequirement(s.requirements, "blob", "mat_wilmet", "Wilmet", 85);
 		AddRequirement(s.requirements, "coin", "", "Coins", 400);
 
@@ -79,7 +80,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Ballistic Vest", "$icon_bulletproofvest$", "bulletproofvest", "A resilient ballistic armor.\nCheap and practical. Good against all bullets.\n\nOccupies the Torso slot");
+		ShopItem@ s = addShopItem(this, "Ballistic Vest", "$icon_bulletproofvest$", "bulletproofvest", "A resilient ballistic armor.\nNice and practical. Good against all bullets.\n\nOccupies the Torso slot");
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
 		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
@@ -270,12 +271,21 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-//	{
-//		ShopItem@ s = addShopItem(this, "Sticky Grenades (2)", "$stickygrenade$", "mat_stickygrenade-2", "A small, timed explosive device used by grenade launchers. Sticks to surfaces instead of jumping.");
-//		AddRequirement(s.requirements, "coin", "", "Coins", 150);
-//
-//		s.spawnNothing = true;
-//	}
+
+	{
+		ShopItem@ s = addShopItem(this, "Light Combat Helmet", "$icon_lighthelmet$", "lighthelmet", "A light combat helmet.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Head slot");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
+		AddRequirement(s.requirements, "coin", "", "Coins", 50);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Light Protective Vest", "$icon_lightvest$", "lightvest", "A light ballistic armor.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Torso slot");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "coin", "", "Coins", 100);
+
+		s.spawnNothing = true;
+	}
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -292,7 +302,6 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_parachute$", "Parachutepack.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$jumpshoes$", "JumpShoes.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_royalarmor$", "RoyalArmor.png", Vec2f(16, 8), 0, teamnum);
-	AddIconToken("$icon_suitofarmor$", "SuitOfArmor.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_gluegrenade$", "GlueGrenade.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_concretegrenade$", "ConcreteGrenade.png", Vec2f(16, 16), 0, teamnum);
 }
