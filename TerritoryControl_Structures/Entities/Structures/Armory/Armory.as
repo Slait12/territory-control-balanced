@@ -41,8 +41,8 @@ void onInit(CBlob@ this)
 
 	{
 		ShopItem@ s = addShopItem(this, "Combat Helmet", "$icon_militaryhelmet$", "militaryhelmet", "An universal combat helmet.\nNice and practical. Good against all bullets.\n\nOccupies the Head slot");
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 2);
-		AddRequirement(s.requirements, "coin", "", "Coins", 50);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
+		AddRequirement(s.requirements, "coin", "", "Coins", 300);
 
 		s.spawnNothing = true;
 	}
@@ -81,8 +81,8 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Ballistic Vest", "$icon_bulletproofvest$", "bulletproofvest", "A resilient ballistic armor.\nNice and practical. Good against all bullets.\n\nOccupies the Torso slot");
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
-		AddRequirement(s.requirements, "coin", "", "Coins", 100);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
+		AddRequirement(s.requirements, "coin", "", "Coins", 600);
 
 		s.spawnNothing = true;
 	}
