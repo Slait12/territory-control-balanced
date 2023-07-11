@@ -130,6 +130,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			if (headname == "militaryhelmet" || headname == "nvd") armorMaxHealth = 80.0f;
 			else if (headname == "carbonhelmet") armorMaxHealth = 190.0f;
 			else if (headname == "wilmethelmet") armorMaxHealth = 120.0f;
+			else if (headname == "lighthelmet") armorMaxHealth = 50.0f;
 			else if (headname == "scubagear") armorMaxHealth = 10.0f;
 			else if (headname == "bucket") armorMaxHealth = 10.0f;
 			else if (headname == "pumpkin") armorMaxHealth = 5.0f;
@@ -154,7 +155,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					default:
-						ratio = 0.20f;
+						ratio = 0.15f;
 						break;
 				}
 			}
@@ -216,6 +217,29 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 				}
 			}
+			else if ((headname == "lighthelmet"))
+			{
+				switch (customData)
+				{
+					case HittersTC::bullet_low_cal:
+					case HittersTC::shotgun:
+						ratio = 0.25f;
+						break;
+
+					case HittersTC::bullet_high_cal:
+					case HittersTC::railgun_lance:
+						ratio = 0.20f;
+						break;
+
+					case Hitters::fire:
+						dmg *= 0.10f;
+						break;
+
+					default:
+						ratio = 0.10f;
+						break;
+				}
+			}
 			else if (headname == "scubagear" || headname == "bucket" || headname == "pumpkin" || headname == "minershelmet")
 					ratio = 0.20f;
 					
@@ -255,7 +279,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					default:
-						ratio = 0.35f;
+						ratio = 0.25f;
 						break;
 				}
 			}
@@ -321,7 +345,30 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					default:
-						ratio = 0.35f;
+						ratio = 0.25f;
+						break;
+				}
+			}
+			if (torsoname == "lightvest" && customData != HittersTC::radiation)
+			{
+				switch (customData)
+				{
+					case HittersTC::bullet_low_cal:
+					case HittersTC::shotgun:
+						ratio = 0.25f;
+						break;
+
+					case HittersTC::bullet_high_cal:
+					case HittersTC::railgun_lance:
+						ratio = 0.20f;
+						break;
+
+					case Hitters::fire:
+						dmg *= 0.10f;
+						break;
+
+					default:
+						ratio = 0.10f;
 						break;
 				}
 			}
@@ -441,6 +488,29 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 					default:
 						ratio = 0.35f;
+						break;
+				}
+			}
+			if (torso2name == "lightvest" && customData != HittersTC::radiation)
+			{
+				switch (customData)
+				{
+					case HittersTC::bullet_low_cal:
+					case HittersTC::shotgun:
+						ratio = 0.25f;
+						break;
+
+					case HittersTC::bullet_high_cal:
+					case HittersTC::railgun_lance:
+						ratio = 0.20f;
+						break;
+
+					case Hitters::fire:
+						dmg *= 0.10f;
+						break;
+
+					default:
+						ratio = 0.10f;
 						break;
 				}
 			}
