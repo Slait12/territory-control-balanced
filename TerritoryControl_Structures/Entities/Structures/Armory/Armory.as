@@ -224,14 +224,14 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Light Combat Helmet", "$icon_lighthelmet$", "lighthelmet", "A light combat helmet.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Head slot");
+		ShopItem@ s = addShopItem(this, "Light Combat Helmet", "$lighthelmet_icon$", "lighthelmet", "A light combat helmet.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Head slot");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
 		AddRequirement(s.requirements, "coin", "", "Coins", 50);
 
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Light Protective Vest", "$icon_lightvest$", "lightvest", "A light ballistic armor.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Torso slot");
+		ShopItem@ s = addShopItem(this, "Light Protective Vest", "$lightvest_icon$", "lightvest", "A light ballistic armor.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Torso slot");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
 		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
