@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 	addTokens(this); //colored shop icons
 
 	this.set_Vec2f("shop offset", Vec2f(0,0));
-	this.set_Vec2f("shop menu size", Vec2f(6, 6));
+	this.set_Vec2f("shop menu size", Vec2f(6, 7));
 	this.set_string("shop description", "Armory");
 	this.set_u8("shop icon", 15);
 
@@ -271,7 +271,6 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-
 	{
 		ShopItem@ s = addShopItem(this, "Light Combat Helmet", "$icon_lighthelmet$", "lighthelmet", "A light combat helmet.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Head slot");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
