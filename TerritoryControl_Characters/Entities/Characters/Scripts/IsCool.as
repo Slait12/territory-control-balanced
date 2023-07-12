@@ -9,8 +9,8 @@ bool IsCool(string username)
 			//username=="GoldenGuy" ||
 			//username=="Koi_" ||
 			//username=="digga"||
-            		//username=="PURPLExeno"||
-			//username=="TheCustomerMan"||
-			//username=="FrankStain" ||
-			//username=="NoahTheLegend";
+            username=="PURPLExeno"||
+			username=="TheCustomerMan"||
+			username=="FrankStain" ||
+			username=="NoahTheLegend";
 }
