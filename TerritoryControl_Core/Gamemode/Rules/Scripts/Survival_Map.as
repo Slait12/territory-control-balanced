@@ -46,7 +46,6 @@ const string[] MemeMaps = {
 	//"Xeno_TC_BlackMarket",
 	"Xeno_TC_AncientTemple",
 	"Vamistorio_TC_IkoPit_v2"
-	"sus"
 	"Skemonde_TC_Gooby_v3fM",
 	"Skemonde_TC_Morgenland_v3",
 	"TFlippy_TC_Dung",
