@@ -1,3 +1,7 @@
 
 .vs/slnx.sqlite
+<<<<<<< HEAD
 .vs/territory-control-balanced/v17/.suo
+=======
+.vs/ProjectSettings.json
+>>>>>>> parent of 87d1764 (Revert "Merge branch 'main' of https://github.com/Slait12/territory-control-balanced")
