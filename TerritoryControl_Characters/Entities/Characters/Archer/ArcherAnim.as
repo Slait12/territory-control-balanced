@@ -7,7 +7,6 @@
 #include "Knocked.as"
 #include "PixelOffsets.as"
 #include "RunnerTextures.as"
-#include "IsCool.as"
 
 const f32 config_offset = -4.0f;
 const string shiny_layer = "shiny bit";
@@ -40,11 +39,6 @@ void LoadSprites(CSprite@ this)
 	if (p !is null && !(security.checkAccess_Feature(p, "patreon")))
 	{
 		patreon = false;
-	}
-
-	if(p !is null && (IsCool(p.getUsername()) || patreon))
-	{
-		ensureCorrectRunnerTexture(this, "archer_cape", "ArcherCape");
 	}
 	else
 	{

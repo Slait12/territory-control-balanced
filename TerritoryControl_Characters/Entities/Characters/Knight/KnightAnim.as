@@ -6,8 +6,6 @@
 #include "Knocked.as"
 #include "PixelOffsets.as"
 #include "RunnerTextures.as"
-#include "IsCool.as"
-
 const string shiny_layer = "shiny bit";
 
 void onInit(CSprite@ this)
@@ -62,12 +60,6 @@ void LoadSprites(CSprite@ this)
 		{
 			patreon = false;
 		}
-
-        if(IsCool(p.getUsername()) || patreon)
-        {
-            ensureCorrectRunnerTexture(this, "knight_cape", "KnightCape");
-            return;
-        }
 	}
 
     switch (armour)

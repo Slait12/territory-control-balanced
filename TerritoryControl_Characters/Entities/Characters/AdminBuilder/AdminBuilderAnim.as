@@ -8,7 +8,6 @@
 #include "Knocked.as"
 #include "PixelOffsets.as"
 #include "RunnerTextures.as"
-#include "IsCool.as"
 
 void onInit(CSprite@ this)
 {

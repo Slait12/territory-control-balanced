@@ -8,7 +8,6 @@
 #include "Knocked.as"
 #include "PixelOffsets.as"
 #include "RunnerTextures.as"
-#include "IsCool.as"
 
 void onInit(CSprite@ this)
 {
@@ -37,12 +36,6 @@ void LoadSprites(CSprite@ this)
 		if (!(security.checkAccess_Feature(p, "patreon")))
 		{
 			patreon = false;
-		}
-
-		if(IsCool(p.getUsername()) || patreon)
-		{
-			ensureCorrectRunnerTexture(this, "builder_cape", "BuilderCape");
-			return;
 		}
 	}
 
