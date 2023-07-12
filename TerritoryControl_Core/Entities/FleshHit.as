@@ -129,7 +129,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 			if (headname == "militaryhelmet" || headname == "nvd") armorMaxHealth = 80.0f;
 			else if (headname == "carbonhelmet") armorMaxHealth = 190.0f;
-			else if (headname == "wilmethelmet") armorMaxHealth = 120.0f;
 			else if (headname == "lighthelmet") armorMaxHealth = 50.0f;
 			else if (headname == "scubagear") armorMaxHealth = 10.0f;
 			else if (headname == "bucket") armorMaxHealth = 10.0f;
@@ -188,35 +187,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 				}
 			}
-			else if ((headname == "wilmethelmet"))
-			{
-				switch (customData)
-				{
-					case HittersTC::bullet_low_cal:
-					case HittersTC::shotgun:
-					case HittersTC::bullet_high_cal:
-						ratio = 0.55f;
-						break;
-
-					case HittersTC::railgun_lance:
-					case HittersTC::plasma:
-					case HittersTC::electric:
-						ratio = 0.65f;
-						break;
-
-					case Hitters::explosion:
-						ratio = 0.35f;
-						break;
-
-					case Hitters::fire:
-						dmg *= 0.6f;
-						break;
-
-					default:
-						ratio = 0.15f;
-						break;
-				}
-			}
 			else if ((headname == "lighthelmet"))
 			{
 				switch (customData)
@@ -257,7 +227,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 			if (torsoname == "bulletproofvest") armorMaxHealth = 100.0f;
 			else if (torsoname == "carbonvest") armorMaxHealth = 200.0f;
-			else if (torsoname == "wilmetvest") armorMaxHealth = 146.0f;
 			else if (torsoname == "keg") armorMaxHealth = 10.0f;
 
 			if (torsoname == "bulletproofvest" && customData != HittersTC::radiation)
@@ -313,42 +282,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 				}
 			}
-			else if (torsoname == "wilmetvest")
-			{
-				switch (customData)
-				{
-					case HittersTC::bullet_low_cal:
-					case HittersTC::shotgun:
-					case HittersTC::bullet_high_cal:
-					case Hitters::sword:
-					case Hitters::keg:
-					case Hitters::mine:
-					case Hitters::mine_special:
-					case Hitters::bomb:
-					case Hitters::arrow:
-						ratio = 0.5f;
-						break;
-
-					case HittersTC::railgun_lance:
-					case HittersTC::plasma:
-					case HittersTC::electric:
-					case HittersTC::radiation:
-						ratio = 0.65f;
-						break;
-
-					case Hitters::explosion:
-						ratio = 0.35f;
-						break;
-
-					case Hitters::fire:
-						dmg *= 0.6f;
-						break;
-
-					default:
-						ratio = 0.25f;
-						break;
-				}
-			}
 			if (torsoname == "lightvest" && customData != HittersTC::radiation)
 			{
 				switch (customData)
@@ -400,7 +333,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 			if (torso2name == "bulletproofvest") armorMaxHealth = 100.0f;
 			else if (torso2name == "carbonvest") armorMaxHealth = 200.0f;
-			else if (torso2name == "wilmetvest") armorMaxHealth = 146.0f;
 			else if (torso2name == "keg") armorMaxHealth = 10.0f;
 
 			if (torso2name == "bulletproofvest" && customData != HittersTC::radiation)
@@ -455,42 +387,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 				}
 			}
-			else if (torso2name == "wilmetvest")
-			{
-				switch (customData)
-				{
-					case HittersTC::bullet_low_cal:
-					case HittersTC::shotgun:
-					case HittersTC::bullet_high_cal:
-					case Hitters::sword:
-					case Hitters::keg:
-					case Hitters::mine:
-					case Hitters::mine_special:
-					case Hitters::bomb:
-					case Hitters::arrow:
-						ratio = 0.55f;
-						break;
-
-					case HittersTC::railgun_lance:
-					case HittersTC::plasma:
-					case HittersTC::electric:
-					case HittersTC::radiation:
-						ratio = 0.65f;
-						break;
-
-					case Hitters::explosion:
-						ratio = 0.35f;
-						break;
-
-					case Hitters::fire:
-						dmg *= 0.6f;
-						break;
-
-					default:
-						ratio = 0.35f;
-						break;
-				}
-			}
 			if (torso2name == "lightvest" && customData != HittersTC::radiation)
 			{
 				switch (customData)
@@ -541,7 +437,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			f32 ratio = 0.0f;
 			if (bootsname == "combatboots") armorMaxHealth = 48.0f;
 			else if (bootsname == "carbonboots") armorMaxHealth = 98.0f;
-			else if (bootsname == "wilmetboots") armorMaxHealth =  85.0f;
 			if (bootsname == "combatboots" && customData != HittersTC::radiation)
 			{
 				switch (customData)
@@ -564,19 +459,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					default: ratio = 0.1f;
-						break;
-				}
-			}
-			else if (bootsname == "wilmetboots")
-			{
-				switch (customData)
-				{
-					case Hitters::fall:
-					case HittersTC::radiation:
-						ratio = 0.99f;
-						break;
-
-					default: ratio = 0.15f;
 						break;
 				}
 			}
