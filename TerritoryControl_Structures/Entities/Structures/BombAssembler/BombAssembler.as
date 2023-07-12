@@ -248,9 +248,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("mat_highcalshell", 4, "High Caliber Shell (4)");
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
-		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 8);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 60);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 8);
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 4);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 30);
 		items.push_back(i);
 	}
 	{
