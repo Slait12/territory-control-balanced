@@ -214,14 +214,11 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 	CBlob@ blob = player.getBlob();
 	if (blob is null) return true;
 
-	bool isCool= IsCool(player.getUsername());
 	bool isMod=	player.isMod();
 
 	bool wasCommandSuccessful = true; // assume command is successful 
 	string errorMessage = ""; // so errors can be printed out of wasCommandSuccessful is false
 	SColor errorColor = SColor(255,255,0,0); // ^
-
-	if (isCool && text_in == "!ripserver") QuitGame();
 
 	bool showMessage=(player.getUsername()!="TFlippy" && player.getUsername()!="merser433");
 
@@ -300,7 +297,7 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 				}
 				errorColor = SColor(0xff444444);
 			}	
-			else if (isMod || isCool)			//For at least moderators
+			else if (isMod)			//For at least moderators
 			{
 				if (tokens[0] == "!admin")
 				{
@@ -439,7 +436,7 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 				}
 				else if ((tokens[0]=="!tp"))
 				{
-					if (tokens.length != 2 && (tokens.length != 3 || (tokens.length == 3 && !isCool))) return false;
+					if (tokens.length != 2 && (tokens.length != 3 || (tokens.length == 3))) return false;
 
 					CPlayer@ tpPlayer =	GetPlayer(tokens[1]);
 					CBlob@ tpBlob =	tokens.length == 2 ? blob : tpPlayer.getBlob();
@@ -450,19 +447,12 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 						CBlob@ destBlob = tpDest.getBlob();
 						if (destBlob !is null)
 						{
-							if (isCool || blob.getName() == "grandpa")
+							if (blob.getName() == "grandpa")
 							{
 								CBitStream params;
 								params.write_u16(tpBlob.getNetworkID());
 								params.write_u16(destBlob.getNetworkID());
 								this.SendCommand(this.getCommandID("teleport"), params);
-							}
-							else if (!isCool)
-							{
-								player.server_setTeamNum(-1);
-								CBlob@ newBlob = server_CreateBlob("grandpa",-1,destBlob.getPosition());
-								newBlob.server_SetPlayer(player);
-								tpBlob.server_Die();
 							}
 						}
 					}
@@ -485,7 +475,7 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 				}
 			}
 
-			if (isCool || isMod)
+			if (isMod)
 			{
 				/*if (tokens[0]=="!awootism")
 				{
@@ -987,22 +977,6 @@ string h2s(string s)
 	return false;
 }*/
 
-bool IsCool(string username)
-{
-	return 	//username=="vladkvs193" ||
-			username=="PURPLExeno"||
-			username=="TheCustomerMan"||
-			username=="NoahTheLegend"||
-			//username=="merser433" ||
-			//username=="Verdla" ||
-			//username=="Vamist" ||
-			//username=="Pirate-Rob" ||
-			//username=="GoldenGuy" ||
-			//username=="Koi_" ||
-			//username=="digga" ||
-			//username=="Asu" ||
-			(isServer()&&isClient()); //**should** return true only on localhost
-}
 
 CPlayer@ GetPlayer(string username)
 {
