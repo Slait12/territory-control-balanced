@@ -27,15 +27,16 @@ void onInit(CBlob@ this)
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
 
 	//Recoil
-	settings.G_RECOIL = -20; //0 is default, adds recoil aiming up
+	settings.G_RECOIL = -35; //0 is default, adds recoil aiming up
 	settings.G_RANDOMX = true; //Should we randomly move x
 	settings.G_RANDOMY = false; //Should we randomly move y, it ignores g_recoil
-	settings.G_RECOILT = 4; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
+	settings.G_RECOILT = 8; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
 	settings.G_BACK_T = 0; //Should we recoil the arm back time? (aim goes up, then back down with this, if > 0, how long should it last)
 
 	//Sound
 	settings.FIRE_SOUND = "TKB521_Shoot.ogg"; //Sound when shooting
 	settings.RELOAD_SOUND = "FlamethrowerReload.ogg"; //Sound when reloading
+	this.Tag("CustomSoundLoop");
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-23, -1.5); //Where the muzzle flash appears
