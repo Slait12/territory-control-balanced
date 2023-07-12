@@ -1,16 +1,16 @@
 void onTick(CBlob@ this)
 {
-    if (this.get_string("reload_script") == "wilmetvest")
+    if (this.get_string("reload_script") == "lightvest")
 		this.set_string("reload_script", "");
 	
 	//print("hp: "+this.get_f32("bpv_health"));
 	
-	if (this.get_f32("wilmetvest_health") >= 146.0f)
+	if (this.get_f32("bulletproofvest_health") >= 100.0f)
 	{
 		this.getSprite().PlaySound("ricochet_" + XORRandom(3));
 		this.set_string("equipment_torso", "");
-		this.set_f32("wilmetvest_health", 145.9f);
-		this.RemoveScript("wilmetvest_effect.as");
+		this.set_f32("lightvest_health", 99.9f);
+		this.RemoveScript("lightvest_effect.as");
 	}
 	// print("torso: "+this.get_f32("bpv_health"));
 }
