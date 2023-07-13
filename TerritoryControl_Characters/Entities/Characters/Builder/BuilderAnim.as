@@ -30,26 +30,18 @@ void LoadSprites(CSprite@ this)
 	if(p !is null)
 	{
 		armour = p.getArmourSet();
-
-		bool patreon = true;
-		CSecurity@ security = getSecurity();
-		if (!(security.checkAccess_Feature(p, "patreon")))
+		switch (armour)
 		{
-			patreon = false;
+		case PLAYER_ARMOUR_STANDARD:
+			ensureCorrectRunnerTexture(this, "builder", "Builder");
+			break;
+		case PLAYER_ARMOUR_CAPE:
+			ensureCorrectRunnerTexture(this, "builder_cape", "BuilderCape");
+			break;
+		case PLAYER_ARMOUR_GOLD:
+			ensureCorrectRunnerTexture(this, "builder_gold", "BuilderGold");
+			break;
 		}
-	}
-
-	switch (armour)
-	{
-	case PLAYER_ARMOUR_STANDARD:
-		ensureCorrectRunnerTexture(this, "builder", "Builder");
-		break;
-	case PLAYER_ARMOUR_CAPE:
-		ensureCorrectRunnerTexture(this, "builder_cape", "BuilderCape");
-		break;
-	case PLAYER_ARMOUR_GOLD:
-		ensureCorrectRunnerTexture(this, "builder_gold", "BuilderGold");
-		break;
 	}
 
 }
