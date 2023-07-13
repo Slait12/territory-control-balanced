@@ -28,7 +28,7 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 		Sound::Play("/BombBounce.ogg", this.getPosition(), Maths::Min(vellen / 8.0f, 1.1f), 1.2f);
 		this.setVelocity(Vec2f(0, 0));
 		shape.SetStatic(true);
-			shape.getConsts().collidable = false;
+		shape.getConsts().collidable = false;
 	}
 }
 
@@ -48,9 +48,16 @@ void onDie(CBlob@ this)
 				Vec2f offset = pos + (Vec2f(x - 1, y - 1) * 8.00f);
 				if (!map.isTileSolid(offset))
 				{
-					map.server_SetTile(offset, CMap::tile_concrete);
-					this.Tag("dead");
-					this.server_Die();
+					if (map.getSectorAtPosition(offset,"no build") is null)
+					{
+						CBlob@[] blobsInRadius;
+						if (!map.getBlobsInRadius(this.getPosition(), 3.00f, @blobsInRadius))
+						{
+							map.server_SetTile(offset, CMap::tile_concrete);
+							this.Tag("dead");
+							this.server_Die();
+						}
+					}
 				}
 			}
 		}
