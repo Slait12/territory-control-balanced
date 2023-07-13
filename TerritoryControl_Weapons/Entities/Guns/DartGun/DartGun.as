@@ -47,7 +47,7 @@ void onTick(CBlob@ this)
 				if (getGameTime() >= this.get_u32("nextShoot"))
 				{
 					CBlob@ ammoBlob = GetAmmoBlob(this);
-					if (ammoBlob !is null && ammoBlob.hasTag("dartguninjectable"))
+					if (ammoBlob !is null)
 					{
 						Vec2f aimDir = holder.getAimPos() - this.getPosition();
 						aimDir.Normalize();
@@ -71,28 +71,30 @@ void onTick(CBlob@ this)
 							for (int i = 0; i < blobs.length; i++)
 							{
 								CBlob@ b = blobs[i].blob;
-								if (b !is null && b !is holder)
+								if (b !is null && b !is holder && b.hasTag("flesh"))
 								{
-									if (b.hasTag("flesh"))
+									if (isServer())
 									{
 										this.server_Hit(b, b.getPosition(), dir, damage, Hitters::arrow, true);
+
 										CBitStream stream;
 										stream.write_u16(b.getNetworkID());
 										ammoBlob.SendCommand(ammoBlob.getCommandID("consume"), stream);
-										SetKnocked(b, 90);
-										length = blobs[i].distance + 8;
-										if (isClient())
-										{
-										Sound::Play("DartGun_Hit.ogg", b.getPosition(), 1.00f, 1.00f);
-										}
 									}
-									else
+
+									if (isClient())
 									{
-										break;
+										Sound::Play("DartGun_Hit.ogg", b.getPosition(), 1.00f, 1.00f);
 									}
+
+									SetKnocked(b, 90);
+									length = blobs[i].distance + 8;
+
+									break;
 								}
 							}
 						}
+
 						if (isClient())
 						{
 							sprite.PlaySound("DartGun_Shoot", 1.00f, 1.00f);
@@ -117,8 +119,6 @@ void onTick(CBlob@ this)
 	}
 }
 
-							
-
 CBlob@ GetAmmoBlob(CBlob@ this)
 {
 	CInventory@ inv = this.getInventory();
@@ -128,7 +128,7 @@ CBlob@ GetAmmoBlob(CBlob@ this)
 		CBlob@ item = inv.getItem(i);
 		if (item !is null)
 		{
-			if (item.hasTag("forcefeedable") && item.hasTag("dartguninjectable"))
+			if (item.hasTag("forcefeedable"))
 			{
 				return item;
 			}
