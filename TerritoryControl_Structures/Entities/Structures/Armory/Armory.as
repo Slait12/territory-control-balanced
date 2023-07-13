@@ -54,7 +54,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Carbon Helmet", "$icon_carbonhelmet$", "carbonhelmet", "A heavy combat helmet.\nGood against low caliber bullets, explosions and fire,\nbut worse against high caliber and power rounds.\n\nOccupies the Head slot");
+		ShopItem@ s = addShopItem(this, "Composite Helmet", "$icon_carbonhelmet$", "carbonhelmet", "A combat helmet made of composite materials.\nGood against low caliber bullets, explosions, fire and swords,\nbut worse against high caliber and power rounds.\n\nOccupies the Head slot");
 		AddRequirement(s.requirements, "blob", "mat_carbon", "Carbon", 60);
 		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
@@ -94,7 +94,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Carbon Vest", "$icon_carbonvest$", "carbonvest", "A heavy combat vest.\nVery durable. Good against low caliber bullets and explosions,\nbut worse against high caliber and power rounds.\n\nOccupies the Torso slot");
+		ShopItem@ s = addShopItem(this, "Carbon Vest", "$icon_carbonvest$", "carbonvest", "A combat vest made of composite materials.\nGood against low caliber bullets, explosions, fire and swords,\nbut worse against high caliber and power rounds.\n\nOccupies the Torso slot");
 		AddRequirement(s.requirements, "blob", "mat_carbon", "Carbon", 70);
 		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
@@ -130,7 +130,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Carbon Boots", "$icon_carbonboots$", "carbonboots", "A pair of heavy and sturdy boots.\nSlightly protects you against all bullets and explosions.\nSlightly decreases running speed and fall damage.\n\nOccupies the Boots slot");
+		ShopItem@ s = addShopItem(this, "Carbon Boots", "$icon_carbonboots$", "carbonboots", "A pair of resistant boots made of composite materials.\nSlightly protects you against all bullets and explosions.\nSlightly decreases running speed and fall damage.\n\nOccupies the Boots slot");
 		AddRequirement(s.requirements, "blob", "mat_carbon", "Carbon", 20);
 		AddRequirement(s.requirements, "coin", "", "Coins", 125);
 
