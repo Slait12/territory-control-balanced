@@ -35,30 +35,29 @@ void onDie(CBlob@ this)
 		for (int i = 0; i < blobs.length; i++)
 		{
 			CBlob@ blob = blobs[i];
+			u8 deity_id = blob.get_u8("deity_id");
 			
 			if (!this.getMap().rayCastSolidNoBlobs(blob.getPosition(), this.getPosition()))
 			{
 				f32 dist = (blob.getPosition() - this.getPosition()).getLength();
 				f32 factor = 1.00f - Maths::Pow(dist / max_range, 2);
-			
-				// SetKnocked(blob, 250 * factor);
-			
-				if (blob is getLocalPlayerBlob())
-				{		
-					SetScreenFlash(255, 255, 255, 255, 90 * factor);
+				blob.set_u32("flash time", 1);
+				blob.AddScript("FlashEffect.as");
+				if (blob.isMyPlayer())
+				{
+					blob.getSprite().AddScript("FlashEffect.as");
 				}
 			}
 		}
 	}
-	
 	if (isClient())
 	{
 		this.getSprite().PlaySound("FlashGrenade_Boom.ogg");
 	}
-	
+
 	Explode(this, 0.01f, 0.00f);
 }
-
+					
 void onThisAddToInventory(CBlob@ this, CBlob@ inventoryBlob)
 {
 	if (inventoryBlob is null) return;
