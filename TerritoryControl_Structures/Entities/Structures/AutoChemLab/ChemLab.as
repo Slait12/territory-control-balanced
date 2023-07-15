@@ -164,7 +164,6 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 			const f32 fuel_count = inv.getCount("mat_fuel");
 			const f32 acid_count = inv.getCount("mat_acid");
 			const f32 mustard_count = inv.getCount("mat_mustard");
-			const f32 carbon_count = inv.getCount("mat_mustard");
 			const f32 heat = this.get_f32("heat") + Maths::Pow((mithril_count * 3.00f) + (e_mithril_count * 15.00f), 2) / 20000.00f;
 			const f32 pressure = Maths::Pow(1000 + (methane_count * 75) + (fuel_count * 100) + (acid_count * 75) + (mustard_count * 25), Maths::Max(1, 1.00f + (heat * 0.0002f)));
 
@@ -509,21 +508,6 @@ void React(CBlob@ this)
 
 				ShakeScreen(20.0f, 15, this.getPosition());
 				this.getSprite().PlaySound("DrugLab_Create_Viscous.ogg", 1.00f, 1.00f);
-			}
-			// Carbon Mat Recipe
-			if (pressure >= 200000 && heat > 1000 && hasCoal)
-			{
-				f32 count = Maths::Min(coal_count, pressure * 0.0002f);
-				//print("coal");
-
-				if (isServer())
-				{
-					coal_blob.server_SetQuantity(Maths::Max(coal_blob.getQuantity() - count, 0));
-					Material::createFor(this, "mat_carbon", count * 1.75f);
-				}
-
-				ShakeScreen(10.0f, 15, this.getPosition());
-				this.getSprite().PlaySound("DrugLab_Create_Viscous.ogg", 1.50f, 1.00f);
 			}
 			// Acid Mat Recipe
 			if (pressure > 20000 && heat > 300 && hasMustard && hasFuel)
@@ -957,7 +941,6 @@ const string[] chemNames = {
 	//"rippio",
 	"mat_ganja",
 	"ganjapod",
-	"mat_carbon"
 };
 
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
