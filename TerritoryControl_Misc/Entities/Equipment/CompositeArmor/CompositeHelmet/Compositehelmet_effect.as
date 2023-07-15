@@ -3,13 +3,13 @@
 
 void onInit(CBlob@ this)
 {
-	if (this.get_string("reload_script") != "carbonhelmet")
+	if (this.get_string("reload_script") != "ñompositehelmet")
 		UpdateScript(this);
 }
 
 void UpdateScript(CBlob@ this) // the same as onInit, works one time when get equiped
 {
-    CSpriteLayer@ milhelmet = this.getSprite().addSpriteLayer("carbonhelmet", "CarbonHelmet.png", 16, 16);
+    CSpriteLayer@ milhelmet = this.getSprite().addSpriteLayer("ñompositehelmet", "CompositeHelmet.png", 16, 16);
    
     if (milhelmet !is null)
     {
@@ -27,13 +27,13 @@ void UpdateScript(CBlob@ this) // the same as onInit, works one time when get eq
  
 void onTick(CBlob@ this)
 {
-    if (this.get_string("reload_script") == "carbonhelmet")
+    if (this.get_string("reload_script") == "ñompositehelmet")
     {
         UpdateScript(this);
         this.set_string("reload_script", "");
     }
  
-    CSpriteLayer@ milhelmet = this.getSprite().getSpriteLayer("carbonhelmet");
+    CSpriteLayer@ milhelmet = this.getSprite().getSpriteLayer("ñompositehelmet");
     
    
     if (milhelmet !is null)
@@ -45,19 +45,19 @@ void onTick(CBlob@ this)
         headoffset += Vec2f(-head_offset.x, head_offset.y);
         headoffset += Vec2f(0, -1);
         milhelmet.SetOffset(headoffset);
-        milhelmet.SetFrameIndex(Maths::Floor(this.get_f32("carbonhelmet_health") / 10.0f));
+        milhelmet.SetFrameIndex(Maths::Floor(this.get_f32("ñompositehelmet_health") / 10.0f));
     }
    
-    if (this.get_f32("carbonhelmet_health") >= 190.0f)
+    if (this.get_f32("ñompositehelmet_health") >= 190.0f)
     {
         this.getSprite().PlaySound("ricochet_" + XORRandom(3));
         this.set_string("equipment_head", "");
-        this.set_f32("carbonhelmet_health", 189.9f);
+        this.set_f32("ñompositehelmet_health", 189.9f);
 		if (milhelmet !is null)
 		{
-			this.getSprite().RemoveSpriteLayer("carbonhelmet");
+			this.getSprite().RemoveSpriteLayer("ñompositehelmet");
 		}
-        this.RemoveScript("carbonhelmet_effect.as");
+        this.RemoveScript("ñompositehelmet_effect.as");
     }
     
 	// print("helmet: "+this.get_f32("mh_health"));
@@ -67,13 +67,13 @@ void onDie(CBlob@ this)
 {
 	if (isServer())
 	{
-		CBlob@ item = server_CreateBlob("carbonhelmet", this.getTeamNum(), this.getPosition());
+		CBlob@ item = server_CreateBlob("ñompositehelmet", this.getTeamNum(), this.getPosition());
 		if (item !is null)
 		{
-			item.set_f32("health", this.get_f32("carbonhelmet_health"));
-			item.getSprite().SetFrameIndex(Maths::Floor(this.get_f32("carbonhelmet_health") / 15.75f));
+			item.set_f32("health", this.get_f32("ñompositehelmet_health"));
+			item.getSprite().SetFrameIndex(Maths::Floor(this.get_f32("ñompositehelmet_health") / 15.75f));
 		}
 	}
 	
-    this.RemoveScript("carbonhelmet_effect.as");
+    this.RemoveScript("ñompositehelmet_effect.as");
 }
