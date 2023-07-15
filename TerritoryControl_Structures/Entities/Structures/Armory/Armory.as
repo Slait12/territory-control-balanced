@@ -54,8 +54,9 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Composite Helmet", "$icon_carbonhelmet$", "carbonhelmet", "A combat helmet made of composite materials.\nGood against low caliber bullets, explosions, fire and swords,\nbut worse against high caliber and power rounds.\n\nOccupies the Head slot");
-		AddRequirement(s.requirements, "blob", "mat_carbon", "Carbon", 60);
+		ShopItem@ s = addShopItem(this, "Composite Helmet", "$icon_compositehelmet$", "compositehelmet", "A combat helmet made of composite materials.\nGood against low caliber bullets, explosions, fire and swords,\nbut worse against high caliber and power rounds.\n\nOccupies the Head slot");
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 6);
 		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
 		s.spawnNothing = true;
@@ -94,9 +95,10 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Carbon Vest", "$icon_carbonvest$", "carbonvest", "A combat vest made of composite materials.\nGood against low caliber bullets, explosions, fire and swords,\nbut worse against high caliber and power rounds.\n\nOccupies the Torso slot");
-		AddRequirement(s.requirements, "blob", "mat_carbon", "Carbon", 70);
-		AddRequirement(s.requirements, "coin", "", "Coins", 200);
+		ShopItem@ s = addShopItem(this, "Composite Vest", "$icon_compostievest$", "compositevest", "A combat vest made of composite materials.\nGood against low caliber bullets, explosions, fire and swords,\nbut worse against high caliber and power rounds.\n\nOccupies the Torso slot");
+ 		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 8);
+		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 10);
+		AddRequirement(s.requirements, "coin", "", "Coins", 350);
 
 		s.spawnNothing = true;
 	}
@@ -130,8 +132,9 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Carbon Boots", "$icon_carbonboots$", "carbonboots", "A pair of resistant boots made of composite materials.\nSlightly protects you against all bullets and explosions.\nSlightly decreases running speed and fall damage.\n\nOccupies the Boots slot");
-		AddRequirement(s.requirements, "blob", "mat_carbon", "Carbon", 20);
+		ShopItem@ s = addShopItem(this, "Composite Boots", "$icon_compositeboots$", "compositeboots", "A pair of resistant boots made of composite materials.\nSlightly protects you against all bullets and explosions.\nSlightly decreases running speed and fall damage.\n\nOccupies the Boots slot");
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 2);
+		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 4);
 		AddRequirement(s.requirements, "coin", "", "Coins", 125);
 
 		s.spawnNothing = true;
@@ -140,7 +143,7 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "Jump Shoes", "$jumpshoes$", "jumpshoes", "Makes you better, faster, stronger.");
 		AddRequirement(s.requirements, "blob", "combatboots", "Combat Boots", 1);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
-			AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 10);
+		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 10);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
 
 		s.spawnNothing = true;
