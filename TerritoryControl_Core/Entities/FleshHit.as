@@ -193,12 +193,12 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 				{
 					case HittersTC::bullet_low_cal:
 					case HittersTC::shotgun:
-						ratio = 0.25f;
+						ratio = 0.20f;
 						break;
 
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
-						ratio = 0.20f;
+						ratio = 0.15f;
 						break;
 
 					case Hitters::fire:
@@ -287,12 +287,12 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 				{
 					case HittersTC::bullet_low_cal:
 					case HittersTC::shotgun:
-						ratio = 0.25f;
+						ratio = 0.20f;
 						break;
 
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
-						ratio = 0.20f;
+						ratio = 0.15f;
 						break;
 
 					case Hitters::fire:
