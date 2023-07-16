@@ -35,13 +35,14 @@ void onInit(CBlob@ this)
 	this.set_u8("shop icon", 15);
 	//this.set_Vec2f("class offset", Vec2f(-6, 0));
 	//this.set_string("required class", "pus");
-    {
-        ShopItem@ s = addShopItem(this, "Decorative Plant", "$decorativeplant$", "decorativeplant", "Decorative Plant.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 125);
+
+	 {
+	     	ShopItem@ s = addShopItem(this, "Decorative Plant", "$decorativeplant$", "decorativeplant", "Decorative Plant.", true);
+ 	    	AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 125);
 		AddRequirement(s.requirements, "blob", "mat_dirt", "Dirt", 20);
 		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 	
-	    s.spawnNothing = true;
+		s.spawnNothing = true;
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Lantern", "$lantern$", "lantern", descriptions[9], false);
@@ -81,14 +82,8 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-	// {
-		// ShopItem@ s = addShopItem(this, "Arrows (30)", "$mat_arrows$", "mat_arrows-30", descriptions[2], true);
-		// AddRequirement(s.requirements, "coin", "", "Coins", 15);
-
-		// s.spawnNothing = true;
-	// }
 	{
-		ShopItem@ s = addShopItem(this, "Crate", "$crate$", "crate", "A wooden crate used for storage.\nBreaks upon impact.", true);
+		ShopItem@ s = addShopItem(this, "Crate", "$crate$", "crate", "A wooden crate used for storage.\nBreaks upon impact.\nCan be attached to vehicles.", true);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 75);
 
 		s.spawnNothing = true;
@@ -100,11 +95,11 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-        ShopItem@ s = addShopItem(this, "Decorative Jellyfish", "$jellyfishjar$", "jellyfishjar", "A fancy source of light.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 50);
+     	 	ShopItem@ s = addShopItem(this, "Decorative Jellyfish", "$jellyfishjar$", "jellyfishjar", "A fancy source of light.", true);
+   		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 50);
 		AddRequirement(s.requirements, "coin", "", "Coins", 250);
 	
-	    s.spawnNothing = true;
+		s.spawnNothing = true;
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Keg", "$keg$", "keg", "Highly explosive keg used by knight only.\nCan be worn.", true);
@@ -125,24 +120,24 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}	
-    {
-        ShopItem@ s = addShopItem(this, "Nightstand", "$nightstand$", "nightstand", "A simple nightstand.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 75);
+ 	{
+    		ShopItem@ s = addShopItem(this, "Nightstand", "$nightstand$", "nightstand", "A simple nightstand.", true);
+    		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 75);
 	
-	    s.spawnNothing = true;
+		s.spawnNothing = true;
 	} 
-    {
-        ShopItem@ s = addShopItem(this, "Bed", "$bed$", "bed", "A comfortable bed.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
+    	{
+		ShopItem@ s = addShopItem(this, "Bed", "$bed$", "bed", "A comfortable bed.", true);
+  		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
 	
-	    s.spawnNothing = true;
+		s.spawnNothing = true;
 	}
-    {
-        ShopItem@ s = addShopItem(this, "Bookshelf", "$bookshelf$", "bookshelf", "Decorative bookshelf.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 125);
+    	{
+        		ShopItem@ s = addShopItem(this, "Bookshelf", "$bookshelf$", "bookshelf", "Decorative bookshelf.", true);
+ 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 125);
 		AddRequirement(s.requirements, "coin", "", "Coins", 20);
 	
-	    s.spawnNothing = true;
+		s.spawnNothing = true;
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Gaming Chair", "$gamingchair$", "gamingchair", "A chair for true gamer.", true);
@@ -156,18 +151,6 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-	// {
-	// 	ShopItem@ s = addShopItem(this, "Cowboy Hat", "$cowboyhat$", "cowboyhat", "A hat gives you +99 shooting accuracy!", true);
-	// 	AddRequirement(s.requirements, "coin", "", "Coins", 250);
-
-	// 	s.spawnNothing = true;
-	// }
-	// {
-	// 	ShopItem@ s = addShopItem(this, "Top Hat", "$tophat$", "tophat", "The kind of hat is a must for a gentlemen wardrobe.", true);
-	// 	AddRequirement(s.requirements, "coin", "", "Coins", 500);
-
-	// 	s.spawnNothing = true;
-	// }
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -187,7 +170,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$table$", "table.png", Vec2f(24, 10), 0, teamnum);
 	AddIconToken("$gamingchair$", "GamingChair.png", Vec2f(15, 18), 2, teamnum);
 	AddIconToken("$gamingtable$", "GamingTable.png", Vec2f(24, 10), 0, teamnum);
-    AddIconToken("$decorativeplant$", "DecorativePlant.png", Vec2f(14, 46), 0, teamnum);	
+   	AddIconToken("$decorativeplant$", "DecorativePlant.png", Vec2f(14, 46), 0, teamnum);	
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
