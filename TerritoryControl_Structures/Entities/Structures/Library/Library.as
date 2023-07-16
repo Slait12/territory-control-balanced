@@ -13,7 +13,7 @@ void onInit(CBlob@ this)
 {
 	AddIconToken("$bp_aa_icon$", "Blueprints.png", Vec2f(16, 16), 16);
 	AddIconToken("$bp_en_icon$", "Blueprints.png", Vec2f(16, 16), 17);
-	AddIconToken("$bp_ch_icon$", "Blueprints.png", Vec2f(16, 16), 18);
+	//AddIconToken("$bp_ch_icon$", "Blueprints.png", Vec2f(16, 16), 18);
 	AddIconToken("$bp_we_icon$", "Blueprints.png", Vec2f(16, 16), 19);
 
 	this.set_TileType("background tile", CMap::tile_castle_back);
@@ -33,7 +33,7 @@ void onInit(CBlob@ this)
 	AddIconToken("$filled_bucket$", "bucket.png", Vec2f(16, 16), 1);
 
 	this.set_Vec2f("shop offset", Vec2f(0,0));
-	this.set_Vec2f("shop menu size", Vec2f(4, 2));
+	this.set_Vec2f("shop menu size", Vec2f(3, 2));
 	this.set_string("shop description", "Bookworm's Lair");
 	this.set_u8("shop icon", 15);
 	// this.set_Vec2f("class offset", Vec2f(-6, 0));
@@ -53,15 +53,15 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
+//	{
+//		ShopItem@ s = addShopItem(this, "Chemistry Blueprint", "$bp_ch_icon$", "bp_chemistry", "The blueprint for the automated druglab.", true);
+//		AddRequirement(s.requirements, "blob", "mat_acid", "Acid", 100);
+//		AddRequirement(s.requirements, "blob", "mat_mustard", "Mustard gas", 250);
+//		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
+//
+//		s.spawnNothing = true;
+//	}
 	{
-		ShopItem@ s = addShopItem(this, "Chemistry Blueprint", "$bp_ch_icon$", "bp_chemistry", "The blueprint for the automated druglab.", true);
-		AddRequirement(s.requirements, "blob", "mat_acid", "Acid", 100);
-		AddRequirement(s.requirements, "blob", "mat_mustard", "Mustard gas", 250);
-		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
-
-		s.spawnNothing = true;
-	}
-    {
 		ShopItem@ s = addShopItem(this, "Weapons Blueprint", "$bp_we_icon$", "bp_weapons", "The blueprint for various advanced weapons.", true);
 		AddRequirement(s.requirements, "blob", "gaussrifle", "Gauss rifle", 2);
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
@@ -78,13 +78,13 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "bp_energetics", "Energetics Blueprint", 1);
 		s.spawnNothing = true;
 	}
+//	{
+//		ShopItem@ s = addShopItem(this, "Sell Chemistry for 1500 c.", "$COIN$", "coin-1500", "Sell blueprint for 1500 coins.");
+//		AddRequirement(s.requirements, "blob", "bp_chemistry", "Chemistry Blueprint", 1);
+//		s.spawnNothing = true;
+//	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell Chemistry for 1500 c.", "$COIN$", "coin-1500", "Sell blueprint for 1500 coins.");
-		AddRequirement(s.requirements, "blob", "bp_chemistry", "Chemistry Blueprint", 1);
-		s.spawnNothing = true;
-	}
-    {
-        ShopItem@ s = addShopItem(this, "Sell Weapons for 1250 c.", "$COIN$", "coin-1250", "Sell blueprint for 1250 coins.");
+       		ShopItem@ s = addShopItem(this, "Sell Weapons for 1250 c.", "$COIN$", "coin-1250", "Sell blueprint for 1250 coins.");
 		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
 		s.spawnNothing = true;
 	}

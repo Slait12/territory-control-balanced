@@ -52,14 +52,12 @@ LootItem@[] c_items =
 	LootItem("steamtank", 1, 0, 42),
 	LootItem("armoredbomber", 1, 0, 22),
 	LootItem("phone", 1, 0, 21),
-	LootItem("scyther", 1, 0, 5), // lolz
 	LootItem("infernalstone", 1, 0, 23),
 	LootItem("scubagear", 1, 0, 499),
 	LootItem("ninjascroll", 1, 1, 250),
 	LootItem("puntgun", 1, 1, 225),
 	LootItem("juggernauthammer", 1, 1, 50),
 	LootItem("gyromat", 1, 1, 500),
-	LootItem("bp_chemistry", 1, 1, 175),
 	LootItem("hobo", 1, 1, 122), 
 };
 
