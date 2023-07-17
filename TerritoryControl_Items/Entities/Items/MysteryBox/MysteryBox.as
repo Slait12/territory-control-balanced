@@ -58,7 +58,8 @@ LootItem@[] c_items =
 	LootItem("puntgun", 1, 1, 225),
 	LootItem("juggernauthammer", 1, 1, 50),
 	LootItem("gyromat", 1, 1, 500),
-	LootItem("hobo", 1, 1, 122), 
+	LootItem("bp_weapons", 1, 1, 122),
+	LootItem("hobo", 1, 1, 122)
 };
 
 LootItem@[] a_items =
