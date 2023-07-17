@@ -20,7 +20,7 @@ void onInit(CBlob@ this)
 	addTokens(this); 
 
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
-	this.set_Vec2f("shop menu size", Vec2f(8, 5));
+	this.set_Vec2f("shop menu size", Vec2f(9,5));
 	this.set_string("shop description", "Advanced Weapon Shop");
 	this.set_u8("shop icon", 21);
 
@@ -70,6 +70,13 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "Rockets (2)", "$mat_smallrocket$", "mat_smallrocket-2", "Small rocket for rocketlaunchers.");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 1);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 25);
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "Grenades (4)", "$grenade$", "mat_grenade-4", "Bouncy grenades for grenadelaunchers.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
@@ -80,31 +87,6 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "Sticky Grenades (4)", "$stickygrenade$", "mat_stickygrenade-4", "Sticky grenades for grenade launchers");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Acid Grenades (2)", "$acidgrenade$", "mat_acidgrenade-2", "Acid grenades for grenade launchers");
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
-		AddRequirement(s.requirements, "blob", "mat_acid", "Acid", 50);
-		
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Flame Grenades (4)", "$flamegrenade$", "mat_flamegrenade-4", "Flame grenades for grenade launchers");
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
-		AddRequirement(s.requirements, "blob", "mat_oil", "Oil", 50);
-		
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Rockets (2)", "$mat_smallrocket$", "mat_smallrocket-2", "Small rocket for rocketlaunchers.");
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 1);
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 25);
 
 		s.spawnNothing = true;
 	}
@@ -156,6 +138,15 @@ void onInit(CBlob@ this)
 		s.customButton = true;
 		s.buttonwidth = 2;
 		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Flame Grenades (4)", "$flamegrenade$", "mat_flamegrenade-4", "Flame grenades for grenade launchers");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(s.requirements, "blob", "mat_oil", "Oil", 50);
+		
 
 		s.spawnNothing = true;
 	}
@@ -262,6 +253,22 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "Acid Grenades (2)", "$acidgrenade$", "mat_acidgrenade-2", "Acid grenades for grenade launchers");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(s.requirements, "blob", "mat_acid", "Acid", 50);
+		
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Fragmentation Grenade (1)", "$icon_fraggrenade$", "mat_fraggrenade-1", "A small hand grenade. Especially useful against infantry.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 200);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 35);
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "Acidthrower", "$icon_acidthrower$", "acidthrower", "A tool used for dissolving plants, buildings and people.\n\nUses Acid.");
                 AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
@@ -269,7 +276,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 
 		s.customButton = true;
-		s.buttonwidth = 3;
+		s.buttonwidth = 2;
 		s.buttonheight = 1;
 
 		s.spawnNothing = true;
@@ -283,7 +290,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.customButton = true;
-		s.buttonwidth = 3;
+		s.buttonwidth = 2;
 		s.buttonheight = 1;
 
 		s.spawnNothing = true;
@@ -299,6 +306,20 @@ void onInit(CBlob@ this)
 		s.customButton = true;
 		s.buttonwidth = 2;
 		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Mine", "$icon_mine$", "mine", descriptions[20], false);
+		AddRequirement(s.requirements, "coin", "", "Coins", 75);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 15);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Fragmentation Mine", "$icon_fragmine$", "fragmine", "A fragmentation mine that fills the surroundings with shards of metal upon detonation.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 125);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 30);
 
 		s.spawnNothing = true;
 	}
