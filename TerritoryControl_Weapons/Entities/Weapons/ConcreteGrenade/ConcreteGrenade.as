@@ -51,11 +51,18 @@ void onDie(CBlob@ this)
 					if (map.getSectorAtPosition(offset,"no build") is null)
 					{
 						CBlob@[] blobsInRadius;
-						if (!map.getBlobsInRadius(this.getPosition(), 3.00f, @blobsInRadius))
+						if (map.getBlobsInRadius(this.getPosition(),  3.00f, @blobsInRadius))
 						{
-							map.server_SetTile(offset, CMap::tile_concrete);
-							this.Tag("dead");
-							this.server_Die();
+							for (uint i = 0; i < blobsInRadius.length; i++)
+							{
+								CBlob@ b = blobsInRadius[i];
+								if (!b.hasTag("flesh"))
+								{
+									map.server_SetTile(offset, CMap::tile_concrete);
+									this.Tag("dead");
+									this.server_Die();
+								}
+							}
 						}
 					}
 				}
