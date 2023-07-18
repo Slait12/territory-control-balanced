@@ -1,4 +1,4 @@
-﻿// ArcherShop.as
+// ArcherShop.as
 
 #include "Requirements.as";
 #include "ShopCommon.as";
@@ -267,12 +267,7 @@ void onTick(CBlob@ this)
 
 		CBlob@ storage = FindStorage(this.getTeamNum());
 		int count = getPlayerCount();
-		double mod = ((6 + count) + Maths::Max(0, count - 10)) * 0.05f; 
-		//Previous rate at 12 players, players after 10 increase the rate by twice as much
-		//0.35x Previous rate at 1 player
-		//0.5x at 4 players
-		//1x at 12 players
-		//2x at 22 players
+		double mod = count * 0.5f; 
 		
 		u8 index = XORRandom(resources.length);
 		u32 amount = Maths::Max(1, Maths::Floor(XORRandom(resourceYields[index]) * mod));
