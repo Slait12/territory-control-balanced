@@ -164,10 +164,10 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_druglab$","DrugLab.png",Vec2f(32, 40), 0);
 	AddIconToken("$icon_altar$", "Altar.png", Vec2f(24, 32), 0, teamnum);
 	AddIconToken("$icon_tavern_for_not_peasants$", "Vodka.png", Vec2f(8, 16), 0, teamnum);
-    AddIconToken("$bannerchicken$", "BannerChicken.png", Vec2f(16, 32), 0, teamnum);
-    AddIconToken("$adminbuilder$", "EngineerIcon.png", Vec2f(24, 24), 0, teamnum);
-	AddIconToken("$icon_launchpad$", "LaunchpadIcon.png", Vec2f(45, 29), 0, teamnum);
-	AddIconToken("$icon_launchpadmini$", "LaunchpadMiniIcon.png", Vec2f(45, 29), 0, teamnum);
+	AddIconToken("$bannerchicken$", "BannerChicken.png", Vec2f(16, 32), 0, teamnum);
+   	AddIconToken("$adminbuilder$", "EngineerIcon.png", Vec2f(24, 24), 0, teamnum);
+//	AddIconToken("$icon_launchpad$", "LaunchpadIcon.png", Vec2f(45, 29), 0, teamnum);
+//	AddIconToken("$icon_launchpadmini$", "LaunchpadMiniIcon.png", Vec2f(45, 29), 0, teamnum);
 	AddIconToken("$icon_generator$", "Generator.png", Vec2f(32, 24), 0);
 
 	BuildBlock[] page_0;
@@ -821,19 +821,19 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(24, 24);
 		blocks[3].push_back(b);
 	}
-	{
-		BuildBlock b(0, "nuclearreactor", "$nuclearreactor$", "Nuclear Reactor:\n\nConverts enriched mithril into default with bigger yield.\nProduces wilmet material on higher temperatures.\n\nHas a control panel with password check. Can be sabotaged.\n\nRequires enriched mithril as fuel, mithril also increases heat.\n\nYou can set up a catalyst or refrigerant into the utility slot (also remove them with a wrench) to get certain modifications.\n\nExplodes with an insane power when heated up too much.");
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 150);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 40);
-		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 150);
-		AddRequirement(b.reqs, "blob", "mat_concrete", "Concrete", 1500);
-		AddRequirement(b.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 30);
-
-		// AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
-		b.buildOnGround = true;
-		b.size.Set(64, 48);
-		blocks[3].push_back(b);
-	}
+//	{
+//		BuildBlock b(0, "nuclearreactor", "$nuclearreactor$", "Nuclear Reactor:\n\nConverts enriched mithril into default with bigger yield.\nProduces wilmet material on higher temperatures.\n\nHas a control panel with password check. Can be sabotaged.\n\nRequires enriched mithril as fuel, mithril also increases heat.\n\nYou can set up a catalyst or refrigerant into the utility slot (also remove them with a wrench) to get certain modifications.\n\nExplodes with an insane power when heated up too much.");
+//		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 150);
+//		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 40);
+//		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 150);
+//		AddRequirement(b.reqs, "blob", "mat_concrete", "Concrete", 1500);
+//		AddRequirement(b.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 30);
+//
+//		// AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
+//		b.buildOnGround = true;
+//		b.size.Set(64, 48);
+//		blocks[3].push_back(b);
+//	}
 	{
 		BuildBlock b(0, "safe", "$icon_safe$", "Steel safe:\n\nHas personal access with share option (insert paper with username). Also being provided as remote storage for neutrals.");
 		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 20);
@@ -1063,26 +1063,26 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(24, 96);
 		blocks[4].push_back(b);
 	}
-	{
-		BuildBlock b(0, "launchpadmini", "$icon_launchpadmini$", "Launch an asteroid harvester...\nTo an asteroid!");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 500);
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 125);
-		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 30);
-		AddRequirement(b.reqs, "blob", "mat_titaniumingot", "Titanium Ingot", 50);
-		AddRequirement(b.reqs, "blob", "wrench", "Wrench", 1);
-		b.buildOnGround = true;
-		b.size.Set(71, 96);
-		blocks[4].push_back(b);
-	}
-	{
-		BuildBlock b(0, "launchpad", "$icon_launchpad$", "Launch a rocket to an asteroid, moon or another planet to get alien technologies and weapons.\nYou can increase rocket efficiency with building modules (optionally): leave certain items in the compartment before crafting\nlast 4 sections before nose.\n\nModules:\nDrill station: increases amount of loot - 10 power mithril drills.\nFuel tanker: allows rocket to reach an exoplanet - 500 fuel.\nDetailed scanner: increases amount of enemies and falling debris from crate - 1 phone.\nWeapon pack: decreases amount of enemies from crate - 8 UPF UZI.");
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 200);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 150);
-		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 50);
-		AddRequirement(b.reqs, "blob", "mat_titaniumingot", "Titanium Ingot", 75);
-		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper wires", 100);
-		b.buildOnGround = true;
-		b.size.Set(96, 192);
-		blocks[4].push_back(b);
-	}
+//	{
+//		BuildBlock b(0, "launchpadmini", "$icon_launchpadmini$", "Launch an asteroid harvester...\nTo an asteroid!");
+//		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 500);
+//		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 125);
+//		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 30);
+//		AddRequirement(b.reqs, "blob", "mat_titaniumingot", "Titanium Ingot", 50);
+//		AddRequirement(b.reqs, "blob", "wrench", "Wrench", 1);
+//		b.buildOnGround = true;
+//		b.size.Set(71, 96);
+//		blocks[4].push_back(b);
+//	}
+//	{
+//		BuildBlock b(0, "launchpad", "$icon_launchpad$", "Launch a rocket to an asteroid, moon or another planet to get alien technologies and weapons.\nYou can increase rocket efficiency with building modules (optionally): leave certain items in the compartment before crafting\nlast 4 sections before nose.\n\nModules:\nDrill station: increases amount of loot - 10 power mithril drills.\nFuel tanker: allows rocket to reach an exoplanet - 500 fuel.\nDetailed scanner: increases amount of enemies and falling debris from crate - 1 phone.\nWeapon pack: decreases amount of enemies from crate - 8 UPF UZI.");
+//		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 200);
+//		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 150);
+//		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 50);
+//		AddRequirement(b.reqs, "blob", "mat_titaniumingot", "Titanium Ingot", 75);
+//		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper wires", 100);
+//		b.buildOnGround = true;
+//		b.size.Set(96, 192);
+//		blocks[4].push_back(b);
+//	}
 }
