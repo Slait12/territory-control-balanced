@@ -21,14 +21,14 @@ const string[] resources =
 
 const u8[] resourceYields = 
 {
-	10,
-	27,
-	8,
-	45,
-	20,
-	12,
-	10,
-	15
+	20, //coal
+	54, //iron
+	16, //copper
+	81, //stone
+	40, //gold
+	24,//titanium
+	20,//sulphur
+	30 //dirt
 };
 
 void onInit(CBlob@ this)

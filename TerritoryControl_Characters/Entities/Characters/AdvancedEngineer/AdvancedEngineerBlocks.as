@@ -307,8 +307,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks)
 	BuildBlock[] page_1;
 	blocks.push_back(page_1);
 	{
-		BuildBlock b(0, "quarters", "$icon_quarters$", "Quarters:\n\n" + descriptions[59]);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 50);
+		BuildBlock b(0, "kitchentc", "$icon_kitchen$", "Kitchen\n" + descriptions[59]);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
 		b.buildOnGround = true;
 		b.size.Set(40, 24);
 		blocks[1].push_back(b);

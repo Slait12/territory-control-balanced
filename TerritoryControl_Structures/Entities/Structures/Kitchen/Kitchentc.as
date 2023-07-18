@@ -1,4 +1,4 @@
-﻿#include "MakeCrate.as";
+#include "MakeCrate.as";
 #include "Requirements.as";
 #include "ShopCommon.as";
 #include "Descriptions.as";
@@ -33,6 +33,12 @@ void onInit(CBlob@ this)
 	{
 		AssemblerItem i("ratburger", 1, "Burger with fresh rat");
 		AddRequirement(i.reqs, "blob", "mat_meat", "Meat", 10);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("foodcan", 2, "Scrub's Chow (2)");
+		AddRequirement(i.reqs, "blob", "mat_meat", "Mystery Meat", 15);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 1);
 		items.push_back(i);
 	}
 	{
