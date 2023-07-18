@@ -267,7 +267,7 @@ void onTick(CBlob@ this)
 
 		CBlob@ storage = FindStorage(this.getTeamNum());
 		int count = getPlayerCount();
-		double mod = count * 0.5f; 
+		double mod = count * 0.25f; 
 		
 		u8 index = XORRandom(resources.length);
 		u32 amount = Maths::Max(1, Maths::Floor(XORRandom(resourceYields[index]) * mod));
