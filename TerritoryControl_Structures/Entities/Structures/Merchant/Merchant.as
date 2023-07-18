@@ -1,4 +1,4 @@
-﻿// ArcherShop.as
+// ArcherShop.as
 
 #include "Requirements.as";
 #include "ShopCommon.as";
@@ -150,17 +150,14 @@ void onInit(CBlob@ this)
 		}
 	}*/
 	{
-		u32 cost = getRandomCost(@rand, 150, 250);
-		{
-			ShopItem@ s = addShopItem(this, "Sell Scrub's Chow (1)", "$COIN$", "coin-" + cost, "Sell 1 Scrub's Chow for " + cost + " coins.");
-			AddRequirement(s.requirements, "blob", "foodcan", "Scrub's Chow", 1);
-			s.spawnNothing = true;
-		}
-		{
-			ShopItem@ s = addShopItem(this, "Sell Scrub's Chow (4)", "$COIN$", "coin-" + cost*4, "Sell 4 Scrub's Chow for " + cost*4 + " coins.");
-			AddRequirement(s.requirements, "blob", "foodcan", "Scrub's Chow", 4);
-			s.spawnNothing = true;
-		}
+		ShopItem@ s = addShopItem(this, "Sell Scrub's Chow (1)", "$COIN$", "coin-100", "Sell 1 Scrub's Chow for 100 coins.");
+		AddRequirement(s.requirements, "blob", "foodcan", "Scrub's Chow", 1);
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Sell Scrub's Chow (4)", "$COIN$", "coin-400", "Sell 4 Scrub's Chow for 400 coins.");
+		AddRequirement(s.requirements, "blob", "foodcan", "Scrub's Chow", 4);
+		s.spawnNothing = true;
 	}
 	u32 oilcost = getRandomCost(@rand, 400, 600);
 	{

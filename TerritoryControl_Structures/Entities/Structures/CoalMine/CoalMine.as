@@ -266,11 +266,9 @@ void onTick(CBlob@ this)
 		// MakeMat(this, this.getPosition(), resources[index], XORRandom(resourceYields[index]));
 
 		CBlob@ storage = FindStorage(this.getTeamNum());
-		int count = getPlayerCount();
-		double mod = count * 0.25f; 
 		
 		u8 index = XORRandom(resources.length);
-		u32 amount = Maths::Max(1, Maths::Floor(XORRandom(resourceYields[index]) * mod));
+		u32 amount = Maths::Max(1, Maths::Floor(XORRandom(resourceYields[index])));
 		//print(mod +  " " +amount);
 
 		switch (this.get_u8("type"))
@@ -312,7 +310,7 @@ void onTick(CBlob@ this)
 			}
 			case 6:
 			{
-				u32 amoamount = Maths::Max(1, Maths::Floor(XORRandom(3) * mod));
+				u32 amoamount = Maths::Max(1, Maths::Floor(XORRandom(3)));
 				if (storage !is null) MakeMat(storage, this.getPosition(), "mat_mithril", amoamount);
 				else if (!this.getInventory().isFull()) MakeMat(this, this.getPosition(), "mat_mithril", amoamount);
 				break;
