@@ -1,4 +1,4 @@
-﻿// A script by TFlippy
+// A script by TFlippy
 
 #include "Requirements.as";
 #include "ShopCommon.as";
@@ -71,7 +71,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Katana", "$katana$", "katana", "Japanese melee weapon.\nPerfect for introducing enemies' organs to themselves.");
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel ingot", 10);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.customButton = true;
@@ -181,7 +181,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Concrete Grenade (1)", "$icon_concretegrenade$", "mat_concretegrenade-1", "A sticky concrete grenade. Сreates a concrete cube when it explodes.");
+		ShopItem@ s = addShopItem(this, "Concrete Grenade (1)", "$icon_concretegrenade$", "mat_concretegrenade-1", "A sticky concrete grenade. �reates a concrete cube when it explodes.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 		AddRequirement(s.requirements, "blob", "mat_concrete", "Concrete", 75);
 

@@ -141,7 +141,7 @@ void DoExplosion(CBlob@ this)
 	// print("Modifier: " + modifier + "; Quantity: " + this.getQuantity());
 
 	this.set_f32("map_damage_radius", 32.0f);
-	this.set_f32("map_damage_ratio", 0.25f);
+	this.set_f32("map_damage_ratio", 0.5f);
 
 	Explode(this, 64.0f, 6.0f);
 
