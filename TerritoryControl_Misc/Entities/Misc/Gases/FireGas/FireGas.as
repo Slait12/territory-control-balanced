@@ -95,7 +95,7 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 					if (blob !is null) 
 					{
 						map.server_setFireWorldspace(blob.getPosition(), true);
-						blob.server_Hit(blob, blob.getPosition(), Vec2f(0, 0), 1.5f, Hitters::fire);
+						blob.server_Hit(blob, blob.getPosition(), Vec2f(0, 0), 0.1f, Hitters::fire);
 					}
 				}
 			}
@@ -106,6 +106,6 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 	}
 	else if (blob !is null && blob.isCollidable())
 	{
-		if (this.getTeamNum() != blob.getTeamNum()) this.server_Hit(blob, this.getPosition(), Vec2f(0, 0), 2.50f, Hitters::fire, false);
+		if (this.getTeamNum() != blob.getTeamNum()) this.server_Hit(blob, this.getPosition(), Vec2f(0, 0), 0.20f, Hitters::fire, false);
 	}
 }
