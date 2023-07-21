@@ -173,9 +173,6 @@ void ReloadHead(CSprite@ this)
 		
 			head_index = 111;
 
-			blob.SetLight(true);
-			blob.SetLightRadius(16.0f);
-			blob.SetLightColor(SColor(255, 255, 0, 0));
 		}
 		
 		if (ply.getUsername() == "reqzites")
