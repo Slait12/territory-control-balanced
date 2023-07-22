@@ -114,8 +114,25 @@ void onInit(CBlob@ this)
 	this.set_u8("shop icon", 25);
 
 	{
+		ShopItem@ s = addShopItem(this, "Root Beer - 1 Heart", "$quarters_beer$", "rootbeer", "A refreshing mug of root beer.", false);
+		s.spawnNothing = true;
+		AddRequirement(s.requirements, "coin", "", "Coins", cost_beer);
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Meal - Full Health", "$quarters_meal$", "meal", "A hearty meal to get you back on your feet.", false);
+		s.spawnNothing = true;
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 1;
+		AddRequirement(s.requirements, "coin", "", "Coins", cost_meal);
+	}
+	// {
+		// ShopItem@ s = addShopItem(this, "Egg - Full Health", "$quarters_egg$", "egg", "A suspiciously undercooked egg, maybe it will hatch.", false);
+		// AddRequirement(s.requirements, "coin", "", "Coins", cost_egg);
+	// }
+	{
 		ShopItem@ s = addShopItem(this, "Burger - Full Health", "$quarters_burger$", "food", "A burger to go.", true);
-		AddRequirement(s.requirements, "coin", "", "Coins", 450);
+		AddRequirement(s.requirements, "coin", "", "Coins", cost_burger);
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Bear's Beer", "$beer$", "beer", "A real beer for real men. Those who drink Bear's Bear are strong men.", false);

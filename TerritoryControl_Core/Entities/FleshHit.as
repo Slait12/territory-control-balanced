@@ -88,11 +88,11 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			break;
 		
 		case Hitters::fire:
-			dmg *= 2.0f;
+			dmg *= 1.6f;
 			break;
 
 		case Hitters::burn:
-			dmg *= 1.6f;
+			dmg *= 2.0f;
 			break;
 
 	}
@@ -150,7 +150,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					case Hitters::fire:
-						ratio = 0.40f;
+						ratio = 0.20f;
 						break;
 
 					default:
@@ -169,6 +169,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					case Hitters::mine_special:
 					case Hitters::bomb:
 					case Hitters::fire:
+					case Hitters::burn:
 						ratio = 0.60f;
 						break;
 
@@ -199,10 +200,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
 						ratio = 0.15f;
-						break;
-
-					case Hitters::fire:
-						ratio = 0.10f;
 						break;
 
 					default:
@@ -244,7 +241,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					case Hitters::fire:
-						ratio = 0.40f;
+						ratio = 0.20f;
 						break;
 
 					default:
@@ -263,6 +260,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					case Hitters::mine_special:
 					case Hitters::bomb:
 					case Hitters::fire:
+					case Hitters::burn:
 						ratio = 0.60f;
 						break;
 
@@ -293,10 +291,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
 						ratio = 0.15f;
-						break;
-
-					case Hitters::fire:
-						ratio = 0.10f;
 						break;
 
 					default:
@@ -349,7 +343,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 
 					case Hitters::fire:
-						ratio = 0.40f;
+						ratio = 0.20f;
 						break;
 
 					default:
@@ -368,6 +362,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					case Hitters::mine_special:
 					case Hitters::bomb:
 					case Hitters::fire:
+					case Hitters::burn:
 						ratio = 0.60f;
 						break;
 
@@ -398,10 +393,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
 						ratio = 0.20f;
-						break;
-
-					case Hitters::fire:
-						ratio = 0.10f;
 						break;
 
 					default:

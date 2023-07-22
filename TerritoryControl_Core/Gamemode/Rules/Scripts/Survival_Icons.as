@@ -29,10 +29,6 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$icon_paper$", "Paper.png", Vec2f(16, 16), 1);
 
 	// Merchant
-//	AddIconToken("$bp_automation_advanced$", "Blueprints.png", Vec2f(16, 16), 0);
-//	AddIconToken("$bp_energetics$", "Blueprints.png", Vec2f(16, 16), 1);
-//	AddIconToken("$bp_mechanist$", "Blueprints.png", Vec2f(16, 16), 2);
-//	AddIconToken("$bp_chemistry$", "Blueprints.png", Vec2f(16, 16), 7);
 	AddIconToken("$mat_goldingot$", "Material_GoldIngot.png", Vec2f(16, 16), 1);
 	AddIconToken("$musicdisc$", "MusicDisc.png", Vec2f(8, 8), 0);
 	AddIconToken("$seed$", "Seed.png",Vec2f(8,8),0);
@@ -130,12 +126,11 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$icon_militaryhelmet$", "MilitaryHelmet.png", Vec2f(16, 16), 0);
 	AddIconToken("$icon_bulletproofvest$", "Bulletproofvest.png", Vec2f(16, 16), 0);
 	AddIconToken("$icon_combatboots$", "CombatBoots.png", Vec2f(16, 16), 0);
-	AddIconToken("$icon_carbonhelmet$", "CarbonHelmet.png", Vec2f(16, 16), 0);
-	AddIconToken("$icon_carbonvest$", "CarbonVest.png", Vec2f(16, 16), 0);
-	AddIconToken("$icon_carbonboots$", "CarbonBoots.png", Vec2f(16, 16), 0);
-	AddIconToken("$icon_wilmethelmet$", "WilmetHelmet.png", Vec2f(16, 16), 0);
-	AddIconToken("$icon_wilmetvest$", "WilmetVest.png", Vec2f(16, 16), 0);
-	AddIconToken("$icon_wilmetboots$", "WilmetBoots.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_compositehelmet$", "CompositeHelmet.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_compositevest$", "CompositeVest.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_compositeboots$", "CompositeBoots.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_lighthelmet$", "LightHelmet.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_lightvest$", "LightVest.png", Vec2f(16, 16), 0);
 	AddIconToken("$icon_rendeboots$", "RendeBoots.png", Vec2f(16, 16), 0);
 	AddIconToken("$icon_rendezook$", "Rendezook.png", Vec2f(18, 6), 0);
 	AddIconToken("$icon_parachute$", "ParachutePack.png", Vec2f(16, 16), 0);
@@ -197,7 +192,6 @@ void ReloadIcons(CRules@ this)
 	// Library (blueprints)
 	AddIconToken("$bp_automation_advanced$", "Blueprints.png", Vec2f(16, 16), 16);
 	AddIconToken("$bp_energetics$", "Blueprints.png", Vec2f(16, 16), 17);
-	AddIconToken("$bp_chemistry$", "Blueprints.png", Vec2f(16, 16), 18);
 	AddIconToken("$bp_weapons$", "Blueprints.png", Vec2f(16, 16), 19);
 
 	// Bandits

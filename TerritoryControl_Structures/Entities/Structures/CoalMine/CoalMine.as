@@ -1,4 +1,4 @@
-﻿// ArcherShop.as
+// ArcherShop.as
 
 #include "Requirements.as";
 #include "ShopCommon.as";
@@ -21,14 +21,14 @@ const string[] resources =
 
 const u8[] resourceYields = 
 {
-	10,
-	27,
-	8,
-	45,
-	20,
-	12,
-	10,
-	15
+	20, //coal
+	54, //iron
+	16, //copper
+	81, //stone
+	40, //gold
+	24,//titanium
+	20,//sulphur
+	30 //dirt
 };
 
 void onInit(CBlob@ this)
@@ -266,16 +266,9 @@ void onTick(CBlob@ this)
 		// MakeMat(this, this.getPosition(), resources[index], XORRandom(resourceYields[index]));
 
 		CBlob@ storage = FindStorage(this.getTeamNum());
-		int count = getPlayerCount();
-		double mod = ((6 + count) + Maths::Max(0, count - 10)) * 0.05f; 
-		//Previous rate at 12 players, players after 10 increase the rate by twice as much
-		//0.35x Previous rate at 1 player
-		//0.5x at 4 players
-		//1x at 12 players
-		//2x at 22 players
 		
 		u8 index = XORRandom(resources.length);
-		u32 amount = Maths::Max(1, Maths::Floor(XORRandom(resourceYields[index]) * mod));
+		u32 amount = Maths::Max(1, Maths::Floor(XORRandom(resourceYields[index])));
 		//print(mod +  " " +amount);
 
 		switch (this.get_u8("type"))
@@ -317,7 +310,7 @@ void onTick(CBlob@ this)
 			}
 			case 6:
 			{
-				u32 amoamount = Maths::Max(1, Maths::Floor(XORRandom(3) * mod));
+				u32 amoamount = Maths::Max(1, Maths::Floor(XORRandom(3)));
 				if (storage !is null) MakeMat(storage, this.getPosition(), "mat_mithril", amoamount);
 				else if (!this.getInventory().isFull()) MakeMat(this, this.getPosition(), "mat_mithril", amoamount);
 				break;

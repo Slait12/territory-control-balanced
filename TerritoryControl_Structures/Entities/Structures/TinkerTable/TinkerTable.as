@@ -280,7 +280,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Catalyzer for Reactors", "$icon_catalyzer$", "catalyzer", "Increases reactor's irradiation just like if you put 75 of enriched mithril instead.\nIncreases wilmet output and max.heat and explosive potential for big nuclear reactor.\nSlightly destabilizes the reactor.");
+		ShopItem@ s = addShopItem(this, "Catalyzer for Reactors", "$icon_catalyzer$", "catalyzer", "Increases reactor's irradiation just like if you put 75 of enriched mithril instead.\nSlightly destabilizes the reactor.");
 		AddRequirement(s.requirements, "blob", "mat_mithrilenriched", "Enriched Mithril", 50);
 		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 5);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 5);
@@ -293,7 +293,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Refrigerant for Reactors", "$icon_refrigerant$", "refrigerant", "Decreases reactor's irradiation.\mIncreases mithril output in big nuclear reactor.\nModerately stabilizes and cools down the reactor.");
+		ShopItem@ s = addShopItem(this, "Refrigerant for Reactors", "$icon_refrigerant$", "refrigerant", "Decreases reactor's irradiation.\nModerately stabilizes and cools down the reactor.");
 		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
 		AddRequirement(s.requirements, "blob", "bubblegem", "Bubble gem", 1);

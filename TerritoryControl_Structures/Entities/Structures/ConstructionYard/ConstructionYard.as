@@ -30,10 +30,10 @@ void onInit(CBlob@ this)
 	AddIconToken("$icon_autocannon$", "AutocannonIcon.png", Vec2f(96, 48), 0);
 	AddIconToken("$icon_sfcannon$", "Icon_SFcannon.png", Vec2f(101, 32), 0);
 	AddIconToken("$icon_minethrower$", "Icon_Minethrower.png", Vec2f(18, 14), 0);
-	AddIconToken("$ss_machinegun$", "SS_Icons.png", Vec2f(32, 24), 6);
 
 
 	AddIconToken("$mat_ironingot$", "Material_IronIngot.png", Vec2f(16, 16), 1);
+	AddIconToken("$antiair", "AntiAC_top.png", Vec2f(32, 16), 3);
 
 	// SHOP
 	this.set_Vec2f("shop offset", Vec2f(0, 8));
@@ -176,18 +176,7 @@ void onInit(CBlob@ this)
 
 		s.crate_icon = 12;
 		s.customButton = true;
-		s.buttonwidth = 2;
-		s.buttonheight = 2;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Heavy Machine Gun", "$ss_machinegun$", "machinegun", "A very strong machine gun for suppressive fire.", false, true);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
-		AddRequirement(s.requirements, "coin", "", "Coins", 700);
-
-		s.crate_icon = 11;
-		s.customButton = true;
-		s.buttonwidth = 2;
+		s.buttonwidth = 4;
 		s.buttonheight = 2;
 	}
 	{
@@ -224,7 +213,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 2;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Jet Fighter!", "$jetfighter$", "jetfighter", "$jetfighter$\n\n\n" + "A very fast aircraft with a large bomb bay.\n\n[W]/[D] to accelerate\n[LMB] to shoot\n[Space] to drop items out of inventory\n[C] to leave", false, true);
+		ShopItem@ s = addShopItem(this, "Jet Fighter!", "$jetfighter$", "jetfighter", "$jetfighter$\n\n\n" + "", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 32);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 20);
 		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
@@ -235,7 +224,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 2;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Drone", "$uav_icon$", "uav", "$uav$\n\n\n\nRemotely controlled drone, with a machinegun on its hull and controller.\n\nRequres batteries to fly." + "", false, false);
+		ShopItem@ s = addShopItem(this, "Drone!\n\nRequres batteries to fly.", "$uav_icon$", "uav", "$uav$\n\n\n\nRemotely controlled drone, with a machinegun on its hull and controller." + "", false, false);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
 		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 30);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);

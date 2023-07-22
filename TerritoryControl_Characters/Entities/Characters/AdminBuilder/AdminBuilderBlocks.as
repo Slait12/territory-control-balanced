@@ -80,7 +80,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$castle_moss_block$", "World.png", Vec2f(8, 8), CMap::tile_castle_moss);
 	AddIconToken("$castle_back_moss_block$", "World.png", Vec2f(8, 8), CMap::tile_castle_back_moss);
 	AddIconToken("$icon_buildershop$", "BuilderShop.png", Vec2f(40, 24), 0, teamnum);
-	AddIconToken("$icon_quarters$", "Quarters.png", Vec2f(40, 24), 2, teamnum);
+	AddIconToken("$icon_kitchen$", "kitchen.png", Vec2f(40, 24), 2, teamnum);
 	AddIconToken("$icon_tinkertable$", "TinkerTable.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_armory$", "Armory.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_gunsmith$", "Gunsmith.png", Vec2f(40, 24), 0, teamnum);
@@ -387,10 +387,10 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	BuildBlock[] page_1;
 	blocks.push_back(page_1);
 	{
-		BuildBlock b(0, "quarters", "$icon_quarters$", "Quarters:\n\n" + descriptions[59]);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 50);
+		BuildBlock b(0, "kitchentc", "$icon_kitchen$", "Kitchen:\n\n" + descriptions[59]);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
 		b.buildOnGround = true;
-		b.size.Set(40, 24);
+		b.size.Set(40, 32);
 		blocks[1].push_back(b);
 	}
 	{

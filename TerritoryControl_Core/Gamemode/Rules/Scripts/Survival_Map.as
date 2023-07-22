@@ -1,9 +1,9 @@
 #include "CustomBlocks.as";
 #include "MapType.as";
 
+//this file defines maps that will be picked by the vote
 const string[] OffiMaps = {
 	"TFlippy_TC_Thomas",
-        "Xeno_Plains&Hills",
 	"TFlippy_TC_Reign",
 	"TFlippy_TC_Mesa",
 	"TFlippy_TC_Bobox",
@@ -12,6 +12,7 @@ const string[] OffiMaps = {
 	"TFlippy_TC_Tenshi_Lakes",
 	"TFlippy_TC_Valley",
 	"TFlippy_Rob_TC_Socks",
+	"TFlippy_TC_Nostalgia",
 	"Imbalol_TC_OilRig",
 	"Imbalol_TC_UPFCargo",
 	"Ginger_TC_Ridgelands_V2",
@@ -21,11 +22,8 @@ const string[] OffiMaps = {
 	"Ginger_TC_Bombardment_V2",
 	"Ginger_TC_Dehydration",
 	"Ginger_TC_Murderholes_V2",
-	"Ginger_TC_Royale",
-	"Ginger_TC_Highlands_V4",
-	"Ginger_TC_Samurai.png",
-	"JmD_TC_Poultry_v6",
 	"Tenshi_TC_WellOiledMachine_v2",
+	"Xeno_Plains&Hills",
 	"Balanced_TC_FallenIslands",
 };
 
@@ -59,7 +57,6 @@ const string[] OldMaps = {
 	"Ginger_TC_Seaside",
 	"Ginger_TC_Highlands",
 	"Goldy_TC_Netherland_v2", //a bit unstable
-	"TFlippy_TC_Nostalgia",
 	"Goldy_TC_Propesko",
 	"Xeno_TC_AncientTemple",
 	"Imbalol_TC_OilRig",
@@ -71,7 +68,8 @@ const string[] OldMaps = {
 	"Goldy_TC_Basement_v2",
 	"Ginger_TC_Equinox",
 	"Ginger_TC_Lagoon",
-	"TFlippy_TC_Thomas"
+	"TFlippy_TC_Thomas",
+	"JmD_TC_Poultry_v6",
 };
 
 void onInit(CRules@ this)
