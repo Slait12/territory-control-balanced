@@ -52,8 +52,9 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 		if (hitterBlob.getName() == "engineer")
 			damage *= 2.0;
 		else if (hitterBlob.getName() == "builder")
-			damage *= 2.75;
+			damage *= 2.0;
 	}
-	
+	if (customData == Hitters::drill) damage *= 3.0f;
+
 	return damage;
 }
