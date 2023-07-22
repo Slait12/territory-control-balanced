@@ -274,7 +274,6 @@ const string[] tips = {
 	"Gae gas = [pressure < 100000 | heat >= 500 | Love | Mustard >= 50]",
 	"Love = [pressure < 50000 | heat >= 1200 | Rippio | Acid >= 25]",
 	"Steroid = [heat > 2000 | Fiks | Domino | Stim]",
-	"Carbon - coal, heat >= 1k, pressure >= 200k (Chemlab only)",
 	"Enriched mithril = pressure > 25000 | heat > 2000 | Mithril | Acid >= 25 | Meat",
 	"Enriched mithril = pressure > 25000 | heat > 1500 | Mithril | Acid >= 25",
 	"Sturd = Fiks | Pumpkin >= 2 | Mithril > 25",

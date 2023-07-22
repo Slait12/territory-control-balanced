@@ -644,17 +644,17 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 					server_CreateBlob("bulletproofvest", blob.getTeamNum(), blob.getPosition());
 					server_CreateBlob("combatboots", blob.getTeamNum(), blob.getPosition());
 				}
-				else if (tokens[0]=="!carbonarmor")
+				else if (tokens[0]=="!compositearmor")
 				{
-					server_CreateBlob("carbonhelmet", blob.getTeamNum(), blob.getPosition());
-					server_CreateBlob("carbonvest", blob.getTeamNum(), blob.getPosition());
-					server_CreateBlob("carbonboots", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("compostiehelmet", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("compositevest", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("compositeboots", blob.getTeamNum(), blob.getPosition());
 				}
-				else if (tokens[0]=="!wilmetarmor")
+				else if (tokens[0]=="!lightarmor")
 				{
-					server_CreateBlob("wilmethelmet", blob.getTeamNum(), blob.getPosition());
-					server_CreateBlob("wilmetvest", blob.getTeamNum(), blob.getPosition());
-					server_CreateBlob("wilmetboots", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("lighthelmet", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("lightvest", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("lightboots", blob.getTeamNum(), blob.getPosition());
 				}
 				else if (tokens[0]=="!mats")
 				{
