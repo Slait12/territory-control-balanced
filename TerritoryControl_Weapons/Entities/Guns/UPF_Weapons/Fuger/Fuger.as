@@ -46,4 +46,5 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSemiAuto");
 	this.Tag("pistol");
 	this.Tag("grapplable");
+	this.set_string("CustomSoundPickup", "Fuger_Pickup.ogg");
 }

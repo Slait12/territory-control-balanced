@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "PPSH_Shoot.ogg"; //Sound when shooting
-	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "PPSH_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-17.5, -3.5); //Where the muzzle flash appears
@@ -43,6 +43,5 @@ void onInit(CBlob@ this)
 	this.set("gun_settings", @settings);
 	
 	//Custom
-	this.set_f32("CustomReloadPitch", 0.7);
-	this.set_string("CustomSoundPickup", "SMG_Pickup.ogg");
+	this.set_string("CustomSoundPickup", "PPSH_Pickup.ogg");
 }

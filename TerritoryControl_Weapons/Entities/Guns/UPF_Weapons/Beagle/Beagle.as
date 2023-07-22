@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "BeagleFire.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "FugerReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "Beagle_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-15, -3.5); //Where the muzzle flash appears
@@ -47,4 +47,5 @@ void onInit(CBlob@ this)
 	this.set_f32("CustomReloadPitch", 0.8f);
 	this.Tag("CustomSemiAuto");
 	this.Tag("pistol");
+	this.set_string("CustomSoundPickup", "Beagle_Pickup.ogg");
 }

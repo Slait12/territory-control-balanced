@@ -48,4 +48,5 @@ void onInit(CBlob@ this)
 	this.set_string("CustomCase", "");
 	this.set_string("ProjBlob", "blankrocket");
 	this.Tag("CustomSemiAuto");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }

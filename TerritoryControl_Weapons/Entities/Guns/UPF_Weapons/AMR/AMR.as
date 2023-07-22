@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "AMR_Shoot.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "AMR_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-28, -3); //Where the muzzle flash appears
@@ -49,4 +49,5 @@ void onInit(CBlob@ this)
 	this.Tag("place45");
 	this.Tag("sniper");
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "Sniper_Pickup.ogg");
 }

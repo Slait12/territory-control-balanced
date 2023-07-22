@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "SAR_Shoot.ogg"; //Sound when shooting
-	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "SAR_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-18, -1.5); //Where the muzzle flash appears
@@ -46,4 +46,5 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSemiAuto");
 	this.set_u8("CustomKnock", 2);
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "SAR_Pickup.ogg");
 }

@@ -35,10 +35,13 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "AssaultRifle_Shoot.ogg"; //Sound when shooting
-	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "AssaultRifle_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-19, -2); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
+	
+	//Custom
+	this.set_string("CustomSoundPickup", "AssaultRifle_Pickup.ogg");
 }

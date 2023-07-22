@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "Carbine_Shoot.ogg"; //Sound when shooting
-	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "Carbine_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-18, -1); //Where the muzzle flash appears
@@ -44,4 +44,5 @@ void onInit(CBlob@ this)
 
 	//Custom
 	this.set_f32("scope_zoom", 0.10f);
+	this.set_string("CustomSoundPickup", "Carbine_Pickup.ogg");
 }

@@ -13,7 +13,7 @@ void onInit(CBlob@ this)
 
 	//Bullet
 	settings.B_PER_SHOT = 5; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
-	settings.B_SPREAD = 4; //the higher the value, the more 'uncontrollable' bullets get
+	settings.B_SPREAD = 7; //the higher the value, the more 'uncontrollable' bullets get
 	settings.B_GRAV = Vec2f(0, 0.01); //Bullet gravity drop
 	settings.B_SPEED = 90; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	settings.B_TTL = 5; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
@@ -29,10 +29,11 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "AutoShotgun_Fire.ogg"; //Sound when shooting
-	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "Autoshotgun_Reload.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-19, -3); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
+	this.set_string("CustomSoundPickup", "Autoshotgun_Pickup.ogg");
 }

@@ -45,6 +45,7 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSoundLoop");
 	this.Tag("medium weight");
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)

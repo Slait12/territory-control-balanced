@@ -49,4 +49,5 @@ void onInit(CBlob@ this)
 	this.set_string("ProjBlob", "sglgrenade");
 	this.Tag("CustomSemiAuto");
 	this.Tag("CustomShotgunReload");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }
