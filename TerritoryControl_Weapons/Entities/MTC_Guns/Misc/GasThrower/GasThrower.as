@@ -47,6 +47,7 @@ void onInit(CBlob@ this)
 	this.set("gun_settings", @settings);
 
 	//Custom
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 	this.set_string("CustomCase", "");
 	this.set_string("CustomFlash", "");
 	this.set_u32("CustomGunRecoil", 0);

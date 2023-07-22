@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "RP46_Shoot.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "FlamethrowerReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "TKB521_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-23.5, -2); //Where the muzzle flash appears
@@ -43,4 +43,5 @@ void onInit(CBlob@ this)
 	this.set("gun_settings", @settings);
 	this.Tag("medium weight");
 	this.Tag("powerful");
+		this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 }

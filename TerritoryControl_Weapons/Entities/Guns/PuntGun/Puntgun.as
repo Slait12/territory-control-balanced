@@ -49,4 +49,5 @@ void onInit(CBlob@ this)
 	this.set_string("CustomCase", "");
 	this.Tag("heavy weight");
 	this.Tag("place45");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }

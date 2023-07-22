@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "BN_AK47Fire.ogg"; //Sound when shooting
-	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "AKM_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-21, -1.8); //Where the muzzle flash appears
@@ -44,4 +44,5 @@ void onInit(CBlob@ this)
 
 	//Custom
 	this.set_u8("CustomKnock", 8);
+	this.set_string("CustomSoundPickup", "AKM_Pickup.ogg");
 }

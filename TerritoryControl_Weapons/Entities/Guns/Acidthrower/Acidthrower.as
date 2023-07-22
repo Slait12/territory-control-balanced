@@ -44,6 +44,7 @@ void onInit(CBlob@ this)
 	this.set_string("ProjBlob", "acidgas");
 	this.Tag("CustomSoundLoop");
 	this.Tag("medium weight");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)

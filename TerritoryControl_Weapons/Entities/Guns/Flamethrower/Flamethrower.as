@@ -51,6 +51,7 @@ void onInit(CBlob@ this)
 	this.set_Vec2f("ProjOffset", Vec2f(-12, -1));
 	this.Tag("CustomSoundLoop");
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }
 /*
 // for (int i = 1; i < 5; i++) MakeParticle(this, -dir * i, "SmallExplosion");

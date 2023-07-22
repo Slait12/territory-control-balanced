@@ -46,5 +46,4 @@ void onInit(CBlob@ this)
 	this.set_f32("scope_zoom", 0.20f);
 	this.set_string("CustomBullet", "");
 	this.set_string("CustomFlash", "");
-	this.Tag("sniper");
 }

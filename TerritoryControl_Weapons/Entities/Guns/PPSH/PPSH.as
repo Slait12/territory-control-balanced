@@ -44,4 +44,5 @@ void onInit(CBlob@ this)
 	
 	//Custom
 	this.set_f32("CustomReloadPitch", 0.7);
+	this.set_string("CustomSoundPickup", "SMG_Pickup.ogg");
 }

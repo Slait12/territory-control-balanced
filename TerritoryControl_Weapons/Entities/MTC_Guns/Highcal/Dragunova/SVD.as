@@ -33,9 +33,9 @@ void onInit(CBlob@ this)
 	settings.G_RECOILT = 8; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
 	settings.G_BACK_T = 2; //Should we recoil the arm back time? (aim goes up, then back down with this, if > 0, how long should it last)
 
-	//Sound
-	settings.FIRE_SOUND = "DragunovaFire.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "SniperReload.ogg"; //Sound when reloading
+	//Sound	
+	settings.FIRE_SOUND = "DragunovaFire.ogg";//Sound when shooting
+	settings.RELOAD_SOUND = "SVD_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-25, -1); //Where the muzzle flash appears
@@ -50,4 +50,5 @@ void onInit(CBlob@ this)
 	//this.Tag("place45");
 	this.Tag("powerful");
 	this.Tag("sniper");
+	this.set_string("CustomSoundPickup", "SVD_Pickup.ogg");
 }

@@ -48,4 +48,5 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSemiAuto");
 	this.set_string("CustomBullet", "item_bullet_bandit.png");
 	this.set_string("CustomFlash", "");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }

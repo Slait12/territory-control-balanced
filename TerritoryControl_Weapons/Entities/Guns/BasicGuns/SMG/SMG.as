@@ -41,4 +41,7 @@ void onInit(CBlob@ this)
 	settings.MUZZLE_OFFSET = Vec2f(-16, -2); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
+	
+	//Custom
+	this.set_string("CustomSoundPickup", "SMG_Pickup.ogg");
 }

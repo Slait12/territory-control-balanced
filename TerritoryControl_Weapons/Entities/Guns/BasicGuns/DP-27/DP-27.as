@@ -35,11 +35,12 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "DP27_Shoot.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "FlamethrowerReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "DP27_Reloading.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-23, -1); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
 	this.Tag("medium weight");
+	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 }

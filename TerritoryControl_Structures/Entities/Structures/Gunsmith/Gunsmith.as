@@ -84,7 +84,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Bolt Action Rifle", "$rifle$", "rifle", "A handy bolt action rifle. $icon_rifleammo$\n\nAmmo Capacity = 5\n\nDamage = 3.5\n\nFire Rate = 0.75");
+		ShopItem@ s = addShopItem(this, "Bolt Action Rifle", "$rifle$", "rifle", "A handy bolt action rifle. $icon_rifleammo$\nDeals double damage when shooting from a long distance.\n\nAmmo Capacity = 5\n\nDamage = 3.5\n\nFire Rate = 0.75");
 		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
 		s.customButton = true;

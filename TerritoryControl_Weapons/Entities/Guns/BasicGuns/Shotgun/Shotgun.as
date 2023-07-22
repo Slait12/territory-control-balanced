@@ -45,4 +45,5 @@ void onInit(CBlob@ this)
 	//Custom
 	this.set_string("CustomCycle", "ShotgunPump");
 	this.Tag("CustomShotgunReload");
+	this.set_string("CustomSoundPickup", "Shotgun_Pickup.ogg");
 }

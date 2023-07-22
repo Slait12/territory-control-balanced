@@ -44,4 +44,5 @@ void onInit(CBlob@ this)
 
 	//Custom
 	this.Tag("CustomSemiAuto");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }

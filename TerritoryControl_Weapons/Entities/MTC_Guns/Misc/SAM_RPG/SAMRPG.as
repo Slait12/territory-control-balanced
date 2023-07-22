@@ -52,4 +52,5 @@ void onInit(CBlob@ this)
 	this.set_Vec2f("ProjOffset", Vec2f(-15, -3));
 	this.Tag("heavy weight");
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }

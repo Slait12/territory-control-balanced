@@ -48,6 +48,7 @@ void onInit(CBlob@ this)
 	this.set_string("CustomFlash", "");
 	this.set_string("ProjBlob", "grenade");
 	this.set_u8("clickReload", 0); //'Click' moment after shooting
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

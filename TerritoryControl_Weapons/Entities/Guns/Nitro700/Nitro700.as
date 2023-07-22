@@ -46,4 +46,5 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSemiAuto");
 	this.Tag("medium weight");
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }

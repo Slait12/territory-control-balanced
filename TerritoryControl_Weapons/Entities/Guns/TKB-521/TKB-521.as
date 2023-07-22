@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 
 	//Sound
 	settings.FIRE_SOUND = "TKB521_Shoot.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "FlamethrowerReload.ogg"; //Sound when reloading
+	settings.RELOAD_SOUND = "TKB521_Reloading.ogg"; //Sound when reloading
 	this.Tag("CustomSoundLoop");
 
 	//Offset
@@ -46,4 +46,5 @@ void onInit(CBlob@ this)
 	
 	//Custom
 	this.set_f32("CustomShootVolume", 11.0f);
+	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 }

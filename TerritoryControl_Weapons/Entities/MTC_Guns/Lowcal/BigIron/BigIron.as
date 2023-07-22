@@ -47,4 +47,5 @@ void onInit(CBlob@ this)
 	this.set_string("CustomReloadingEnding", "BigIron_LoadEnding");
 	this.Tag("CustomShotgunReload");
 	this.Tag("powerful");
+	this.set_string("CustomSoundPickup", "Bigiron_Pickup.ogg");
 }

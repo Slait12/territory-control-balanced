@@ -46,5 +46,5 @@ void onInit(CBlob@ this)
 	this.set_string("CustomCycle", "LeverRifle_Cycle");
 	this.set_string("CustomReloadingEnding", "LeverRifle_Cycle");
 	this.Tag("CustomShotgunReload");
-	this.Tag("sniper");
+	this.set_string("CustomSoundPickup", "LeverRifle_Pickup.ogg");
 }

@@ -48,6 +48,8 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSemiAuto");
 	this.Tag("medium weight");
 	this.Tag("sniper");
+	this.set_string("CustomSoundPickup", "Sniper_Pickup.ogg");
+	this.set_string("CustomCycle", "Sniper_Boltaction");
 
 	CSprite@ sprite = this.getSprite();
 

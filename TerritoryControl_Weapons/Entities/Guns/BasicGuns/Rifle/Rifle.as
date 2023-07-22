@@ -48,4 +48,5 @@ void onInit(CBlob@ this)
 	this.set_u8("CustomKnock", 10);
 	this.set_u8("CustomPenetration", 2);
 	this.Tag("sniper");
+	this.set_string("CustomSoundPickup", "Rifle_Pickup.ogg");
 }
