@@ -285,6 +285,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_royalarmor$", "RoyalArmor.png", Vec2f(16, 8), 0, teamnum);
 	AddIconToken("$icon_gluegrenade$", "GlueGrenade.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_concretegrenade$", "ConcreteGrenade.png", Vec2f(16, 16), 0, teamnum);
+}
 
 bool canPickup(CBlob@ blob)
 {

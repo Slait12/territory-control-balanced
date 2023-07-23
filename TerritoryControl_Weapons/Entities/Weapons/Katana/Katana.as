@@ -10,6 +10,8 @@ void onInit(CBlob@ this)
 	this.set_u32("dash time", 0);
 	this.set_u16("holderid", 0);
 	this.Tag("no_bullet_collision");
+	bool IsSoundPlayed = this.get_bool("IsSoundPlayed");
+	this.set_bool("IsSoundPlayed", true);
 
 	AttachmentPoint@ ap = this.getAttachments().getAttachmentPointByName("PICKUP");
 	if (ap !is null)
@@ -131,6 +133,7 @@ void onTick(CBlob@ this)
 			{
 				u8 team = holder.getTeamNum();
 				
+				this.getSprite().PlaySound("SwingHeavy3.ogg", 1.00f, 1.00f);
 				HitInfo@[] hitInfos;
 				if (getMap().getHitInfosFromArc(this.getPosition(), -(holder.getAimPos() - this.getPosition()).Angle(), 90, 24, this, @hitInfos))
 				{
@@ -157,6 +160,7 @@ void onTick(CBlob@ this)
 				holder.AddForce(Vec2f(holder.isFacingLeft() ? this.getMass()*((this.isOnGround()?-80.0f:-20.0f)) : this.getMass()*((this.isOnGround()?80.0f:20.0f)), this.getMass()*(this.isOnGround()?-40.0f:-7.5f)));
 				this.set_u32("dash time", getGameTime() + 10);
 				this.set_u32("next dash", getGameTime() + 225);
+				this.set_bool("IsSoundPlayed", false);
 			}
 		}
 		if (getGameTime() > this.get_u32("dash time"))
@@ -168,7 +172,7 @@ void onTick(CBlob@ this)
 				{
 					sprite.ResetTransform();
 					sprite.RotateBy(holder.isFacingLeft()?45:-45, Vec2f());
-					sprite.ScaleBy(0.85f, 0.85f);
+					sprite.ScaleBy(0.85f, 0.85f);	
 					l.SetVisible(false);
 					l.ResetTransform();
 				}
@@ -190,12 +194,16 @@ void onTick(CBlob@ this)
 			}
 		}
 	}
+	if (!this.get_bool("IsSoundPlayed") && getGameTime() > this.get_u32("next dash"))
+	{
+		this.getSprite().PlaySound("AnimeSword.ogg", 1.00f, 1.00f);
+		this.set_bool("IsSoundPlayed", true);
+	}
 }
 
 void onThisAddToInventory(CBlob@ this, CBlob@ inventoryBlob)
 {
 	if (inventoryBlob is null) return;
-	inventoryBlob.Untag("no_flesh_collision");
 	this.Untag("dash");
 }
 
@@ -209,7 +217,6 @@ void onDetach(CBlob@ this,CBlob@ detached,AttachmentPoint@ attachedPoint)
 	}
 
 	detached.Untag("noLMB");
-	detached.Untag("no_flesh_collision");
 	this.Untag("dash");
 	// detached.Untag("noShielding");
 }
@@ -222,7 +229,6 @@ void onAttach( CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint )
 
 bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 {
-	if (blob !is null && blob.isCollidable()) return true;
+	if (blob !is null && blob.hasTag("flesh")) return false;
 	return false;
 }
-
