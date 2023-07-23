@@ -330,9 +330,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Gas Spreader XS-65", "$icon_gasweapon$", "gasthrower", "A device for spraying various gases.\nPut it on the ground and press E with gas in your hands to change the type of ammo.");
-                AddRequirement(s.requirements, "blob", "gasextractor", "Zapthrottle Gas Extractor", 1);
+        AddRequirement(s.requirements, "blob", "gasextractor", "Zapthrottle Gas Extractor", 1);
 		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
-                AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
+        AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
@@ -340,6 +340,17 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;	
 		s.buttonheight = 1;
 		
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "SpaceStar Ordering Transmitter", "$phone$", "phone", "A replica of SpaceStar Ordering Trasmitter capable of connecting to the UPF frequencies.\nAllows you to order supplies of UPF technologies and infantry support.");
+		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
+		AddRequirement(s.requirements, "blob", "bp_automation_advanced", "Advanced Automation Blueprint", 1);
+		AddRequirement(s.requirements, "blob", "bp_energetics", "Energetics Blueprint", 1);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Copper Wire", 50);
+		AddRequirement(s.requirements, "blob", "mat_copperwire", "Mithril Ingot", 4);
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
 		s.spawnNothing = true;
 	}
 }
@@ -367,6 +378,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_drill$", "Drill.png", Vec2f(32, 16), 0, teamnum);
 	AddIconToken("$icon_refrigerant$", "RefrigerantIcon", Vec2f(8, 14), 0, teamnum);
 	AddIconToken("$icon_gasweapon$", "GasThrower.png", Vec2f(24, 13), 0, teamnum);
+	AddIconToken("phone$", "Phone.png", Vec2f(8, 16), 0, teamnum);
 }
 
 void onTick(CBlob@ this)
