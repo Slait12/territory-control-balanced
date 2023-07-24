@@ -503,7 +503,7 @@ void onTick(CBlob@ this)
 			
 			if (!this.get_bool("InfTask"))
 			{
-				IncreaseTask(this, item.resultcount * -1);
+				DecreaseTask(this, item.resultcount);
 			}
 		}
 
