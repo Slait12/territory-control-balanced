@@ -411,7 +411,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 							break;
 						}
 					}
-				
+				}
 				CGridButton @butt = qmenu.AddButton("$assembler_qicon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i));	
 			}
 		}	
