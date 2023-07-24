@@ -334,7 +334,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 
 				int teamnum = this.getTeamNum();
 				if (teamnum > 6) teamnum = 7;
-				AddIconToken("$assembler_qicon" + i + "$", "AssemblerIcons2.png", Vec2f(16, 16), i - 1, teamnum);
+				AddIconToken("$assembler_icon" + i + "$", "AssemblerIcons.png", Vec2f(16, 16), i, teamnum);
 
 				switch(i)
 				{
@@ -409,7 +409,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 						break;
 					}
 				}
-				CGridButton @butt = qmenu.AddButton("$assembler_qicon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i));	
+				CGridButton @butt = qmenu.AddButton("$assembler_icon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i));	
 			}
 		}	
 	}
