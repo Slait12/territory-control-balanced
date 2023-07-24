@@ -274,7 +274,7 @@ void onInit(CBlob@ this)
 
 	this.set_u8("crafting", 0);
 	
-	this.set_u16("ProduceTask", 0);
+	this.set_u16("ProduceTask", 8);
 	
 	this.set_string("drawText", "Production Plan: Unlimited");
 	
@@ -424,10 +424,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 	if (cmd == this.getCommandID("IncreaseTask1"))
 	{
-		if (isServer())
-		{
 			IncreaseTask(this, 1);
-		}
 	}
 	if (cmd == this.getCommandID("IncreaseTask2"))
 	{
