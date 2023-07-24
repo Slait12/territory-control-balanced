@@ -518,38 +518,29 @@ void onTick(CBlob@ this)
 
 void IncreaseTask(CBlob@ this, u16 incr_quantity)
 {
-	if (isServer())
-	{
-		this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
-		this.set_bool("InfTask", false);
-	}
+	this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
+	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 }
 
 void DecreaseTask(CBlob@ this, u16 incr_quantity)
 {
-	if (isServer())
+	if (incr_quantity < (this.get_u16("ProduceTask")))
 	{
-		if (incr_quantity < (this.get_u16("ProduceTask")))
-		{
-			this.set_u16("ProduceTask", (this.get_u16("ProduceTask") - incr_quantity));
-		}
-		else
-		{
-			this.set_u16("ProduceTask", 0);
-		}
-		this.set_bool("InfTask", false);
+		this.set_u16("ProduceTask", (this.get_u16("ProduceTask") - incr_quantity));
 	}
+	else
+	{
+		this.set_u16("ProduceTask", 0);
+	}
+	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 }
 
 void TaskReset(CBlob@ this)
 {
-	if (isServer())
-	{
-		this.set_u16("ProduceTask", 0);
-		this.set_bool("InfTask", false);
-	}
+	this.set_u16("ProduceTask", 0);
+	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 }
 
