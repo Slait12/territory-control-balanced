@@ -337,82 +337,80 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 				AddIconToken("$assembler_qicon" + i + "$", "AssemblerIcons2.png", Vec2f(16, 16), i - 1, teamnum);
 
 				if(isClient())
+				{
+					switch(i)
 					{
-						switch(i)
+						case 1:
 						{
-							case 1:
-							{
-								this.set_string("qtext", "Add 1 Item");
-								break;
-							}
-							case 2:
-							{
-								this.set_string("qtext", "Add 5 Items");
-								break;
-							}
-							case 3:
-							{
-								this.set_string("qtext", "Add 10 Items");
-								break;
-							}
-							case 4:
-							{
-								this.set_string("qtext", "Add 20 Items");
-								break;
-							}
-							case 5:
-							{
-								this.set_string("qtext", "Add 50 Items");
-								break;
-							}
-							case 6:
-							{
-								this.set_string("qtext", "Add 100 Items");
-								break;
-							}
-							case 7:
-							{
-								this.set_string("qtext", "Unlimited Production");
-								break;
-							}
-							case 8:
-							{
-								this.set_string("qtext", "Remove 1 Item");
-								break;
-							}
-							case 9:
-							{
-								this.set_string("qtext", "Remove 5 Items");
-								break;
-							}
-							case 10:
-							{
-								this.set_string("qtext", "Remove 10 Items");
-								break;
-							}
-							case 11:
-							{
-								this.set_string("qtext", "Remove 20 Items");
-								break;
-							}
-							case 12:
-							{
-								this.set_string("qtext", "Remove 50 Items");
-								break;
-							}
-							case 13:
-							{
-								this.set_string("qtext", "Remove 100 Items");
-								break;
-							}
-							case 14:
-							{
-								this.set_string("qtext", "Reset Plan");
-								break;
-							}
+							this.set_string("qtext", "Add 1 Item");
+							break;
+						}
+						case 2:
+						{
+							this.set_string("qtext", "Add 5 Items");
+							break;
+						}
+						case 3:
+						{
+							this.set_string("qtext", "Add 10 Items");
+							break;
+						}
+						case 4:
+						{
+							this.set_string("qtext", "Add 20 Items");
+							break;
+						}
+						case 5:
+						{
+							this.set_string("qtext", "Add 50 Items");
+							break;
+						}
+						case 6:
+						{
+							this.set_string("qtext", "Add 100 Items");
+							break;
+						}
+						case 7:
+						{
+							this.set_string("qtext", "Unlimited Production");
+							break;
+						}
+						case 8:
+						{
+							this.set_string("qtext", "Remove 1 Item");
+							break;
+						}
+						case 9:
+						{
+							this.set_string("qtext", "Remove 5 Items");
+							break;
+						}
+						case 10:
+						{
+							this.set_string("qtext", "Remove 10 Items");
+							break;
+						}
+						case 11:
+						{
+							this.set_string("qtext", "Remove 20 Items");
+							break;
+						}
+						case 12:
+						{
+							this.set_string("qtext", "Remove 50 Items");
+							break;
+						}
+						case 13:
+						{
+							this.set_string("qtext", "Remove 100 Items");
+							break;
+						}
+						case 14:
+						{
+							this.set_string("qtext", "Reset Plan");
+							break;
 						}
 					}
-				}
 				
 				CGridButton @butt = qmenu.AddButton("$assembler_qicon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i));	
 			}
