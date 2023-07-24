@@ -447,7 +447,10 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 		if (cmd == this.getCommandID("IncreaseTask7"))
 	{
-		this.set_bool("InfTask", !this.get_bool("InfTask"));
+		if (isServer())
+		{
+			this.set_bool("InfTask", !this.get_bool("InfTask"));
+		}
 		this.set_string("drawText", "Production Plan: Unlimited");
 	}
 		if (cmd == this.getCommandID("IncreaseTask8"))
