@@ -424,7 +424,10 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 	if (cmd == this.getCommandID("IncreaseTask1"))
 	{
-		IncreaseTask(this, 1);
+		if (isServer())
+		{
+			IncreaseTask(this, 1);
+		}
 	}
 	if (cmd == this.getCommandID("IncreaseTask2"))
 	{
