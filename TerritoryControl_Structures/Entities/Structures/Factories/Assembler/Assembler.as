@@ -71,16 +71,19 @@ void onTick(CSprite@ this)
 	if (state || !blob.hasTag("togglesupport"))
 	{
 		if(this.getSpriteLayer("gear1") !is null){
-		this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+			this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 		if(this.getSpriteLayer("gear2") !is null){
-		this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+			this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 		if(this.getSpriteLayer("gear3") !is null){
-		this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+	}
+	
+	
+	
 	}
 }
-
 class AssemblerItem
 {
 	string resultname;
@@ -514,38 +517,29 @@ void onTick(CBlob@ this)
 
 void IncreaseTask(CBlob@ this, u16 incr_quantity)
 {
-	if (isServer())
-	{
-		this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
-		this.set_bool("InfTask", false);
-	}
+	this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
+	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 }
 
 void DecreaseTask(CBlob@ this, u16 incr_quantity)
 {
-	if (isServer())
+	if (incr_quantity < (this.get_u16("ProduceTask")))
 	{
-		if (incr_quantity < (this.get_u16("ProduceTask")))
-		{
-			this.set_u16("ProduceTask", (this.get_u16("ProduceTask") - incr_quantity));
-		}
-		else
-		{
-			this.set_u16("ProduceTask", 0);
-		}
-		this.set_bool("InfTask", false);
+		this.set_u16("ProduceTask", (this.get_u16("ProduceTask") - incr_quantity));
 	}
+	else
+	{
+		this.set_u16("ProduceTask", 0);
+	}
+	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 }
 
 void TaskReset(CBlob@ this)
 {
-	if (isServer())
-	{
-		this.set_u16("ProduceTask", 0);
-		this.set_bool("InfTask", false);
-	}
+	this.set_u16("ProduceTask", 0);
+	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 }
 
