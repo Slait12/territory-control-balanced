@@ -1,4 +1,4 @@
-﻿#include "MakeCrate.as";
+#include "MakeCrate.as";
 #include "Requirements.as";
 #include "ShopCommon.as";
 #include "Descriptions.as";
@@ -71,17 +71,13 @@ void onTick(CSprite@ this)
 	if (state || !blob.hasTag("togglesupport"))
 	{
 		if(this.getSpriteLayer("gear1") !is null){
-			this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+		this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 		if(this.getSpriteLayer("gear2") !is null){
-			this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+		this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 		if(this.getSpriteLayer("gear3") !is null){
-			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
-	}
-	
-	
-	
+		this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 }
 
@@ -295,7 +291,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 
 void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
-	if(caller.isMyPlayer())
+	if (caller.isMyPlayer())
 	{
 		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";	
 		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 6), "Set Assembly");
@@ -424,7 +420,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 	if (cmd == this.getCommandID("IncreaseTask1"))
 	{
-			IncreaseTask(this, 1);
+		IncreaseTask(this, 1);
 	}
 	if (cmd == this.getCommandID("IncreaseTask2"))
 	{
