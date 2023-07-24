@@ -274,8 +274,6 @@ void onInit(CBlob@ this)
 
 	this.set_u8("crafting", 0);
 	
-	this.set_u16("ProduceTask", 8);
-	
 	this.set_string("drawText", "Production Plan: Unlimited");
 	
 	this.Tag("ignore extractor");
