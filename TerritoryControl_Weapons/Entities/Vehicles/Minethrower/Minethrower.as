@@ -1,4 +1,5 @@
 #include "VehicleCommon.as"
+#include "VehicleCommon.as"
 
 // Mounted Bow logic
 
@@ -157,9 +158,6 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 		Vec2f offset = Vec2f((this.isFacingLeft() ? -1 : 1) * 16, 0);
 		offset.RotateBy(angle);
 		bullet.setPosition(this.getPosition() + offset);
-
-		bullet.server_SetTimeToDie(-1);
-		bullet.server_SetTimeToDie(100.0f);
 		
 		if (isClient())
 		{
