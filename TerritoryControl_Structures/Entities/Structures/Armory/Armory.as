@@ -81,7 +81,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Light Protective Vest", "icon_$lightvesticon$", "lightvest", "A light armor.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Torso slot");
+		ShopItem@ s = addShopItem(this, "Light Protective Vest", "$icon_lightvest$", "lightvest", "A light armor.\nCheap and flimsy. Gives some protection against all bullets.\n\nOccupies the Torso slot");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
 		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
