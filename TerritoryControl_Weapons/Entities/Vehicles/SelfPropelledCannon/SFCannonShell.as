@@ -20,6 +20,7 @@ void onInit(CBlob@ this)
 
 	this.Tag("projectile");
 	this.Tag("explosive");
+	this.set_string("custom_explosion_sound", "bigbomb_explosion.ogg");
 
 	this.getSprite().getConsts().accurateLighting = false;
 	this.getSprite().SetFacingLeft(!this.getSprite().isFacingLeft());
@@ -140,12 +141,12 @@ void DoExplosion(CBlob@ this)
 	f32 angle = this.getOldVelocity().Angle();
 	// print("Modifier: " + modifier + "; Quantity: " + this.getQuantity());
 
-	this.set_f32("map_damage_radius", 32.0f);
+	this.set_f32("map_damage_radius", 128.0f);
 	this.set_f32("map_damage_ratio", 0.5f);
 
-	Explode(this, 64.0f, 6.0f);
+	Explode(this, 128.0f, 8.0f);
 
-	for (int i = 0; i < 16; i++) 
+	for (int i = 0; i < 20; i++) 
 	{
 		Vec2f dir = getRandomVelocity(angle, 1, 160);
 		dir.x *= 2;
@@ -161,7 +162,7 @@ void DoExplosion(CBlob@ this)
 
 		for (int i = 0; i < 35; i++)
 		{
-			MakeParticle(this, Vec2f( XORRandom(64) - 32, XORRandom(80) - 60), getRandomVelocity(-angle, XORRandom(220) * 0.01f, 90), particles[XORRandom(particles.length)]);
+			MakeParticle(this, Vec2f( XORRandom(64) - 32, XORRandom(80) - 60), getRandomVelocity(-angle, XORRandom(440) * 0.01f, 90), particles[XORRandom(particles.length)]);
 		}
 
 		this.getSprite().Gib();
