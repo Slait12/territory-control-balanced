@@ -85,7 +85,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sticky Grenades (4)", "$stickygrenade$", "mat_stickygrenade-4", "Sticky grenades for grenade launchers");
+		ShopItem@ s = addShopItem(this, "Sticky Grenades (4)", "$stickygrenade$", "mat_stickygrenade-4", "Sticky grenades for grenadelaunchers.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
 
@@ -143,7 +143,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Flame Grenades (4)", "$flamegrenade$", "mat_flamegrenade-4", "Flame grenades for grenade launchers");
+		ShopItem@ s = addShopItem(this, "Flame Grenades (4)", "$flamegrenade$", "mat_flamegrenade-4", "Flame grenades for grenadelaunchers.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
 		AddRequirement(s.requirements, "blob", "mat_oil", "Oil", 50);
@@ -242,7 +242,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Scorcher", "$icon_flamethrower$", "flamethrower", "A tool used for incinerating plants, buildings and people.\n\nUses Oil.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
-                AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);
 		AddRequirement(s.requirements, "coin", "", "Coins", 4000);
@@ -254,7 +254,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Acid Grenades (2)", "$acidgrenade$", "mat_acidgrenade-2", "Acid grenades for grenade launchers");
+		ShopItem@ s = addShopItem(this, "Acid Grenades (2)", "$acidgrenade$", "mat_acidgrenade-2", "Acid grenades for grenadelaunchers.");
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 50);
 		AddRequirement(s.requirements, "blob", "mat_acid", "Acid", 50);
@@ -271,7 +271,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Acidthrower", "$icon_acidthrower$", "acidthrower", "A tool used for dissolving plants, buildings and people.\n\nUses Acid.");
-                AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
@@ -341,6 +341,8 @@ void addTokens(CBlob@ this)
 	AddIconToken("$m712$", "M712.png", Vec2f(19, 11), 0, teamnum);
 	AddIconToken("$icon_grenadelauncher$", "PumpActionGrenadeLauncher.png", Vec2f(22, 9), 0, teamnum);
 	AddIconToken("$icon_thunderbolt$", "Thunderbolt.png", Vec2f(24, 10), 0, teamnum);
+	AddIconToken("$icon_mine$", "Mine.png", Vec2f(16, 16), 1, teamnum);
+	AddIconToken("$icon_fragmine$", "FragMine.png", Vec2f(16, 16), 1, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
