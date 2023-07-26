@@ -30,10 +30,8 @@ void onInit(CBlob@ this)
 	AddIconToken("$icon_autocannon$", "AutocannonIcon.png", Vec2f(96, 48), 0);
 	AddIconToken("$icon_sfcannon$", "Icon_SFcannon.png", Vec2f(101, 32), 0);
 	AddIconToken("$icon_minethrower$", "Icon_Minethrower.png", Vec2f(18, 14), 0);
-
-
-	AddIconToken("$mat_ironingot$", "Material_IronIngot.png", Vec2f(16, 16), 1);
-	AddIconToken("$antiair", "AntiAC_top.png", Vec2f(32, 16), 3);
+	AddIconToken("$icon_biggeriron$", "Icon_BiggerIron.png", Vec2f(40, 14), 0);
+	AddIconToken("$mat_ironingot$", "Material_IronIngot.png", Vec2f(16, 16), 1);;
 
 	// SHOP
 	this.set_Vec2f("shop offset", Vec2f(0, 8));
@@ -127,7 +125,6 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Minethrower", "$icon_minethrower$", "minethrower", "An unusual invention for littering the battlefield.\nUses Mines.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.crate_icon = 3;
@@ -176,7 +173,18 @@ void onInit(CBlob@ this)
 
 		s.crate_icon = 12;
 		s.customButton = true;
-		s.buttonwidth = 4;
+		s.buttonwidth = 2;
+		s.buttonheight = 2;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Bigger Iron", "$icon_biggeriron$", "biggeriron", "An upgraged version of hovitzer capable of penetrating fortifications\n\nUses howitzer shells.", false, true);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 14);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
+
+		s.crate_icon = 12;
+		s.customButton = true;
+		s.buttonwidth = 2;
 		s.buttonheight = 2;
 	}
 	{
@@ -259,7 +267,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 3;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Self Propelled Howitzer", "$icon_sfcannon$", "sfcannon", "$icon_sfcannon$\n\n\n\n\n" + "A huge gun on its own propulsion system.\nDesigned to destroy heavily armored fortifications.\nUses high caliber shells.", false, true);
+		ShopItem@ s = addShopItem(this, "Self Propelled Howitzer", "$icon_sfcannon$", "sfcannon", "$icon_sfcannon$\n\n\n\n\n" + "A huge gun on its own propulsion system.\nDesigned to completely destroy heavily armored fortifications.\nUses high caliber shells.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 48);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
 		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
@@ -281,7 +289,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 3;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Autocannon", "$icon_autocannon$", "autocannon", "A slow and sturdy wooden monstrosity.", false, true);
+		ShopItem@ s = addShopItem(this, "Autocannon", "$icon_autocannon$", "autocannon", "A rapid-firing cannon used agains infantry and vehicles.\nHas wheels.\n\nUses artillry shells.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 14);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1000);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
@@ -292,7 +300,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 3;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Zeppelin", "$icon_zeppelin$", "zepplin", "$icon_zeppelin$\n\n\n\n\n\n\n\n\n\n\n" + "A large zeppelin.\n\nYou can shoot from gatling gun.\nUses gatling ammo on the first inventory slot.", false, false);
+		ShopItem@ s = addShopItem(this, "Zeppelin", "$icon_zeppelin$", "zepplin", "$icon_zeppelin$\n\n\n\n\n\n\n\n\n\n\n" + "A large zeppelin.\n\nYou can shoot from gatling gun.\nUses gatling ammo on the first inventory slot.\nHas a lot of weapon slots.", false, false);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 28);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 14);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1250);

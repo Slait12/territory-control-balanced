@@ -22,11 +22,11 @@ void onInit(CBlob@ this)
 	this.set_u32("no_shoot", 0);
 
 	Vehicle_SetupWeapon(this, v,
-	                    100, // fire delay (ticks)
+	                    110, // fire delay (ticks)
 	                    1, // fire bullets amount
 	                    Vec2f(-6.0f, 2.0f), // fire position offset
 	                    "mat_howitzershell", // bullet ammo config name
-	                    "howitzershell", // bullet config name
+	                    "biggerironshell", // bullet config name
 	                    "KegExplosion", // fire sound
 	                    "EmptyFire" // empty fire sound
 	                   );
@@ -51,7 +51,7 @@ void onInit(CBlob@ this)
 
 void onInit(CSprite@ this)
 {
-	CSpriteLayer@ arm = this.addSpriteLayer("arm", "Howitzer_Cannon.png", 32, 16);
+	CSpriteLayer@ arm = this.addSpriteLayer("arm", "BiggerIron_Cannon.png", 50, 16);
 	if (arm !is null)
 	{
 		{
@@ -102,7 +102,7 @@ f32 getAimAngle(CBlob@ this, VehicleInfo@ v)
 				if (aim_vec.x > 0) aim_vec.x = -aim_vec.x;
 
 				angle = (-(aim_vec).getAngle() + 180.0f);
-				angle = Maths::Max(-60.0f, Maths::Min(angle, 10.0f));
+				angle = Maths::Max(-90.0f, Maths::Min(angle, 35.0f));
 			}
 			else this.SetFacingLeft(!facing_left);
 		}
