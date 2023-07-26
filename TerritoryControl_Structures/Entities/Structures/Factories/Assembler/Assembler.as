@@ -132,7 +132,6 @@ void onInit(CBlob@ this)
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 125);
 		items.push_back(i);
 	}
-
 	{
 		AssemblerItem i("mat_howitzershell", 4, "Howitzer Shells (4)");
 		AddRequirement(i.reqs, "blob", "mat_copperingot", "Copper Ingot", 2);
@@ -149,18 +148,6 @@ void onInit(CBlob@ this)
 		AssemblerItem i("mat_incendiarybomb", 4, "Incendiary Bombs (4)");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
 		AddRequirement(i.reqs, "blob", "mat_oil", "Oil", 20);
-		items.push_back(i);
-	}
-	{
-		AssemblerItem i("foodcan", 2, "Scrub's Chow (2)");
-		AddRequirement(i.reqs, "blob", "mat_meat", "Mystery Meat", 15);
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 1);
-		items.push_back(i);
-	}	
-	{
-		AssemblerItem i("bigfoodcan", 1, "Scrub's Chow XL (1)");
-		AddRequirement(i.reqs, "blob", "mat_meat", "Mystery Meat", 80);
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 12);
 		items.push_back(i);
 	}
 	{

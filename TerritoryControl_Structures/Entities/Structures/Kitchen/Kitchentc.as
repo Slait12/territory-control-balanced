@@ -42,6 +42,12 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
+		AssemblerItem i("bigfoodcan", 1, "Scrub's Chow XL (1)");
+		AddRequirement(i.reqs, "blob", "mat_meat", "Mystery Meat", 80);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 12);
+		items.push_back(i);
+	}
+	{
 		AssemblerItem i("beer", 2, "Bear's Beer (2)");
 		AddRequirement(i.reqs, "blob", "grain", "Grain", 1);
 		items.push_back(i);
@@ -84,7 +90,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if(caller.isMyPlayer())
 	{
-		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 1), "Set Assembly");
+		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(5, 1), "Set what to cook");
 		if (menu !is null)
 		{
 			AssemblerItem[] items = getItems(this);
@@ -99,10 +105,10 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 				if (teamnum > 6) teamnum = 7;
 				AddIconToken("$assembler_icon" + i + "$", "KitchenIcons.png", Vec2f(16, 16), i, teamnum);
 
-				string text = "Set to Assemble: " + item.title;
+				string text = "Set to cook: " + item.title;
 				if(this.get_u8("crafting") == i)
 				{
-					text = "Already Assembling: " + item.title;
+					text = "Already cooking: " + item.title;
 				}
 
 				CGridButton @butt = menu.AddButton("$assembler_icon" + i + "$", text, this.getCommandID("set"), pack);
@@ -188,7 +194,7 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 		}
 	}
 
-	if (isMat && !blob.isAttached() && blob.hasTag("material"))
+	if (isMat && !blob.isAttached() && (blob.hasTag("material") || blob.getName() == "grain"))
 	{
 		if (isServer()) this.server_PutInInventory(blob);
 		if (isClient()) this.getSprite().PlaySound("bridge_open.ogg");
@@ -205,19 +211,4 @@ AssemblerItem[] getItems(CBlob@ this)
 	AssemblerItem[] items;
 	this.get("items", items);
 	return items;
-}
-
-
-void onAddToInventory( CBlob@ this, CBlob@ blob )
-{
-	if(blob.getName() != "gyromat") return;
-
-	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
-}
-
-void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
-{
-	if(blob.getName() != "gyromat") return;
-	
-	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
 }
