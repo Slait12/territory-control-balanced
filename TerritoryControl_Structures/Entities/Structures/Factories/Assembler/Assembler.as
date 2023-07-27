@@ -283,7 +283,8 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if (caller.isMyPlayer())
 	{
-		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";	
+		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";
+		
 		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 6), "Set Assembly");
 		if (menu !is null)
 		{
@@ -438,7 +439,14 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 		{
 			this.set_bool("InfTask", !this.get_bool("InfTask"));
 		}
-		this.set_string("drawText", "Production Plan: Unlimited");
+		if (this.get_bool("InfTask"))
+		{
+			this.set_string("drawText", "Production Plan: Unlimited");
+		}
+		else
+		{
+			this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
+		}
 	}
 		if (cmd == this.getCommandID("IncreaseTask8"))
 	{
