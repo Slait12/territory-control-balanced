@@ -197,7 +197,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("firejob", 1, "Firejob");
-		AddRequirement(i.reqs, "blob", "mat_fuel", "Fuel", 50);
+		AddRequirement(i.reqs, "blob", "mat_fuel", "Fuel", 15);
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 50);
 		AddRequirement(i.reqs, "blob", "mat_coal", "Coal", 25);
 		items.push_back(i);
@@ -214,6 +214,14 @@ void onInit(CBlob@ this)
 		AssemblerItem i("mat_mininuke", 1, "L.O.L. Warhead (1)");
 		AddRequirement(i.reqs, "blob", "mat_mithrilenriched", "Enriched Mithril", 30);
 		AddRequirement(i.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 8);
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 4);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("mat_explonuke", 1, "K.E.K Warhead (1)");
+		AddRequirement(i.reqs, "blob", "mat_fuel", "Fuel", 120);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 150);
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 8);
 		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 4);
 		items.push_back(i);

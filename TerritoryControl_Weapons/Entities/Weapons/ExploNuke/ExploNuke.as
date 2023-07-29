@@ -18,9 +18,6 @@ void onInit(CBlob@ this)
 	
 	this.Tag("projectile");
 	this.Tag("explosive");
-
-	this.Tag("no_mithril");
-	this.Tag("no_fallout");
 	
 	CSprite@ sprite = this.getSprite();
 	sprite.SetEmitSound("Shell_Whistle.ogg");
@@ -54,20 +51,37 @@ void onTick(CBlob@ this)
 
 void onDie(CBlob@ this)
 {
-	if (isServer())
-	{
-		CBlob@ boom = server_CreateBlobNoInit("nukeexplosion");
-		boom.Tag("no mithril");
-		boom.Tag("no fallout");
-		boom.setPosition(this.getPosition());
-		boom.set_u8("boom_start", 0);
-		boom.set_u8("boom_end", 8);
-		boom.set_f32("flash_distance", 320);
-		// boom.Tag("no mithril");
-		// boom.Tag("no flash");
-		boom.Init();
+		u8 flashAlpha = 0;
+
+		if (isClient())
+		{
+			f32 distance = this.get_f32("distance");
+			flashAlpha = XORRandom(128) + 128;
+			flashAlpha -= int(Maths::Min(flashAlpha, distance));
+		}
+		
+		if (isServer())
+		{
+			for (int i = 0; i < 25; i++) 
+			{
+				CBlob @blob = server_CreateBlob("fuelgas", this.getTeamNum(), this.getPosition());
+				blob.SetDamageOwnerPlayer(this.getDamageOwnerPlayer()); 
+			}
+			for (int i = 0; i < 18; i++) 
+			{
+				CBlob @blob = server_CreateBlob("firegas", this.getTeamNum(), this.getPosition());
+				blob.setVelocity(Vec2f(10-XORRandom(20), -XORRandom(15)));
+				blob.SetDamageOwnerPlayer(this.getDamageOwnerPlayer()); 
+			} 
+		}
+		if (isClient())
+		{
+			this.getSprite().PlaySound("MithrilBomb_Explode.ogg", 1.00f, 1.00f);
+			this.getSprite().PlaySound("ThermobaricExplosion.ogg", 1.00f, 1.00f);
+			SetScreenFlash(flashAlpha, 255, 255, 255);
+			ShakeScreen(512, 64, this.getPosition());
+		}
 	}
-}
 
 bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 {
