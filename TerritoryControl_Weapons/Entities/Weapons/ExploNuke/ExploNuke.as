@@ -1,13 +1,9 @@
 #include "Hitters.as";
-#include "Explosion.as";
 
 const u32 fuel_timer_max = 30 * 0.50f;
 
 void onInit(CBlob@ this)
 {
-	this.set_f32("map_damage_ratio", 0.75f);
-	this.set_f32("map_damage_radius", 42.0f);
-	this.set_string("custom_explosion_sound", "Keg.ogg");
 		
 	this.set_u32("fuel_timer", 0);
 	this.set_f32("velocity", 9.0f);
