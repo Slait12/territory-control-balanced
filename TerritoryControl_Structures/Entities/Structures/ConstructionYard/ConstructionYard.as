@@ -178,8 +178,8 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Bigger Iron", "$icon_biggeriron$", "biggeriron", "An upgraged version of hovitzer capable of penetrating fortifications\n\nUses howitzer shells.", false, true);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 14);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 20);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 
 		s.crate_icon = 12;
