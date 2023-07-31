@@ -19,7 +19,7 @@ const string[] OffiMaps = {
 	"Ginger_TC_Royale_V3",
 	"Ginger_Tenshi_TC_Generations_V1",
 	"Ginger_TC_Drudgen",
-	"Ginger_TC_Bombardment_V2",
+	"Ginger_TC_Bombardment_V2_Edit",
 	"Ginger_TC_Dehydration",
 	"Ginger_TC_Murderholes_V2",
 	"Tenshi_TC_WellOiledMachine_v2",
