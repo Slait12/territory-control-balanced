@@ -302,7 +302,7 @@ void onInit(CBlob@ this)
 
 	if (rand.NextRanged(100) < 25)
 	{  
-			ShopItem@ s = addShopItem(this, "pape", "$bp_en_icon$", "bp_energetics", "you can wipe your ass with it", true);
+			ShopItem@ s = addShopItem(this, "pape", "$bp_energetics$", "bp_energetics", "you can wipe your ass with it", true);
 			AddRequirement(s.requirements, "coin", "", "Coins", 2500 +  rand.NextRanged(1600));
 			s.spawnNothing = true;
 			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
@@ -310,7 +310,7 @@ void onInit(CBlob@ this)
 
 	if (rand.NextRanged(100) < 25)
 	{  
-			ShopItem@ s = addShopItem(this, "pape", "$bp_we_icon$", "bp_weapons", "I already have enough toilet paper", true);
+			ShopItem@ s = addShopItem(this, "pape", "$bp_weapons$", "bp_weapons", "I already have enough toilet paper", true);
 			AddRequirement(s.requirements, "coin", "", "Coins", 3000 +  rand.NextRanged(2000));
 			s.spawnNothing = true;
 			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
