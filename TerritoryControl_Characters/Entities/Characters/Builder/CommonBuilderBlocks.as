@@ -83,7 +83,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 
 	//Buildings
 	AddIconToken("$icon_buildershop$", "BuilderShop.png", Vec2f(40, 24), 0, teamnum);
-	AddIconToken("$icon_kitchen$", "kitchen.png", Vec2f(40, 24), 2, teamnum);
+	AddIconToken("$icon_kitchen$", "kitchen.png", Vec2f(40, 32), 2, teamnum);
+	AddIconToken("$icon_quarters$", "Icon_Quarters.png", Vec2f(28, 24), 0, teamnum);
 	AddIconToken("$icon_tinkertable$", "TinkerTable.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_armory$", "Armory.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_gunsmith$", "Gunsmith.png", Vec2f(40, 24), 0, teamnum);
@@ -395,13 +396,6 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	BuildBlock[] page_1;
 	blocks.push_back(page_1);
 	{
-		BuildBlock b(0, "kitchentc", "$icon_kitchen$", "Kitchen\n" + descriptions[59]);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
-		b.buildOnGround = true;
-		b.size.Set(40, 24);
-		blocks[1].push_back(b);
-	}
-	{
 		BuildBlock b(0, "buildershop", "$icon_buildershop$", "Builder Workshop:\n\nConstruct several building utilities.");
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 100);
 		b.buildOnGround = true;
@@ -492,12 +486,27 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}
 	{
+		BuildBlock b(0, "gunsell", "$icon_gunsell$", "Gun sell market:\n\nA workshop with a hecking gull inside!! Where does it come from?");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 250);
+		AddRequirement(b.reqs, "coin", "", "Coins", 500);
+		b.buildOnGround = true;
+		b.size.Set(40, 24);
+		blocks[1].push_back(b);
+	}
+	{
 		BuildBlock b(0, "nursery", "$icon_nursery$", "Nursery:\n\nRaise plants and crops for various purposes.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 75);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
 		AddRequirement(b.reqs, "blob", "mat_dirt", "Dirt", 50);
 		b.buildOnGround = true;
 		b.size.Set(40, 32);
+		blocks[1].push_back(b);
+	}
+	{
+		BuildBlock b(0, "kitchentc", "$icon_kitchen$", "Kitchen\n" + descriptions[59]);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
+		b.buildOnGround = true;
+		b.size.Set(40, 24);
 		blocks[1].push_back(b);
 	}
 	{
@@ -519,14 +528,6 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}
 	{
-		BuildBlock b(0, "gunsell", "$icon_gunsell$", "Gun sell market:\n\nA workshop with a hecking gull inside!! Where does it come from?");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 250);
-		AddRequirement(b.reqs, "coin", "", "Coins", 500);
-		b.buildOnGround = true;
-		b.size.Set(40, 24);
-		blocks[1].push_back(b);
-	}
-	{
 		BuildBlock b(0, "bountiesterminal", "$icon_bountiesterminal$", "Bounties Terminal:\n\nHave illegal access to Bounty system, hacker fee included in the price.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 150);
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
@@ -543,6 +544,13 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		AddRequirement(b.reqs, "coin", "", "Coins", 100);
 		b.buildOnGround = true;
 		b.size.Set(40, 24);
+		blocks[1].push_back(b);
+	}
+	{
+		BuildBlock b(0, "quarters", "$icon_quarters$", "Quarters:\n\nEnables you to restore health.");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 150);
+		b.buildOnGround = true;
+		b.size.Set(28, 24);
 		blocks[1].push_back(b);
 	}
 	

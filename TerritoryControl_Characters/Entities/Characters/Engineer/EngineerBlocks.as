@@ -40,6 +40,7 @@ const string inventory_offset = "inventory offset";
 
 void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 {
+	//Basic
 	AddIconToken("$glass_block$", "World.png", Vec2f(8, 8), CMap::tile_glass);
 	AddIconToken("$bglass_block$", "World.png", Vec2f(8, 8), CMap::tile_bglass);
 	AddIconToken("$concrete_block$", "World.png", Vec2f(8, 8), CMap::tile_concrete);
@@ -79,8 +80,11 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$bricks_block$", "World.png", Vec2f(8, 8), CMap::tile_bricks);
 	AddIconToken("$castle_moss_block$", "World.png", Vec2f(8, 8), CMap::tile_castle_moss);
 	AddIconToken("$castle_back_moss_block$", "World.png", Vec2f(8, 8), CMap::tile_castle_back_moss);
+	
+	//Buildings
 	AddIconToken("$icon_buildershop$", "BuilderShop.png", Vec2f(40, 24), 0, teamnum);
-	AddIconToken("$icon_kitchen$", "Kitchen.png", Vec2f(40, 24), 2, teamnum);
+	AddIconToken("$icon_kitchen$", "kitchen.png", Vec2f(40, 32), 2, teamnum);
+	AddIconToken("$icon_quarters$", "Icon_Quarters.png", Vec2f(28, 24), 0, teamnum);
 	AddIconToken("$icon_tinkertable$", "TinkerTable.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_armory$", "Armory.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_gunsmith$", "Gunsmith.png", Vec2f(40, 24), 0, teamnum);
@@ -99,6 +103,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_bountiesterminal$", "BountiesTerminal.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_hatshop$", "HatShop.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_discshop$", "DiscShop.png", Vec2f(40, 24), 0, teamnum);
+	
+	//Automation
 	AddIconToken("$icon_conveyor$", "Conveyor.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$icon_separator$", "Seperator.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$icon_filter$", "Filter.png", Vec2f(24, 8), 0, teamnum);
@@ -132,6 +138,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$plasteellauncher$", "PlasteelLauncher.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$plasteelseparator$", "PlasteelSeperator.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$icon_plasteelfurnace$", "PlasteelFurnace.png", Vec2f(40, 32), 0, teamnum);
+		
+	//Rob's Automation
 	AddIconToken("$icon_rconveyor$", "ConveyorR.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$icon_rfilter$", "FilterR.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$icon_rclimber$", "ClimberR.png", Vec2f(8, 8), 5, teamnum);
@@ -141,6 +149,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_invcleaner$", "AutomationIcons.png", Vec2f(24, 48), 1, teamnum);
 	AddIconToken("$icon_rhoppacker$", "HoppackerR.png", Vec2f(24, 24), 4, teamnum);
 	AddIconToken("$icon_rcompactor$", "CompactorR.png", Vec2f(24, 32), 0, teamnum);
+	
+	//Miscellaneous
 	AddIconToken("$icon_lamppost$", "LampPost.png", Vec2f(8, 24), 0, teamnum);
 	AddIconToken("$icon_ironlocker$", "IronLocker.png", Vec2f(16, 24), 0, teamnum);
 	AddIconToken("$icon_woodchest$", "WoodChest.png", Vec2f(16, 16), 0, teamnum);
@@ -387,13 +397,6 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	BuildBlock[] page_1;
 	blocks.push_back(page_1);
 	{
-		BuildBlock b(0, "kitchentc", "$icon_kitchen$", "Kitchen:\n\n" + descriptions[59]);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 50);
-		b.buildOnGround = true;
-		b.size.Set(40, 24);
-		blocks[1].push_back(b);
-	}
-	{
 		BuildBlock b(0, "buildershop", "$icon_buildershop$", "Builder Workshop:\n\nConstruct several building utilities.");
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 100);
 		b.buildOnGround = true;
@@ -484,12 +487,27 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}
 	{
+		BuildBlock b(0, "gunsell", "$icon_gunsell$", "Gun sell market:\n\nA workshop with a hecking gull inside!! Where does it come from?");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 250);
+		AddRequirement(b.reqs, "coin", "", "Coins", 500);
+		b.buildOnGround = true;
+		b.size.Set(40, 24);
+		blocks[1].push_back(b);
+	}
+	{
 		BuildBlock b(0, "nursery", "$icon_nursery$", "Nursery:\n\nRaise plants and crops for various purposes.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 75);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
 		AddRequirement(b.reqs, "blob", "mat_dirt", "Dirt", 50);
 		b.buildOnGround = true;
 		b.size.Set(40, 32);
+		blocks[1].push_back(b);
+	}
+	{
+		BuildBlock b(0, "kitchentc", "$icon_kitchen$", "Kitchen\n" + descriptions[59]);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
+		b.buildOnGround = true;
+		b.size.Set(40, 24);
 		blocks[1].push_back(b);
 	}
 	{
@@ -502,18 +520,10 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}
 	{
-		BuildBlock b(0, "discshop", "$icon_discshop$", "Disc Shop:\n\nBuy your favorite records here!");
+		BuildBlock b(0, "discshop", "$icon_discshop$", "Disc Shop:\n\nBuy your favorite records here!\nRequires electricity.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 200);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 100);
 		AddRequirement(b.reqs, "coin", "", "Coins", 100);
-		b.buildOnGround = true;
-		b.size.Set(40, 24);
-		blocks[1].push_back(b);
-	}
-	{
-		BuildBlock b(0, "gunsell", "$icon_gunsell$", "Gun sell market:\n\nA workshop with a hecking gull inside!! Where does it come from?");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 250);
-		AddRequirement(b.reqs, "coin", "", "Coins", 500);
 		b.buildOnGround = true;
 		b.size.Set(40, 24);
 		blocks[1].push_back(b);
@@ -535,6 +545,13 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		AddRequirement(b.reqs, "coin", "", "Coins", 100);
 		b.buildOnGround = true;
 		b.size.Set(40, 24);
+		blocks[1].push_back(b);
+	}
+	{
+		BuildBlock b(0, "quarters", "$icon_quarters$", "Quarters:\n\nEnables you to restore health.");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 150);
+		b.buildOnGround = true;
+		b.size.Set(28, 24);
 		blocks[1].push_back(b);
 	}
 	
