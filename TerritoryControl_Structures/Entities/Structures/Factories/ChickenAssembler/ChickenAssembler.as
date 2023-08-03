@@ -43,8 +43,7 @@ void onInit(CBlob@ this)
 	AssemblerItem[] items;
 	{
 		AssemblerItem i("fuger", 4, "UPF Fuger (4)");
-		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 8);
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 10);
 		items.push_back(i);
 	}
 	{

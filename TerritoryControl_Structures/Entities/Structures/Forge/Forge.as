@@ -28,7 +28,7 @@ void onInit(CBlob@ this)
 	AddIconToken("$mat_mithrilingot$", "Material_MithrilIngot.png", Vec2f(16, 16), 1);
 
 	this.set_Vec2f("shop offset", Vec2f(0,1));
-	this.set_Vec2f("shop menu size", Vec2f(6, 3));
+	this.set_Vec2f("shop menu size", Vec2f(5, 3));
 	this.set_string("shop description", "Forge");
 	this.set_u8("shop icon", 15);
 
@@ -48,11 +48,6 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "Steel Ingot (1)", "$mat_steelingot$", "mat_steelingot-1", "Much stronger than iron, but also more expensive.", true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
 		AddRequirement(s.requirements, "blob", "mat_coal", "Coal", 1);
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Titanium Ingot (1)", "$mat_titaniumingot$", "mat_titaniumingot-1", "A light but strong metal that is used in common and complex things.", true);
-		AddRequirement(s.requirements, "blob", "mat_titanium", "Titanium Ore", 20);
 		s.spawnNothing = true;
 	}
 	{
@@ -88,11 +83,6 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Titanium Ingot (4)", "$mat_titaniumingot$", "mat_titaniumingot-4", "A light but strong metal that is used in common and complex things.", true);
-		AddRequirement(s.requirements, "blob", "mat_titanium", "Titanium Ore", 80);
-		s.spawnNothing = true;
-	}
-	{
 		ShopItem@ s = addShopItem(this, "Gold Ingot (4)", "$mat_goldingot$", "mat_goldingot-4", "A fancy metal - traders' favourite.", true);
 		AddRequirement(s.requirements, "blob", "mat_gold", "Gold Ore", 100);
 		// AddRequirement(s.requirements, "blob", "mat_coal", "Coal", 4);
@@ -120,11 +110,6 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "Steel Ingot (16)", "$mat_steelingot$", "mat_steelingot-16", "Much stronger than iron, but also more expensive.", true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 64);
 		AddRequirement(s.requirements, "blob", "mat_coal", "Coal", 16);
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Titanium Ingot (50)", "$mat_titaniumingot$", "mat_titaniumingot-50", "A light but strong metal that is used in common and complex things.", true);
-		AddRequirement(s.requirements, "blob", "mat_titanium", "Titanium Ore", 1000);
 		s.spawnNothing = true;
 	}
 	{

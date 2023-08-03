@@ -191,6 +191,7 @@ const string[] teamBombs =
 	"mat_cocokbomb",
 	"mat_bigbomb",
 	"mat_bombita",
+	"mat_shrapnelbomb",
 	"firejob",
 	"fireboom",
 	"cruisemissile",

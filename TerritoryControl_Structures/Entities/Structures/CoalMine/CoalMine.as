@@ -14,7 +14,6 @@ const string[] resources =
 	"mat_copper",
 	"mat_stone",
 	"mat_gold",
-	"mat_titanium",
 	"mat_sulphur",
 	"mat_dirt"
 };
@@ -26,7 +25,6 @@ const u8[] resourceYields =
 	16, //copper
 	81, //stone
 	40, //gold
-	24,//titanium
 	20,//sulphur
 	30 //dirt
 };
@@ -56,7 +54,7 @@ void onInit(CBlob@ this)
 
 	if (isServer())
 	{
-		//0 - basic, 1 - iron, 2 - copper, 3 - gold, 4 - titanium, 5 - coal, 6 - mithril, 7 - dirt, 8 - sulphur 
+		//0 - basic, 1 - iron, 2 - copper, 3 - gold, 4 - coal, 5 - mithril, 6 - dirt, 7 - sulphur 
 		this.set_u8("type", XORRandom(9));
 	}
 
@@ -74,7 +72,7 @@ void onInit(CBlob@ this)
 
 	// SHOP
 	this.set_Vec2f("shop offset", Vec2f(0, 8));
-	this.set_Vec2f("shop menu size", Vec2f(7, 3));
+	this.set_Vec2f("shop menu size", Vec2f(6, 3));
 	this.set_string("shop description", "Coalville Mining Company");
 	
 	if (this.hasTag("name_changed"))
@@ -116,11 +114,6 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 		s.spawnNothing = true;
 	}
-	{
-		ShopItem@ s = addShopItem(this, "Buy Titanium (50)", "$mat_titanium$", "mat_titanium-50", "Buy 50 Titanium for 250 coins.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 250);
-		s.spawnNothing = true;
-	}
 	// BUY MORE
 	{
 		ShopItem@ s = addShopItem(this, "Buy Dirt (500)", "$mat_dirt$", "mat_dirt-500", "Buy 500 Dirt for 500 coins.");
@@ -152,11 +145,6 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 		s.spawnNothing = true;
 	}
-	{
-		ShopItem@ s = addShopItem(this, "Buy Titanium (500)", "$mat_titanium$", "mat_titanium-500", "Buy 500 Titanium for 2500 coins.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
-		s.spawnNothing = true;
-	}
 	// SELL
 	{
 		ShopItem@ s = addShopItem(this, "Sell Dirt (250)", "$COIN$", "coin-75", "Sell 250 Dirt for 125 coins (0.2x of the price)");
@@ -186,11 +174,6 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Sell Sulphur (250)", "$COIN$", "coin-225", "Sell 150 Sulphur for 225 coins (0.125x of the price)");
 		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 250);
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Sell Titanium (500)", "$COIN$", "coin-625", "Sell 500 Titanium for 625 coins.");
-		AddRequirement(s.requirements, "blob", "mat_titanium", "Titanium Ore", 500);
 		s.spawnNothing = true;
 	}
 }
@@ -233,25 +216,20 @@ void onTick(CBlob@ this)
 			}
 			case 4:
 			{
-				this.setInventoryName("Rich on titanium mine");
+				this.setInventoryName("Rich on coal mine");
 				break;
 			}
 			case 5:
 			{
-				this.setInventoryName("Rich on coal mine");
+				this.setInventoryName("Rich on mithril mine");
 				break;
 			}
 			case 6:
 			{
-				this.setInventoryName("Rich on mithril mine");
-				break;
-			}
-			case 7:
-			{
 				this.setInventoryName("Rich on dirt mine");
 				break;
 			}
-			case 8:
+			case 7:
 			{
 				this.setInventoryName("Rich on sulphur mine");
 				break;
@@ -298,30 +276,24 @@ void onTick(CBlob@ this)
 			}
 			case 4:
 			{
-				if (resources[index] == "mat_titanium")
-					amount *= 3;
-				break;
-			}
-			case 5:
-			{
 				if (resources[index] == "mat_coal")
 					amount *= 4;
 				break;
 			}
-			case 6:
+			case 5:
 			{
 				u32 amoamount = Maths::Max(1, Maths::Floor(XORRandom(3)));
 				if (storage !is null) MakeMat(storage, this.getPosition(), "mat_mithril", amoamount);
 				else if (!this.getInventory().isFull()) MakeMat(this, this.getPosition(), "mat_mithril", amoamount);
 				break;
 			}
-			case 7:
+			case 6:
 			{
 				if (resources[index] == "mat_dirt")
 					amount *= 2;
 				break;
 			}
-			case 8:
+			case 7:
 			{
 				if (resources[index] == "mat_sulphur")
 					amount *= 4;

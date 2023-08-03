@@ -280,7 +280,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Gunship", "$gunshipicon$", "gunship", "$gunshipicon$\n\n\n\n\n\n\n\nA massive ship with an incendiary mortar on its nose.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 80);
-		AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 32);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 
 		s.crate_icon = 0;
@@ -289,7 +289,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 3;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Autocannon", "$icon_autocannon$", "autocannon", "A rapid-firing cannon used agains infantry and vehicles.\nHas wheels.\n\nUses artillry shells.", false, true);
+		ShopItem@ s = addShopItem(this, "Autocannon", "$icon_autocannon$", "autocannon", "A rapid-firing cannon used against infantry and vehicles.\nHas wheels.\n\nUses artillry shells.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 14);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1000);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);

@@ -111,8 +111,8 @@ void onInit(CBlob@ this)
 			
 			AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 20);
 			AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
-			AddRequirement(s.requirements, "blob", "mat_titaniumingot", "Titanium Ingot", 12);
 			AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 12);
+			AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 20);
 			AddRequirement(s.requirements, "coin", "", "Coins", 1000);
 		}
 		else if (configName == "sfcannonwreck")

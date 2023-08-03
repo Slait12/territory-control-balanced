@@ -11,7 +11,6 @@ const string[] matNames = {
 	"mat_copper",
 	"mat_iron",
 	"mat_gold",
-	"mat_titanium",
 	"mat_ironingot"
 };
 
@@ -20,7 +19,6 @@ const string[] matNamesResult = {
 	"mat_copperingot",
 	"mat_ironingot",
 	"mat_goldingot",
-	"mat_titaniumingot",
 	"mat_steelingot"
 };
 
@@ -29,7 +27,6 @@ const int[] matRatio = {
 	10,
 	10,
 	30,
-	20,
 	6
 };
 

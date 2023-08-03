@@ -43,7 +43,6 @@ void onHitMap(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, u8 cust
 
 					if (depth < 0.90f && XORRandom(100) < 70) MakeMat(this, worldPoint, "mat_copper", (1 + XORRandom(3 * (1 - depth))) * multiplier);
 					if (depth < 0.60f && XORRandom(100) < 60) MakeMat(this, worldPoint, "mat_iron", (5 + XORRandom(8)) * multiplier);
-					if (depth < 0.60f && XORRandom(100) < 50) MakeMat(this, worldPoint, "mat_titanium", (5 + XORRandom(8)) * multiplier);
 					if (depth < 0.10f && XORRandom(100) < 10) MakeMat(this, worldPoint, "mat_mithril", (2 + XORRandom(6)) * multiplier);
 				} 
 				else 

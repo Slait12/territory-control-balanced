@@ -14,7 +14,6 @@ const string[] resources =
 	"mat_iron",
 	"mat_copper",
 	"mat_stone",
-	"mat_titanium",
 	"mat_gold",
 	"mat_mithril"
 };
@@ -24,7 +23,6 @@ const u8[] resourceYields =
 	18,
 	18,
 	36,
-	12,
 	18,
 	9
 };

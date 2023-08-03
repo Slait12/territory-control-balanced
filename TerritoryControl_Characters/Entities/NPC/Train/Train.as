@@ -177,7 +177,6 @@ const string[] loot_building_resources =
 	"mat_dirt",
 	"mat_wood",
 	"mat_ironingot",
-	"mat_titaniumingot"
 };
 
 const string[] loot_ores = 
@@ -188,7 +187,6 @@ const string[] loot_ores =
 	"mat_sulphur",
 	"mat_copper",
 	"mat_coal",
-	"mat_titanium"
 };
 
 const string[] loot_explosives = 
