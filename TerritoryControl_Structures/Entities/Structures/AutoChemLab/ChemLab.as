@@ -533,7 +533,7 @@ void React(CBlob@ this)
 				{
 					meat_blob.server_SetQuantity(Maths::Max(meat_blob.getQuantity() - count * 0.25f, 0));
 					Material::createFor(this, "mat_methane", count * 0.75f);
-					Material::createFor(this, "mat_acid", count * 0.25f);
+					Material::createFor(this, "mat_acid", count * 0.10f);
 				}
 
 				ShakeScreen(10.0f, 20, this.getPosition());
@@ -941,6 +941,8 @@ const string[] chemNames = {
 	//"rippio",
 	"mat_ganja",
 	"ganjapod",
+	"grain",
+	"lemon",
 };
 
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)

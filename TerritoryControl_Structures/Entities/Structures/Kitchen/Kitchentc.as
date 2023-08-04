@@ -76,7 +76,7 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {
-	if (this.getDistanceTo(caller) > 16.0f) return;
+	if (this.getDistanceTo(caller) > 96.0f) return;
 	if (!caller.isOverlapping(this)) return;
 	{
 		CBitStream params;
@@ -90,7 +90,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if(caller.isMyPlayer())
 	{
-		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(5, 1), "Set what to cook");
+		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(6, 1), "Set what to cook");
 		if (menu !is null)
 		{
 			AssemblerItem[] items = getItems(this);
