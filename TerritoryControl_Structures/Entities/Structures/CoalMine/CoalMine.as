@@ -20,12 +20,12 @@ const string[] resources =
 
 const u8[] resourceYields = 
 {
-	20, //coal
-	54, //iron
-	16, //copper
+	18, //coal
+	50, //iron
+	14, //copper
 	81, //stone
-	40, //gold
-	20,//sulphur
+	34, //gold
+	18,//sulphur
 	30 //dirt
 };
 
