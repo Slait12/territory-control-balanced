@@ -33,8 +33,3 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 {
 	return 0;
 }
-
-void onDie(CBlob@ this)
-{
-	if (isServer()) server_CreateBlob("amogusplushie", this.getTeamNum(), this.getPosition());
-}

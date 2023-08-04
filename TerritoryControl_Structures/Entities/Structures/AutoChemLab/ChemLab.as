@@ -961,22 +961,6 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 	}
 }
 
-void onDie(CBlob@ this)
-{
-	if (isServer()) server_CreateBlob("bp_chemistry", this.getTeamNum(), this.getPosition());
-	
-	if (isServer())
-	{
-		for (int i = 0; i < 2; i++)
-		{
-			CBlob@ blob = server_CreateBlob("firegas", -1, this.getPosition());
-			blob.server_SetTimeToDie(60 + XORRandom(60));
-		}
-	}
-
-	Explode(this, Maths::Sqrt(this.get_f32("pressure") * 0.005f), this.get_f32("pressure") * 0.0001f);
-}
-
 bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
 {
 	return !this.getMap().rayCastSolid(forBlob.getPosition(), this.getPosition());
