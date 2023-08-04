@@ -532,7 +532,7 @@ void React(CBlob@ this)
 				if (isServer())
 				{
 					meat_blob.server_SetQuantity(Maths::Max(meat_blob.getQuantity() - count * 0.25f, 0));
-					Material::createFor(this, "mat_methane", count * 0.75f);
+					Material::createFor(this, "mat_methane", count * 0.80f);
 					Material::createFor(this, "mat_acid", count * 0.10f);
 				}
 
