@@ -239,8 +239,9 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[0].push_back(b);
 	}
 	{
-		BuildBlock b(CMap::tile_titanium, "titanium_block", "$titanium_block$", "Titanium:\n\nStronger but lighter than iron and more resistant to acid.\nDrills will mine this block slower.");
-		AddRequirement(b.reqs, "blob", "mat_titaniumingot", "Titanium Ingot", 2);
+		BuildBlock b(CMap::tile_titanium, "titanium_block", "$titanium_block$", "Composite Material:\n\nStronger but lighter than iron and more resistant to acid.\nDrills will mine this block slower.");
+		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 1);
+		AddRequirement(b.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 1);
 		blocks[0].push_back(b);
 	}
 	{
@@ -731,7 +732,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	blocks.push_back(page_3);
 	//PRODUCTION
 	{
-		BuildBlock b(0, "autoforge", "$icon_autoforge$", "Auto-Forge:\n\nProcesses raw materials and alloys just for you. Has a chance for a double yield.");
+		BuildBlock b(0, "autoforge", "$icon_autoforge$", "Auto-Forge:\n\nProcesses raw materials and alloys just for you. Has a double material yield.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 200);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 100);
 		b.buildOnGround = true;
@@ -741,14 +742,13 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	{
 		BuildBlock b(0, "inductionfurnace", "$icon_inductionfurnace$", "Industrial Furnace:\n\nA heavy-duty furnace that produces up to 4x more ingots at cost of lower speed. Requires coal to smelt.\n\nHas a multiplier mode that increases output for cost of smelting speed.");
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 60);
-		AddRequirement(b.reqs, "blob", "mat_titaniumingot", "Titanium Ingot", 8);
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 1500);
 		b.buildOnGround = true;
 		b.size.Set(40, 32);
 		blocks[3].push_back(b);
 	}
 	{
-		BuildBlock b(0, "electricfurnace", "$icon_electricfurnace$", "Electric furnace:\n\nAn advanced analogue for induction furnace. Smelts ore up to 3x ingots and does not require coal for smelting. Also has toggle mode.\n\nHas a multiplier mode that increases output for cost of smelting speed.");
+		BuildBlock b(0, "electricfurnace", "$icon_electricfurnace$", "Electric furnace:\n\nAn advanced analogue for industrial furnace. Smelts ore up to 3x ingots and does not require coal for smelting. Also has toggle mode.\n\nHas a multiplier mode that increases output for cost of smelting speed.");
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 50);
 		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 12);
 		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper wire", 40);
@@ -758,9 +758,9 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[3].push_back(b);
 	}
 	{
-		BuildBlock b(0, "crusher", "$icon_crusher$", "Crusher\nSmashes rocks into concrete and dirt into sulphur with a lower yield");
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 18);
-		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 8);
+		BuildBlock b(0, "crusher", "$icon_crusher$", "Crusher\nSmashes rocks into concrete and dirt into sulphur with a higher yield");
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 12);
+		AddRequirement(b.reqs, "blob", "mat_copperingot", "Copper Ingot", 6);
 		b.buildOnGround = true;
 		b.size.Set(24, 32);
 		blocks[3].push_back(b);
