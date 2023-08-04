@@ -120,6 +120,7 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy.\n\nGood for medium range combat and long shootouts. $icon_rifleammo$\n\nAmmo Capacity = 50\n\nDamage = 3.25\n\nFire Rate = 5");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 2);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 10);
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 		
