@@ -119,26 +119,3 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 		}
 	}
 }
-
-// void GetButtonsFor(CBlob@ this, CBlob@ caller)
-// {
-	// AttachmentPoint@ point = this.getAttachments().getAttachmentPointByName("PICKUP");
-	// if (point is null) return;
-
-	// if (point.getOccupied() is null)
-	// {
-		// CBitStream params;
-		// caller.CreateGenericButton(11, Vec2f(0.0f, 0.0f), this, this.getCommandID("offblast"), "Off blast!", params);
-	// }
-// }
-
-bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
-{
-	return false;
-	// AttachmentPoint@ point = this.getAttachments().getAttachmentPointByName("PILOT");
-	// if (point is null) return true;
-
-	// CBlob@ holder = point.getOccupied();
-	// if (holder is null) return true;
-	// else return false;
-}
