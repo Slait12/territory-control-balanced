@@ -1,4 +1,6 @@
 #include "Hitters.as";
+#include "HittersTC.as";
+#include "Knocked.as";
 #include "ShieldCommon.as";
 #include "Explosion.as";
 
@@ -7,6 +9,9 @@ string[] particles =
 	"LargeSmoke",
 	"Explosion.png"
 };
+
+const f32 radius = 128.0f;
+const f32 damage = 2.00f;
 
 void onInit(CBlob@ this)
 {
@@ -125,6 +130,38 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 void onDie(CBlob@ this)
 {
 	DoExplosion(this);
+	
+	if (this.hasTag("charged"))
+	{
+		CMap@ map = getMap();
+		CBlob@[] blobsInRadius;
+		if (this.getMap().getBlobsInRadius(this.getPosition(), radius, @blobsInRadius))
+		{
+			int index = -1;
+			f32 s_dist = 1337;
+
+			for (uint i = 0; i < blobsInRadius.length; i++)
+			{
+				CBlob@ b = blobsInRadius[i];
+
+				if (b.hasTag("flesh") && !b.hasTag("dead") && !b.hasTag("admin") && !map.rayCastSolid(this.getPosition(), b.getPosition()))
+				{
+					f32 dist = (b.getPosition() - this.getPosition()).Length();
+					if (dist < s_dist)
+					{
+						s_dist = dist;
+						index = i;
+						CBlob@ target = blobsInRadius[index];
+						Zap(this, target);
+					}
+				}
+			}
+		}
+		if (isClient())
+		{
+			this.getSprite().PlaySound("Zapper_Zap" + XORRandom(3), 1.00f, 1.00f);
+		}
+	}
 }
 
 void DoExplosion(CBlob@ this)
@@ -152,13 +189,6 @@ void DoExplosion(CBlob@ this)
 		dir.Normalize();
 
 		LinearExplosion(this, dir, 32.0f + XORRandom(16) + (modifier * 8), 24 + XORRandom(24), 4, 2.50f, Hitters::explosion);
-	
-		if (isServer())
-		{
-				CBlob @blob = server_CreateBlob("shrapnel", this.getTeamNum(), this.getPosition() + Vec2f(0, -20));
-				blob.setVelocity(Vec2f(10-XORRandom(20), -XORRandom(15)));
-				blob.SetDamageOwnerPlayer(this.getDamageOwnerPlayer()); 
-		}
 	}
 
 	if (isClient())
@@ -172,6 +202,16 @@ void DoExplosion(CBlob@ this)
 		}
 
 		this.getSprite().Gib();
+	}
+}
+
+void Zap(CBlob@ this, CBlob@ target)
+{
+	SetKnocked(target, 45);
+
+	if (isServer())
+	{
+		this.server_Hit(target, target.getPosition(), Vec2f(0, 0), damage, HittersTC::electric, true);
 	}
 }
 

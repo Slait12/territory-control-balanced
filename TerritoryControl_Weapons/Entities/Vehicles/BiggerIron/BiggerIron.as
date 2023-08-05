@@ -3,6 +3,7 @@
 // Mounted Bow logic
 
 const Vec2f arm_offset = Vec2f(-6, 0);
+const u16 MAX_ENERGY = 250;
 
 void onInit(CBlob@ this)
 {
@@ -47,6 +48,8 @@ void onInit(CBlob@ this)
 			if (!this.server_PutInInventory(ammo)) ammo.server_Die();
 		}
 	}
+	this.addCommandID("loadBatteries");
+	this.set_u16("power", 0);
 }
 
 void onInit(CSprite@ this)
@@ -157,6 +160,16 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 	{
 		Vehicle_AddLoadAmmoButton(this, caller);
 	}
+	
+	CBlob@ carried = caller.getCarriedBlob();
+	if (this.get_u16("power") >= MAX_ENERGY) return;
+
+	if (carried != null && carried.getName() == "mat_battery")
+	{
+		CBitStream params;
+		params.write_u16(caller.getNetworkID());
+		CButton@ button = caller.CreateGenericButton(23, Vec2f(0, 0), this, this.getCommandID("loadBatteries"), "Load Batteries", params);
+	}
 }
 
 bool Vehicle_canFire(CBlob@ this, VehicleInfo@ v, bool isActionPressed, bool wasActionPressed, u8 &out chargeValue) {return false;}
@@ -182,6 +195,13 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 
 		bullet.server_SetTimeToDie(-1);
 		bullet.server_SetTimeToDie(20.0f);
+		
+		if (this.get_u16("power") > 0)
+		{
+			bullet.Tag("charged");
+			this.add_u16("power", -5);
+			this.setInventoryName("Bigger Iron\nEnergy: "+this.get_u16("power")+"/"+MAX_ENERGY);
+		}
 
 		if (isClient())
 		{
@@ -201,6 +221,19 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 		if (!this.get("VehicleInfo", @v)) return;
 
 		Vehicle_onFire(this, v, blob, charge);
+	}
+	else if (cmd == this.getCommandID("loadBatteries"))
+	{
+		u16 blobid = params.read_u16();
+		CBlob@ caller = getBlobByNetworkID(blobid);
+		if (caller !is null)
+		{
+			CBlob@ carried = caller.getCarriedBlob();
+			if (carried is null || carried.getName() != "mat_battery") return;
+			this.add_u16("power", carried.getQuantity());
+			this.setInventoryName("Bigger Iron\nEnergy: "+this.get_u16("power")+"/"+MAX_ENERGY);
+			if (isServer()) carried.server_Die();
+		}
 	}
 }
 
