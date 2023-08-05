@@ -218,7 +218,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 				damage *= 0.50;
 		}
 	}
-	if (customData == Hitters::drill ||customData == Hitters::explosion)
+	if (customData == Hitters::drill || customData == Hitters::explosion)
 		damage *= 5.0f;
 
 	return damage;

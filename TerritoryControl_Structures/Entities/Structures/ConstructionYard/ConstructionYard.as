@@ -177,7 +177,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 2;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Bigger Iron", "$icon_biggeriron$", "biggeriron", "An upgraged version of hovitzer capable of penetrating fortifications\n\nUses howitzer shells.", false, true);
+		ShopItem@ s = addShopItem(this, "Bigger Iron", "$icon_biggeriron$", "biggeriron", "An upgraged version of hovitzer capable of penetrating fortifications\n\You can load batteries in it to make shells stun players\n\nUses howitzer shells.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 20);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
