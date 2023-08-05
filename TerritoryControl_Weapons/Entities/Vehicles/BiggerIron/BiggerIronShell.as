@@ -180,7 +180,7 @@ void DoExplosion(CBlob@ this)
 	this.set_f32("map_damage_radius", 32.0f);
 	this.set_f32("map_damage_ratio", 0.15f);
 
-	Explode(this, 48.0f, 5.5f);
+	Explode(this, 48.0f, 6.0f);
 
 	for (int i = 0; i < 15; i++) 
 	{
