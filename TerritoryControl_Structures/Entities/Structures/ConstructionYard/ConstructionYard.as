@@ -155,7 +155,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 4;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Rocket Launcher", "$icon_rocketlauncher$", "rocketlauncher", "A rapid-fire rocket launcher especially useful against aerial targets.", false, true);
+		ShopItem@ s = addShopItem(this, "Rocket Launcher", "$icon_rocketlauncher$", "rocketlauncher", "A rapid-fire rocket launcher especially useful against aerial targets and infantry.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 375);
 		AddRequirement(s.requirements, "coin", "", "Coins", 350);
