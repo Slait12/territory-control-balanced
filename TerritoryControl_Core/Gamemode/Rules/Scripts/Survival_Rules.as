@@ -76,20 +76,10 @@ void onNewPlayerJoin(CRules@ this, CPlayer@ player)
 	int loc_month = Time_Month(localtime);
 	int loc_day = Time_MonthDate(localtime);
 	int loc_year = Time_Year(localtime);
-
-	/*string[] exclusive_players = {
-		"leonleonidis",
-		"kimak0vskiy",
-		"prettyprinces",
-		"Suetolog",
-		"whyyouhateme",
-		"Soldzo"
-	}; // Add exceptions here
-    */
 	
 	//time is sec(60) * min(60) * hours(24)* daysfrom 1970-jan-01
 	// 1 day = 86400  and  30 days = 2592000
-	if ((localtime - regtime)<=2592000) // Ban people registered last 30days
+	/*if ((localtime - regtime)<=2592000) // Ban people registered last 30days
 	{
 		CSecurity@ security = getSecurity();
 		bool newban = security.checkAccess_Feature(player, "newban");
@@ -109,7 +99,7 @@ void onNewPlayerJoin(CRules@ this, CPlayer@ player)
 			BanPlayer(player, 60*100);
 		}
 		
-	}
+	} I hope i wont need to add this back */
 
 
 	string playerName = player.getUsername().split('~')[0];//Part one of a fix for slave rejoining
@@ -196,8 +186,6 @@ void onNewPlayerJoin(CRules@ this, CPlayer@ player)
 
 		player.server_setCoins(500);
 	}
-
-	// player.server_setCoins(150);
 }
 
 void onBlobCreated(CRules@ this, CBlob@ blob)
