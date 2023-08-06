@@ -1,8 +1,8 @@
 //script stolen from KIWI :D
 #include "UpdateInventoryOnClick"
 
-const u8 GRID_SIZE = 48;
-const u8 GRID_PADDING = 12;
+const u8 GRID_SIZE = 100;
+const u8 GRID_PADDING = 0;
 
 void onInit(CInventory@ this)
 {
@@ -21,14 +21,20 @@ void onCreateInventoryMenu(CInventory@ this, CBlob@ forBlob, CGridMenu@ menu)
 
 void DrawAutopickupSwitch(CBlob@ this, CGridMenu@ menu, CBlob@ forBlob) 
 {
-	Vec2f mscpos = forBlob.getControls().getMouseScreenPos(); 
-
-	Vec2f MENU_POS = mscpos+Vec2f(-300,-72);
-	
 	CRules@ rules = getRules();
-	const Vec2f TOOL_POS = menu.getUpperLeftPosition() + Vec2f(0,1)*GRID_SIZE*(1-1) - Vec2f(GRID_PADDING, 0) + Vec2f(-1, 1) * GRID_SIZE / 2;
+	//const Vec2f TOOL_POS = menu.getUpperLeftPosition() + Vec2f(0,1)*GRID_SIZE*(1-1) - Vec2f(GRID_PADDING, 0) + Vec2f(-1, 1) * GRID_SIZE / 2;
 	
+	//CGridMenu@ tool = CreateGridMenu(TOOL_POS, this, Vec2f(1, 1), "");
+	
+	const string name = this.getName();
+
+	Vec2f MENU_POS;
+
+	if (name == "builder" || name == "peasant" || name == "rockman" || name == "archer") MENU_POS = menu.getUpperLeftPosition() + Vec2f(-84, 46);
+	else MENU_POS = menu.getUpperLeftPosition() + Vec2f(-36, 46);
 	CGridMenu@ tool = CreateGridMenu(MENU_POS, this, Vec2f(1, 1), "");
+	
+
 	if (tool !is null)
 	{
 		tool.SetCaptionEnabled(false);
@@ -46,7 +52,7 @@ void DrawAutopickupSwitch(CBlob@ this, CGridMenu@ menu, CBlob@ forBlob)
 			CGridButton@ button = tool.AddButton((rules.get_bool(player_name + "autopickup") ? "$unlock$" : "$lock$"), "", this.getCommandID("player pickup logic"), Vec2f(1, 1), params);
 			if (button !is null)
 			{
-				button.SetHoverText((rules.get_bool(player_name + "autopickup") ? "aboba" : "amougs"));
+				button.SetHoverText((rules.get_bool(player_name + "autopickup") ? "Enable Auto Pickup" : "Disable Auto Pickup"));
 			}
 		} else {
 			CBitStream params;
@@ -54,7 +60,7 @@ void DrawAutopickupSwitch(CBlob@ this, CGridMenu@ menu, CBlob@ forBlob)
 			CGridButton@ button = tool.AddButton((this.get_bool("pickup") ? "$unlock$" : "$lock$"), "", this.getCommandID("structure pickup logic"), Vec2f(1, 1), params);
 			if (button !is null)
 			{
-				button.SetHoverText((this.get_bool("pickup") ? "aboba" : "amougs"));
+				button.SetHoverText((this.get_bool("pickup") ? "Enable Auto Pickup" : "Disable Auto Pickup"));
 			}
 		}
 	}
