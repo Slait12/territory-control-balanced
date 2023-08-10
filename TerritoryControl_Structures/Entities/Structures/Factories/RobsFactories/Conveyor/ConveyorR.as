@@ -3,6 +3,10 @@
 
 void onInit(CBlob@ this)
 {
+	//if (isServer()
+	//&& getMap().getBlobAtPosition(this.getPosition()) !is null
+	//&& getMap().getBlobAtPosition(this.getPosition()).hasTag("overlap_allowed")) this.server_Die(); 
+	
 	this.getSprite().SetZ(50);
 	this.getShape().SetRotationsAllowed(false);
 	this.getShape().getConsts().waterPasses = true;
@@ -41,8 +45,8 @@ void onSetStatic(CBlob@ this, const bool isStatic)
 	CSpriteLayer@ Case = sprite.addSpriteLayer( "case","ConveyorBeltR.png", 8, 1);
 	if(Case !is null)
 	{
-		Case.addAnimation("default", 1, true); //set the speed of the animation, 1 = ultra fast 2 - fast 3 = normal/slow
-		int[] frames = {0, 4, 8, 12};
+		Case.addAnimation("default",1,true);
+		int[] frames = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 		Case.animation.AddFrames(frames);
 		Case.SetRelativeZ(1);
 		Case.SetOffset(Vec2f(0,-1));
@@ -52,6 +56,8 @@ void onSetStatic(CBlob@ this, const bool isStatic)
 
 bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 {
+	if (blob is null) return false;
+	if (blob.getName()=="seed")return false;
 	if(blob.isKeyPressed(key_down))return false;
 	if (blob.getPosition().y > this.getPosition().y) return false;
 	
@@ -61,6 +67,7 @@ bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 {
 	if (blob is null || blob.hasTag("player")) return;
+	if (blob.getName()=="seed")return;
 	if (blob.getPosition().y > this.getPosition().y) return;
 	if (blob.getShape().isStatic())return;
 	if (blob.isAttached() || blob.isInWater())return;
@@ -68,8 +75,10 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 	
 	blob.set_u32("autopick time",getGameTime()+10);
 	
-	if (Maths::Abs(blob.getVelocity().y) < 5.0f){
-		blob.setVelocity(Vec2f(this.isFacingLeft() ? -3.6f : 3.6f, -1.0f)); //change the two first numbers to change speed, the higer the faster the speed of the blobs on the conveyor, you need to change -3.6 and 3.6, left and right
+	if (Maths::Abs(blob.getVelocity().y) < 2.0f){
+		blob.setVelocity(Vec2f(this.isFacingLeft() ? -0.6f : 0.6f, -1.0f));
+		//blob.setVelocity(Vec2f(this.isFacingLeft() ? -0.5f : 0.5f, -0.5f));
+		//blob.setPosition(Vec2f(blob.getPosition().x,this.getPosition().y-6));
 	}
 }
 
