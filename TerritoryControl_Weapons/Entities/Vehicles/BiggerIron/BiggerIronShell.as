@@ -14,7 +14,9 @@ const f32 radius = 128.0f;
 
 void onInit(CBlob@ this)
 {
-	this.server_SetTimeToDie(20);
+	this.getShape().SetGravityScale(0.0f);
+	
+	this.server_SetTimeToDie(1);
 
 	this.getShape().getConsts().mapCollisions = false;
 	this.getShape().getConsts().bullet = true;
@@ -66,14 +68,19 @@ void Pierce(CBlob@ this, Vec2f velocity, const f32 angle)
 	direction.Normalize();
 
 	Vec2f position = this.getPosition();
-	Vec2f tip_position = position + direction * 4.0f;
+	Vec2f tip_position = position + direction * 11.0f;
+	Vec2f tip_position2 = position + direction * 12.25f;
+	Vec2f tip_position3 = position + direction * 12.5f;
 	Vec2f tail_position = position + direction * -4.0f;
+	Vec2f tail_position2 = position + direction * -11.0f;
 
 	Vec2f[] positions =
 	{
 		position,
-		tip_position,
-		tail_position
+		tip_position2,
+		tip_position3,
+		tail_position,
+		tail_position2
 	};
 
 	for (uint i = 0; i < positions.length; i ++)

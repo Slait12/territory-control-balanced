@@ -2,7 +2,7 @@
 
 // Mounted Bow logic
 
-const Vec2f arm_offset = Vec2f(-6, 0);
+const Vec2f arm_offset = Vec2f(-6, 1);
 const u16 MAX_ENERGY = 250;
 
 void onInit(CBlob@ this)
@@ -54,7 +54,7 @@ void onInit(CBlob@ this)
 
 void onInit(CSprite@ this)
 {
-	CSpriteLayer@ arm = this.addSpriteLayer("arm", "BiggerIron_Cannon.png", 50, 16);
+	CSpriteLayer@ arm = this.addSpriteLayer("arm", "BiggerIron_Cannon.png", 48, 16);
 	if (arm !is null)
 	{
 		{
@@ -186,15 +186,16 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 		f32 angle = this.getAngleDegrees() + Vehicle_getWeaponAngle(this, v);
 		angle = angle * (this.isFacingLeft() ? -1 : 1);
 
-		Vec2f vel = Vec2f(24.0f * (this.isFacingLeft() ? -1 : 1), 0.0f).RotateBy(angle);
+		Vec2f vel = Vec2f(35.0f * (this.isFacingLeft() ? -1 : 1), 0.0f).RotateBy(angle);
 		bullet.setVelocity(vel);
 
-		Vec2f offset = Vec2f((this.isFacingLeft() ? -1 : 1) * 16, 0);
+		Vec2f particleOffset = Vec2f((this.isFacingLeft() ? -1 : 1) * 30, 0);
+		Vec2f offset = Vec2f((this.isFacingLeft() ? -1 : 1) * 10, 0);
 		offset.RotateBy(angle);
+		particleOffset.RotateBy(angle);
 		bullet.setPosition(this.getPosition() + offset);
 
-		bullet.server_SetTimeToDie(-1);
-		bullet.server_SetTimeToDie(20.0f);
+		//bullet.server_SetTimeToDie(20.0f);
 		
 		if (this.get_u16("power") > 0)
 		{
@@ -206,7 +207,7 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 		if (isClient())
 		{
 			Vec2f dir = Vec2f((this.isFacingLeft() ? -1 : 1), 0.0f).RotateBy(angle);
-			ParticleAnimated("SmallExplosion.png", this.getPosition() + offset, dir, float(XORRandom(360)), 1.0f, 2 + XORRandom(3), -0.1f, false);
+			ParticleAnimated("SmallExplosion.png", this.getPosition() + particleOffset, dir, float(XORRandom(360)), 1.0f, 2 + XORRandom(3), -0.1f, false);
 		}
 	}
 }
