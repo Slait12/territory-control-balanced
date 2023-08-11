@@ -65,7 +65,7 @@ void onTick(CBlob@ this)
 		}
 		else
 		{
-		MakeSmokeParticle(this);
+			MakeSmokeParticle(this);
 		}
 	}
 }
