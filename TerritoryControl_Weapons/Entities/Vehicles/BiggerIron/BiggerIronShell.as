@@ -11,7 +11,6 @@ string[] particles =
 };
 
 const f32 radius = 128.0f;
-const f32 damage = 2.00f;
 
 void onInit(CBlob@ this)
 {
@@ -152,7 +151,7 @@ void onDie(CBlob@ this)
 						s_dist = dist;
 						index = i;
 						CBlob@ target = blobsInRadius[index];
-						Zap(this, target);
+						SetKnocked(target, 45);
 					}
 				}
 			}
@@ -202,16 +201,6 @@ void DoExplosion(CBlob@ this)
 		}
 
 		this.getSprite().Gib();
-	}
-}
-
-void Zap(CBlob@ this, CBlob@ target)
-{
-	SetKnocked(target, 45);
-
-	if (isServer())
-	{
-		this.server_Hit(target, target.getPosition(), Vec2f(0, 0), damage, HittersTC::electric, true);
 	}
 }
 
