@@ -393,7 +393,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 }
 
-f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
+/*f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
 	if (customData == Hitters::explosion || customData == HittersTC::plasma)
 	{
@@ -401,19 +401,19 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 		return damage * 3.0f;
 	}
 	return damage;
-}
+}*/
 
-//void DrawLine(CSprite@ this, Vec2f startPos, f32 length, f32 angle, bool flip)
-//{
-//	CSpriteLayer@ tracer = this.getSpriteLayer("tracer");
-//	
-//	tracer.SetVisible(true);
-//	
-//	tracer.ResetTransform();
-//	tracer.ScaleBy(Vec2f(length, 1.0f));
-//	tracer.TranslateBy(Vec2f(length * 16.0f, 0.0f));
-//	tracer.RotateBy(angle + (flip ? 180 : 0), Vec2f());
-//}
+/*void DrawLine(CSprite@ this, Vec2f startPos, f32 length, f32 angle, bool flip)
+{
+	CSpriteLayer@ tracer = this.getSpriteLayer("tracer");
+	
+	tracer.SetVisible(true);
+	
+	tracer.ResetTransform();
+	tracer.ScaleBy(Vec2f(length, 1.0f));
+	tracer.TranslateBy(Vec2f(length * 16.0f, 0.0f));
+	tracer.RotateBy(angle + (flip ? 180 : 0), Vec2f());
+}*/
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {

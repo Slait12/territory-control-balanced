@@ -420,22 +420,20 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 		case Hitters::stab:
 			dmg *= 0.25f;
 			break;
-		case Hitters::bomb:
-			dmg *= 1.25f;
-			break;
+			
 		case Hitters::keg:
+		case Hitters::bomb:
 		case Hitters::explosion:
-			dmg *= 0.5f;
-			break;
 		case Hitters::bomb_arrow:
-			dmg *= 0.5f;
+			dmg *= 4.0f;
 			break;
-		case Hitters::flying:
+			
+		case Hitters::flying: // boat ram
+		case HittersTC::bullet_high_cal:
 			dmg *= 0.5f;
-			break;
+		
+		break;
 	}
-	if (customData == HittersTC::bullet_high_cal)
-		damage *= 0.5;
 	return dmg;
 }
 

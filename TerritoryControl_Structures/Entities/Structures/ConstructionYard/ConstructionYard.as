@@ -177,7 +177,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 2;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Bigger Iron", "$icon_biggeriron$", "biggeriron", "An upgraged version of hovitzer capable of penetrating fortifications.\nYou can load batteries in it to make shells stun enemies.\nProjectiles of this weapon travel in a stright line\n\nUses howitzer shells.", false, true);
+		ShopItem@ s = addShopItem(this, "Bigger Iron", "$icon_biggeriron$", "biggeriron", "An upgraged version of howitzer capable of penetrating fortifications.\nYou can load batteries in it to make shells stun enemies.\nProjectiles of this weapon travel in a stright line.\n\nUses howitzer shells.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 30);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 30);
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
@@ -221,7 +221,7 @@ void onInit(CBlob@ this)
 		s.buttonheight = 2;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Jet Fighter!", "$jetfighter$", "jetfighter", "$jetfighter$\n\n\n" + "", false, true);
+		ShopItem@ s = addShopItem(this, "Jet Fighter", "$jetfighter$", "jetfighter", "$jetfighter$\n\n\n" + "An extremely fast airplane used for bombing.\n\n[W]/[D] to accelerate\n[LMB] to shoot\n[Space] to drop items out of inventory\n[C] to leave", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 32);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 20);
 		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
