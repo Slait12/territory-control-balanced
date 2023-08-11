@@ -33,8 +33,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			case Hitters::builder:
 				time = 0; break;
 
-			case Hitters::sword:
-				if (this.getName() == "knight") //prevent stunlocks from royal guard and katana
+			/*case Hitters::sword: //prevent stunlocks from royal guard and katana
 				{
 					if (damage > 1.0f || force)
 					{
@@ -48,7 +47,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 					}
 	
 					break;
-				}
+				}*/
 	
 			case Hitters::shield:
 				time = 15; break;
