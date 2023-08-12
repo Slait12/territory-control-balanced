@@ -155,7 +155,28 @@ void onTick(CSprite@ this)
 	}
 }
 
-/*f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
+{
+	if (attached !is null)
+	{
+		if (attached.hasTag("flesh"))
+		{
+			attached.Tag("invincible");
+			attached.Tag("invincibilityByVehicle");
+		}
+	}
+}
+
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
+{
+	if (detached !is null)
+	{
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
+	}
+}
+
+f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
 	f32 dmg = damage;
 	switch (customData)
@@ -189,4 +210,6 @@ void onTick(CSprite@ this)
 			// break;
 	}
 	return dmg;
-}*/
+}
+
+

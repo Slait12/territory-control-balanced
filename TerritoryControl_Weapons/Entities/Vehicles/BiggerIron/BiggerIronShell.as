@@ -56,18 +56,6 @@ void onTick(CBlob@ this)
 
 	f32 modifier = Maths::Max(0, this.getVelocity().y * 0.02f);
 	this.getSprite().SetEmitSoundVolume(Maths::Max(0, modifier));
-	
-	if(isClient())
-	{
-		if (this.hasTag("charged"))
-		{
-			MakeLightningParticle(this);
-		}
-		else
-		{
-			MakeSmokeParticle(this);
-		}
-	}
 }
 
 void Pierce(CBlob@ this, Vec2f velocity, const f32 angle)
@@ -227,31 +215,4 @@ void MakeParticle(CBlob@ this, const Vec2f pos, const Vec2f vel, const string fi
 {
 	if (!isClient()) return;
 	ParticleAnimated(filename, this.getPosition() + pos, vel, float(XORRandom(360)), 0.5f + XORRandom(100) * 0.01f, 1 + XORRandom(4), XORRandom(100) * -0.00005f, true);
-}
-
-void MakeLightningParticle(CBlob@ this)
-{
-	CParticle@ particle = ParticleAnimated("ElectricTail.png", this.getPosition() + Vec2f(16 - XORRandom(32), 8 - XORRandom(32)), Vec2f(), float(XORRandom(360)), 1.0f + (XORRandom(50) / 100.0f), 3, 0.00f, false);
-	if (particle !is null) 
-	{
-		particle.collides = false;
-		particle.deadeffect = 1;
-		particle.bounce = 0.0f;
-		particle.fastcollision = true;
-		particle.lighting = false;
-		particle.setRenderStyle(RenderStyle::additive);
-	}
-}
-
-void MakeSmokeParticle(CBlob@ this)
-{
-	CParticle@ particle = ParticleAnimated("SmallSmoke1.png", this.getPosition() + Vec2f(8 - XORRandom(16), 8 - XORRandom(16)), Vec2f(), float(XORRandom(360)), 1.0f + (XORRandom(50) / 100.0f), 3, 0.00f, false);
-	if (particle !is null) 
-	{
-		particle.collides = false;
-		particle.deadeffect = 1;
-		particle.bounce = 0.0f;
-		particle.fastcollision = true;
-		particle.lighting = false;
-	}
 }
