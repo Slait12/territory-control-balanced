@@ -339,9 +339,12 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 	}
 	if (attached !is null)
 	{
-		attached.SetVisible(false);
-		attached.Tag("invincible");
-		attached.Tag("invincibilityByVehicle");
+		if (attached.hasTag("flesh"))
+		{
+			attached.SetVisible(false);
+			attached.Tag("invincible");
+			attached.Tag("invincibilityByVehicle");
+		}
 	}
 }
 
@@ -360,6 +363,7 @@ void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 		detached.Untag("invincibilityByVehicle");
 	}
 }
+
 
 bool doesCollideWithBlob( CBlob@ this, CBlob@ blob )
 {
@@ -420,20 +424,22 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 		case Hitters::stab:
 			dmg *= 0.25f;
 			break;
-			
-		case Hitters::keg:
 		case Hitters::bomb:
-		case Hitters::explosion:
-		case Hitters::bomb_arrow:
-			dmg *= 4.0f;
+			dmg *= 1.25f;
 			break;
-			
-		case Hitters::flying: // boat ram
-		case HittersTC::bullet_high_cal:
+		case Hitters::keg:
+		case Hitters::explosion:
 			dmg *= 0.5f;
-		
-		break;
+			break;
+		case Hitters::bomb_arrow:
+			dmg *= 0.5f;
+			break;
+		case Hitters::flying:
+			dmg *= 0.5f;
+			break;
 	}
+	if (customData == HittersTC::bullet_high_cal)
+		damage *= 0.5;
 	return dmg;
 }
 
