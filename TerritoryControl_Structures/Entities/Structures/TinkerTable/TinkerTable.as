@@ -313,13 +313,14 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Anti-pickup Magnet", "$apmagnet$", "apmagnet", "Disables auto-pickup");
-		AddRequirement(s.requirements, "coin", "", "Coins", 100);
-
-		s.customButton = true;
-		s.buttonwidth = 1;
-		s.buttonheight = 1;
-
+		ShopItem@ s = addShopItem(this, "SpaceStar Ordering Transmitter", "$phone$", "phone", "A replica of SpaceStar Ordering Trasmitter capable of connecting to the UPF frequencies.\nAllows you to order supplies of UPF technologies and infantry support.");
+		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
+		AddRequirement(s.requirements, "blob", "bp_automation_advanced", "Advanced Automation Blueprint", 1);
+		AddRequirement(s.requirements, "blob", "bp_energetics", "Energetics Blueprint", 1);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Copper Wire", 50);
+		AddRequirement(s.requirements, "blob", "mat_copperwire", "Mithril Ingot", 4);
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
 		s.spawnNothing = true;
 	}
 	{
@@ -340,17 +341,6 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;	
 		s.buttonheight = 1;
 		
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "SpaceStar Ordering Transmitter", "$phone$", "phone", "A replica of SpaceStar Ordering Trasmitter capable of connecting to the UPF frequencies.\nAllows you to order supplies of UPF technologies and infantry support.");
-		AddRequirement(s.requirements, "blob", "bp_weapons", "Weapons Blueprint", 1);
-		AddRequirement(s.requirements, "blob", "bp_automation_advanced", "Advanced Automation Blueprint", 1);
-		AddRequirement(s.requirements, "blob", "bp_energetics", "Energetics Blueprint", 1);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Copper Wire", 50);
-		AddRequirement(s.requirements, "blob", "mat_copperwire", "Mithril Ingot", 4);
-		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
 		s.spawnNothing = true;
 	}
 }
