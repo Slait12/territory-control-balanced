@@ -75,16 +75,6 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 		return;
 	}
 
-	CInventory@ inv = this.getInventory();
-	if (inv !is null)
-	{
-		CBlob@ item = inv.getItem("apmagnet");
-		if (item !is null)
-		{
-			return;
-		}
-	}
-
 	Take(this, blob);
 }
 

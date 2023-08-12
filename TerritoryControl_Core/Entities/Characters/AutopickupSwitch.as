@@ -15,6 +15,8 @@ void onCreateInventoryMenu(CInventory@ this, CBlob@ forBlob, CGridMenu@ menu)
 {
 	CBlob@ blob = this.getBlob();
 	if (blob is null) return;
+	AddIconToken("$lock$", "EnablePickup.png", Vec2f(14, 14), 0);
+	AddIconToken("$unlock$", "DisablePickup.png", Vec2f(14, 14), 0);
 
 	DrawAutopickupSwitch(blob, menu, forBlob);
 }
