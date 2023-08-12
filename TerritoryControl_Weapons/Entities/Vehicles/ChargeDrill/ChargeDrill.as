@@ -415,10 +415,15 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 {
 	if (attached !is this)
 	{
-		attached.Tag("invincible");
-		attached.Tag("NOLMB");
+		if (attached.hasTag("flesh"))
+		{
+			attached.Tag("invincible");
+			attached.Tag("invincibilityByVehicle");
+			attached.Tag("NOLMB");
+		}
 	}
 }
+
 
 void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
 {

@@ -176,6 +176,27 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 	}
 }
 
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
+{
+	if (attached !is null)
+	{
+		if (attached.hasTag("flesh"))
+		{
+			attached.Tag("invincible");
+			attached.Tag("invincibilityByVehicle");
+		}
+	}
+}
+
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
+{
+	if (detached !is null)
+	{
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
+	}
+}
+
 void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 {
 	if (cmd == this.getCommandID("fire blob"))
@@ -229,7 +250,7 @@ void onDie(CBlob@ this)
 	}
 }
 
-/*f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
+f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
 	f32 dmg = damage;
 	switch (customData)
@@ -266,7 +287,7 @@ void onDie(CBlob@ this)
 	}
 
 	return dmg;
-}*/
+}
 
 bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
 {
