@@ -97,15 +97,15 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_smallrocket", 4, "Small Rocket (4)");
-		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 40);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 20);
-		items.push_back(i);
-	}
-	{
 		AssemblerItem i("mat_grenade", 4, "Grenade (4)");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 1);
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 10);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("mat_smallrocket", 4, "Small Rocket (4)");
+		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 40);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 20);
 		items.push_back(i);
 	}
 	{
@@ -135,12 +135,12 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_smallrocket", 2, "Small Rocket (2)");
+		AssemblerItem i("mat_grenade", 2, "Grenade (2)");
 		AddRequirement(i.reqs, "blob", "mat_goldingot", "Gold Ingot", 1);
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_grenade", 2, "Grenade (2)");
+		AssemblerItem i("mat_smallrocket", 2, "Small Rocket (2)");
 		AddRequirement(i.reqs, "blob", "mat_goldingot", "Gold Ingot", 1);
 		items.push_back(i);
 	}
