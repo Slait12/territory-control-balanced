@@ -179,27 +179,6 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 	}
 }
 
-void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
-{
-	if (attached !is null)
-	{
-		if (attached.hasTag("flesh"))
-		{
-			attached.Tag("invincible");
-			attached.Tag("invincibilityByVehicle");
-		}
-	}
-}
-
-void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
-{
-	if (detached !is null)
-	{
-		detached.Untag("invincible");
-		detached.Untag("invincibilityByVehicle");
-	}
-}
-
 void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 {
 	if (cmd == this.getCommandID("fire blob"))

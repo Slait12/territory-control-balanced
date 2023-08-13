@@ -285,12 +285,9 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 	}
 	if (attached !is null)
 	{
-		if (attached.hasTag("flesh")
-		{
-			attached.SetVisible(true);
-			attached.Tag("invincible");
-			attached.Tag("invincibilityByVehicle");
-		}
+		attached.SetVisible(true);
+		attached.Tag("invincible");
+		attached.Tag("invincibilityByVehicle");
 	}
 }
 
@@ -363,19 +360,17 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 		case Hitters::stab:
 			dmg *= 0.25f;
 			break;
-		case Hitters::bomb:
-			dmg *= 1.25f;
-			break;
+			
 		case Hitters::keg:
+		case Hitters::bomb:
 		case Hitters::explosion:
-			dmg *= 0.5f;
-			break;
 		case Hitters::bomb_arrow:
-			dmg *= 0.5f;
+			dmg *= 4.0f;
 			break;
-		case Hitters::flying:
-			dmg *= 0.5f;
-			break;
+			
+		case Hitters::flying: // boat ram
+		dmg *= 0.5f;
+		break;
 	}
 	return dmg;
 }
