@@ -1,5 +1,5 @@
-//script by Xeno(PURPLExeno), sprites by Skemonde(TheCustomerMan)
-//Thunderbolt by Slava and Peaceful Gay
+//script by Xeno(PURPLExeno), sprites by Skemonde(TheCustomerMan) (Old)
+//script by Slava, sprites by Peaceful Gay and Slava (New)
 
 #include "Requirements.as";
 #include "ShopCommon.as";
