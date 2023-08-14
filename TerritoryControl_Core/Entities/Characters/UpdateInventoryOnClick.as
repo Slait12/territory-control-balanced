@@ -3,7 +3,7 @@ void UpdateInventoryOnClick(CBlob@ inventoryBlob, Vec2f pos = Vec2f(0,0))
 {
 	Vec2f center = getDriver().getScreenCenterPos();
 	if (pos == Vec2f_zero)
-		pos = center;
+		pos = center + Vec2f(0,192);
 	CBlob@ caller_blob = getLocalPlayerBlob();
 	if (caller_blob is null) return;
 	caller_blob.ClearMenus();
