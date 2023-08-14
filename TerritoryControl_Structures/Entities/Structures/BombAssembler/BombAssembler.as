@@ -36,7 +36,7 @@ void onInit(CSprite@ this)
 			gear.SetRelativeZ(-60);
 			gear.RotateBy(-22, Vec2f(0.0f,0.0f));
 		}
-	}*/
+	}
 }
 
 void onTick(CSprite@ this)
