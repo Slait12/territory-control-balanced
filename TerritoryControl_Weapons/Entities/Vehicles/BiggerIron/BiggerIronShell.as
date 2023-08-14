@@ -115,7 +115,7 @@ void Pierce(CBlob@ this, Vec2f velocity, const f32 angle)
 
 	HitInfo@[] infos;
 
-	if (map.getHitInfosFromArc(tail_position, -angle, 10, (tip_position - tail_position).getLength(), this, false, @infos))
+	if (map.getHitInfosFromArc(tail_position2, -angle, 10, (tip_position3 - tail_position2).getLength(), this, false, @infos))
 	{
 		for (uint i = 0; i < infos.length; i ++)
 		{

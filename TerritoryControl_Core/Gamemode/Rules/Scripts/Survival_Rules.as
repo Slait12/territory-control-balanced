@@ -186,6 +186,8 @@ void onNewPlayerJoin(CRules@ this, CPlayer@ player)
 
 		player.server_setCoins(500);
 	}
+	if (!this.exists(playerName+"autopickup"))
+		this.set_bool(playerName + "autopickup", true);
 }
 
 void onBlobCreated(CRules@ this, CBlob@ blob)
