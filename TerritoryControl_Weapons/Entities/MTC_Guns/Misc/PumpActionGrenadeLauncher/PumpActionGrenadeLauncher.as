@@ -92,6 +92,7 @@ void onTick(CBlob@ this)
 								bool end = true;
 								this.set_string("DrawText", "Sticky Grenade");
 								this.set_u32("ShowTime", getGameTime() + 60);
+								//print("stickygrenade");
 								if(isClient())
 								{
 									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
@@ -115,6 +116,7 @@ void onTick(CBlob@ this)
 								bool end = true;
 								this.set_string("DrawText", "Flame Grenade");
 								this.set_u32("ShowTime", getGameTime() + 60);
+								//print("flamegrenade");
 								if(isClient())
 								{
 									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
@@ -138,6 +140,7 @@ void onTick(CBlob@ this)
 								bool end = true;
 								this.set_string("DrawText", "Acid Grenade");
 								this.set_u32("ShowTime", getGameTime() + 60);
+								print("acidgrenade");
 								if(isClient())
 								{
 									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
@@ -161,6 +164,7 @@ void onTick(CBlob@ this)
 								bool end = true;
 								this.set_string("DrawText", "Grenade");
 								this.set_u32("ShowTime", getGameTime() + 60);
+								//print("grenade");
 								if(isClient())
 								{
 									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
@@ -169,12 +173,18 @@ void onTick(CBlob@ this)
 							}
 						}
 					}
-					mode++;
+					if (mode < 3) {mode++;}
+					else {mode = 0;}
+					//string e = mode;
+					//string t = end;
+					//print(e);
+					//print(t);
 					if (end)
 					{
 						return;
 					}
 				}
+			mode = this.get_u8("AmmoTypeNumber");
 			this.Sync("ProjBlob", true);
 			this.Sync("settings.AMMO_BLOB", true);
 			this.Sync("AmmoTypeNumber", true);
