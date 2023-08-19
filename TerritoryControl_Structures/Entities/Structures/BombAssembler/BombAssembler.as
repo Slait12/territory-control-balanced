@@ -8,7 +8,7 @@
 #include "MakeSeed.as";
 
 void onInit(CSprite@ this)
-{	
+{
 	CBlob@ blob = this.getBlob();
 	if (blob is null) return;
 	// Building
@@ -24,36 +24,8 @@ void onInit(CSprite@ this)
 	{
 		this.SetEmitSoundPaused(true);
 	}
-	{
-		this.RemoveSpriteLayer("gear");
-		CSpriteLayer@ gear = this.addSpriteLayer("gear", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
-		if (gear !is null)
-		{
-			Animation@ anim = gear.addAnimation("default", 0, false);
-			anim.AddFrame(3);
-			gear.SetOffset(Vec2f(6.0f, -4.0f));
-			gear.SetAnimation("default");
-			gear.SetRelativeZ(-60);
-			gear.RotateBy(-22, Vec2f(0.0f,0.0f));
-		}
-	}
 }
 
-void onTick(CSprite@ this)
-{
-	CBlob@ blob = this.getBlob();
-	bool state = blob.get_bool("state");
-	
-	if (state || !blob.hasTag("togglesupport"))
-	{
-		if(this.getSpriteLayer("gear") !is null){
-			this.getSpriteLayer("gear").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
-	}
-	
-	
-	
-	}
-}
 class AssemblerItem
 {
 	string resultname;
@@ -91,9 +63,9 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_shrapnelbomb", 8, "Anti-personel Shrapnel Bomb (8)");
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 15);
+		AssemblerItem i("mat_smallrocket", 4, "Small Rocket (4)");
+		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 40);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 20);
 		items.push_back(i);
 	}
 	{
@@ -103,9 +75,9 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_smallrocket", 4, "Small Rocket (4)");
-		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 40);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 20);
+		AssemblerItem i("claymore", 1, "Gregor (1)");
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 1);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 10);
 		items.push_back(i);
 	}
 	{
@@ -130,7 +102,7 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_shrapnelbomb", 8, "Anti-personel Shrapnel Bomb (8)");
+		AssemblerItem i("mat_smallrocket", 2, "Small Rocket (2)");
 		AddRequirement(i.reqs, "blob", "mat_goldingot", "Gold Ingot", 1);
 		items.push_back(i);
 	}
@@ -140,7 +112,7 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_smallrocket", 2, "Small Rocket (2)");
+		AssemblerItem i("claymore", 1, "Gregor (1)");
 		AddRequirement(i.reqs, "blob", "mat_goldingot", "Gold Ingot", 1);
 		items.push_back(i);
 	}
@@ -208,7 +180,7 @@ void onInit(CBlob@ this)
 	{
 		AssemblerItem i("guidedrocket", 1, "Guided Missile");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
-		AddRequirement(i.reqs, "blob", "mat_oil", "Oil", 40);
+		AddRequirement(i.reqs, "blob", "mat_methane", "Methane", 80);
 		items.push_back(i);
 	}
 	{
@@ -291,6 +263,17 @@ void onInit(CBlob@ this)
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 30);
 		items.push_back(i);
 	}
+	{
+		AssemblerItem i("mat_shrapnelbomb", 8, "Anti-personel Shrapnel Bomb (8)");
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 15);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("mat_shrapnelbomb", 8, "Anti-personel Shrapnel Bomb (8)");
+		AddRequirement(i.reqs, "blob", "mat_goldingot", "Gold Ingot", 1);
+		items.push_back(i);
+	}
 	this.set("items", items);
 
 	this.set_TileType("background tile", CMap::tile_castle_back);
@@ -316,7 +299,7 @@ void onInit(CBlob@ this)
 	this.addCommandID("IncreaseTask12");
 	this.addCommandID("IncreaseTask13");
 	this.addCommandID("IncreaseTask14");
-	
+
 	this.set_bool("InfTask", true);
 
 	this.set_u8("crafting", 0);
@@ -344,8 +327,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if (caller.isMyPlayer())
 	{
-		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";
-		
+		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";	
 		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(7, 6), "Set Assembly");
 		if (menu !is null)
 		{
@@ -490,15 +472,26 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	{
 		IncreaseTask(this, 50);
 	}
-	if (cmd == this.getCommandID("IncreaseTask6"))
+		if (cmd == this.getCommandID("IncreaseTask6"))
 	{
 		IncreaseTask(this, 100);
 	}
-	if (cmd == this.getCommandID("IncreaseTask7"))
+		if (cmd == this.getCommandID("IncreaseTask7"))
 	{
-		TaskSetInf(this);
+		if (isServer())
+		{
+			this.set_bool("InfTask", !this.get_bool("InfTask"));
+		}
+		if (this.get_bool("InfTask"))
+		{
+			this.set_string("drawText", "Production Plan: Unlimited");
+		}
+		else
+		{
+			this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")));
+		}
 	}
-	if (cmd == this.getCommandID("IncreaseTask8"))
+		if (cmd == this.getCommandID("IncreaseTask8"))
 	{
 		DecreaseTask(this, 1);
 	}
@@ -518,11 +511,11 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	{
 		DecreaseTask(this, 50);
 	}
-	if (cmd == this.getCommandID("IncreaseTask13"))
+		if (cmd == this.getCommandID("IncreaseTask13"))
 	{
 		DecreaseTask(this, 100);
 	}
-	if (cmd == this.getCommandID("IncreaseTask14"))
+		if (cmd == this.getCommandID("IncreaseTask14"))
 	{
 		TaskReset(this);
 	}
@@ -544,9 +537,6 @@ void onTick(CBlob@ this)
 	{
 		if (isServer())
 		{
-			this.Sync("ProduceTask", true); //TODO: find out why do i need to sync all this every time and how to evade this
-			this.Sync("drawText", true);
-			this.Sync("qtext", true);
 			CBlob @mat = server_CreateBlob(item.resultname, this.getTeamNum(), this.getPosition());
 			mat.server_SetQuantity(item.resultcount);
 
@@ -556,9 +546,6 @@ void onTick(CBlob@ this)
 			{
 				DecreaseTask(this, item.resultcount);
 			}
-			this.Sync("ProduceTask", true); //TODO: find out why do i need to sync all this every time and how to evade this
-			this.Sync("drawText", true);
-			this.Sync("qtext", true);
 		}
 
 		if(isClient())
@@ -595,20 +582,6 @@ void TaskReset(CBlob@ this)
 	this.set_u16("ProduceTask", 0);
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-}
-
-void TaskSetInf(CBlob@ this)
-{
-	this.set_bool("InfTask", !this.get_bool("InfTask"));
-	if (this.get_bool("InfTask"))
-	{
-		this.set_string("drawText", "Production Plan: Unlimited");
-	}
-	else
-	{
-		this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	}
-	//this.set_string("drawText", "Production Plan: Unlimited");
 }
 
 void onRender(CSprite@ this)
@@ -670,16 +643,16 @@ AssemblerItem[] getItems(CBlob@ this)
 }
 
 
-/*void onAddToInventory( CBlob@ this, CBlob@ blob )
-{
-	if(blob.getName() != "gyromat") return;
-
-	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
-}
-
-void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
-{
-	if(blob.getName() != "gyromat") return;
-	
-	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
-}*/
+//void onAddToInventory( CBlob@ this, CBlob@ blob )
+//{
+//	if(blob.getName() != "gyromat") return;
+//
+//	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+//}
+//
+//      void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
+//{
+//	if(blob.getName() != "gyromat") return;
+//	
+//	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+//}
