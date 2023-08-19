@@ -187,7 +187,9 @@ void onCreateInventoryMenu(CInventory@ this, CBlob@ forBlob, CGridMenu@ menu)
 	CBlob@ blob = this.getBlob();
 	if(blob is null) return;
 
-	const Vec2f INVENTORY_CE = this.getInventorySlots() * GRID_SIZE / 2 + menu.getUpperLeftPosition();
+	Vec2f center = getDriver().getScreenCenterPos();
+
+	const Vec2f INVENTORY_CE = center + Vec2f(0,192);//this.getInventorySlots() * GRID_SIZE / 2 + menu.getUpperLeftPosition();
 	blob.set_Vec2f("backpack position", INVENTORY_CE);
 
 	blob.ClearGridMenusExceptInventory();

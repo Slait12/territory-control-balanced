@@ -84,7 +84,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Bolt Action Rifle", "$rifle$", "rifle", "A handy bolt action rifle. $icon_rifleammo$\nDeals double damage when shooting from a long distance.\n\nAmmo Capacity = 5\n\nDamage = 3.5\n\nFire Rate = 0.75");
+		ShopItem@ s = addShopItem(this, "Bolt Action Rifle", "$rifle$", "rifle", "A handy bolt action rifle. $icon_rifleammo$\n\nDeals double damage when shooting from a long distance.\n\nAmmo Capacity = 5\n\nDamage = 3.5\n\nFire Rate = 0.75");
 		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
 		s.customButton = true;
@@ -141,7 +141,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians. $icon_gatlingammo$\n\nAmmo Capacity = 50\n\nDamage = 0.75\n\nFire Rate = 15");
+		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians. $icon_gatlingammo$\n\nAmmo Capacity = 50\n\nDamage = 0.9\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "coin", "", "Coins", 800); //1000c
 		//AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150); //405c
 		//AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2); //20c
