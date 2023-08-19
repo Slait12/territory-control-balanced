@@ -339,9 +339,15 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 	}
 	if (attached !is null)
 	{
-		attached.SetVisible(false);
-		attached.Tag("invincible");
-		attached.Tag("invincibilityByVehicle");
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{
+				attached.SetVisible("false")	
+				attached.Tag("invincible");
+				attached.Tag("invincibilityByVehicle");
+			}
+		}
 	}
 }
 
@@ -352,12 +358,9 @@ void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 		detached.setVelocity(this.getVelocity());
 		detached.AddForce(Vec2f(0.0f, -300.0f));
 		this.Untag("no barrier pass");
-	}
-	if (detached !is null)
-	{
-		detached.SetVisible(true);
-		detached.Untag("invincible");
-		detached.Untag("invincibilityByVehicle");
+		attached.SetVisible("true")	
+		attached.Untag("invincible");
+		attached.Untag("invincibilityByVehicle");
 	}
 }
 

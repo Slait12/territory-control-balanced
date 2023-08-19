@@ -190,6 +190,30 @@ void onTick(CBlob@ this)
 	}
 }
 
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
+{
+	if (attached !is null)
+	{
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{	
+				attached.Tag("invincible");
+				attached.Tag("invincibilityByVehicle");
+			}
+		}
+	}
+}
+
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
+{
+	if (detached !is null)
+	{
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
+	}
+}
+
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {
 	if (this.getDistanceTo(caller) > 96.0f) return;

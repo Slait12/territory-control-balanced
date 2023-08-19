@@ -235,6 +235,30 @@ void Shoot(CBlob@ this, f32 angle)
 	this.set_bool("justShot", true);
 }
 
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
+{
+	if (attached !is null)
+	{
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{	
+				attached.Tag("invincible");
+				attached.Tag("invincibilityByVehicle");
+			}
+		}
+	}
+}
+
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
+{
+	if (detached !is null)
+	{
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
+	}
+}
+
 void shootGun(const u16 gunID, const f32 aimangle, const u16 hoomanID, const Vec2f pos) 
 {
 	CRules@ rules = getRules();
