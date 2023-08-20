@@ -115,6 +115,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_inductionfurnace$", "InductionFurnace.png", Vec2f(40, 32), 0, teamnum);
 	AddIconToken("$icon_electricfurnace$", "ElectricFurnace.png", Vec2f(40, 32), 0, teamnum);
 	AddIconToken("$icon_assembler$", "Assembler.png", Vec2f(40, 24), 0, teamnum);
+	AddIconToken("$icon_industrialassembler$", "IndustrialAssembler.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_hopper$", "Hopper.png", Vec2f(24, 24), 0, teamnum);
 	AddIconToken("$icon_fetcher$", "Fetcher.png", Vec2f(24, 24), 0, teamnum);
 	AddIconToken("$icon_extractor$", "Extractor.png", Vec2f(16, 24), 0);
@@ -857,6 +858,16 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
 		b.buildOnGround = true;
 		b.size.Set(32, 32);
+		blocks[3].push_back(b);
+	}
+	{
+		BuildBlock b(0, "industrialassembler", "$icon_industrialassembler$", "Industrial Assembler:\n\nAn improved version of assembler capable of mass production of weapons, equipment and explosives at reduced prices.");
+		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 20);
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper wire", 20);
+		//AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
+		b.buildOnGround = true;
+		b.size.Set(40, 24);
 		blocks[3].push_back(b);
 	}
 	

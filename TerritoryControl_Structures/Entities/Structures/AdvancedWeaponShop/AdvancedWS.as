@@ -104,7 +104,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Brand-new AK", "$bnak$", "bnak", "Popular russian weapon.\n\nPerfect value for money. $icon_rifleammo$\n\nAmmo Capacity = 20\n\nDamage = 1.5\n\nFire Rate = 10");
+		ShopItem@ s = addShopItem(this, "AKM", "$bnak$", "bnak", "Popular russian weapon.\n\nPerfect value for money. $icon_rifleammo$\n\nAmmo Capacity = 20\n\nDamage = 1.5\n\nFire Rate = 10");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 250);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 2);

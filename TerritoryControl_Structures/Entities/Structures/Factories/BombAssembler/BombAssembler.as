@@ -1,4 +1,4 @@
-﻿#include "MakeCrate.as";
+#include "MakeCrate.as";
 #include "Requirements.as";
 #include "ShopCommon.as";
 #include "Descriptions.as";
@@ -25,8 +25,8 @@ void onInit(CSprite@ this)
 		this.SetEmitSoundPaused(true);
 	}
 	{
-		this.RemoveSpriteLayer("gear");
-		CSpriteLayer@ gear = this.addSpriteLayer("gear", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
+		this.RemoveSpriteLayer("gear3");
+		CSpriteLayer@ gear = this.addSpriteLayer("gear3", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
 		if (gear !is null)
 		{
 			Animation@ anim = gear.addAnimation("default", 0, false);
@@ -45,13 +45,10 @@ void onTick(CSprite@ this)
 	bool state = blob.get_bool("state");
 	
 	if (state || !blob.hasTag("togglesupport"))
-	{
-		if(this.getSpriteLayer("gear") !is null){
-			this.getSpriteLayer("gear").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
-	}
-	
-	
-	
+		if(this.getSpriteLayer("gear3") !is null)
+		{
+			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+		}
 	}
 }
 class AssemblerItem
@@ -295,7 +292,7 @@ void onInit(CBlob@ this)
 
 	this.set_TileType("background tile", CMap::tile_castle_back);
 	this.getShape().getConsts().mapCollisions = false;
-	this.getCurrentScript().tickFrequency = 90;
+	this.getCurrentScript().tickFrequency = 60;
 
 	this.Tag("builder always hit");
 	this.Tag("change team on fort capture");
@@ -382,7 +379,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 
 				int teamnum = this.getTeamNum();
 				if (teamnum > 6) teamnum = 7;
-				AddIconToken("$assembler_qicon" + i + "$", "AssemblerIcons2.png", Vec2f(16, 16), i - 1, teamnum);
+				AddIconToken("$assembler_qicon" + i + "$", "AssemblerIcons2.png", Vec2f(20, 16), i - 1, teamnum);
 
 				switch(i)
 				{
@@ -457,7 +454,9 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 						break;
 					}
 				}
-				CGridButton @butt = qmenu.AddButton("$assembler_qicon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i));	
+				CBitStream params;
+				params.write_u16(caller.getNetworkID());
+				CGridButton @butt = qmenu.AddButton("$assembler_qicon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i), params);	
 			}
 		}	
 	}
@@ -473,58 +472,86 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	if (cmd == this.getCommandID("IncreaseTask1"))
 	{
 		IncreaseTask(this, 1);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask2"))
 	{
 		IncreaseTask(this, 5);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask3"))
 	{
 		IncreaseTask(this, 10);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask4"))
 	{
 		IncreaseTask(this, 20);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask5"))
 	{
 		IncreaseTask(this, 50);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask6"))
 	{
 		IncreaseTask(this, 100);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask7"))
 	{
 		TaskSetInf(this);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask8"))
 	{
 		DecreaseTask(this, 1);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask9"))
 	{
 		DecreaseTask(this, 5);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask10"))
 	{
 		DecreaseTask(this, 10);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask11"))
 	{
 		DecreaseTask(this, 20);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask12"))
 	{
 		DecreaseTask(this, 50);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask13"))
 	{
 		DecreaseTask(this, 100);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 	if (cmd == this.getCommandID("IncreaseTask14"))
 	{
 		TaskReset(this);
+		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		AssemblerMenu(this, caller);
 	}
 }
 
@@ -670,7 +697,7 @@ AssemblerItem[] getItems(CBlob@ this)
 }
 
 
-/*void onAddToInventory( CBlob@ this, CBlob@ blob )
+void onAddToInventory( CBlob@ this, CBlob@ blob )
 {
 	if(blob.getName() != "gyromat") return;
 
@@ -682,4 +709,4 @@ void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
 	if(blob.getName() != "gyromat") return;
 	
 	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
-}*/
+}

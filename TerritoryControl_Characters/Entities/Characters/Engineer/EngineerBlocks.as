@@ -115,6 +115,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_inductionfurnace$", "InductionFurnace.png", Vec2f(40, 32), 0, teamnum);
 	AddIconToken("$icon_electricfurnace$", "ElectricFurnace.png", Vec2f(40, 32), 0, teamnum);
 	AddIconToken("$icon_assembler$", "Assembler.png", Vec2f(40, 24), 0, teamnum);
+	AddIconToken("$icon_industrialassembler$", "IndustrialAssembler.png", Vec2f(40, 24), 0, teamnum);
 	AddIconToken("$icon_hopper$", "Hopper.png", Vec2f(24, 24), 0, teamnum);
 	AddIconToken("$icon_fetcher$", "Fetcher.png", Vec2f(24, 24), 0, teamnum);
 	AddIconToken("$icon_extractor$", "Extractor.png", Vec2f(16, 24), 0);
@@ -837,25 +838,35 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(24, 24);
 		blocks[3].push_back(b);
 	}
-//	{
-//		BuildBlock b(0, "nuclearreactor", "$nuclearreactor$", "Nuclear Reactor:\n\nConverts enriched mithril into default with bigger yield.\nProduces wilmet material on higher temperatures.\n\nHas a control panel with password check. Can be sabotaged.\n\nRequires enriched mithril as fuel, mithril also increases heat.\n\nYou can set up a catalyst or refrigerant into the utility slot (also remove them with a wrench) to get certain modifications.\n\nExplodes with an insane power when heated up too much.");
-//		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 150);
-//		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 40);
-//		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 150);
-//		AddRequirement(b.reqs, "blob", "mat_concrete", "Concrete", 1500);
-//		AddRequirement(b.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 30);
-//
-//		// AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
-//		b.buildOnGround = true;
-//		b.size.Set(64, 48);
-//		blocks[3].push_back(b);
-//	}
+/*	{
+		BuildBlock b(0, "nuclearreactor", "$nuclearreactor$", "Nuclear Reactor:\n\nConverts enriched mithril into default with bigger yield.\nProduces wilmet material on higher temperatures.\n\nHas a control panel with password check. Can be sabotaged.\n\nRequires enriched mithril as fuel, mithril also increases heat.\n\nYou can set up a catalyst or refrigerant into the utility slot (also remove them with a wrench) to get certain modifications.\n\nExplodes with an insane power when heated up too much.");
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 150);
+		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 40);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 150);
+		AddRequirement(b.reqs, "blob", "mat_concrete", "Concrete", 1500);
+		AddRequirement(b.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 30);
+
+		// AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
+		b.buildOnGround = true;
+		b.size.Set(64, 48);
+		blocks[3].push_back(b);
+	}*/
 	{
 		BuildBlock b(0, "safe", "$icon_safe$", "Steel safe:\n\nHas personal access with share option (insert paper with username). Also being provided as remote storage for neutrals.");
 		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 20);
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
 		b.buildOnGround = true;
 		b.size.Set(32, 32);
+		blocks[3].push_back(b);
+	}
+	{
+		BuildBlock b(0, "industrialassembler", "$icon_industrialassembler$", "Industrial Assembler:\n\nAn improved version of assembler capable of mass production of weapons, equipment and explosives at reduced prices.");
+		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 20);
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper wire", 20);
+		//AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
+		b.buildOnGround = true;
+		b.size.Set(40, 24);
 		blocks[3].push_back(b);
 	}
 	//{
