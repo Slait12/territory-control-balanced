@@ -343,7 +343,7 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 		{ 
 			if (isServer())
 			{
-				attached.SetVisible("false")	
+				attached.SetVisible(false);
 				attached.Tag("invincible");
 				attached.Tag("invincibilityByVehicle");
 			}
@@ -358,9 +358,9 @@ void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 		detached.setVelocity(this.getVelocity());
 		detached.AddForce(Vec2f(0.0f, -300.0f));
 		this.Untag("no barrier pass");
-		attached.SetVisible("true")	
-		attached.Untag("invincible");
-		attached.Untag("invincibilityByVehicle");
+		detached.SetVisible(true);
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
 	}
 }
 
