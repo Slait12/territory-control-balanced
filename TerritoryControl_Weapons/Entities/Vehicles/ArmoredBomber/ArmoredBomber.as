@@ -69,6 +69,30 @@ bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
 	return false;
 }
 
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
+{
+	if (attached !is null)
+	{
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{	
+				attached.Tag("invincible");
+				attached.Tag("invincibilityByVehicle");
+			}
+		}
+	}
+}
+
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
+{
+	if (detached !is null)
+	{
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
+	}
+}
+
 //SPRITE
 void onInit(CSprite@ this)
 {

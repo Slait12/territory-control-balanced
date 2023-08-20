@@ -30,7 +30,7 @@ void onInit(CBlob@ this)
 			break;
 		// grain
 		case -1788840884:
-			this.maxQuantity = 4;
+			this.maxQuantity = 5;
 			break;
 		// ratfood
 		case 1197821324:
@@ -96,7 +96,7 @@ void Heal(CBlob@ this, CBlob@ blob)
 				break;
 			// grain
 			case -1788840884:
-				heal_amount = 1;
+				heal_amount = 0.8;
 				break;
 			// ratfood
 			case 1197821324:

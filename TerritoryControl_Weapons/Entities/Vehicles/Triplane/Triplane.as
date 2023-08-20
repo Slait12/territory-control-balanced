@@ -383,18 +383,28 @@ void MakeParticle(CBlob@ this, const Vec2f pos, const Vec2f vel, const string fi
 	ParticleAnimated(filename, this.getPosition() + pos, vel, float(XORRandom(360)), 0.5f + XORRandom(100) * 0.01f, 1 + XORRandom(4), XORRandom(100) * -0.00005f, true);
 }
 
-void onAttach(CBlob@ this,CBlob@ attached,AttachmentPoint @attachedPoint)
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 {
-	if (attached.hasTag("bomber")) return;
-
-	attached.Tag("invincible");
-	attached.Tag("invincibilityByVehicle");
+	if (attached !is null)
+	{
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{	
+				attached.Tag("invincible");
+				attached.Tag("invincibilityByVehicle");
+			}
+		}
+	}
 }
 
-void onDetach(CBlob@ this,CBlob@ detached,AttachmentPoint@ attachedPoint)
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 {
-	detached.Untag("invincible");
-	detached.Untag("invincibilityByVehicle");
+	if (detached !is null)
+	{
+		detached.Untag("invincible");
+		detached.Untag("invincibilityByVehicle");
+	}
 }
 
 bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)

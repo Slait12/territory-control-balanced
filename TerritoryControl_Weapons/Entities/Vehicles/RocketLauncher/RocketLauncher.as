@@ -223,21 +223,22 @@ bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
 
 void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 {
-	if (attached.hasTag("bomber")) return;
-
-	if (attached.getPlayer() !is null && this.hasTag("invincible"))
+	if (attached !is null)
 	{
-		if (this.isAttached())
-		{
-			attached.Tag("invincible");
-			attached.Tag("invincibilityByVehicle");
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{	
+				attached.Tag("invincible");
+				attached.Tag("invincibilityByVehicle");
+			}
 		}
 	}
 }
 
-void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 {
-	if (detached.hasTag("invincibilityByVehicle"))
+	if (detached !is null)
 	{
 		detached.Untag("invincible");
 		detached.Untag("invincibilityByVehicle");

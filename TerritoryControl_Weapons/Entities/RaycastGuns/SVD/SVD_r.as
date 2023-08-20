@@ -10,7 +10,7 @@ void onInit(CBlob@ this)
 		false,				//If true, gun will be fully automatic and players will be able to just hold the fire button
 		4.0f,				//Weapon damage / projectile blob name
 		2000.0f,				//Weapon raycast range
-		50,					//Weapon fire delay, in ticks
+		40,					//Weapon fire delay, in ticks
 		10,					//Weapon clip size
 		1.00f,				//Ammo usage factor, completely ignore for now
 		60,					//Weapon reload time
@@ -21,7 +21,7 @@ void onInit(CBlob@ this)
 		"mat_sniperammo",	//Ammo item blob name
 		false,				//If true, firing sound will be looped until player stops firing
 		SoundInfo("DragunovaFire", 1, 1.0f, 1.0f),	//Sound to play when firing
-		SoundInfo("SVD_Reloading", 1, 1.0f, 1.0f),//Sound to play when reloading
+		SoundInfo("SniperReload", 1, 1.0f, 1.0f),//Sound to play when reloading
 		SoundInfo(),							//Sound to play some time after firing
 		0,					//Delay for the delayed sound, in ticks
 		Vec2f(-7.0f, -1.0f)	//Visual offset for raycast bullets
@@ -31,6 +31,8 @@ void onInit(CBlob@ this)
 	
 	
 	this.set_f32("scope_zoom", 0.2f);
+	this.Tag("sniper");
+	this.Tag("powerful");
 	this.set_u8("CustomPenetration", 1);
 	this.set_u8("CustomKnock", 10);
 }

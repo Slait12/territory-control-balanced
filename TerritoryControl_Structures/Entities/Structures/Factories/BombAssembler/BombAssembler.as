@@ -45,6 +45,7 @@ void onTick(CSprite@ this)
 	bool state = blob.get_bool("state");
 	
 	if (state || !blob.hasTag("togglesupport"))
+	{
 		if(this.getSpriteLayer("gear3") !is null)
 		{
 			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
@@ -87,7 +88,7 @@ void onInit(CBlob@ this)
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 20);
 		items.push_back(i);
 	}
-	{
+		{
 		AssemblerItem i("mat_shrapnelbomb", 8, "Anti-personel Shrapnel Bomb (8)");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 15);
@@ -205,7 +206,7 @@ void onInit(CBlob@ this)
 	{
 		AssemblerItem i("guidedrocket", 1, "Guided Missile");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
-		AddRequirement(i.reqs, "blob", "mat_oil", "Oil", 40);
+		AddRequirement(i.reqs, "blob", "mat_methane", "Methane", 80);
 		items.push_back(i);
 	}
 	{
@@ -292,7 +293,7 @@ void onInit(CBlob@ this)
 
 	this.set_TileType("background tile", CMap::tile_castle_back);
 	this.getShape().getConsts().mapCollisions = false;
-	this.getCurrentScript().tickFrequency = 60;
+	this.getCurrentScript().tickFrequency = 90;
 
 	this.Tag("builder always hit");
 	this.Tag("change team on fort capture");
@@ -697,7 +698,7 @@ AssemblerItem[] getItems(CBlob@ this)
 }
 
 
-void onAddToInventory( CBlob@ this, CBlob@ blob )
+/*void onAddToInventory( CBlob@ this, CBlob@ blob )
 {
 	if(blob.getName() != "gyromat") return;
 
@@ -709,4 +710,4 @@ void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
 	if(blob.getName() != "gyromat") return;
 	
 	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
-}
+}*/

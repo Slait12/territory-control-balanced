@@ -276,7 +276,6 @@ f32 constrainAngle(f32 x)
 	if (x < 0) x += 360;
 	return x - 180;
 }
-
 void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 {
 	if (attachedPoint.socket)
@@ -285,9 +284,15 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 	}
 	if (attached !is null)
 	{
-		attached.SetVisible(true);
-		attached.Tag("invincible");
-		attached.Tag("invincibilityByVehicle");
+		if (attached.hasTag("flesh") || attached.hasTag("human") || attached.hasTag("hooman"))
+		{ 
+			if (isServer())
+			{	
+				attached.Tag("invincible");
+				attached.SetVisible("true")	
+				attached.Tag("invincibilityByVehicle");
+			}
+		}
 	}
 }
 
@@ -298,12 +303,9 @@ void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
 		detached.setVelocity(this.getVelocity());
 		detached.AddForce(Vec2f(0.0f, -300.0f));
 		this.Untag("no barrier pass");
-	}
-	if (detached !is null)
-	{
-		detached.SetVisible(true);
-		detached.Untag("invincible");
-		detached.Untag("invincibilityByVehicle");
+		attached.SetVisible("true")	
+		attached.Untag("invincible");
+		attached.Untag("invincibilityByVehicle");
 	}
 }
 
