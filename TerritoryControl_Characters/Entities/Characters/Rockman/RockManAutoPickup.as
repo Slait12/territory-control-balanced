@@ -10,6 +10,17 @@ void onInit(CBlob@ this)
 void Take(CBlob@ this, CBlob@ blob)
 {
 	const string blobName = blob.getName();
+	CPlayer@ player = this.getPlayer();
+	bool canPutInInventory = true;
+	CRules@ rules = getRules();
+	
+	// if it's bot autopickup is always active
+	if (player is null)
+		canPutInInventory = true;
+	else
+		canPutInInventory = rules.get_bool(player.getUsername() + "autopickup");
+	if (!canPutInInventory) return;
+	
 	if (this is null) return;
 	if (this !is null)
 	{
@@ -63,17 +74,7 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 	{
 		return;
 	}
-
-	CInventory@ inv = this.getInventory();
-	if (inv !is null)
-	{
-		CBlob@ item = inv.getItem("apmagnet");
-		if (item !is null)
-		{
-			return;
-		}
-	}
-
+	
 	Take(this, blob);
 }
 

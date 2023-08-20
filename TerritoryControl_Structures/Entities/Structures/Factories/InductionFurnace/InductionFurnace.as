@@ -71,7 +71,7 @@ void onTick(CBlob@ this)
 	//printf("step "+this.get_u8("step")+" mp "+this.get_u8("multiplier"));
 	if (this.get_u8("step") == this.get_u8("multiplier"))
 	{
-		for (u8 i = 0; i < 6; i++) // i < matNames.length
+		for (u8 i = 0; i < matNames.length; i++) // i < matNames.length
 		{
 			if (this.hasBlob(matNames[i], matRatio[i]*this.get_u8("multiplier")) && (coalRatio[i] == 0 || this.hasBlob("mat_coal", coalRatio[i])))
 			{

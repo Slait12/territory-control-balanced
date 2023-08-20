@@ -20,7 +20,7 @@ void onInit(CBlob@ this)
 		"mat_rifleammo",	//Ammo item blob name
 		false,				//If true, firing sound will be looped until player stops firing
 		SoundInfo("BN_AK47Fire",0,1.0f,1.0f),	//Sound to play when firing
-		SoundInfo("SMGReload",1,1.0f,0.8f),	//Sound to play when reloading
+		SoundInfo("AKM_Reloading",1,1.0f,1.0f),	//Sound to play when reloading
 		SoundInfo(),						//Sound to play some time after firing
 		0,					//Delay for the delayed sound, in ticks
 		Vec2f(-7.0f,-1.0f)	//Visual offset for raycast bullets
