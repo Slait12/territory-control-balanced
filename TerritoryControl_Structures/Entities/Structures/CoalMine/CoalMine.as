@@ -447,3 +447,9 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 		}
 	}
 }
+
+void onChangeTeam(CBlob@ this)
+{
+	if (this.getTeamNum() < 7) this.RemoveScript("TunnelTravel.as");
+	else this.AddScript("TunnelTravel.as");
+}
