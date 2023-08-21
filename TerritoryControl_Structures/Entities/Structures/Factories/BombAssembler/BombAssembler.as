@@ -572,21 +572,14 @@ void onTick(CBlob@ this)
 	{
 		if (isServer())
 		{
-			this.Sync("ProduceTask", true); //TODO: find out why do i need to sync all this every time and how to evade this
-			this.Sync("drawText", true);
-			this.Sync("qtext", true);
 			CBlob @mat = server_CreateBlob(item.resultname, this.getTeamNum(), this.getPosition());
 			mat.server_SetQuantity(item.resultcount);
 
 			server_TakeRequirements(inv, item.reqs);
-			
-			if (!this.get_bool("InfTask"))
-			{
-				DecreaseTask(this, item.resultcount);
-			}
-			this.Sync("ProduceTask", true); //TODO: find out why do i need to sync all this every time and how to evade this
-			this.Sync("drawText", true);
-			this.Sync("qtext", true);
+		}
+		if (!this.get_bool("InfTask"))
+		{
+			DecreaseTask(this, item.resultcount);
 		}
 
 		if(isClient())

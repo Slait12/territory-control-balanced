@@ -1027,7 +1027,6 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	if (cmd == this.getCommandID("SelectPage0"))
 	{
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		caller.ClearMenus();
 		this.set_u8("page", 0);
 		caller.ClearMenus();
 		AssemblerMenu(this, caller);
@@ -1035,7 +1034,6 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	if (cmd == this.getCommandID("SelectPage1"))
 	{
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		caller.ClearMenus();
 		this.set_u8("page", 1);
 		caller.ClearMenus();
 		AssemblerMenu(this, caller);
@@ -1043,7 +1041,6 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	if (cmd == this.getCommandID("SelectPage2"))
 	{
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		caller.ClearMenus();
 		this.set_u8("page", 2);
 		caller.ClearMenus();
 		AssemblerMenu(this, caller);
@@ -1068,9 +1065,6 @@ void onTick(CBlob@ this)
 	{
 		if (isServer())
 		{
-			this.Sync("ProduceTask", true); //TODO: find out why do i need to sync all this every time and how to evade this
-			this.Sync("drawText", true);
-			this.Sync("qtext", true);
 			if (item.resultname == "lightarmor")
 			{
 				CBlob @mat1 = server_CreateBlob("combatboots", this.getTeamNum(), this.getPosition());
@@ -1096,14 +1090,10 @@ void onTick(CBlob@ this)
 			}
 
 			server_TakeRequirements(inv, item.reqs);
-			
-			if (!this.get_bool("InfTask"))
-			{
-				DecreaseTask(this, item.resultcount);
-			}
-			this.Sync("ProduceTask", true); //TODO: find out why do i need to sync all this every time and how to evade this
-			this.Sync("drawText", true);
-			this.Sync("qtext", true);
+		}
+		if (!this.get_bool("InfTask"))
+		{
+			DecreaseTask(this, item.resultcount);
 		}
 
 		if(isClient())
