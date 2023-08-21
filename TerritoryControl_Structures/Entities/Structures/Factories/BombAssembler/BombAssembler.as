@@ -470,89 +470,104 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 		u8 setting = params.read_u8();
 		this.set_u8("crafting", setting);
 	}
-	if (cmd == this.getCommandID("IncreaseTask1"))
+	else if (cmd == this.getCommandID("IncreaseTask1"))
 	{
 		IncreaseTask(this, 1);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask2"))
+	else if (cmd == this.getCommandID("IncreaseTask2"))
 	{
 		IncreaseTask(this, 5);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask3"))
+	else if (cmd == this.getCommandID("IncreaseTask3"))
 	{
 		IncreaseTask(this, 10);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask4"))
+	else if (cmd == this.getCommandID("IncreaseTask4"))
 	{
 		IncreaseTask(this, 20);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask5"))
+	else if (cmd == this.getCommandID("IncreaseTask5"))
 	{
 		IncreaseTask(this, 50);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask6"))
+	else if (cmd == this.getCommandID("IncreaseTask6"))
 	{
 		IncreaseTask(this, 100);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask7"))
+	else if (cmd == this.getCommandID("IncreaseTask7"))
 	{
 		TaskSetInf(this);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask8"))
+	else if (cmd == this.getCommandID("IncreaseTask8"))
 	{
 		DecreaseTask(this, 1);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask9"))
+	else if (cmd == this.getCommandID("IncreaseTask9"))
 	{
 		DecreaseTask(this, 5);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask10"))
+	else if (cmd == this.getCommandID("IncreaseTask10"))
 	{
 		DecreaseTask(this, 10);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask11"))
+	else if (cmd == this.getCommandID("IncreaseTask11"))
 	{
 		DecreaseTask(this, 20);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask12"))
+	else if (cmd == this.getCommandID("IncreaseTask12"))
 	{
 		DecreaseTask(this, 50);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask13"))
+	else if (cmd == this.getCommandID("IncreaseTask13"))
 	{
 		DecreaseTask(this, 100);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
 	}
-	if (cmd == this.getCommandID("IncreaseTask14"))
+	else if (cmd == this.getCommandID("IncreaseTask14"))
 	{
 		TaskReset(this);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
 		AssemblerMenu(this, caller);
+	}
+	else if (cmd == this.getCommandID("assembler_sync"))
+	{
+		if (isClient())
+		{
+			u16 task = params.read_u16();
+			string dtxt = params.read_string();
+			bool inf = params.read_bool();
+			string qtxt = params.read_string();
+			
+			this.set_string("DrawText", dtxt);
+			this.set_string("qtext", qtxt);
+			this.set_u16("ProduceTask", task);
+			this.set_bool("InfTask", inf);		
+		}
 	}
 }
 
@@ -595,6 +610,7 @@ void IncreaseTask(CBlob@ this, u16 incr_quantity)
 	this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
+	server_Sync(this);
 }
 
 void DecreaseTask(CBlob@ this, u16 incr_quantity)
@@ -609,6 +625,7 @@ void DecreaseTask(CBlob@ this, u16 incr_quantity)
 	}
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
+	server_Sync(this);
 }
 
 void TaskReset(CBlob@ this)
@@ -616,6 +633,7 @@ void TaskReset(CBlob@ this)
 	this.set_u16("ProduceTask", 0);
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
+	server_Sync(this);
 }
 
 void TaskSetInf(CBlob@ this)
@@ -629,7 +647,21 @@ void TaskSetInf(CBlob@ this)
 	{
 		this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
 	}
-	//this.set_string("drawText", "Production Plan: Unlimited");
+	server_Sync(this);
+}
+
+void server_Sync(CBlob@ this)
+{
+	if (isServer())
+	{
+		CBitStream stream;
+		stream.write_u16(this.get_u16("ProduceTask"));
+		stream.write_string(this.get_string("DrawText"));
+		stream.write_bool(this.get_bool("InfTask"));
+		stream.write_string(this.get_string("qtext"));
+		
+		this.SendCommand(this.getCommandID("assembler_sync"), stream);
+	}
 }
 
 void onRender(CSprite@ this)
