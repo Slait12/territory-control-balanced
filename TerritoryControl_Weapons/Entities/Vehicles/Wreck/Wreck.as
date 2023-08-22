@@ -119,9 +119,9 @@ void onInit(CBlob@ this)
 		{
 			@s = addShopItem(this, "Repair", "$icon_repair$", "sfcannon", "Repair this badly damaged vehicle.");	
 			
-			AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 15);
-			AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
-			AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+			AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 36);
+			AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 22);
+			AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 		}
 		
 		if (s !is null)
