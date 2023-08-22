@@ -945,89 +945,104 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	{
 		IncreaseTask(this, 1);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask2"))
 	{
 		IncreaseTask(this, 5);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask3"))
 	{
 		IncreaseTask(this, 10);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask4"))
 	{
 		IncreaseTask(this, 20);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask5"))
 	{
 		IncreaseTask(this, 50);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask6"))
 	{
 		IncreaseTask(this, 100);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask7"))
 	{
 		TaskSetInf(this);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask8"))
 	{
 		DecreaseTask(this, 1);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask9"))
 	{
 		DecreaseTask(this, 5);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask10"))
 	{
 		DecreaseTask(this, 10);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask11"))
 	{
 		DecreaseTask(this, 20);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask12"))
 	{
 		DecreaseTask(this, 50);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask13"))
 	{
 		DecreaseTask(this, 100);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("IncreaseTask14"))
 	{
 		TaskReset(this);
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		AssemblerMenu(this, caller);
 	}
 	else if (cmd == this.getCommandID("SelectPage0"))
 	{
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		this.set_u8("page", 0);
 		caller.ClearMenus();
 		AssemblerMenu(this, caller);
@@ -1035,6 +1050,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	else if (cmd == this.getCommandID("SelectPage1"))
 	{
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		this.set_u8("page", 1);
 		caller.ClearMenus();
 		AssemblerMenu(this, caller);
@@ -1042,6 +1058,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	else if (cmd == this.getCommandID("SelectPage2"))
 	{
 		CBlob@ caller = getBlobByNetworkID(params.read_u16());
+		if (caller is null) return;
 		this.set_u8("page", 2);
 		caller.ClearMenus();
 		AssemblerMenu(this, caller);
