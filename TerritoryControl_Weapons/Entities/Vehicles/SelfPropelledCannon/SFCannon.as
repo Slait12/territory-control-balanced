@@ -198,6 +198,10 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 _unused
 		{
 			Vec2f dir = Vec2f((this.isFacingLeft() ? -1 : 1), 0.0f).RotateBy(angle);
 			ParticleAnimated("SmallExplosion.png", this.getPosition() + offset, dir, float(XORRandom(360)), 1.0f, 2 + XORRandom(3), -0.1f, false);
+			for (u8 i = 0; i < 3; i++)
+			{
+				ParticleAnimated("LargeSmoke", this.getPosition() + offset, dir + Vec2f((XORRandom(64) - 32) * 0.01f, (XORRandom(16) - 8) * -0.01f), float(XORRandom(360)), 2.0f, 13 + XORRandom(3), -0.002f, false);
+			}
 		}
 		this.set_f32("gun_recoil_current", 5);
 	}

@@ -99,9 +99,12 @@ void onTick(CBlob@ this)
 						}
 					}
 				}
-
 				this.getSprite().PlaySound("ProduceSound.ogg");
 				this.getSprite().PlaySound("BombMake.ogg");
+				for (u8 i = 0; i < 3; i++)
+				{
+				ParticleAnimated("LargeSmoke", this.getPosition() + Vec2f(0,-18), Vec2f(0.3f + (XORRandom(4) * 0.1f), -0.4f + (XORRandom(5) * -0.1f)), 0, 2.00f + (XORRandom(10) * 0.1f), 30 + XORRandom(10), 0, false);
+				}
 			}
 		}
 		this.set_u8("step", 1);
