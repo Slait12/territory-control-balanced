@@ -7,7 +7,7 @@
 #include "FireCommon.as";
 #include "VehicleAttachmentCommon.as";
 
-const f32 max_distance = 256.00f;
+const f32 max_distance = 400.00f;
 
 void onInit( CBrain@ this )
 {
@@ -123,7 +123,7 @@ void onTick(CBlob@ this)
 			if (visibleTarget && distance < max_distance && !target.hasTag("dead"))
 			{
 				this.setAimPos(target.getPosition() + Vec2f(0, 4));
-				this.setKeyPressed(key_action1, visibleTarget && this.getTickSinceCreated() % 6 == 0);
+				this.setKeyPressed(key_action1, visibleTarget);
 
 				this.getCurrentScript().tickFrequency = 1;
 			}
