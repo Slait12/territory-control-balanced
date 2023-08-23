@@ -68,7 +68,7 @@ void onInit(CBlob@ this)
 
 	this.setInventoryName(this.getInventoryName()+" #"+this.getNetworkID());
 
-	settings.B_GRAV = Vec2f(0, 0.008); //Bullet Gravity
+	//settings.B_GRAV = Vec2f(0, 0.008); //Bullet Gravity
 	settings.B_TTL = 14; //Bullet Time to live
 	settings.B_SPEED = 60; //Bullet speed
 	settings.B_DAMAGE = 0.75f; //Bullet damage

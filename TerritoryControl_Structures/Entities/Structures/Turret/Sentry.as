@@ -18,7 +18,7 @@ void onInit(CBlob@ this)
 
 	GunSettings settings = GunSettings();
 
-	settings.B_GRAV = Vec2f(0, 0.005); //Bullet Gravity
+	//settings.B_GRAV = Vec2f(0, 0.005); //Bullet Gravity
 	settings.B_TTL = 11; //Bullet Time to live
 	settings.B_SPEED = 58; //Bullet speed
 	settings.B_DAMAGE = 0.5f; //Bullet damage

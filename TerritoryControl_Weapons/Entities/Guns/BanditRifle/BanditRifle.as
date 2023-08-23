@@ -20,7 +20,7 @@ void onInit(CBlob@ this)
 	//Bullet
 	settings.B_PER_SHOT = 4; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
 	settings.B_SPREAD = 10; //the higher the value, the more 'uncontrollable' bullets get
-	settings.B_GRAV = Vec2f(0, 0.008); //Bullet gravity drop
+	//settings.B_GRAV = Vec2f(0, 0.008); //Bullet gravity drop
 	settings.B_SPEED = 45; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	settings.B_TTL = 7; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
 	settings.B_DAMAGE = 0.5f; //1 is 1 heart
