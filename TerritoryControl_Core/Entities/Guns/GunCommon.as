@@ -92,7 +92,7 @@ class GunSettings
 		//Bullet
 		B_PER_SHOT = 1;
 		B_SPREAD = 0;
-		B_GRAV   = Vec2f(0, 0.006);
+		B_GRAV   = Vec2f(0, 0.0);
 		B_SPEED  = 60;
 		B_TTL    = 15;
 		B_DAMAGE = 1.0f;
