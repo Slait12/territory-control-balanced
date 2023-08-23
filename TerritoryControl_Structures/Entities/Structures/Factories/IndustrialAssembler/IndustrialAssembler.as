@@ -674,6 +674,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if (caller.isMyPlayer())
 	{
+		server_Sync(this);
 		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";
 		if (this.get_u8("page") == 0)
 		{
@@ -1139,14 +1140,15 @@ void onTick(CBlob@ this)
 
 void IncreaseTask(CBlob@ this, u16 incr_quantity)
 {
+	server_Sync(this);
 	this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	server_Sync(this);
 }
 
 void DecreaseTask(CBlob@ this, u16 incr_quantity)
 {
+	server_Sync(this);
 	if (incr_quantity < (this.get_u16("ProduceTask")))
 	{
 		this.set_u16("ProduceTask", (this.get_u16("ProduceTask") - incr_quantity));
@@ -1157,11 +1159,11 @@ void DecreaseTask(CBlob@ this, u16 incr_quantity)
 	}
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	server_Sync(this);
 }
 
 void TaskReset(CBlob@ this)
 {
+	server_Sync(this);
 	this.set_u16("ProduceTask", 0);
 	this.set_bool("InfTask", false);
 	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
@@ -1170,6 +1172,7 @@ void TaskReset(CBlob@ this)
 
 void TaskSetInf(CBlob@ this)
 {
+	server_Sync(this);
 	this.set_bool("InfTask", !this.get_bool("InfTask"));
 	if (this.get_bool("InfTask"))
 	{
