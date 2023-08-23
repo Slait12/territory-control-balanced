@@ -16,8 +16,6 @@ void onInit(CRules@ this)
 	this.addCommandID("mute_sv");
 	this.addCommandID("mute_cl");
 	this.addCommandID("playsound");
-	this.addCommandID("nukevent");
-	this.addCommandID("nightevent");
 	//this.addCommandID("startInfection");
 	//this.addCommandID("endInfection");
 	this.addCommandID("SendChatMessage");
@@ -65,19 +63,6 @@ void onCommand(CRules@ this, u8 cmd, CBitStream @params)
 				ParticleZombieLightning(destBlob.getPosition());
 			}
 		}
-	}
-	else if (cmd==this.getCommandID("nukevent"))
-	{
-			Sound::Play("airraid.ogg", Vec2f(getMap().tilemapwidth*4,0), 99999999.0f, 999999999.0f);
-		
-		if (isClient()) client_AddToChat("Putin sent russian nuke-bomber planes! You have 45 seconds to get to your bunker!", SColor(255, 255, 0, 0));
-	}
-	else if (cmd==this.getCommandID("nightevent"))
-	{
-		Sound::Play("amb_wind_0.ogg", Vec2f(getMap().tilemapwidth*4,0), 99999999.0f, 999999999.0f);
-		Sound::Play("amb_wind_1.ogg", Vec2f(getMap().tilemapwidth*4,0), 99999999.0f, 999999999.0f);
-		
-		if (isClient()) client_AddToChat("Sun has been exploded, Earth will become into a snowball soon! Unfortunately, this match will be always dark!");
 	}
 	else if (cmd==this.getCommandID("addbot"))
 	{
@@ -311,6 +296,12 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 					else blob.server_Die();
 					return false;
 				}
+				if (tokens[0] == "!ab")
+				{
+						CBlob@ newBlob = server_CreateBlob("adminbuilder",-1,blob.getPosition());
+						newBlob.server_SetPlayer(player);
+						blob.server_Die();
+				}
 				//else if (tokens[0] == "!tourmap")
 				//{
 				//	CMap@ map = getMap();
@@ -475,7 +466,7 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 				}
 			}
 
-			if (isMod)
+			if (isMod || sv_test == true)
 			{
 				/*if (tokens[0]=="!awootism")
 				{
@@ -654,7 +645,7 @@ bool onServerProcessChat(CRules@ this,const string& in text_in,string& out text_
 				{
 					server_CreateBlob("lighthelmet", blob.getTeamNum(), blob.getPosition());
 					server_CreateBlob("lightvest", blob.getTeamNum(), blob.getPosition());
-					server_CreateBlob("lightboots", blob.getTeamNum(), blob.getPosition());
+					server_CreateBlob("combatboots", blob.getTeamNum(), blob.getPosition());
 				}
 				else if (tokens[0]=="!mats")
 				{
