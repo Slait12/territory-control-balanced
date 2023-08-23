@@ -3,7 +3,7 @@ void onInit(CBlob@ this)
 	this.getCurrentScript().tickFrequency = 8;
 
 	this.getSprite().PlaySound("grenade_pinpull.ogg");
-	this.getSprite().SetEmitSound("/SmokeGrenadeFizz.ogg");
+	//this.getSprite().SetEmitSound("/SmokeGrenadeFizz.ogg");
 
 	this.getSprite().SetEmitSoundPaused(false);
 	this.SetLight(true);
@@ -18,15 +18,11 @@ void onTick(CBlob@ this)
 {
 	if(this.hasTag("dead")) return;
 
-	if(isServer())
-	{
-		server_CreateBlob("smokegas", -1, this.getPosition());
-	}
-
-	if(this.getTickSinceCreated() >= 600)
+	if(this.getTickSinceCreated() >= 90)
 	{
 		this.Tag("dead");
 		this.server_Die();
+		if (!isClient() && !this.isOnScreen()) return;
 	}
 }
 
@@ -65,7 +61,14 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 
 void onDie(CBlob@ this)
 {
-	this.getSprite().SetEmitSoundPaused(true);
+	if (isClient())
+	{
+		this.getSprite().PlaySound("FlashGrenade_Boom.ogg");
+	}
+	if(isServer())
+	{
+		server_CreateBlob("smokegas", -1, this.getPosition());
+	}
 }
 
 void onThisAddToInventory(CBlob@ this, CBlob@ inventoryBlob)
