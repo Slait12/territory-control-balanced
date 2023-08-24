@@ -150,6 +150,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_invcleaner$", "AutomationIcons.png", Vec2f(24, 48), 1, teamnum);
 	AddIconToken("$icon_rhoppacker$", "HoppackerR.png", Vec2f(24, 24), 4, teamnum);
 	AddIconToken("$icon_rcompactor$", "CompactorR.png", Vec2f(24, 32), 0, teamnum);
+	AddIconToken("$icon_splitter$", "Splitter.png", Vec2f(8, 8), 0, teamnum);
 	
 	//Miscellaneous
 	AddIconToken("$icon_lamppost$", "LampPost.png", Vec2f(8, 24), 0, teamnum);
@@ -593,11 +594,9 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[2].push_back(b);
 	}
 	{
-		BuildBlock b(0, "inserter", "$icon_inserter$", "Inserter:\n\nTransfers items between inventories next to it.\nLarge funnel acts as input, small funnel as output.");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 25);
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 30);
-		b.buildOnGround = true;
-		b.size.Set(16, 8);
+		BuildBlock b(0, "splitter", "$icon_splitter$", "Splitter:\n\nSplits flow of $blue$filtered$blue$ items in two.");
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 50);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
 		blocks[2].push_back(b);
 	}
 	{
@@ -638,6 +637,14 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 150);
 		b.buildOnGround = true;
 		b.size.Set(24, 24);
+		blocks[2].push_back(b);
+	}
+	{
+		BuildBlock b(0, "inserter", "$icon_inserter$", "Inserter:\n\nTransfers items between inventories next to it.\nLarge funnel acts as input, small funnel as output.");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 25);
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 30);
+		b.buildOnGround = true;
+		b.size.Set(16, 8);
 		blocks[2].push_back(b);
 	}
 	{
