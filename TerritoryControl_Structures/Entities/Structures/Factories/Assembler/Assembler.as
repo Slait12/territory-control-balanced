@@ -205,10 +205,21 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
+		AssemblerItem i("boomstick", 1, "Boomstick (1)");
+		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 40);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
+		items.push_back(i);
+	}
+	{
 		AssemblerItem i("shotgun", 1, "Shotgun (1)");
 		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 110);
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
-		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 2);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("dp27", 1, "DP-27 (1)");
+		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 200);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 8);
 		items.push_back(i);
 	}
 	{

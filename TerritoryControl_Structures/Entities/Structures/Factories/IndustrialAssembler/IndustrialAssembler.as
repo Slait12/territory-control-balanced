@@ -13,9 +13,7 @@ void onInit(CSprite@ this)
 	if (blob is null) return;
 	// Building
 	this.SetZ(-50);
-	this.SetEmitSound("ChickenAssembler_Loop.ogg");
-	this.SetEmitSoundVolume(0.4f);
-	this.SetEmitSoundSpeed(0.9f);
+	this.SetEmitSound("IndustrialAssembler_Loop.ogg");
 	this.SetEmitSoundPaused(false);
 	bool state = blob.get_bool("state");
 	bool InfTask = blob.get_bool("InfTask");
@@ -169,9 +167,9 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("dp27", 1, "DP-27 (1)");
-		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 200);
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 8);
+		AssemblerItem i("dp27", 1, "DP-27 (2)");
+		AddRequirement(i.reqs, "blob", "mat_wood", "Wood", 400);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
 		items.push_back(i);
 	}
 	{
