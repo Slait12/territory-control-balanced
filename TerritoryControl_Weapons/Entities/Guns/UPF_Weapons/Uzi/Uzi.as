@@ -1,4 +1,5 @@
 #include "GunCommon.as";
+#include "Knocked.as";
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
@@ -54,7 +55,7 @@ void onTick(CBlob@ this)
 		
 		if (holder is null) return;
 
-		if (point.isKeyJustPressed(key_action2) && getGameTime() > this.get_u32("nextDash"))
+		if (point.isKeyJustPressed(key_action2) && getGameTime() > this.get_u32("nextDash") && !isKnocked(holder))
 		{
 			holder.setVelocity(Vec2f(holder.isFacingLeft()?(-4.0f + holder.getVelocity().x) : (holder.getVelocity().x + 4.0f), -1.0f));
 			this.set_u32("nextDash", getGameTime() + 60);
