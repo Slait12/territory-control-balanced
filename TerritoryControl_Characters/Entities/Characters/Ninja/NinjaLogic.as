@@ -145,7 +145,7 @@ void onTick(CBlob@ this)
 
 	bool swordState = isSwordState(ninja.state);
 	bool pressed_a1 = this.isKeyPressed(key_action1) && !(this.get_f32("babbyed") > 0) && !this.hasTag("noLMB");
-	bool pressed_a2 = this.isKeyPressed(key_action2) && !(this.get_f32("babbyed") > 0) && !this.hasTag("noRMB");
+	bool pressed_a2 = this.isKeyPressed(key_action2) && !(this.get_f32("babbyed") > 0);
 	bool walking = (this.isKeyPressed(key_left) || this.isKeyPressed(key_right));
 
 	const bool myplayer = this.isMyPlayer();
