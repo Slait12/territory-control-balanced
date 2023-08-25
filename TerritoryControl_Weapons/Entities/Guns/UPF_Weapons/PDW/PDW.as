@@ -44,3 +44,21 @@ void onInit(CBlob@ this)
 	this.Tag("pistol");
 	this.set_string("CustomSoundPickup", "PDW_Pickup.ogg");
 }
+
+void onTick(CBlob@ this)
+{
+	if (this.isAttached())
+	{
+		AttachmentPoint@ point = this.getAttachments().getAttachmentPointByName("PICKUP");
+		CBlob@ holder = point.getOccupied();
+		
+		if (holder is null) return;
+
+		if (point.isKeyJustPressed(key_action2) && getGameTime() > this.get_u32("nextDash"))
+		{
+			holder.setVelocity(Vec2f(holder.isFacingLeft()?(-4.0f + holder.getVelocity().x) : (holder.getVelocity().x + 4.0f), -1.0f));
+			this.set_u32("nextDash", getGameTime() + 60);
+			if(isClient()) this.getSprite().PlaySound("ArgLong");	
+		}
+	}
+}
