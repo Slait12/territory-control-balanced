@@ -14,7 +14,7 @@ void onInit(CBlob@ this)
 	settings.CLIP = 2; //Amount of ammunition in the gun at creation
 	settings.TOTAL = 2; //Max amount of ammo that can be in a clip
 	settings.FIRE_INTERVAL = 30; //Time in between shots
-	settings.RELOAD_TIME = 55; //Time it takes to reload (in ticks)
+	settings.RELOAD_TIME = 20; //Time it takes to reload (in ticks)
 	settings.AMMO_BLOB = "mat_sniperammo"; //Ammunition the gun takes
 
 	//Bullet
@@ -44,7 +44,6 @@ void onInit(CBlob@ this)
 	this.set_u8("CustomKnock", 6);
 	//Custom
 	this.Tag("CustomSemiAuto");
-	this.Tag("medium weight");
 	this.Tag("powerful");
 	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 }
