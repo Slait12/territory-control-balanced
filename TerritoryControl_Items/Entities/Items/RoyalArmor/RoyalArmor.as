@@ -7,6 +7,7 @@ void onInit(CBlob@ this)
 	this.Tag("dangerous");
 	this.Tag("armor");
 	this.Tag("classchanger");
+	this.Tag("hopperable");
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

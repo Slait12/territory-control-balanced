@@ -5,6 +5,8 @@
 void onInit(CBlob@ this)
 {
 	this.Tag("ignore fall");
+	this.Tag("dangerous");
+	this.Tag("hopperable");
 	this.set_u32("next attack", 0);
 	this.set_u32("next dash", 0);
 	this.set_u32("dash time", 0);

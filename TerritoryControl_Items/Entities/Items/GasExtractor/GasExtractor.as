@@ -11,6 +11,7 @@ const f32 splash_offset = 0.0f;
 void onInit(CBlob@ this)
 {
 	this.Tag("no shitty rotation reset");
+	this.Tag("hopperable");
 
 	AttachmentPoint@ ap = this.getAttachments().getAttachmentPointByName("PICKUP");
 	if (ap !is null)
