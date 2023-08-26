@@ -18,13 +18,13 @@ void onInit(CBlob@ this)
 	{
 		ap.SetKeysToTake(key_action1 | key_action2);
 	}
-	if (this.getSprite() !is null) this.getSprite().RotateBy(-45, Vec2f());
+	if (this.getSprite() !is null) this.getSprite().RotateBy(-75, Vec2f());
 	this.getShape().SetRotationsAllowed(false);
 }
 
 void onInit(CSprite@ this)
 {
-	this.ScaleBy(0.75f, 0.75f);
+	this.ScaleBy(0.85f, 0.85f);
 
 	CSpriteLayer@ layer = this.addSpriteLayer("l", "KatanaEffect.png", 32, 32);
 	if (layer !is null)
@@ -36,7 +36,8 @@ void onInit(CSprite@ this)
 			anim.AddFrames(frames);
 			layer.SetAnimation(anim);
 		}
-		layer.SetOffset(Vec2f(0, -4.0f));
+		layer.SetOffset(Vec2f(10, -0.0f));
+		layer.RotateBy(-20, Vec2f());
 		layer.SetRelativeZ(-10.0f);
 		layer.SetVisible(false);
 	}
@@ -51,6 +52,7 @@ void onTick(CBlob@ this)
 
 		if (holder is null) return;
 		this.set_u16("holderid", holder.getNetworkID());
+		AimAtMouse(this, holder);
 
 		CMap@ map = this.getMap();
 		if (map is null) return;
@@ -79,14 +81,14 @@ void onTick(CBlob@ this)
 			{
 				this.Tag("faceleft");
 				sprite.ResetTransform();
-				sprite.RotateBy(45, Vec2f());
+				sprite.RotateBy(75, Vec2f());
 				sprite.ScaleBy(0.85f, 0.85f);
 			}
 			else if (this.hasTag("faceleft") && !holder.isFacingLeft())
 			{
 				this.Untag("faceleft");
 				sprite.ResetTransform();
-				sprite.RotateBy(-45, Vec2f());
+				sprite.RotateBy(-75, Vec2f());
 				sprite.ScaleBy(0.85f, 0.85f);
 			}
 			if (this.get_u32("next attack") > getGameTime())
@@ -97,7 +99,7 @@ void onTick(CBlob@ this)
 
 				if (diff >= 12)
 				{
-					sprite.RotateBy(faceleft?-20:20, v);
+					sprite.RotateBy(faceleft?-35:35, v);
 					if (l !is null)
 					{
 						l.SetVisible(true);
@@ -117,9 +119,8 @@ void onTick(CBlob@ this)
 				}
 				else if (diff <= 1)
 				{
-					
 					sprite.ResetTransform();
-					sprite.RotateBy(faceleft?45:-45, Vec2f());
+					sprite.RotateBy(faceleft?75:-75, Vec2f());
 					sprite.ScaleBy(0.85f, 0.85f);
 				}
 
@@ -171,8 +172,8 @@ void onTick(CBlob@ this)
 				if (l !is null)
 				{
 					sprite.ResetTransform();
-					sprite.RotateBy(holder.isFacingLeft()?45:-45, Vec2f());
-					sprite.ScaleBy(0.85f, 0.85f);	
+					sprite.RotateBy(holder.isFacingLeft()?75:-75, Vec2f());
+					sprite.ScaleBy(0.85f, 0.85f);
 					l.SetVisible(false);
 					l.ResetTransform();
 				}
@@ -188,7 +189,7 @@ void onTick(CBlob@ this)
 				if (l !is null)
 				{
 					l.SetVisible(true);
-					sprite.RotateBy(holder.isFacingLeft()?-45:45, Vec2f());
+					sprite.RotateBy(holder.isFacingLeft()?-75:75, Vec2f());
 					l.RotateBy(holder.isFacingLeft()?-45:45, Vec2f());
 				}
 			}
@@ -231,4 +232,19 @@ bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 {
 	if (blob !is null && blob.hasTag("flesh")) return false;
 	return false;
+}
+
+void AimAtMouse(CBlob@ this, CBlob@ holder)
+{
+	// code used from BlobPlacement.as, just edited to use mouse pos instead of 45 degree angle
+	Vec2f aimpos = holder.getAimPos();
+	Vec2f pos = this.getPosition();
+	Vec2f aim_vec = (pos - aimpos);
+	aim_vec.Normalize();
+
+	f32 mouseAngle = aim_vec.getAngleDegrees();
+
+	if (!this.isFacingLeft()) mouseAngle += 180;
+
+	this.setAngleDegrees(-mouseAngle); // set aim pos
 }
