@@ -110,15 +110,15 @@ void onTick(CBlob@ this)
 		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
 		if (stab !is null)
 		{
-			if (diff == 15) 
+			if (diff == 17) 
 			{
 				stab.SetVisible(true); 
 				stab.SetFrameIndex(0);
 			}
-			else if (diff == 14) stab.SetFrameIndex(1);
-			else if (diff == 13) stab.SetFrameIndex(2);
-			else if (diff == 12) stab.SetFrameIndex(3);
-			else if (diff == 11) stab.SetVisible(false);
+			else if (diff == 16) stab.SetFrameIndex(1);
+			else if (diff == 15) stab.SetFrameIndex(2);
+			else if (diff == 14) stab.SetFrameIndex(3);
+			else if (diff == 12) stab.SetVisible(false);
 		}
 	}
 }
