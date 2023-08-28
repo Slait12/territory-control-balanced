@@ -21,6 +21,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 		case Hitters::spikes:
 		case Hitters::sword:
+		case HittersTC::bayonet:
 		case Hitters::arrow:
 		case Hitters::stab:
 			dmg *= (this.hasTag("flesh") ? 0.80f : 0.20f);

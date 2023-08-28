@@ -1,6 +1,7 @@
 #include "SeatsCommon.as"
 #include "VehicleAttachmentCommon.as"
 #include "Hitters.as"
+#include "HittersTC.as"
 
 // HOOKS THAT YOU MUST IMPLEMENT WHEN INCLUDING THIS FILE
 // void Vehicle_onFire( CBlob@ this, CBlob@ bullet, const u8 charge )
@@ -934,6 +935,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 	switch (customData)
 	{
 		case Hitters::sword:
+		case HittersTC::bayonet:
 		case Hitters::arrow:
 		case Hitters::stab:
 			dmg *= 0.25f;

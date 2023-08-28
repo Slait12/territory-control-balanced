@@ -175,7 +175,7 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$icon_teleporter$", "Teleporter.png", Vec2f(32, 32), 0);
 
 	// Gunsmith
-	AddIconToken("$rifle$", "Rifle.png", Vec2f(24, 8), 0);
+	AddIconToken("$rifle$", "Rifle.png", Vec2f(28, 8), 0);
 	AddIconToken("$leverrifle$", "LeverRifle.png", Vec2f(24, 8), 0);
 	AddIconToken("$smg$", "SMG.png", Vec2f(24, 8), 0);
 	AddIconToken("$revolver$", "Revolver.png", Vec2f(16, 8), 0);

@@ -70,6 +70,8 @@ class GunSettings
 	/// this.Tag("CustomSoundLoop"); //Shooting sound becomes looped rather than instantaneous
 	/// this.Tag("CustomSemiAuto"); //Switches the gun to become semiautomatic rather than automatic
 	/// this.Tag("CustomSpread"); //Changes a shotgun's accuracy by by setting all bullets in a certain direction- kind of weird
+	///
+	///	this.Tag("sniper"); //Bullets will deal double damage over certain distance
 
 	/// PROJECTILE SETTINGS
 	/// > These are variables for guns that shoot actual blobs rather than bullets- e.g bazooka

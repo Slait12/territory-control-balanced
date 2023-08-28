@@ -590,6 +590,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 	switch (customData)
 	{
 		case Hitters::sword:
+		case HittersTC::bayonet:
 		case Hitters::arrow:
 		case Hitters::stab:
 			dmg *= 0.25f;

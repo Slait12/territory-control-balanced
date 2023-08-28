@@ -17,6 +17,7 @@ namespace HittersTC
 		hammer,
 		foof,
 		poison,
-		disease
+		disease,
+		bayonet
 	};
 }

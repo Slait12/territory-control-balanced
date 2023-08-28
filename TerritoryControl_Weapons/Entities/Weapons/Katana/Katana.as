@@ -38,7 +38,7 @@ void onInit(CSprite@ this)
 			anim.AddFrames(frames);
 			layer.SetAnimation(anim);
 		}
-		layer.SetOffset(Vec2f(10, -0.0f));
+		layer.SetOffset(Vec2f(10, 0.0f));
 		layer.RotateBy(-20, Vec2f());
 		layer.SetRelativeZ(-10.0f);
 		layer.SetVisible(false);

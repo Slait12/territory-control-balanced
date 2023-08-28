@@ -162,7 +162,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Nitro 700", "$nitro700$", "nitro700", "Strong shotgun used to take down buffalos, not badgers.\n\nSmall ammunition, but high rate of fire allows you to deal more damage during the time outside of shelters. $icon_sniperammo$\n\nAmmo Capacity = 2\n\nDamage = 6.8\n\nFire Rate = 1");
+		ShopItem@ s = addShopItem(this, "Nitro 700", "$nitro700$", "nitro700", "Strong gun used to take down buffalos, not badgers.\n\nSmall ammunition, but high rate of fire allows you to deal more damage during the time outside of shelters. $icon_sniperammo$\n\nPress [RMB] to stab with bayonet.\n\nAmmo Capacity = 2\n\nDamage = 6.8\n\nFire Rate = 1");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 350);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);

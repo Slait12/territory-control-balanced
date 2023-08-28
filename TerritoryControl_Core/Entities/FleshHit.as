@@ -167,6 +167,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 				{
 					case Hitters::explosion:
 					case Hitters::sword:
+					case HittersTC::bayonet:
 					case Hitters::keg:
 					case Hitters::mine:
 					case Hitters::mine_special:
@@ -261,6 +262,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 				{
 					case Hitters::explosion:
 					case Hitters::sword:
+					case HittersTC::bayonet:
 					case Hitters::keg:
 					case Hitters::mine:
 					case Hitters::mine_special:
@@ -366,6 +368,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 				{
 					case Hitters::explosion:
 					case Hitters::sword:
+					case HittersTC::bayonet:
 					case Hitters::keg:
 					case Hitters::mine:
 					case Hitters::mine_special:

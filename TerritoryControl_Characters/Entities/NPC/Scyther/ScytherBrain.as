@@ -381,6 +381,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 	{
 		case Hitters::stab:
 		case Hitters::sword:
+		case HittersTC::bayonet:
 		case Hitters::fall:
 			damage *= 0.50f;
 			break;

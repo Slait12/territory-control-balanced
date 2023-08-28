@@ -2,6 +2,7 @@
 
 #include "canGrow.as";
 #include "Hitters.as"
+#include "HittersTC.as"
 
 //sprites to load by index
 const string[] seed_sprites =
@@ -173,6 +174,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 	{
 		case Hitters::saw:
 		case Hitters::sword:
+		case HittersTC::bayonet:
 		case Hitters::builder:
 		case Hitters::stab:
 		case Hitters::fall:
