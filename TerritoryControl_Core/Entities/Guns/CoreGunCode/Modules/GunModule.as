@@ -22,6 +22,6 @@ class TestModule : GunModule
 {
 	void onTick(CBlob@ this, CBlob@ holder)
 	{
-		print("hi");
+		print("AMOGUS");
 	}
 } 

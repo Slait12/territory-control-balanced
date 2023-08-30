@@ -156,7 +156,7 @@ void onTick(CBlob@ this)
 
 		if (holder !is null)
 		{
-			//bool isBot = holder.getPlayer() == null;
+			bool isBot = holder.getPlayer() == null;
 			//bool ignoresSlow = holder.getName() == "ninja" || holder.getName() == "soldat";
 			//if (!isBot && !ignoresSlow) holder.isKeyPressed(key_action2) || this.hasTag("a1") ? this.Tag("insane weight") : this.Untag("insane weight");
 
@@ -334,16 +334,20 @@ void onTick(CBlob@ this)
 					// Shoot weapon
 					actionInterval = settings.FIRE_INTERVAL;
 					//bool accurateHit = !this.hasTag("sniper") && getGameTime() >= (this.get_u32("lastshot") + actionInterval * 5);
-					//this.set_u32("lastshot", getGameTime());
+					this.set_u32("lastshot", getGameTime());
 
 					Vec2f fromBarrel = Vec2f((settings.MUZZLE_OFFSET.x / 3) * (this.isFacingLeft() ? 1 : -1), settings.MUZZLE_OFFSET.y + 1);
 					fromBarrel = fromBarrel.RotateBy(aimangle);
 
 					//bool a2 = holder.isKeyPressed(key_action2) || isBot;
 
+					f32 spr = 0;
+					f32 tempspr = settings.B_SPREAD * (this.get_u16("Burst") * settings.SPREAD_FACTOR);
+						
 					if ((settings.B_SPREAD != 0 && settings.B_PER_SHOT == 1))// || this.hasTag("sniper"))
 					{
-						f32 spr = settings.B_SPREAD;
+						if (tempspr > settings.MAX_SPREAD) spr = settings.MAX_SPREAD;
+						else spr = tempspr;
 						//f32 res = a2 ? 1 : 2;
 						//if (!isBot)
 						//{
@@ -379,6 +383,7 @@ void onTick(CBlob@ this)
 							{
 								shootGun(this.getNetworkID(), aimangle, holder.getNetworkID(), this.getPosition() + fromBarrel);
 							}
+							if (tempspr < settings.MAX_SPREAD && !isBot) this.set_u16("Burst", this.get_u16("Burst") + 1); //Counting how many shots was made, not counting if spread limit was reached or holder is bot
 						}
 					}
 
@@ -423,6 +428,12 @@ void onTick(CBlob@ this)
 			}
 
 			if (actionInterval != 0 || this.get_u8("actionInterval") != 0) this.set_u8("actionInterval", actionInterval);
+
+			if (this.get_u16("Burst") != 0 && getGameTime() - this.get_u32("lastshot") > 5) //Decreasing burst after some time
+			{ 
+				if ((getGameTime() - this.get_u32("lastshot")) % 2 == 0) this.set_u16("Burst", this.get_u16("Burst") - 1);
+			}
+			
 			//if (getGameTime()%15==0)printf(""+this.get_u8("actionInterval"));
 
 			sprite.ResetTransform();
@@ -439,5 +450,16 @@ void onTick(CBlob@ this)
 			this.getSprite().SetEmitSoundPaused(true);
 		}
 		this.getCurrentScript().runFlags |= Script::tick_not_sleeping;
+	}
+}
+
+void onRender(CSprite@ this)
+{
+	CBlob@ local = getLocalPlayerBlob();
+	CBlob@ b = this.getBlob();
+	if(local !is null && local.isMyPlayer())
+	{
+		GUI::SetFont("MENU");
+		GUI::DrawText("AAAAAAAAAAA", b.getInterpolatedScreenPos() + Vec2f(16,-24), SColor(255,255,255,50));
 	}
 }

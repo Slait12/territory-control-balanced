@@ -32,18 +32,12 @@ void onRender(CSprite@ this)
 				SColor Col = SColor(255,255,255,255);
 
 				Render::SetTransformScreenspace();
-				
-				u8 DefaultAimSpace = 10;
-				int AimSpace = DefaultAimSpace;
-				if (settings !is null){	
-					if (settings.TOTAL > 15) {
-						AimSpace = Maths::Max(settings.TOTAL-15, DefaultAimSpace);
-						
-						if (settings.TOTAL > 50)
-							AimSpace = 35;
-					}else{
-						AimSpace = DefaultAimSpace;
-					}
+				int AimSpace = 0;
+				if (settings !is null)
+				{				
+					if (settings.ENLARGE_CURSOR)
+					{AimSpace = settings.CURSOR_SIZE + Maths::Min(gun.get_u16("Burst"), settings.MAX_SPREAD * 3);}
+					else AimSpace = settings.CURSOR_SIZE;
 				}
 				Vertex[] cross_height_vertex;
 				for( int i = 0; i < 4; i += 1){

@@ -17,11 +17,17 @@ class GunSettings
 	uint8 RELOAD_TIME; //Time it takes to reload (in ticks)
 	uint8 B_PER_SHOT; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
 
-	int8 B_SPREAD; //the higher the value, the more 'uncontrollable' bullets get
 	int8 B_SPEED; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	s8 B_TTL;  //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
 
 	u8 B_TYPE; //Type of bullet the gun shoots (hitter) | Changes muzzle flash
+	
+	int8 B_SPREAD; //The higher the value, the more 'uncontrollable' bullets get
+	bool INCREASE_SPREAD; //Should the spread increase as you shoot
+	float SPREAD_FACTOR; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+	int8 MAX_SPREAD; //Maximum spread the weapon can reach. Also defines how big cursor can become
+	int8 CURSOR_SIZE; //Size of crosshair that appear when you hold a Gun
+	bool ENLARGE_CURSOR; //Should we enlarge cursor as you shoot
 
 	Vec2f B_GRAV; //Bullet gravity drop
 	Vec2f MUZZLE_OFFSET; //Where the muzzle flash appears | Also determines where bullets are spawned
@@ -93,12 +99,19 @@ class GunSettings
 
 		//Bullet
 		B_PER_SHOT = 1;
-		B_SPREAD = 0;
 		B_GRAV   = Vec2f(0, 0.0);
 		B_SPEED  = 60;
 		B_TTL    = 15;
 		B_DAMAGE = 1.0f;
 		B_TYPE   = HittersTC::bullet_high_cal;
+		
+		//Spread & Cursor
+		B_SPREAD = 0;
+		INCREASE_SPREAD = false;
+		SPREAD_FACTOR = 0.3;
+		MAX_SPREAD = 0;
+		CURSOR_SIZE = 10;
+		ENLARGE_CURSOR = true;
 
 		//Recoil
 		G_RECOIL  = -5;

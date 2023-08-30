@@ -1,6 +1,8 @@
 #include "Hitters.as";
 #include "HittersTC.as";
 
+//Retro raycast gun file
+
 //huge bug with SetKeysToTake only disabling stuff CLIENTSIDE - you're still actually jabbing when using a weapon
 	//looks like the only way to fix this is to add a check to all classes - do they have a tag "disableLMB", or custom tag to disable LMB stuff.
 	//this fix isn't implemented, i only tagged weapons with "disableLMB" tag, nothing else.
