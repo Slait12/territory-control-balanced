@@ -19,12 +19,20 @@ void onInit(CBlob@ this)
 
 	//Bullet
 	//settings.B_PER_SHOT = 1; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
-	settings.B_SPREAD = 4; //the higher the value, the more 'uncontrollable' bullets get
 	//settings.B_GRAV = Vec2f(0, 0.001); //Bullet gravity drop
 	settings.B_SPEED = 90; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	settings.B_TTL = 20; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
 	settings.B_DAMAGE = 1.7f; //1 is 1 heart
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
+	
+	//Spread & Cursor
+	settings.B_SPREAD = 1; //the higher the value, the more 'uncontrollable' bullets get
+	settings.INCREASE_SPREAD = true; //Should the spread increase as you shoot. Default is false
+	settings.SPREAD_FACTOR = 1.1; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+	settings.MAX_SPREAD = 6; //Maximum spread the weapon can reach. Also determines how big cursor can become
+	settings.CURSOR_SIZE = 10; //Size of crosshair that appear when you hold a Gun
+	settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot. Default is true
+	settings.ENLARGE_FACTOR = 2.2; //Multiplier of how much cursor will enlarge as you shoot.
 
 	//Recoil
 	settings.G_RECOIL = -14; //0 is default, adds recoil aiming up

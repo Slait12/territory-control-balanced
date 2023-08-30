@@ -36,7 +36,7 @@ void onRender(CSprite@ this)
 				if (settings !is null)
 				{				
 					if (settings.ENLARGE_CURSOR)
-					{AimSpace = settings.CURSOR_SIZE + Maths::Min(gun.get_u16("Burst"), settings.MAX_SPREAD * 3);}
+					{AimSpace = settings.CURSOR_SIZE + Maths::Min(gun.get_u16("Burst") * settings.ENLARGE_FACTOR, settings.MAX_SPREAD * 3);}
 					else AimSpace = settings.CURSOR_SIZE;
 				}
 				Vertex[] cross_height_vertex;

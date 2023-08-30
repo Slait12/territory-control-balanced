@@ -28,12 +28,13 @@ void onInit(CBlob@ this)
 	
 	//Spread & Cursor
 	settings.B_SPREAD = 1; //the higher the value, the more 'uncontrollable' bullets get
-	settings.INCREASE_SPREAD = true; //Should the spread increase as you shoot
+	settings.INCREASE_SPREAD = true; //Should the spread increase as you shoot. Default is false
 	settings.SPREAD_FACTOR = 0.25; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
-	settings.MAX_SPREAD = 10; //Maximum spread the weapon can reach. Also defines how big cursor can become
-	settings.CURSOR_SIZE = 15; //Size of crosshair that appear when you hold a Gun
-	settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot
-
+	settings.MAX_SPREAD = 10; //Maximum spread the weapon can reach. Also determines how big cursor can become
+	settings.CURSOR_SIZE = 15; //Size of crosshair that appear when you hold a gun
+	settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot. Default is true
+	settings.ENLARGE_FACTOR = 1; //Multiplier of how much cursor will enlarge as you shoot.
+	
 	//Recoil
 	settings.G_RECOIL = -8; //0 is default, adds recoil aiming up
 	settings.G_RANDOMX = false; //Should we randomly move x

@@ -73,7 +73,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans. $icon_pistolammo$\n\nPress [RMB] to dash horizontally.\n\nAmmo Capacity = 30\n\nDamage = 1.15\n\nFire Rate = 10");
+		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans. $icon_pistolammo$\n\nPress [RMB] to dash horizontally.\n\nAmmo Capacity = 30\n\nDamage = 1.25\n\nFire Rate = 10");
 		AddRequirement(s.requirements, "coin", "", "Coins", 1199);
 
 		s.spawnNothing = true;

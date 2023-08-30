@@ -1,9 +1,29 @@
 #include "GunCommon.as";
+#include "Knocked.as";
+#include "HittersTC.as";
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
 	if (this.isAttached()) return 0;
 	return damage;
+}
+
+void onInit(CSprite@ this)
+{
+	CSpriteLayer@ stab = this.addSpriteLayer("stab", "BayonetStab.png", 16, 16);
+	if (stab !is null)
+	{
+		Animation@ anim = stab.addAnimation("BayonetStab.png", 0, false);
+		int[] frames = {0,1,2,3};
+		if (anim !is null)
+		{
+			anim.AddFrames(frames);
+			stab.SetAnimation(anim);
+		}
+		stab.SetOffset(Vec2f(-20, 0.0f));
+		stab.SetRelativeZ(10.0f);
+		stab.SetVisible(false);
+	}
 }
 
 void onInit(CBlob@ this)
@@ -19,12 +39,20 @@ void onInit(CBlob@ this)
 
 	//Bullet
 	settings.B_PER_SHOT = 1; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
-	//settings.B_SPREAD = 0; //the higher the value, the more 'uncontrollable' bullets get
 	//settings.B_GRAV = Vec2f(0, 0.001); //Bullet gravity drop
 	settings.B_SPEED = 90; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	settings.B_TTL = 20; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
 	settings.B_DAMAGE = 2.5f; //1 is 1 heart
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
+	
+	//Spread & Cursor
+	//settings.B_SPREAD = 0; //the higher the value, the more 'uncontrollable' bullets get
+	settings.INCREASE_SPREAD = false; //Should the spread increase as you shoot. Default is false
+	//settings.SPREAD_FACTOR = 0.0; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+	//settings.MAX_SPREAD = 0; //Maximum spread the weapon can reach. Also determines how big cursor can become
+	settings.CURSOR_SIZE = 10; //Size of crosshair that appear when you hold a gun
+	settings.ENLARGE_CURSOR = false; //Should we enlarge cursor as you shoot. Default is true
+	//settings.ENLARGE_FACTOR = 0; //Multiplier of how much cursor will enlarge as you shoot.
 
 	//Recoil
 	settings.G_RECOIL = -10; //0 is default, adds recoil aiming up
@@ -47,4 +75,67 @@ void onInit(CBlob@ this)
 	this.set_string("CustomReloadingEnding", "LeverRifle_Cycle");
 	this.Tag("CustomShotgunReload");
 	this.set_string("CustomSoundPickup", "LeverRifle_Pickup.ogg");
+}
+
+void onTick(CBlob@ this)
+{
+	if (this.isAttached())
+	{
+		AttachmentPoint@ point = this.getAttachments().getAttachmentPointByName("PICKUP");
+		CBlob@ holder = point.getOccupied();
+		
+		if (holder is null) return;
+		
+		if (point.isKeyPressed(key_action2) && getGameTime() > this.get_u32("nextStab") && !isKnocked(holder))
+		{
+			this.set_f32("gun_recoil_current", -14); //Using the gun kickback variable for pushing forward
+			this.set_u32("nextStab", getGameTime() + 18);
+			if(isClient()) this.getSprite().PlaySound("ArgLong");
+
+			HitInfo@[] hitInfos;
+			if (getMap().getHitInfosFromArc(this.getPosition(), -(holder.getAimPos() - this.getPosition()).Angle(), 30, 24, this, @hitInfos))
+			{
+				for (uint i = 0; i < hitInfos.length; i++)
+				{
+					CBlob@ blob = hitInfos[i].blob;
+					if (blob !is null && blob.hasTag("flesh"))
+					{
+						if (isServer())
+						{
+							holder.server_Hit(blob, blob.getPosition(), Vec2f(), 1.5f, HittersTC::bayonet, true);
+						}
+					}
+				}
+			}
+		
+		}
+		CSprite@ sprite = this.getSprite();
+		if (sprite is null) return;
+			
+		u32 diff = this.get_u32("nextStab") - getGameTime();
+		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
+		if (stab !is null)
+		{
+			if (diff == 17) 
+			{
+				stab.SetVisible(true); 
+				stab.SetFrameIndex(0);
+			}
+			else if (diff == 16) stab.SetFrameIndex(1);
+			else if (diff == 15) stab.SetFrameIndex(2);
+			else if (diff == 14) stab.SetFrameIndex(3);
+			else if (diff == 12) stab.SetVisible(false);
+		}
+	}
+}
+
+void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
+{
+	CSprite@ sprite = this.getSprite();
+	if (sprite !is null)
+	{
+		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
+		if (stab !is null) stab.SetVisible(false);
+		stab.SetVisible(false);
+	}
 }

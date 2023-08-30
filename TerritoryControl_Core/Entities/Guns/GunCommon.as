@@ -23,11 +23,12 @@ class GunSettings
 	u8 B_TYPE; //Type of bullet the gun shoots (hitter) | Changes muzzle flash
 	
 	int8 B_SPREAD; //The higher the value, the more 'uncontrollable' bullets get
-	bool INCREASE_SPREAD; //Should the spread increase as you shoot
+	bool INCREASE_SPREAD; //Should the spread increase as you shoot. Default is false
 	float SPREAD_FACTOR; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
-	int8 MAX_SPREAD; //Maximum spread the weapon can reach. Also defines how big cursor can become
+	int8 MAX_SPREAD; //Maximum spread the weapon can reach. Also determines how big cursor can become
 	int8 CURSOR_SIZE; //Size of crosshair that appear when you hold a Gun
-	bool ENLARGE_CURSOR; //Should we enlarge cursor as you shoot
+	bool ENLARGE_CURSOR; //Should we enlarge cursor as you shoot. Default is true
+	float ENLARGE_FACTOR; //Multiplier of how much cursor will enlarge as you shoot. Default is 3
 
 	Vec2f B_GRAV; //Bullet gravity drop
 	Vec2f MUZZLE_OFFSET; //Where the muzzle flash appears | Also determines where bullets are spawned
@@ -108,10 +109,11 @@ class GunSettings
 		//Spread & Cursor
 		B_SPREAD = 0;
 		INCREASE_SPREAD = false;
-		SPREAD_FACTOR = 0.3;
+		SPREAD_FACTOR = 0.0;
 		MAX_SPREAD = 0;
 		CURSOR_SIZE = 10;
 		ENLARGE_CURSOR = true;
+		ENLARGE_FACTOR = 3;
 
 		//Recoil
 		G_RECOIL  = -5;

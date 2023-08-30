@@ -39,12 +39,20 @@ void onInit(CBlob@ this)
 
 	//Bullet
 	settings.B_PER_SHOT = 2; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
-	//settings.B_SPREAD = 4; //the higher the value, the more 'uncontrollable' bullets get
 	//settings.B_GRAV = Vec2f(0, 0.01); //Bullet gravity drop
 	settings.B_SPEED = 110; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	settings.B_TTL = 10; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
 	settings.B_DAMAGE = 3.4f; //1 is 1 heart
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
+	
+	//Spread & Cursor
+	//settings.B_SPREAD = 0; //the higher the value, the more 'uncontrollable' bullets get
+	//settings.INCREASE_SPREAD = false; //Should the spread increase as you shoot. Default is false
+	//settings.SPREAD_FACTOR = 0.0; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+	settings.MAX_SPREAD = 10; //Maximum spread the weapon can reach. Also determines how big cursor can become
+	settings.CURSOR_SIZE = 10; //Size of crosshair that appear when you hold a gun
+	settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot. Default is true
+	settings.ENLARGE_FACTOR = 4; //Multiplier of how much cursor will enlarge as you shoot.
 
 	//Recoil
 	settings.G_RECOIL = -50; //0 is default, adds recoil aiming up
@@ -65,6 +73,7 @@ void onInit(CBlob@ this)
 	//Custom
 	this.Tag("powerful");
 	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
+	this.set_f32("CustomBulletLength", 70.0f);
 }
 
 void onTick(CBlob@ this)
@@ -88,7 +97,7 @@ void onTick(CBlob@ this)
 				for (uint i = 0; i < hitInfos.length; i++)
 				{
 					CBlob@ blob = hitInfos[i].blob;
-					if (blob !is null)
+					if (blob !is null && blob.hasTag("flesh"))
 					{
 						if (isServer())
 						{
