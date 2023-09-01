@@ -3,39 +3,31 @@
 #include "RunnerCommon.as"
 #include "MakeDustParticle.as";
 #include "FallDamageCommon.as";
-#include "Knocked.as";
+#include "KnockedCommon.as";
 #include "DeityCommon.as";
-
-const string fallscreamtag = "_fallingscream";
 
 void onInit(CMovement@ this)
 {
 	this.getCurrentScript().removeIfTag = "dead";
-	// this.getCurrentScript().runFlags |= Script::tick_not_attached;
+	this.getCurrentScript().runFlags |= Script::tick_not_attached;
 }
 
 void onTick(CMovement@ this)
 {
-	if (this is null) return;
 	CBlob@ blob = this.getBlob();
-	if (blob is null) return;
 	RunnerMoveVars@ moveVars;
 	if (!blob.get("moveVars", @moveVars))
 	{
 		return;
 	}
 
-	if (blob.isAttached())
-	{
-		CleanUp(this, blob, moveVars);
-		return;
-	}
-	
-	if ((blob.isMyPlayer()) || (blob.isBot() && isServer())) 
-	{
+	if (//(ultimately in charge of this blob's movement)
+		(blob.isMyPlayer()) ||
+		(blob.isBot() && isServer())
+	) {
 		HandleStuckAtTop(blob);
 	}
-	
+
 	const bool left		= blob.isKeyPressed(key_left);
 	const bool right	= blob.isKeyPressed(key_right);
 	const bool up		= blob.isKeyPressed(key_up);
@@ -43,30 +35,19 @@ void onTick(CMovement@ this)
 
 	const bool isknocked = isKnocked(blob);
 
-	const bool is_client = isClient();
+	const bool is_client = getNet().isClient();
 
-	//cache
-	const bool on_ladder = blob.isOnLadder();
-	const bool on_ground = blob.isOnGround();
-	const bool in_water  = blob.isInWater();
-	const bool onground  = on_ground || on_ladder;
-	const bool on_wall   = blob.isOnWall();
-	const bool on_map    = blob.isOnMap();
-	const bool on_ceiling = blob.isOnCeiling();
-	const bool facing_left = blob.isFacingLeft();
-	const bool is_attached = blob.isAttached();
-
-	CSprite@ sprite = blob.getSprite();
 	CMap@ map = blob.getMap();
 	Vec2f vel = blob.getVelocity();
 	Vec2f pos = blob.getPosition();
 	CShape@ shape = blob.getShape();
 
 	const f32 vellen = shape.vellen;
-
+	const bool onground = blob.isOnGround() || blob.isOnLadder();
 
 	if (is_client && getGameTime() % 3 == 0)
 	{
+		const string fallscreamtag = "_fallingscream";
 		if (vel.y > 0.2f)
 		{
 			if (vel.y > BaseFallSpeed() * 1.8f && !blob.isInInventory())
@@ -74,8 +55,7 @@ void onTick(CMovement@ this)
 				if (!blob.hasTag(fallscreamtag))
 				{
 					blob.Tag(fallscreamtag);
-					if (blob.hasTag("stealth")) return;
-					Sound::Play("man_scream.ogg", pos, 1.0f, blob.get_f32("voice pitch"));
+					Sound::Play("man_scream.ogg", pos);
 				}
 			}
 		}
@@ -87,9 +67,9 @@ void onTick(CMovement@ this)
 		/* unfortunately, this doesn't work with archer bow draw stuff;
 			might need to bind separate sounds cause this solution is much better.
 
-			if(vel.y > BaseFallSpeed() * 1.1f)
+			if (vel.y > BaseFallSpeed() * 1.1f)
 			{
-				if(!blob.hasTag(fallscreamtag))
+				if (!blob.hasTag(fallscreamtag))
 				{
 					blob.Tag(fallscreamtag);
 
@@ -111,16 +91,21 @@ void onTick(CMovement@ this)
 		}*/
 	}
 
-	if (onground || in_water)  //also reset when vaulting
+	u8 crouch_through = blob.get_u8("crouch_through");
+	if (crouch_through > 0)
+	{
+		crouch_through--;
+		blob.set_u8("crouch_through", crouch_through);
+	}
+
+	if (onground || blob.isInWater())  //also reset when vaulting
 	{
 		moveVars.walljumped_side = Walljump::NONE;
-		moveVars.wallrun_start = pos.y;
-		moveVars.wallrun_current = pos.y;
 		moveVars.fallCount = -1;
 	}
 
 	// ladder - overrides other movement completely
-	if (on_ladder && !is_attached && !on_ground && !isknocked)
+	if (blob.isOnLadder() && !blob.isAttached() && !blob.isOnGround() && !isknocked)
 	{
 		shape.SetGravityScale(0.0f);
 		Vec2f ladderforce;
@@ -147,9 +132,9 @@ void onTick(CMovement@ this)
 
 		blob.AddForce(ladderforce * moveVars.overallScale * 100.0f);
 		//damp vel
-		Vec2f temp = vel;
-		temp *= 0.05f;
-		blob.setVelocity(temp);
+		Vec2f vel = blob.getVelocity();
+		vel *= 0.05f;
+		blob.setVelocity(vel);
 
 		moveVars.jumpCount = -1;
 		moveVars.fallCount = -1;
@@ -162,8 +147,10 @@ void onTick(CMovement@ this)
 	shape.getVars().onladder = false;
 
 	//swimming - overrides other movement partially
-	if (in_water && !isknocked)
+	if (blob.isInWater() && !isknocked)
 	{
+		CMap@ map = getMap();
+
 		const f32 swimspeed = moveVars.swimspeed;
 		const f32 swimforce = moveVars.swimforce;
 		const f32 edgespeed = moveVars.swimspeed * moveVars.swimEdgeScale;
@@ -190,11 +177,11 @@ void onTick(CMovement@ this)
 			// more push near ledge
 			if (vel.y > -(swimspeed * 3.3))
 			{
-				if (on_wall)
+				if (blob.isOnWall())
 				{
 					moveVars.jumpCount = 0;
 
-					if (on_map)
+					if (blob.isOnMap())
 					{
 						waterForce.y -= 2.0f;
 					}
@@ -225,10 +212,12 @@ void onTick(CMovement@ this)
 		waterForce *= swimforce * moveVars.overallScale;
 		blob.AddForce(waterForce);
 
-		if (!on_ground && !on_ladder)
+
+		if (!blob.isOnGround() && !blob.isOnLadder())
 		{
 			CleanUp(this, blob, moveVars);
 			return;				//done for swimming -----------------------
+
 		}
 		else
 		{
@@ -241,19 +230,21 @@ void onTick(CMovement@ this)
 
 	//walljumping, wall running and wall sliding
 
-	if (vel.y > 4.0f)
+	if (vel.y > 5.0f)
 	{
-		if (moveVars.walljumped_side == Walljump::JUMPED_LEFT){
+		//moveVars.walljumped_side = Walljump::BOTH;
+	}
+	else if (vel.y > 4.0f)
+	{
+		if (moveVars.walljumped_side == Walljump::JUMPED_LEFT)
 			moveVars.walljumped_side = Walljump::LEFT;
-		}
 
-		if (moveVars.walljumped_side == Walljump::JUMPED_RIGHT){
+		if (moveVars.walljumped_side == Walljump::JUMPED_RIGHT)
 			moveVars.walljumped_side = Walljump::RIGHT;
-		}
 	}
 
-	if (!on_ceiling && !isknocked &&
-	        !on_ladder && (up || left || right))  //key pressed
+	if (!blob.isOnCeiling() && !isknocked &&
+	        !blob.isOnLadder() && (up || left || right || down))  //key pressed
 	{
 		//check solid tiles
 		const f32 ts = map.tilesize;
@@ -277,12 +268,56 @@ void onTick(CMovement@ this)
 		}
 
 		//not checking blobs for this - perf
-		const bool surface_above = map.isTileSolid(pos + Vec2f(y_ts, -x_ts)) || map.isTileSolid(pos + Vec2f(-y_ts, -x_ts));
-		const bool surface_below = map.isTileSolid(pos + Vec2f(y_ts, x_ts)) || map.isTileSolid(pos + Vec2f(-y_ts, x_ts));
+		bool surface_above = map.isTileSolid(pos + Vec2f(y_ts, -x_ts)) || map.isTileSolid(pos + Vec2f(-y_ts, -x_ts));
+		bool surface_below = map.isTileSolid(pos + Vec2f(y_ts, x_ts)) || map.isTileSolid(pos + Vec2f(-y_ts, x_ts));
 
-		const bool surface = surface_left || surface_right;
+		bool surface = surface_left || surface_right;
 
 		const f32 slidespeed = 2.45f;
+
+		// crouch through platforms and crates
+		if (down && !onground && this.getVars().aircount > 2)
+		{
+			blob.set_u8("crouch_through", 3);
+		}
+
+		if (blob.isKeyJustPressed(key_down))
+		{
+			int touching = blob.getTouchingCount();
+			for (int i = 0; i < touching; i++)
+			{
+				CBlob@ b = blob.getTouchingByIndex(i);
+				if ((b.isPlatform() && b.getAngleDegrees() == 0.0f) || b.getName() == "crate")
+				{
+					b.getShape().checkCollisionsAgain = true;
+					blob.getShape().checkCollisionsAgain = true;
+					blob.set_u8("crouch_through", 3);
+				}
+			}
+
+			Vec2f pos = blob.getPosition() + Vec2f(0, 12);
+			CBlob@[] blobs;
+			if (getMap().getBlobsInRadius(pos, 4, blobs))
+			{
+				for (int i = 0; i < blobs.size(); i++)
+				{
+					CBlob@ b = blobs[i];
+					if ((b.isPlatform() && b.getAngleDegrees() == 0.0f) || b.getName() == "crate")
+					{
+						b.getShape().checkCollisionsAgain = true;
+						blob.getShape().checkCollisionsAgain = true;
+						blob.set_u8("crouch_through", 3);
+					}
+				}
+			}
+
+		}
+
+		// cancel any further walljump if not pressing up
+		if (!up)
+		{
+			moveVars.wallrun_count = 1000;
+		}
 
 		//wall jumping/running
 		if (up && surface && 									//only on surface
@@ -290,62 +325,80 @@ void onTick(CMovement@ this)
 		        !(left && right) &&									//do nothing if pressing both sides
 		        !onground)
 		{
-			const bool wasNONE = (moveVars.walljumped_side == Walljump::NONE);
+			bool wasNONE = (moveVars.walljumped_side == Walljump::NONE);
 
-			const bool jumpedLEFT = (moveVars.walljumped_side == Walljump::JUMPED_LEFT);
-			const bool jumpedRIGHT = (moveVars.walljumped_side == Walljump::JUMPED_RIGHT);
+			bool jumpedLEFT = (moveVars.walljumped_side == Walljump::JUMPED_LEFT);
+			bool jumpedRIGHT = (moveVars.walljumped_side == Walljump::JUMPED_RIGHT);
 
 			bool dust = false;
 
-			if (moveVars.jumpCount > 5) //wait some time to be properly in the air
+			if (moveVars.jumpCount > 3) //wait some time to be properly in the air
 			{
 				//set contact point
 				bool set_contact = false;
+				bool set_contact_candidate = false;
+
+				// only initiate a contact IF the player is not going to waste boosting if it was the first walljump attempt
+				// this has the unfortunate side effect that when wanting to climb 2 air gap large towers the walljump
+				// would ideally be initiated earlier.
+
+				// players can avoid this by tapping up shortly to make a small jump, which will make them reach minimal
+				// velocity faster.
+
+				// to mitigate part of this we also ensure this is only done for the first jump.
+				// this should assist with newbies climbing walls, while letting more advanced players begin walljumps as
+				// early as they want
+
 				if (left && surface_left && (moveVars.walljumped_side == Walljump::RIGHT || jumpedRIGHT || wasNONE))
 				{
-					moveVars.walljumped_side = Walljump::LEFT;
-					moveVars.wallrun_start = pos.y;
-					moveVars.wallrun_current = pos.y + 1.0f;
-					set_contact = true;
+					set_contact_candidate = true;
 				}
 				if (right && surface_right && (moveVars.walljumped_side == Walljump::LEFT || jumpedLEFT || wasNONE))
 				{
-					moveVars.walljumped_side = Walljump::RIGHT;
-					moveVars.wallrun_start = pos.y;
-					moveVars.wallrun_current = pos.y + 1.0f;
+					set_contact_candidate = true;
+				}
+
+				if (set_contact_candidate)
+				{
+					// print("contact candidate @" + getGameTime() + ": side was " + moveVars.walljumped_side);
+
+					// are we starting to hit the wall?
+					// then we want our first climb to be a contact
+					moveVars.wallrun_count = 1000;
+				}
+
+				// set contact immediately if jumping at the wall from an angle; not immediately if hugging wall
+                if (set_contact_candidate && ((vel.y >= -0.0f && vel.y < slidespeed && Maths::Abs(blob.getOldVelocity().x) == 0) || Maths::Abs(blob.getOldVelocity().x) > 0 || !wasNONE))
+				{
+					// print("candidate passes, & our velocity is " + vel.y);
+
+					// ready to hit the wall, and conditions align?
+					// reset wallclimb counters and let's start
+					moveVars.walljumped_side = left ? Walljump::LEFT : Walljump::RIGHT;
+					moveVars.wallrun_count = 0;
 					set_contact = true;
 				}
 
-				//wallrun
-				if (!surface_above && vel.y < slidespeed &&
+				// wallrun: is the player still trying to climb up, and is he not falling too fast to allow it
+				if (vel.y < slidespeed &&
 				        ((left && surface_left && !jumpedLEFT) || (right && surface_right && !jumpedRIGHT) || set_contact))
 				{
-					//within range
-					if (set_contact ||
-					        (pos.y - 1.0f < moveVars.wallrun_current &&
-					         pos.y + 1.0f > moveVars.wallrun_start - map.tilesize * moveVars.wallrun_length))
+					// allow 1st climb "unconditionally" (there were checks above)
+					// allow next climbs depending on a velocity condition
+					const bool should_trigger_climb = set_contact || (!set_contact_candidate && vel.y >= -2.0f);
+
+					// limit climbs to an arbitrarily choosen number
+					if (should_trigger_climb && moveVars.wallrun_count < 2)
 					{
-						moveVars.wallrun_current = Maths::Min(pos.y - 1.0f, moveVars.wallrun_current - 1.0f);
+						vel.Set(0, -moveVars.jumpMaxVel * 1.4f);
+						blob.setVelocity(vel);
 
+						// reduce sound spam, especially when climbing 2 air gap large towers
+						if (!set_contact) { blob.getSprite().PlayRandomSound("/StoneJump"); }
+						dust = true;
+
+						++moveVars.wallrun_count;
 						moveVars.walljumped = true;
-						if (set_contact || getGameTime() % 5 == 0)
-						{
-							dust = true;
-
-							f32 wallrun_speed = moveVars.jumpMaxVel * 1.2f;
-
-							if (vel.y > -wallrun_speed || set_contact)
-							{
-								vel.Set(0, -wallrun_speed);
-								blob.setVelocity(vel);
-							}
-
-							if (!set_contact)
-							{
-								if (blob.hasTag("stealth")) return;
-								sprite.PlayRandomSound("/StoneJump");
-							}
-						}
 					}
 					else
 					{
@@ -374,16 +427,19 @@ void onTick(CMovement@ this)
 						moveVars.walljumped_side = Walljump::JUMPED_RIGHT;
 					}
 				}
+
+				if (surface_above)
+				{
+					// prevent any new walljump on that wall if a wall is blocking us above
+					// but allow one to happen (as the code above will have run)
+					moveVars.wallrun_count = 1000;
+				}
 			}
 
 			if (dust)
 			{
-				if(isClient())
-				{
-					Vec2f dust_pos = (Vec2f(right ? 4.0f : -4.0f, 0.0f) + pos);
-					MakeDustParticle(dust_pos, "Smoke.png");
-				}
-				
+				Vec2f dust_pos = (Vec2f(right ? 4.0f : -4.0f, 0.0f) + pos);
+				MakeDustParticle(dust_pos, "Smoke.png");
 			}
 		}
 		else
@@ -401,7 +457,7 @@ void onTick(CMovement@ this)
 				Vec2f force;
 
 				Vec2f vel = blob.getVelocity();
-				if (vel.y >= slidespeed && (facing_left ? groundNormal.x > 0 : groundNormal.x < 0))
+				if (vel.y >= slidespeed && (blob.isFacingLeft() ? groundNormal.x > 0 : groundNormal.x < 0))
 				{
 					f32 temp = vel.y * 0.9f;
 					Vec2f new_vel(vel.x * 0.9f, temp < slidespeed ? slidespeed : temp);
@@ -411,8 +467,7 @@ void onTick(CMovement@ this)
 					{
 						if (!moveVars.wallsliding)
 						{
-							if (blob.hasTag("stealth")) return;
-							sprite.PlayRandomSound("/Scrape");
+							blob.getSprite().PlayRandomSound("/Scrape");
 						}
 
 						//falling for almost a second so add effects
@@ -422,9 +477,7 @@ void onTick(CMovement@ this)
 							if (gametime % (uint(Maths::Max(0, 7 - int(Maths::Abs(vel.y)))) + 3) == 0)
 							{
 								MakeDustParticle(pos, "/dust2.png");
-
-								if (blob.hasTag("stealth")) return;
-								sprite.PlayRandomSound("/Scrape");
+								blob.getSprite().PlayRandomSound("/Scrape");
 							}
 						}
 					}
@@ -439,12 +492,12 @@ void onTick(CMovement@ this)
 
 	if (blob.isKeyPressed(key_up) && moveVars.canVault)
 	{
-
 		// boost over corner
 		Vec2f groundNormal = blob.getGroundNormal();
-		const bool canFreeVault = !on_map && moveVars.jumpCount < 5;
+		bool onMap = blob.isOnMap();
+		bool canFreeVault = !onMap && moveVars.jumpCount < 5;
 		groundNormal.Normalize();
-		const bool sidekeypressed = ((left && (groundNormal.x > 0.1f || canFreeVault)) ||
+		bool sidekeypressed = ((left && (groundNormal.x > 0.1f || canFreeVault)) ||
 		                       (right && (groundNormal.x < -0.1f || canFreeVault)));
 
 		if (sidekeypressed)
@@ -476,8 +529,7 @@ void onTick(CMovement@ this)
 				moveVars.jumpCount = -3;
 
 				moveVars.walljumped_side = Walljump::NONE;
-				moveVars.wallrun_start = pos.y;
-				moveVars.wallrun_current = pos.y;
+				moveVars.wallrun_count = 1000;
 			}
 		}
 	}
@@ -514,11 +566,11 @@ void onTick(CMovement@ this)
 			Vec2f force = Vec2f(0, 0);
 			f32 side = 0.0f;
 
-			if (facing_left && left)
+			if (blob.isFacingLeft() && left)
 			{
 				side = -1.0f;
 			}
-			else if (!facing_left && right)
+			else if (!blob.isFacingLeft() && right)
 			{
 				side = 1.0f;
 			}
@@ -556,17 +608,15 @@ void onTick(CMovement@ this)
 
 			if (moveVars.jumpCount == 1 && is_client)
 			{
-				TileType tile = map.getTile(blob.getPosition() + Vec2f(0.0f, blob.getRadius() + 4.0f)).type;
+				TileType tile = blob.getMap().getTile(blob.getPosition() + Vec2f(0.0f, blob.getRadius() + 4.0f)).type;
 
-				if (blob.hasTag("stealth")) return;
-
-				if (map.isTileGroundStuff(tile))
+				if (blob.getMap().isTileGroundStuff(tile))
 				{
-					sprite.PlayRandomSound("/EarthJump");
+					blob.getSprite().PlayRandomSound("/EarthJump");
 				}
 				else
 				{
-					sprite.PlayRandomSound("/StoneJump");
+					blob.getSprite().PlayRandomSound("/StoneJump");
 				}
 			}
 		}
@@ -577,19 +627,17 @@ void onTick(CMovement@ this)
 	bool stop = true;
 	if (!onground)
 	{
-		if (isknocked){
+		if (isknocked)
 			stop = false;
-		}
-		else if (blob.hasTag("dont stop til ground")){
+		else if (blob.hasTag("dont stop til ground"))
 			stop = false;
-		}
 	}
 	else
 	{
 		blob.Untag("dont stop til ground");
 	}
 
-	const bool left_or_right = (left || right);
+	bool left_or_right = (left || right);
 	{
 		// carrying heavy
 		CBlob@ carryBlob = blob.getCarriedBlob();
@@ -619,17 +667,20 @@ void onTick(CMovement@ this)
 				moveVars.jumpFactor *= 0.03f;
 			}
 			else if (medium_weight)
+			if (carryBlob.hasTag("medium weight"))
 			{
 				moveVars.walkFactor *= 0.8f;
 				moveVars.jumpFactor *= 0.8f;
 			}
-			else if (heavy_weight)
+			else if (carryBlob.hasTag("heavy weight"))
 			{
 				moveVars.walkFactor *= 0.6f;
 				moveVars.jumpFactor *= 0.5f;
 			}
 		}
 
+		bool facingleft = blob.isFacingLeft();
+		bool stand = blob.isOnGround() || blob.isOnLadder();
 		Vec2f walkDirection;
 		const f32 turnaroundspeed = 1.3f;
 		const f32 normalspeed = 1.0f;
@@ -641,7 +692,7 @@ void onTick(CMovement@ this)
 			{
 				walkDirection.x += turnaroundspeed;
 			}
-			else if (facing_left)
+			else if (facingleft)
 			{
 				walkDirection.x += backwardsspeed;
 			}
@@ -657,7 +708,7 @@ void onTick(CMovement@ this)
 			{
 				walkDirection.x -= turnaroundspeed;
 			}
-			else if (!facing_left)
+			else if (!facingleft)
 			{
 				walkDirection.x -= backwardsspeed;
 			}
@@ -685,7 +736,7 @@ void onTick(CMovement@ this)
 
 			Vec2f stop_force;
 
-			const bool greater = vel.x > 0;
+			bool greater = vel.x > 0;
 			f32 absx = greater ? vel.x : -vel.x;
 
 			if (moveVars.walljumped)
@@ -799,16 +850,25 @@ bool checkForSolidMapBlob(CMap@ map, Vec2f pos, CBlob@ blob = null)
 		@_tempShape = _tempBlob.getShape();
 		if (_tempShape.isStatic())
 		{
-			if (_tempBlob.getName() == "wooden_platform")
+			if (blob !is null && (_tempBlob.getName() == "wooden_platform" || _tempBlob.getName() == "bridge"))
 			{
 				f32 angle = _tempBlob.getAngleDegrees();
-				if (angle > 180)
-					angle -= 360;
-				angle = Maths::Abs(angle);
-				if (angle < 30 || angle > 150)
+				Vec2f runnerPos = blob.getPosition();
+				Vec2f platPos = _tempBlob.getPosition();
+
+				if (angle == 90.0f && runnerPos.x > platPos.x && (blob.isKeyPressed(key_left) || blob.wasKeyPressed(key_left)))
 				{
-					return false;
+					// platform is facing right
+					return true;
+
 				}
+				else if(angle == 270.0f && runnerPos.x < platPos.x && (blob.isKeyPressed(key_right) || blob.wasKeyPressed(key_right)))
+				{
+					// platform is facing left
+					return true;
+				}
+
+				return false;
 			}
 
 			if (blob !is null && !blob.doesCollideWithBlob(_tempBlob))
@@ -844,7 +904,7 @@ void HandleStuckAtTop(CBlob@ this)
 				for (int dir = -1; dir <= 1 && !found; dir += 2)
 				{
 					tx = pos.x + (dir * i) * map.tilesize;
-					if(!map.isTileSolid(Vec2f(tx, y)))
+					if (!map.isTileSolid(Vec2f(tx, y)))
 					{
 						found = true;
 					}
