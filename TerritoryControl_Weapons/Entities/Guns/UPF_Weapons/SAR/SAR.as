@@ -116,6 +116,7 @@ void onTick(CBlob@ this)
 				this.set("gun_settings", @settings);
 				
 				this.Untag("CustomSemiAuto");
+				this.set_bool("mode", true);
 			}
 			else
 			{
@@ -164,11 +165,11 @@ void onTick(CBlob@ this)
 
 				//Custom
 				this.Tag("CustomSemiAuto");
+				this.set_bool("mode", false);
 			}
 			CBlob@ mat = server_CreateBlob("mat_rifleammo", -1, holder.getPosition());//give back ammo
 			mat.server_SetQuantity(this.get_u8("clip"));
 			this.set_u8("clip", 0); //unload gun
-			this.set_bool("mode", !this.get_bool("mode"));
 			if(isClient())
 			{
 				this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
