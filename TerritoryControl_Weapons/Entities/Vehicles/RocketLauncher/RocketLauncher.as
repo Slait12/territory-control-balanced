@@ -10,6 +10,7 @@ void onInit(CBlob@ this)
 {
 	this.Tag("usable by anyone");
 	this.Tag("turret");
+	this.Tag("heavy weight");
 
 	Vehicle_Setup(this,
 	              0.0f, // move speed
@@ -195,12 +196,6 @@ void MakeParticle(CBlob@ this, const Vec2f vel, const string filename = "SmallSt
 	ParticleAnimated(filename, this.getPosition() + offset, vel, float(XORRandom(360)), 1.0f, 2 + XORRandom(3), -0.1f, false);
 }
 
-bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
-{
-	return true;
-	// return this.getTeamNum() == byBlob.getTeamNum();
-}
-
 bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)
 {
 	return blob.getShape().isStatic() && blob.isCollidable();
@@ -219,6 +214,24 @@ bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
 	CInventory@ inv = forBlob.getInventory();
 
 	return forBlob.getCarriedBlob() is null && (inv !is null ? inv.getItem(v.ammo_name) is null : true);
+}
+
+u8 GetAmmo(CBlob@ this)
+{
+	if (this.getTeamNum() == 250) return 50;
+
+	CInventory@ inv = this.getInventory();
+	if (inv != null)
+	{
+		if (inv.getItem(0) != null) return inv.getItem(0).getQuantity();
+	}
+
+	return 0;
+}
+
+bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
+{
+	return byBlob.getTeamNum() == this.getTeamNum() && GetAmmo(this) == 0;
 }
 
 void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)

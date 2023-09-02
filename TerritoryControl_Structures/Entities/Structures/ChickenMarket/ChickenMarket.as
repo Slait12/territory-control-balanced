@@ -48,12 +48,6 @@ void onInit(CBlob@ this)
 	this.set_u8("shop icon", 25);
 	this.Tag("chickenmarket");
 
-	// {
-		// ShopItem@ s = addShopItem(this, "Sell Grain (1)", "$COIN$", "coin-40", "Sell 1 Grain for 40 coins.");
-		// AddRequirement(s.requirements, "blob", "grain", "Grain", 1);
-		// s.spawnNothing = true;
-	// }
-
 	this.set_string("shop_owner", "");
 	this.addCommandID("buyout");
 	this.addCommandID("write");
@@ -133,7 +127,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Peacekeeper", "$icon_sentry$", "sentry-400", "A small sentry gun that uses Machine Gun ammo. Automatically operated.");
+		ShopItem@ s = addShopItem(this, "Peacekeeper", "$icon_sentry$", "sentry-400", "A small sentry gun that uses Machine Gun ammo. Automatically operated.\n\\n\May be only carried around when not holding anything.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 5999);
 		s.spawnNothing = true;
 	}

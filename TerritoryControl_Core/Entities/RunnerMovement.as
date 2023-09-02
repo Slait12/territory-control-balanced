@@ -667,12 +667,11 @@ void onTick(CMovement@ this)
 				moveVars.jumpFactor *= 0.03f;
 			}
 			else if (medium_weight)
-			if (carryBlob.hasTag("medium weight"))
 			{
 				moveVars.walkFactor *= 0.8f;
 				moveVars.jumpFactor *= 0.8f;
 			}
-			else if (carryBlob.hasTag("heavy weight"))
+			else if (heavy_weight)
 			{
 				moveVars.walkFactor *= 0.6f;
 				moveVars.jumpFactor *= 0.5f;
