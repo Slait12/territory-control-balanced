@@ -89,10 +89,10 @@ void onTick(CBlob@ this)
 		
 		if (holder is null) return;
 		
-		if (point.isKeyPressed(key_action2) && getGameTime() > this.get_u32("nextStab") && !isKnocked(holder))
+		if (point.isKeyPressed(key_action2) &&!this.get_bool("doReload") && this.get_u8("actionInterval") == 0 && !isKnocked(holder))
 		{
 			this.set_f32("gun_recoil_current", -14); //Using the gun kickback variable for pushing forward
-			this.set_u32("nextStab", getGameTime() + 18);
+			this.add_u8("actionInterval", 18);
 			if(isClient()) this.getSprite().PlaySound("ArgLong");
 
 			HitInfo@[] hitInfos;
