@@ -1,4 +1,5 @@
 #include "GunCommon.as";
+#include "MakeMat.as";
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
@@ -113,9 +114,8 @@ void onTick(CBlob@ this)
 				settings.MUZZLE_OFFSET = Vec2f(-18, -1.5); //Where the muzzle flash appears
 
 				this.set("gun_settings", @settings);
-					
+				
 				this.Untag("CustomSemiAuto");
-				this.set_u8("clip", 0); //unload gun
 			}
 			else
 			{
@@ -164,9 +164,10 @@ void onTick(CBlob@ this)
 
 				//Custom
 				this.Tag("CustomSemiAuto");
-					
-				this.set_u8("clip", 0); //unload gun
 			}
+			CBlob@ mat = server_CreateBlob("mat_rifleammo", -1, holder.getPosition());//give back ammo
+			mat.server_SetQuantity(this.get_u8("clip"));
+			this.set_u8("clip", 0); //unload gun
 			this.set_bool("mode", !this.get_bool("mode"));
 			if(isClient())
 			{
