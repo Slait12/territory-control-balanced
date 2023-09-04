@@ -89,7 +89,7 @@ void onTick(CBlob@ this)
 		{
 			this.set_f32("gun_recoil_current", -14); //Using the gun kickback variable for pushing forward
 			this.add_u8("actionInterval", 18);
-			if(isClient()) this.getSprite().PlaySound("ArgLong");
+			if(isClient()) this.getSprite().PlaySound("SwordSlash");
 
 			HitInfo@[] hitInfos;
 			if (getMap().getHitInfosFromArc(this.getPosition(), -(holder.getAimPos() - this.getPosition()).Angle(), 30, 28, this, @hitInfos))
@@ -111,19 +111,19 @@ void onTick(CBlob@ this)
 		CSprite@ sprite = this.getSprite();
 		if (sprite is null) return;
 			
-		u32 diff = this.get_u32("nextStab") - getGameTime();
+		u32 interval = this.get_u32("actionInterval");
 		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
 		if (stab !is null)
 		{
-			if (diff == 17) 
+			if (interval == 17) 
 			{
 				stab.SetVisible(true); 
 				stab.SetFrameIndex(0);
 			}
-			else if (diff == 16) stab.SetFrameIndex(1);
-			else if (diff == 15) stab.SetFrameIndex(2);
-			else if (diff == 14) stab.SetFrameIndex(3);
-			else if (diff == 12) stab.SetVisible(false);
+			else if (interval == 16) stab.SetFrameIndex(1);
+			else if (interval == 15) stab.SetFrameIndex(2);
+			else if (interval == 14) stab.SetFrameIndex(3);
+			else if (interval == 12) stab.SetVisible(false);
 		}
 	}
 }
