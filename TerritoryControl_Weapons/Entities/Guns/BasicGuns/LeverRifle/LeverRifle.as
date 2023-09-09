@@ -112,7 +112,7 @@ void onTick(CBlob@ this)
 		CSprite@ sprite = this.getSprite();
 		if (sprite is null) return;
 			
-		u32 interval = this.get_u32("actionInterval");
+		u8 interval = this.get_u8("actionInterval");
 		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
 		if (stab !is null)
 		{
