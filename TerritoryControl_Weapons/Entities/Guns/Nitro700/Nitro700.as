@@ -88,8 +88,9 @@ void onTick(CBlob@ this)
 		if (point.isKeyPressed(key_action2) &&!this.get_bool("doReload") && this.get_u8("actionInterval") == 0 && !isKnocked(holder))
 		{
 			this.set_f32("gun_recoil_current", -14); //Using the gun kickback variable for pushing forward
-			this.add_u8("actionInterval", 18);
+			this.set_u8("actionInterval", 18);
 			if(isClient()) this.getSprite().PlaySound("SwordSlash");
+			this.Tag("stabbing");
 
 			HitInfo@[] hitInfos;
 			if (getMap().getHitInfosFromArc(this.getPosition(), -(holder.getAimPos() - this.getPosition()).Angle(), 30, 28, this, @hitInfos))
@@ -106,24 +107,30 @@ void onTick(CBlob@ this)
 					}
 				}
 			}
-		
 		}
-		CSprite@ sprite = this.getSprite();
-		if (sprite is null) return;
-			
-		u8 interval = this.get_u8("actionInterval");
-		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
-		if (stab !is null)
+		if (this.hasTag("stabbing"))
 		{
-			if (interval == 17) 
+			CSprite@ sprite = this.getSprite();
+			if (sprite is null) return;
+				
+			u8 interval = this.get_u8("actionInterval");
+			CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
+			if (stab !is null)
 			{
-				stab.SetVisible(true); 
-				stab.SetFrameIndex(0);
+				if (interval == 17) 
+				{
+					stab.SetVisible(true); 
+					stab.SetFrameIndex(0);
+				}
+				else if (interval == 16) stab.SetFrameIndex(1);
+				else if (interval == 15) stab.SetFrameIndex(2);
+				else if (interval == 14) stab.SetFrameIndex(3);
+				else if (interval == 12) 
+				{
+					stab.SetVisible(false);
+					this.Untag("stabbing");
+				}
 			}
-			else if (interval == 16) stab.SetFrameIndex(1);
-			else if (interval == 15) stab.SetFrameIndex(2);
-			else if (interval == 14) stab.SetFrameIndex(3);
-			else if (interval == 12) stab.SetVisible(false);
 		}
 	}
 }
@@ -136,5 +143,6 @@ void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint@ attachedPoint)
 		CSpriteLayer@ stab = sprite.getSpriteLayer("stab");
 		if (stab !is null) stab.SetVisible(false);
 		stab.SetVisible(false);
+		this.Untag("stabbing");
 	}
 }
