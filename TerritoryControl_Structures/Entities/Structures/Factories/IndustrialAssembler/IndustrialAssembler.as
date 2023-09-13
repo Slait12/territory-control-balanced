@@ -28,20 +28,8 @@ void onInit(CSprite@ this)
 		if (gear !is null)
 		{
 			Animation@ anim = gear.addAnimation("default", 0, false);
-			anim.AddFrame(3);
-			gear.SetOffset(Vec2f(-10.0f, -4.0f));
-			gear.SetAnimation("default");
-			gear.SetRelativeZ(-60);
-		}
-	}
-	{
-		this.RemoveSpriteLayer("gear2");
-		CSpriteLayer@ gear = this.addSpriteLayer("gear2", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
-		if (gear !is null)
-		{
-			Animation@ anim = gear.addAnimation("default", 0, false);
-			anim.AddFrame(3);
-			gear.SetOffset(Vec2f(17.0f, -10.0f));
+			anim.AddFrame(4);
+			gear.SetOffset(Vec2f(-8.0f, 1.0f));
 			gear.SetAnimation("default");
 			gear.SetRelativeZ(-60);
 		}
@@ -52,8 +40,8 @@ void onInit(CSprite@ this)
 		if (gear !is null)
 		{
 			Animation@ anim = gear.addAnimation("default", 0, false);
-			anim.AddFrame(3);
-			gear.SetOffset(Vec2f(6.0f, -4.0f));
+			anim.AddFrame(4);
+			gear.SetOffset(Vec2f(5.0f, 1.0f));
 			gear.SetAnimation("default");
 			gear.SetRelativeZ(-60);
 			gear.RotateBy(-22, Vec2f(0.0f,0.0f));
