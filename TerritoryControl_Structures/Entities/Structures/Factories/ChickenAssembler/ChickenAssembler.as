@@ -168,6 +168,7 @@ void onInit(CBlob@ this)
 	this.set_u8("crafting", 0);
 
 	this.Tag("ignore extractor");
+	this.Tag("electricsound");
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

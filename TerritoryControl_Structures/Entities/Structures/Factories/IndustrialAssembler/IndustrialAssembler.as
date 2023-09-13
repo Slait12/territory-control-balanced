@@ -639,6 +639,7 @@ void onInit(CBlob@ this)
 	this.set_string("drawText", "Production Plan: Unlimited");
 	
 	this.Tag("ignore extractor");
+	this.Tag("electricsound");
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

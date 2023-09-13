@@ -37,7 +37,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 		if (this.get_bool("state"))
 		{
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 1.2f);
-			if (this.getName() == "chickenassembler") this.getSprite().PlaySound("ChargeLanceCycle.ogg", 2.0f, 1.5f);
+			if (this.hasTag("electricsound")) this.getSprite().PlaySound("ChargeLanceCycle.ogg", 2.0f, 1.5f);
 		} else {
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
 		}
