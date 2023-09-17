@@ -136,7 +136,7 @@ void onTick(CBlob@ this)
 			{
 				u8 team = holder.getTeamNum();
 				
-				this.getSprite().PlaySound("SwingHeavy3.ogg", 1.00f, 1.00f);
+				this.getSprite().PlaySound("SwingHeavy3.ogg", 1.00f, 1.20f);
 				HitInfo@[] hitInfos;
 				if (getMap().getHitInfosFromArc(this.getPosition(), -(holder.getAimPos() - this.getPosition()).Angle(), 90, 24, this, @hitInfos))
 				{

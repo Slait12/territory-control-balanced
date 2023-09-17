@@ -24,7 +24,7 @@ class GunSettings
 	
 	int8 B_SPREAD; //The higher the value, the more 'uncontrollable' bullets get
 	bool INCREASE_SPREAD; //Should the spread increase as you shoot. Default is false
-	float SPREAD_FACTOR; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+	float SPREAD_FACTOR; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * Max:(SPREAD_FACTOR, (Number of shoots * SPREAD_FACTOR)). Does not affect cursor.
 	int8 MAX_SPREAD; //Maximum spread the weapon can reach. Also determines how big cursor can become
 	int8 CURSOR_SIZE; //Size of crosshair that appear when you hold a Gun
 	bool ENLARGE_CURSOR; //Should we enlarge cursor as you shoot. Default is true

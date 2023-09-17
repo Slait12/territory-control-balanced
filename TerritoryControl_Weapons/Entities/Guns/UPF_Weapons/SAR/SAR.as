@@ -29,7 +29,7 @@ void onInit(CBlob@ this)
 	//Spread & Cursor
 	settings.B_SPREAD = 1; //the higher the value, the more 'uncontrollable' bullets get
 	settings.INCREASE_SPREAD = true; //Should the spread increase as you shoot. Default is false
-	settings.SPREAD_FACTOR = 0.8; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+	settings.SPREAD_FACTOR = 0.8; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * Max:(SPREAD_FACTOR, (Number of shoots * SPREAD_FACTOR)). Does not affect cursor.
 	settings.MAX_SPREAD = 7; //Maximum spread the weapon can reach. Also determines how big cursor can become
 	settings.CURSOR_SIZE = 10; //Size of crosshair that appear when you hold a Gun
 	settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot. Default is true
@@ -93,7 +93,7 @@ void onTick(CBlob@ this)
 				//Spread & Cursor
 				settings.B_SPREAD = 1; //the higher the value, the more 'uncontrollable' bullets get
 				//settings.INCREASE_SPREAD = false; //Should the spread increase as you shoot. Default is false
-				settings.SPREAD_FACTOR = 0.0; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+				settings.SPREAD_FACTOR = 0.0; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * Max:(SPREAD_FACTOR, (Number of shoots * SPREAD_FACTOR)). Does not affect cursor.
 				settings.MAX_SPREAD = 7; //Maximum spread the weapon can reach. Also determines how big cursor can become
 				settings.CURSOR_SIZE = 10; //Size of crosshair that appear when you hold a Gun
 				settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot. Default is true
@@ -140,7 +140,7 @@ void onTick(CBlob@ this)
 				//Spread & Cursor
 				settings.B_SPREAD = 1; //the higher the value, the more 'uncontrollable' bullets get
 				settings.INCREASE_SPREAD = true; //Should the spread increase as you shoot. Default is false
-				settings.SPREAD_FACTOR = 0.8; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * (Number of shoots * SPREAD_FACTOR). Does not affect cursor.
+				settings.SPREAD_FACTOR = 0.8; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * Max:(SPREAD_FACTOR, (Number of shoots * SPREAD_FACTOR)). Does not affect cursor.
 				settings.MAX_SPREAD = 7; //Maximum spread the weapon can reach. Also determines how big cursor can become
 				settings.CURSOR_SIZE = 10; //Size of crosshair that appear when you hold a Gun
 				settings.ENLARGE_CURSOR = true; //Should we enlarge cursor as you shoot. Default is true

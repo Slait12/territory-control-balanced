@@ -318,7 +318,7 @@ void onTick(CBlob@ this)
 					fromBarrel = fromBarrel.RotateBy(aimangle);
 
 					f32 spr = 0;
-					f32 tempspr = settings.B_SPREAD * (Burst * settings.SPREAD_FACTOR);
+					f32 tempspr = settings.B_SPREAD * Maths::Max(1, (this.get_u16("Burst") * settings.SPREAD_FACTOR));
 						
 					if ((settings.B_SPREAD != 0 && settings.B_PER_SHOT == 1))
 					{

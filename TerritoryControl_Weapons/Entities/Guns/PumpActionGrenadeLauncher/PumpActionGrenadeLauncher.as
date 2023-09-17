@@ -1,4 +1,5 @@
 #include "GunCommon.as";
+#include "MakeMat.as";
 
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
@@ -14,7 +15,7 @@ void onInit(CBlob@ this)
 	//General
 	//settings.CLIP = 0; //Amount of ammunition in the gun at creation
 	settings.TOTAL = 1; //Max amount of ammo that can be in a clip
-	settings.FIRE_INTERVAL = 20; //Time in between shots
+	settings.FIRE_INTERVAL = 4; //Time in between shots
 	settings.RELOAD_TIME = 45; //Time it takes to reload (in ticks)
 	settings.AMMO_BLOB = "mat_grenade"; //Ammunition the gun takes
 
@@ -61,133 +62,190 @@ void onTick(CBlob@ this)
 		AttachmentPoint@ point = this.getAttachments().getAttachmentPointByName("PICKUP");
 		CBlob@ holder = point.getOccupied();
 		
-		GunSettings@ settings;
-		if (!this.get("gun_settings", @settings)) return;
-		
 		if (holder is null) return;
 		
-		if (point.isKeyJustPressed(key_action2) && !this.get_bool("doReload"))
+		if (point.isKeyJustPressed(key_action2) && this.get_u8("actionInterval") == 0)
 		{
-			CInventory@ inv = holder.getInventory();
-			
-			if (inv !is null)
-			{ 	
-				u16 items = inv.getItemsCount();
-				u8 mode = this.get_u8("AmmoTypeNumber");
-				bool end = false;
-				for (u16 q = 0; q < 4; q++)
-				{
-					if (mode == 0)
+			if(isServer())
+			{
+				CBitStream params;
+				params.write_u16(holder.getNetworkID());
+				print("sending");
+				this.SendCommand(this.getCommandID("set_grenade"),params);
+			}
+		}
+		/*this.Sync("ProjBlob", true);
+		this.Sync("settings.AMMO_BLOB", true);
+		this.Sync("AmmoTypeNumber", true);*/
+	}
+}
+
+void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
+{
+	if (cmd == this.getCommandID("set_grenade"))
+	{
+		u16 netid = params.read_u16();
+		CBlob@ caller = getBlobByNetworkID(netid);
+		GunSettings@ settings;
+		if (!this.get("gun_settings", @settings)) return;
+
+		if (caller !is null && settings !is null)
+		{
+			if (this.get_u8("actionInterval") == 0)
+			{
+				CInventory@ inv = caller.getInventory();
+					
+				if (inv !is null)
+				{ 	
+					u16 items = inv.getItemsCount();
+					u8 mode = this.get_u8("AmmoTypeNumber");
+					bool end = false;
+					for (u16 q = 0; q < 4; q++) //tries to switch to the next ammo type, if couldnt tries to switch to ammo type that stands behind, if got to last ammo type returns to first
 					{
-						for (u16 i = 0; i < items; i++)
+						if (mode == 0)
 						{
-							CBlob@ item = inv.getItem(i);
-							if (item is null) continue;
-							if (item.getName() == "mat_stickygrenade") 
+							for (u16 i = 0; i < items; i++)
 							{
-								settings.AMMO_BLOB = "mat_stickygrenade";
-								this.set_string("ProjBlob", "stickygrenade");
-								this.set_u8("AmmoTypeNumber", 1);
-								this.set_u8("clip", 0);
-								bool end = true;
-								this.set_string("DrawText", "Sticky Grenade");
-								this.set_u32("ShowTime", getGameTime() + 60);
-								//print("stickygrenade");
-								if(isClient())
+								CBlob@ item = inv.getItem(i);
+								if (item is null) continue;
+								if (item.getName() == "mat_stickygrenade") 
 								{
-									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									if(isServer())
+									{
+										if (this.get_u8("clip") > 0)
+										{
+											CBlob@ mat = server_CreateBlob(settings.AMMO_BLOB, -1, caller.getPosition());//give back ammo
+											if (mat !is null) mat.server_SetQuantity(this.get_u8("clip"));
+										}
+									}
+									this.setInventoryName("Grenade Launhcer (Sticky Grenade)");
+									settings.AMMO_BLOB = "mat_stickygrenade";
+									this.set_string("ProjBlob", "stickygrenade");
+									this.set_u8("AmmoTypeNumber", 1);
+									this.set_u8("clip", 0);
+									bool end = true;
+									this.set_string("DrawText", "Sticky Grenade");
+									this.set_u32("ShowTime", getGameTime() + 60);
+									//print("stickygrenade");
+									if(isClient())
+									{
+										this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									}
+									return;
 								}
-								return;
 							}
 						}
-					}
-					if (mode == 1)
-					{	
-						for (u16 i = 0; i < items; i++)
-						{
-							CBlob@ item = inv.getItem(i);
-							if (item is null) continue;
-							if (item.getName() == "mat_flamegrenade") 
+						if (mode == 1)
+						{	
+							for (u16 i = 0; i < items; i++)
 							{
-								settings.AMMO_BLOB = "mat_flamegrenade";
-								this.set_string("ProjBlob", "flamegrenade");
-								this.set_u8("AmmoTypeNumber", 2);
-								this.set_u8("clip", 0);
-								bool end = true;
-								this.set_string("DrawText", "Flame Grenade");
-								this.set_u32("ShowTime", getGameTime() + 60);
-								//print("flamegrenade");
-								if(isClient())
+								CBlob@ item = inv.getItem(i);
+								if (item is null) continue;
+								if (item.getName() == "mat_flamegrenade") 
 								{
-									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									if(isServer())
+									{
+										if (this.get_u8("clip") > 0)
+										{
+											CBlob@ mat = server_CreateBlob(settings.AMMO_BLOB, -1, caller.getPosition());//give back ammo
+											if (mat !is null) mat.server_SetQuantity(this.get_u8("clip"));
+										}
+									}
+									this.setInventoryName("Grenade Launhcer (Flame Grenade)");
+									settings.AMMO_BLOB = "mat_flamegrenade";
+									this.set_string("ProjBlob", "flamegrenade");
+									this.set_u8("AmmoTypeNumber", 2);
+									this.set_u8("clip", 0);
+									bool end = true;
+									this.set_string("DrawText", "Flame Grenade");
+									this.set_u32("ShowTime", getGameTime() + 60);
+									//print("flamegrenade");
+									if(isClient())
+									{
+										this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									}
+									return;
 								}
-								return;
 							}
 						}
-					}
-					if (mode == 2)
-					{
-						for (u16 i = 0; i < items; i++)
+						if (mode == 2)
 						{
-							CBlob@ item = inv.getItem(i);
-							if (item is null) continue;
-							if (item.getName() == "mat_acidgrenade") 
+							for (u16 i = 0; i < items; i++)
 							{
-								settings.AMMO_BLOB = "mat_acidgrenade";
-								this.set_string("ProjBlob", "acidgrenade");
-								this.set_u8("AmmoTypeNumber", 3);
-								this.set_u8("clip", 0);
-								bool end = true;
-								this.set_string("DrawText", "Acid Grenade");
-								this.set_u32("ShowTime", getGameTime() + 60);
-								print("acidgrenade");
-								if(isClient())
+								CBlob@ item = inv.getItem(i);
+								if (item is null) continue;
+								if (item.getName() == "mat_acidgrenade") 
 								{
-									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									if(isServer())
+									{
+										if (this.get_u8("clip") > 0)
+										{
+											CBlob@ mat = server_CreateBlob(settings.AMMO_BLOB, -1, caller.getPosition());//give back ammo
+											if (mat !is null) mat.server_SetQuantity(this.get_u8("clip"));
+										}
+									}
+									this.setInventoryName("Grenade Launhcer (Acid Grenade)");
+									settings.AMMO_BLOB = "mat_acidgrenade";
+									this.set_string("ProjBlob", "acidgrenade");
+									this.set_u8("AmmoTypeNumber", 3);
+									this.set_u8("clip", 0);
+									bool end = true;
+									this.set_string("DrawText", "Acid Grenade");
+									this.set_u32("ShowTime", getGameTime() + 60);
+									//print("acidgrenade");
+									if(isClient())
+									{
+										this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									}
+									return;
 								}
-								return;
 							}
 						}
-					}
-					if (mode == 3)
-					{
-						for (u16 i = 0; i < items; i++)
+						if (mode == 3)
 						{
-							CBlob@ item = inv.getItem(i);
-							if (item is null) continue;	
-							if (item.getName() == "mat_grenade") 
+							for (u16 i = 0; i < items; i++)
 							{
-								settings.AMMO_BLOB = "mat_grenade";
-								this.set_string("ProjBlob", "grenade");
-								this.set_u8("AmmoTypeNumber", 0);
-								this.set_u8("clip", 0);
-								bool end = true;
-								this.set_string("DrawText", "Grenade");
-								this.set_u32("ShowTime", getGameTime() + 60);
-								//print("grenade");
-								if(isClient())
+								CBlob@ item = inv.getItem(i);
+								if (item is null) continue;	
+								if (item.getName() == "mat_grenade") 
 								{
-									this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									if(isServer())
+									{
+										if (this.get_u8("clip") > 0)
+										{
+											CBlob@ mat = server_CreateBlob(settings.AMMO_BLOB, -1, caller.getPosition());//give back ammo
+											if (mat !is null) mat.server_SetQuantity(this.get_u8("clip"));
+										}
+									}
+									this.setInventoryName("Grenade Launhcer (Grenade)");
+									settings.AMMO_BLOB = "mat_grenade";
+									this.set_string("ProjBlob", "grenade");
+									this.set_u8("AmmoTypeNumber", 0);
+									this.set_u8("clip", 0);
+									bool end = true;
+									this.set_string("DrawText", "Grenade");
+									this.set_u32("ShowTime", getGameTime() + 60);
+									//print("grenade");
+									if(isClient())
+									{
+										this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
+									}
+									return;
 								}
-								return;
 							}
 						}
-					}
-					if (mode < 3) {mode++;}
-					else {mode = 0;}
-					//string e = mode;
-					//string t = end;
-					//print(e);
-					//print(t);
-					if (end)
-					{
-						return;
+						if (mode < 3) mode++;
+						else mode = 0;
+						//string e = mode;
+						//string t = end;
+						//print(e);
+						//print(t);
+						if (end)
+						{
+							return;
+						}
 					}
 				}
-			mode = this.get_u8("AmmoTypeNumber");
-			this.Sync("ProjBlob", true);
-			this.Sync("settings.AMMO_BLOB", true);
-			this.Sync("AmmoTypeNumber", true);
 			}
 		}
 	}
@@ -202,6 +260,12 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 
 void onRender(CSprite@ this)
 {
+	CPlayer@ local = getLocalPlayer();
+	CBlob@ localBlob = local.getBlob();
+
+	if (local is null || localBlob is null)
+	return;
+		
 	CBlob@ blob = this.getBlob();
 	
 	u16 holderID = blob.get_u16("showHeatTo");
