@@ -53,4 +53,5 @@ void onInit(CBlob@ this)
 	this.Tag("powerful");
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 	this.set_f32("CustomBulletLength", 18.0f);
+	this.set_u16("CustomAccelerationSpeed", 4);
 }
