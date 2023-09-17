@@ -162,7 +162,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Nitro 700", "$nitro700$", "nitro700", "Strong gun used to take down buffalos, not badgers.\n\nPerfect for aggressive attack. $icon_sniperammo$\n\nPress [RMB] to stab with bayonet.\n\nAmmo Capacity = 2\n\nDamage = 6.8\n\nFire Rate = 1");
+		ShopItem@ s = addShopItem(this, "Nitro 700", "$nitro700_icon$", "nitro700", "Strong gun used to take down buffalos, not badgers.\n\nPerfect for aggressive attack. $icon_sniperammo$\n\nPress [RMB] to stab with bayonet.\n\nAmmo Capacity = 2\n\nDamage = 6.8\n\nFire Rate = 1");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 350);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);
@@ -337,7 +337,7 @@ void addTokens(CBlob@ this)
 
 	AddIconToken("$rp46$", "RP-46.png", Vec2f(34, 12), 0, teamnum);
 	AddIconToken("$tkb521$", "TKB-521.png", Vec2f(34, 14), 0, teamnum);
-	AddIconToken("$m712$", "M712.png", Vec2f(19, 11), 0, teamnum);
+	AddIconToken("$nitro700_icon$", "Nitro700_icon.png", Vec2f(38, 12), 0, teamnum);
 	AddIconToken("$icon_grenadelauncher$", "PumpActionGrenadeLauncher.png", Vec2f(22, 9), 0, teamnum);
 	AddIconToken("$icon_thunderbolt$", "Thunderbolt.png", Vec2f(24, 10), 0, teamnum);
 	AddIconToken("$icon_mine$", "Mine.png", Vec2f(16, 16), 1, teamnum);
