@@ -448,8 +448,18 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 }
 
-void onChangeTeam(CBlob@ this)
+void onChangeTeam(CBlob@ this, const int oldTeam)
 {
-	if (this.getTeamNum() < 7) this.RemoveScript("TunnelTravel.as");
-	else this.AddScript("TunnelTravel.as");
+	if (this.getTeamNum() < 7)
+	{
+		this.RemoveScript("TunnelTravel.as");
+		this.Untag("teamlocked tunnel");
+		this.Untag("travel tunnel");
+	}
+	else 
+	{
+		this.AddScript("TunnelTravel.as");
+		this.Tag("teamlocked tunnel");
+		this.Tag("travel tunnel");
+	}
 }
