@@ -705,7 +705,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://discord.com/channels/1120062272128159746/1120081753395167393");
+				OpenWebsite("https://discord.com/channels/1120062272128159746/1120084119058141195");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
