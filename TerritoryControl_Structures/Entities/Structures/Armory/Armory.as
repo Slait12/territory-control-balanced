@@ -151,7 +151,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Crossbow", "$crossbow$", "crossbow", "A hand-made ranged weapon.\nUses arrows to shoot.\nYou can set arrow type while holding different arrows near it.");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
-		AddRequirement(s.requirements, "coin", "", "Coins", 250);
+		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -288,7 +288,7 @@ void addTokens(CBlob@ this)
 
 bool canPickup(CBlob@ blob)
 {
-	return blob.hasTag("weapon") || blob.hasTag("ammo") || blob.hasTag("armor");
+	return blob.hasTag("weapon") || blob.hasTag("ammo") || blob.hasTag("armor") || blob.hasTag("armory_storable");
 }
 
 void onTick(CBlob@ this)

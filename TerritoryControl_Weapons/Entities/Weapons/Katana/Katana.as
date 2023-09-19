@@ -12,6 +12,7 @@ void onInit(CBlob@ this)
 	this.set_u32("dash time", 0);
 	this.set_u16("holderid", 0);
 	this.Tag("no_bullet_collision");
+	this.Tag("armory_storable");
 	bool IsSoundPlayed = this.get_bool("IsSoundPlayed");
 	this.set_bool("IsSoundPlayed", true);
 
