@@ -312,7 +312,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("compositearmor", 1, "Compostie Armor");
-		AddRequirement(i.reqs, "blob", "mat_mithrilrilingot", "Mithril Ingot", 14);
+		AddRequirement(i.reqs, "blob", "mat_mithrilril", "Mithril Ingot", 14);
 		AddRequirement(i.reqs, "blob", "mat_copperingot", "Copper Ingot", 18);
 		items.push_back(i);
 	}
