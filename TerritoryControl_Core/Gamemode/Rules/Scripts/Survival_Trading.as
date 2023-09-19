@@ -108,18 +108,16 @@ void Reset(CRules@ this)
 	if (kill_traders_and_shops)
 	{
 		KillTradingPosts();
-	}
+	}*/
 
-	//at least 50 coins to play with each round
 	for (int i = 0; i < getPlayersCount(); i++)
 	{
 		CPlayer@ player = getPlayer(i);
 		if (player is null) continue;
 
-		//player.server_setCoins(Maths::Max(player.getCoins(), min_coins));
-	}*/
+		player.server_setCoins(1500);
+	}
 
-	//not needed ^
 	
 
 }
