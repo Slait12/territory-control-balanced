@@ -24,7 +24,7 @@ const string[] OffiMaps = {
 	"Ginger_TC_Murderholes_V2",
 	"Tenshi_TC_WellOiledMachine_v2",
 	"Xeno_Plains&Hills",
-	"Balanced_TC_FallenIslands",
+	//"Balanced_TC_FallenIslands",
 };
 
 const string[] MemeMaps = {
