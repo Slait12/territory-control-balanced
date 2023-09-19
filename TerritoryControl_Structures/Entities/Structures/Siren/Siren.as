@@ -26,6 +26,10 @@ void onInit(CBlob@ this)
 	this.set_bool("isActive", false);
 	this.addCommandID("sv_toggle");
 	this.addCommandID("cl_toggle");
+	
+	this.SetMinimapOutsideBehaviour(CBlob::minimap_arrow);
+	this.SetMinimapVars("GUI/Minimap/MinimapIcons.png", 1, Vec2f(16, 16));
+	this.SetMinimapRenderAlways(false);
 }
 
 void onInit(CSprite@ this)
@@ -169,6 +173,12 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 			sprite.PlaySound("LeverToggle.ogg");
 			sprite.SetEmitSoundPaused(!active);
 			sprite.SetAnimation(active ? "on" : "off");
+			
+			if(active) this.SetMinimapRenderAlways(true);
+			else this.SetMinimapRenderAlways(false);
+			CPlayer@ local = getLocalPlayer();
+			CBlob@ localBlob = local.getBlob();
+			if(localBlob.getTeamNum() == this.getTeamNum()) Sound::Play("alarm.ogg");
 		}
 	}
 }
