@@ -795,13 +795,6 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 			return "TC Developer";
 		}
 		break;
-		
-		case -571333817: // NoahTheLegend
-		{
-			col = SColor(255, 75, 176, 223);
-			return "Developer";
-		}
-		break;
 
 		case -1913766845: // cesar0
 		case -445244992: // sylw
