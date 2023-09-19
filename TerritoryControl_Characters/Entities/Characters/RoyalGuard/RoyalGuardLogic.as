@@ -45,6 +45,9 @@ void knight_clear_actor_limits(CBlob@ this)
 
 void onInit(CBlob@ this)
 {
+	this.set_u32("lasthit", 0);
+	this.set_u32("timer", 0);
+
 	KnightInfo knight;
 
 	knight.state = KnightStates::normal;
@@ -58,7 +61,7 @@ void onInit(CBlob@ this)
 	this.set("knightInfo", @knight);
 
 	this.set_f32("gib health", -3.0f);
-	addShieldVars(this, SHIELD_BLOCK_ANGLE, 2.0f, 5.0f);
+	addShieldVars(this, SHIELD_BLOCK_ANGLE, 30.0f);
 	knight_actorlimit_setup(this);
 	this.getShape().SetRotationsAllowed(false);
 	this.getShape().getConsts().net_threshold_multiplier = 0.5f;
@@ -97,6 +100,30 @@ void onSetPlayer(CBlob@ this, CPlayer@ player)
 
 void onTick(CBlob@ this)
 {
+	if(getGameTime() % 5 == 0 && getGameTime() - this.get_u32("lasthit") > 30)
+	{
+		ShieldVars@ shieldVars = getShieldVars(this);
+		if (shieldVars.shieldHealth != shieldVars.shieldMaxHealth)
+		{
+			shieldVars.shieldHealth = Maths::Min(shieldVars.shieldMaxHealth, shieldVars.shieldHealth + 1.0);
+			this.set("shield vars", shieldVars);
+		}
+	}
+
+	if (this.get_u32("timer") > 1) this.set_u32("timer", this.get_u32("timer") - 1);
+
+	RunnerMoveVars@ moveVars;
+	if (!this.get("moveVars", @moveVars))
+	{
+		return;
+	}
+
+	if (this.hasTag("glued") && this.get_u32("timer") > 1)
+	{
+		moveVars.walkFactor *= 0.4f;
+		moveVars.jumpFactor *= 0.5f;
+	}
+
 	u8 knocked = getKnocked(this);
 	
 	if (this.isInInventory())
@@ -104,11 +131,6 @@ void onTick(CBlob@ this)
 
 	//knight logic stuff
 	//get the vars to turn various other scripts on/off
-	RunnerMoveVars@ moveVars;
-	if (!this.get("moveVars", @moveVars))
-	{
-		return;
-	}
 
 	KnightInfo@ knight;
 	if (!this.get("knightInfo", @knight))
@@ -1261,4 +1283,9 @@ bool canHit(CBlob@ this, CBlob@ b)
 void onDie(CBlob@ this)
 {
 	if (isServer()) server_CreateBlob("royalarmor", this.getTeamNum(), this.getPosition());
+}
+
+void onHealthChange( CBlob@ this, f32 oldHealth )
+{
+	this.set_u32("lasthit", getGameTime());
 }

@@ -46,6 +46,7 @@ void knight_clear_actor_limits(CBlob@ this)
 void onInit(CBlob@ this)
 {
 	this.set_u32("timer", 0);
+	this.set_u32("lasthit", 0);
 
 	KnightInfo knight;
 
@@ -78,7 +79,7 @@ void onInit(CBlob@ this)
 	this.set_s32("currentKnightState", 0);
 
 	this.set_f32("gib health", -1.5f);
-	addShieldVars(this, SHIELD_BLOCK_ANGLE, 2.0f, 5.0f);
+	addShieldVars(this, SHIELD_BLOCK_ANGLE, 4.0f);
 	knight_actorlimit_setup(this);
 	this.getShape().SetRotationsAllowed(false);
 	this.getShape().getConsts().net_threshold_multiplier = 0.5f;
@@ -208,6 +209,16 @@ void RunStateMachine(CBlob@ this, KnightInfo@ knight, RunnerMoveVars@ moveVars)
 
 void onTick(CBlob@ this)
 {
+	if(getGameTime() % 10 == 0 && getGameTime() - this.get_u32("lasthit") > 30)
+	{
+		ShieldVars@ shieldVars = getShieldVars(this);
+		if (shieldVars.shieldHealth != shieldVars.shieldMaxHealth)
+		{
+			shieldVars.shieldHealth = Maths::Min(shieldVars.shieldMaxHealth, shieldVars.shieldHealth + 0.5);
+			this.set("shield vars", shieldVars);
+		}
+	}
+
 	if (this.get_u32("timer") > 1) this.set_u32("timer", this.get_u32("timer") - 1);
 
 	RunnerMoveVars@ moveVars;
@@ -1821,4 +1832,9 @@ void CheckSelectedBombRemovedFromInventory(CBlob@ this, CBlob@ blob)
 	{
 		SetFirstAvailableBomb(this);
 	}
+}
+
+void onHealthChange( CBlob@ this, f32 oldHealth )
+{
+	this.set_u32("lasthit", getGameTime());
 }
