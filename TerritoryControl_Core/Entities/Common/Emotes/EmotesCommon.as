@@ -122,6 +122,8 @@ namespace Emotes
 
 void set_emote(CBlob@ this, u8 emote, int time)
 {
+	if (!this.hasCommandID("emote")) return;
+	
 	if (emote >= Emotes::emotes_total)
 	{
 		emote = Emotes::off;
@@ -174,7 +176,19 @@ void set_emote(CBlob@ this, string token, int time = 0)
 	this.Sync("emotetime", !client);
 }
 
+//bool is_emote(CBlob@ this, u8 emote = 255, bool checkBlank = false)
 bool is_emote(CBlob@ this, bool checkBlank = false, u8 emote = 255)
+{
+	u8 index = emote;
+	if (index == 255)
+		index = this.get_u8("emote");
+
+	u32 time = this.get_u32("emotetime");
+
+	return time > getGameTime() && index != Emotes::off && (!checkBlank || (index != Emotes::dots));
+}
+
+bool is_emote(CBlob@ this, u8 emote = 255, bool checkBlank = false)
 {
 	u8 index = emote;
 	if (index == 255)
