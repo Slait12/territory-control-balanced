@@ -18,6 +18,8 @@ void onInit(CBlob@ this)
 	this.addCommandID("getout");
 	this.addCommandID("detach");
 	this.addCommandID("cycle");
+	this.addCommandID("switch");
+	this.addCommandID("tap inventory key");
 
 	this.getCurrentScript().runFlags |= Script::tick_myplayer;
 	this.getCurrentScript().removeIfTag = "dead";
