@@ -27,7 +27,7 @@ void onTick(CBlob@ this)
 		}
 		if (ticks % u32(300) == 0) 
 		{
-			print("Nothing");
+			//print("Nothing");
 			this.RemoveScript("FlashEffect.as");
 			sprite.RemoveScript("FlashEffect.as");
 		}

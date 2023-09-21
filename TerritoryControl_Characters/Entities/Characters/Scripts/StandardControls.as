@@ -239,7 +239,7 @@ void onTick(CBlob@ this)
 
 	// bubble menu
 
-	if (this.isKeyJustPressed(key_bubbles))
+	if (this !is null && this.isKeyJustPressed(key_bubbles))
 	{
 		if(!this.hasTag("noBubbles")){
 			this.CreateBubbleMenu();

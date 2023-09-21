@@ -266,6 +266,13 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
+	{
+		ShopItem@ s = addShopItem(this, "Red Hand Held Flare", "$mat_flare$", "mat_flare", "A small but bright source of light. Press [Action 3] to activate.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 80);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 10);
+
+		s.spawnNothing = true;
+	}
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)

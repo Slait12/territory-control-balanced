@@ -39,7 +39,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 
             if(holder !is null && this !is null)
             {
-                CBlob@ blob = server_CreateBlob("concretegrenade", this.getTeamNum(), this.getPosition());
+                CBlob@ blob = server_CreateBlob("flare", this.getTeamNum(), this.getPosition());
                 holder.server_Pickup(blob);
                 this.server_Die();
             }
