@@ -20,7 +20,7 @@ void onInit(CSprite@ this)
 			anim.AddFrames(frames);
 			stab.SetAnimation(anim);
 		}
-		stab.SetOffset(Vec2f(-24, 0.0f));
+		stab.SetOffset(Vec2f(-28, 0.0f));
 		stab.SetRelativeZ(10.0f);
 		stab.SetVisible(false);
 	}
@@ -66,7 +66,7 @@ void onInit(CBlob@ this)
 	settings.RELOAD_SOUND = "BoomstickReload.ogg"; //Sound when reloading
 
 	//Offset
-	settings.MUZZLE_OFFSET = Vec2f(-20, -2); //Where the muzzle flash appears
+	settings.MUZZLE_OFFSET = Vec2f(-24, -2); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
 	this.set_u8("CustomKnock", 6);

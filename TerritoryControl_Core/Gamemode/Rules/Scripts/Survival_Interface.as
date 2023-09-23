@@ -41,6 +41,7 @@ int hovered_age = -1;
 int hovered_tier = -1;
 bool draw_age = false;
 bool draw_tier = false;
+bool draw = true;
 
 void onInit(CRules@ this)
 {
@@ -135,7 +136,7 @@ void onRenderScoreboard(CRules@ this)
 		GUI::SetFont("menu");
 		GUI::DrawText("General Rules and Notes", Vec2f(mid- 100,tl.y + 10), white);
 		GUI::DrawText("- Don't block neutral spawn, only wood or stone can be used but the player should be allowed to leave it.", Vec2f(tO, tl.y + 30), white);
-		GUI::DrawText("- Players genocide is permitted, but try not to do it..", Vec2f(tO, tl.y + 45), white);
+		GUI::DrawText("- Players genocide is permitted, but try not to do it.", Vec2f(tO, tl.y + 45), white);
 		GUI::DrawText("- Don't steal someone else faction.", Vec2f(tO, tl.y + 60), white);
 		GUI::DrawText("- Don't intentionally lag the server.", Vec2f(tO, tl.y + 75), white);
 		GUI::DrawText("- For more information about rules, go to server Discord.", Vec2f(tO,tl.y + 90), white);
@@ -717,6 +718,44 @@ void onRenderScoreboard(CRules@ this)
 
 		GUI::DrawTextCentered(text, Vec2f(tl.x + (width * 0.50f), tl.y + (height * 0.50f)), 0xffffffff);
 	}
+	
+	// Show server intro again
+	{
+		f32 width = 100;
+		f32 height = 40;
+
+		const string text = "Show Server Intro";
+
+		Vec2f dim;
+		GUI::GetTextDimensions(text, dim);
+
+		width = dim.x + 20;
+
+		Vec2f tl = Vec2f(getScreenWidth() - 790 - width, y_offset + 10);
+		Vec2f br = Vec2f(getScreenWidth() - 790, tl.y + height);
+
+		CControls@ controls = getControls();
+		Vec2f mousePos = controls.getMouseScreenPos();
+
+		bool hover = mousePos.x > tl.x && mousePos.x < br.x && mousePos.y > tl.y && mousePos.y < br.y;
+
+		if (hover)
+		{
+			GUI::DrawButton(tl, br);
+
+			if (controls.isKeyJustPressed(KEY_LBUTTON))
+			{
+				Sound::Play("option");
+				draw = true;
+			}
+		}
+		else
+		{
+			GUI::DrawPane(tl, br, 0xffcfcfcf);
+		}
+
+		GUI::DrawTextCentered(text, Vec2f(tl.x + (width * 0.50f), tl.y + (height * 0.50f)), 0xffffffff);
+	}
 
 	CControls@ controls = getControls();
 	Vec2f mousePos = controls.getMouseScreenPos();
@@ -866,6 +905,69 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 		}
 	}
 	return "";
+}
+
+
+void onRender(CRules@ this)
+{
+	if(draw)
+	{
+		Vec2f center = getDriver().getScreenCenterPos();
+		Vec2f TopLeft = center - Vec2f(410, 400);
+		Vec2f RightDown = center + Vec2f(410, 400);
+		
+		GUI::DrawFramedPane(TopLeft, RightDown);
+		GUI::DrawIcon("TCB_Logo.png", 1, Vec2f(16, 16), TopLeft + Vec2f(600, 30), 5.5f);
+		GUI::DrawFramedPane(TopLeft + Vec2f(26, 26), TopLeft + Vec2f(586, 299)); //picture outline
+		GUI::DrawIcon("Info_Image.png", 1, Vec2f(1444, 689), TopLeft + Vec2f(32, 32), 0.19f);
+		
+		string text = "Welcome to [Territory Control: Balanced]\n\n"+
+		"This is a modded verison of Hope TC, aiming at Tactical, Team-Based, Competitive and more Realistic gameplay.\n\n\n\n"+
+		"Mod Rules:\n\n"+
+		" - Don't block neutral spawn, only wood or stone can be used but the player should be allowed to leave it.\n\n"+
+		" - Faction grief is bannable.\n\n"+
+		" - Don't intentionally lag the server.\n\n"+
+		" - Players genocide is permitted, but try not to do it.\n\n"+
+		"For more information about server, press TAB and check the links.\n\n\n\n"+
+		"Made by Slava.\n\n"+
+		"Server Host + some sprites - Peaceful Gay.\n\n"
+		"Help with code - Slait (Slait12).\n\n"
+		"Main testers - Klon (KlonSiderPlay), Dokoo, Peaceful Gay, Slait, MuseOfAbuse (Samuel2745).\n\n"
+		"Server setup help - Vlad.";
+		
+		GUI::SetFont("menu");
+		
+		GUI::DrawTextCentered(text, center + Vec2f(3,140), white);
+		
+		CControls@ controls = getControls();
+		Vec2f mousePos = controls.getMouseScreenPos();
+		
+		//Close button
+		Vec2f BPos1 = Vec2f(RightDown - Vec2f(150, 80));
+		Vec2f BPos2 = Vec2f(RightDown - Vec2f(32, 32));
+		bool hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
+		if (hover)
+		{
+			GUI::DrawButton(BPos1, BPos2);
+			
+			if (controls.isKeyJustPressed(KEY_LBUTTON))
+			{
+				Sound::Play("option");
+
+				draw = false;
+			}
+		}
+		else
+		{
+			GUI::DrawPane(BPos1, BPos2, 0xffcfcfcf);
+		}
+		GUI::DrawTextCentered("Close", BPos1 + Vec2f(55, 25), white);
+		
+		//Help Button
+		BPos1 = Vec2f(RightDown - Vec2f(150, 80));
+		BPos2 = Vec2f(RightDown - Vec2f(32, 32));
+		
+	}
 }
 
 string getBounty(CPlayer@ this) 
