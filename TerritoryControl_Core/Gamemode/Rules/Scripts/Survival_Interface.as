@@ -908,7 +908,7 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 }
 
 
-void onRender(CRules@ this)
+/*void onRender(CRules@ this) //Uhh
 {
 	if(draw)
 	{
@@ -968,7 +968,7 @@ void onRender(CRules@ this)
 		BPos2 = Vec2f(RightDown - Vec2f(32, 32));
 		
 	}
-}
+}*/
 
 string getBounty(CPlayer@ this) 
 {
