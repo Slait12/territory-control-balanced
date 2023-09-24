@@ -4,7 +4,7 @@
 #include "Knocked.as";
 
 const f32 maxDistance = 300;
-const f32 damage = 1.2f;
+const f32 damage = 0.8f; //Damage doubles due to hitter type
 const u32 delay = 5;
 
 void onInit(CBlob@ this)
