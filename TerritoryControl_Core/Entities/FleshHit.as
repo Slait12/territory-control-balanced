@@ -144,12 +144,12 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 						
 					case HittersTC::bullet_low_cal:
-						ratio = 0.40f;
+						ratio = 0.25f;
 						break;
 
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
-						ratio = 0.35f;
+						ratio = 0.20f;
 						break;
 
 					case Hitters::fire:
@@ -179,12 +179,12 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 					case HittersTC::bullet_low_cal:
 					case HittersTC::shotgun:
-						ratio = 0.50f;
+						ratio = 0.30f;
 						break;
 
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
-						ratio = 0.30f;
+						ratio = 0.18f;
 						break;
 
 					default:
@@ -239,12 +239,12 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						break;
 						
 					case HittersTC::bullet_low_cal:
-						ratio = 0.40f;
+						ratio = 0.25f;
 						break;
 
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
-						ratio = 0.35f;
+						ratio = 0.20f;
 						break;
 
 					case Hitters::fire:
@@ -274,12 +274,12 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 					case HittersTC::bullet_low_cal:
 					case HittersTC::shotgun:
-						ratio = 0.50f;
+						ratio = 0.30f;
 						break;
 
 					case HittersTC::bullet_high_cal:
 					case HittersTC::railgun_lance:
-						ratio = 0.30f;
+						ratio = 0.18f;
 						break;
 
 					default:
@@ -336,7 +336,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			else if (torso2name == "compositevest") armorMaxHealth = 200.0f;
 			else if (torso2name == "keg") armorMaxHealth = 10.0f;
 
-			if (torso2name == "bulletproofvest" && customData != HittersTC::radiation)
+			/*if (torso2name == "bulletproofvest" && customData != HittersTC::radiation)
 			{
 				switch (customData)
 				{
@@ -411,7 +411,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						ratio = 0.10f;
 						break;
 				}
-			}
+			}*/
 			else if (torso2name == "keg" && !isBullet && customData != HittersTC::radiation)
 			{
 				if ((customData == Hitters::fire || customData == Hitters::burn || customData == Hitters::explosion || 
