@@ -583,7 +583,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://discord.gg/EHArPN9UUn");
+				OpenWebsite("https://discord.gg/AFdfRJN9pR");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
