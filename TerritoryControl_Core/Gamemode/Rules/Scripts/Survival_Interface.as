@@ -926,6 +926,30 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 			return "KAG Developer";
 		}
 		break;
+		
+		case 177551342: // Slava6
+		{
+			col = SColor(255, 80, 80, 255);
+			return "TC:T Creator";
+		}
+		break;
+		
+		case -180322787: // Slait48ssSdarussian
+		case 117862738: // Samuel2745
+		{
+			col = SColor(255, 80, 80, 255);
+			return "TC:T Creator";
+			col = SColor(255, 255, 0, 0);
+			return "Moderator";
+		}
+		break;
+		
+		case 147149239: // plmoknijbuhvygcmarmo (Peaceful gay)
+		{
+			col = SColor(255, 255, 00, 255);
+			return "♂Gay♂";
+		}
+		break;
 
 		//Some patreon thing for the future maybe
 
