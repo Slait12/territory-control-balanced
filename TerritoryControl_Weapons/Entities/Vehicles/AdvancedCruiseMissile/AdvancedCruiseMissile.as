@@ -346,6 +346,28 @@ bool canBePickedUp(CBlob@ this, CBlob@ byBlob)
 	else return false;
 }
 
+void onDie(CBlob@ this)
+{
+	CInventory@ inv = this.getInventory();
+	if (inv !is null)
+	{
+		for (u8 i = 0; i < inv.getItemsCount(); i++)
+		{
+			CBlob@ b = inv.getItem(i);
+			if (b !is null && b.hasTag("explosive"))
+			{
+				//b.server_PutOutInventory(this);
+				b.Tag("DoExplode");
+				b.server_Die();
+			}
+		}
+	}
+	if (this.getPlayer() !is null)
+	{
+		ResetPlayer(this);
+	}
+}
+
 void MakeParticle(CBlob@ this, const Vec2f vel, const string filename = "SmallSteam")
 {
 	if (!isClient()) return;
