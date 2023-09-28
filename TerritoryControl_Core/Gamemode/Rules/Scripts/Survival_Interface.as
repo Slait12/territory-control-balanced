@@ -39,6 +39,9 @@ string mapName = "";
 int hovered_accolade = -1;
 int hovered_age = -1;
 int hovered_tier = -1;
+int page = 0;
+int maxpage = 1;
+int delay;
 bool draw_age = false;
 bool draw_tier = false;
 bool draw = true;
@@ -719,12 +722,12 @@ void onRenderScoreboard(CRules@ this)
 		GUI::DrawTextCentered(text, Vec2f(tl.x + (width * 0.50f), tl.y + (height * 0.50f)), 0xffffffff);
 	}
 	
-	// Show server intro again
+	// Help Button
 	{
 		f32 width = 100;
 		f32 height = 40;
 
-		const string text = "Show Server Intro";
+		const string text = "Help!";
 
 		Vec2f dim;
 		GUI::GetTextDimensions(text, dim);
@@ -747,6 +750,46 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 				draw = true;
+				page = 1;
+			}
+		}
+		else
+		{
+			GUI::DrawPane(tl, br, 0xffcfcfcf);
+		}
+
+		GUI::DrawTextCentered(text, Vec2f(tl.x + (width * 0.50f), tl.y + (height * 0.50f)), 0xffffffff);
+	}
+	
+	// Show server intro again
+	{
+		f32 width = 100;
+		f32 height = 40;
+
+		const string text = "Show Server Intro";
+
+		Vec2f dim;
+		GUI::GetTextDimensions(text, dim);
+
+		width = dim.x + 20;
+
+		Vec2f tl = Vec2f(getScreenWidth() - 865 - width, y_offset + 10);
+		Vec2f br = Vec2f(getScreenWidth() - 865, tl.y + height);
+
+		CControls@ controls = getControls();
+		Vec2f mousePos = controls.getMouseScreenPos();
+
+		bool hover = mousePos.x > tl.x && mousePos.x < br.x && mousePos.y > tl.y && mousePos.y < br.y;
+
+		if (hover)
+		{
+			GUI::DrawButton(tl, br);
+
+			if (controls.isKeyJustPressed(KEY_LBUTTON))
+			{
+				Sound::Play("option");
+				draw = true;
+				page = 0;
 			}
 		}
 		else
@@ -908,48 +951,29 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 }
 
 
-/*void onRender(CRules@ this) //Uhh
+void onRender(CRules@ this)
 {
 	if(draw)
 	{
+		u32 time = getGameTime();
+		GUI::SetFont("menu");
 		Vec2f center = getDriver().getScreenCenterPos();
 		Vec2f TopLeft = center - Vec2f(410, 400);
 		Vec2f RightDown = center + Vec2f(410, 400);
-		
-		GUI::DrawFramedPane(TopLeft, RightDown);
-		GUI::DrawIcon("TCB_Logo.png", 1, Vec2f(16, 16), TopLeft + Vec2f(600, 30), 5.5f);
-		GUI::DrawFramedPane(TopLeft + Vec2f(26, 26), TopLeft + Vec2f(586, 299)); //picture outline
-		GUI::DrawIcon("Info_Image.png", 1, Vec2f(1444, 689), TopLeft + Vec2f(32, 32), 0.19f);
-		
-		string text = "Welcome to [Territory Control: Balanced]\n\n"+
-		"This is a modded verison of Hope TC, aiming at Tactical, Team-Based, Competitive and more Realistic gameplay.\n\n\n\n"+
-		"Mod Rules:\n\n"+
-		" - Don't block neutral spawn, only wood or stone can be used but the player should be allowed to leave it.\n\n"+
-		" - Faction grief is bannable.\n\n"+
-		" - Don't intentionally lag the server.\n\n"+
-		" - Players genocide is permitted, but try not to do it.\n\n"+
-		"For more information about server, press TAB and check the links.\n\n\n\n"+
-		"Made by Slava.\n\n"+
-		"Server Host + some sprites - Peaceful Gay.\n\n"
-		"Help with code - Slait (Slait12).\n\n"
-		"Main testers - Klon (KlonSiderPlay), Dokoo, Peaceful Gay, Slait, MuseOfAbuse (Samuel2745).\n\n"
-		"Server setup help - Vlad.";
-		
-		GUI::SetFont("menu");
-		
-		GUI::DrawTextCentered(text, center + Vec2f(3,140), white);
-		
+		Vec2f LeftDown = center + Vec2f(-410, 400);
 		CControls@ controls = getControls();
 		Vec2f mousePos = controls.getMouseScreenPos();
 		
+		GUI::DrawFramedPane(TopLeft, RightDown);
+
 		//Close button
-		Vec2f BPos1 = Vec2f(RightDown - Vec2f(150, 80));
-		Vec2f BPos2 = Vec2f(RightDown - Vec2f(32, 32));
+		Vec2f BPos1 = Vec2f(LeftDown + Vec2f(32, -80));
+		Vec2f BPos2 = Vec2f(LeftDown + Vec2f(150, -32));
 		bool hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
 		if (hover)
 		{
 			GUI::DrawButton(BPos1, BPos2);
-			
+				
 			if (controls.isKeyJustPressed(KEY_LBUTTON))
 			{
 				Sound::Play("option");
@@ -963,12 +987,146 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 		}
 		GUI::DrawTextCentered("Close", BPos1 + Vec2f(55, 25), white);
 		
-		//Help Button
-		BPos1 = Vec2f(RightDown - Vec2f(150, 80));
-		BPos2 = Vec2f(RightDown - Vec2f(32, 32));
+		if(page == 0)
+		{
+			GUI::DrawIcon("TCB_Logo.png", 1, Vec2f(16, 16), TopLeft + Vec2f(600, 30), 5.5f);
+			GUI::DrawFramedPane(TopLeft + Vec2f(26, 26), TopLeft + Vec2f(586, 299)); //picture outline
+			GUI::DrawIcon("Info_Image.png", 1, Vec2f(1444, 689), TopLeft + Vec2f(32, 32), 0.19f);
+			
+			//Info
+			string text = "Welcome to [Territory Control: Tactical]\n\n"+
+			"This is a modded verison of Hope TC, aiming at Tactical, Team-Based, Competitive and more Realistic gameplay.\n\n\n\n"+
+			"Mod Rules:\n\n"+
+			" - Don't block neutral spawn, only wood or stone can be used but the player should be allowed to leave it.\n\n"+
+			" - Faction grief is bannable.\n\n"+
+			" - Don't intentionally lag the server.\n\n"+
+			" - Players genocide is permitted, but try not to do it.\n\n"+
+			"For more information about server, press TAB and check the links.\n\n\n\n"+
+			"Made by Slava. Hope TC by NoahTheLegend, Xeno, Skemonde, and FrankStain. Original TC by TFlippy and co.\n\n"+
+			"Server Host + some sprites - Peaceful Gay.\n\n"+
+			"Help with code - Slait (Slait12).\n\n"+
+			"Main testers - Klon (KlonSiderPlay), Dokooo (Don77860163), Peaceful Gay, Slait, MuseOfAbuse (Samuel2745).\n\n"+
+			"Server setup help - Vlad.";
+			
+			
+			GUI::DrawTextCentered(text, center + Vec2f(3,140), white);
+			
+			//Help Button
+			BPos1 = Vec2f(LeftDown + Vec2f(168, -80));
+			BPos2 = Vec2f(LeftDown + Vec2f(296, -32));
+			hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
+			if (hover)
+			{
+				GUI::DrawButton(BPos1, BPos2);
+				
+				if (controls.isKeyJustPressed(KEY_LBUTTON) && delay < time)
+				{
+					Sound::Play("option");
+
+					draw = true;
+					delay = getGameTime() + 2;
+					page = 1;
+				}
+			}
+			else
+			{
+				GUI::DrawPane(BPos1, BPos2, 0xffcfcfcf);
+			}
+			GUI::DrawTextCentered("Help!", BPos1 + Vec2f(60, 25), white);
+		}
+		else
+		{
+			//Next and previous page buttons
+			BPos1 = Vec2f(LeftDown + Vec2f(314, -80));
+			BPos2 = Vec2f(LeftDown + Vec2f(442, -32));
+			if (maxpage > page)
+			{
+				hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
+				if (hover)
+				{
+					GUI::DrawButton(BPos1, BPos2);
+					
+					if (controls.isKeyJustPressed(KEY_LBUTTON) && delay < time)
+					{
+						Sound::Play("option");
+
+						delay = getGameTime() + 2;
+						page++;
+					}
+				}
+				else
+				{
+					GUI::DrawPane(BPos1, BPos2, 0xffcfcfcf);
+				}
+			}
+			else GUI::DrawButtonPressed(BPos1, BPos2);
+			GUI::DrawTextCentered("Next Page", BPos1 + Vec2f(60, 25), white);
+			
+			BPos1 = Vec2f(LeftDown + Vec2f(168, -80));
+			BPos2 = Vec2f(LeftDown + Vec2f(296, -32));
+			hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
+			if (hover)
+			{
+				GUI::DrawButton(BPos1, BPos2);
+				
+				if (controls.isKeyJustPressed(KEY_LBUTTON) && delay < time)
+				{
+					Sound::Play("option");
+					
+					delay = getGameTime() + 2;
+					if (page > 0) page--;
+				}
+			}
+			else
+			{
+				GUI::DrawPane(BPos1, BPos2, 0xffcfcfcf);
+			}
+			GUI::DrawTextCentered("Previous Page", BPos1 + Vec2f(60, 25), white);
+		}
 		
+		
+		if(page == 1)
+		{
+			string HelpText1 = " - What is this mod about?\n\n"
+			"Territory Control: Tactical is a mod about surviving in an anarchic world, conquering land,\n"
+			"establishing your power and fighting other factions.\n"
+			"Or about creating global chaos, or building an industry, or roleplay, depending on what you like.\n\n"
+			" - How can I survive without being stomped?\n\n"
+			"To resist the enemies, your main task is to keep up with them in development, and, if possible,\n"
+			"to overtake them. Play aggressively, don't sit on the base, do raids, don't let them develop.\n"
+			"IMPORTANT: Remember that your main resource is time, and often the winner is not the one who\n"
+			"knows how to fight, but the one who knows how to plan and manage time.\n\n\n"
+			"Approximate development plan:\n\n"
+			"Join an already existing faction or make a new faction: Choose a good place for defense and select\n"
+			"'Found A Faction!' in construction menu. The criteria for a place for a base are: the presence of shop\n"
+			"and mine (more on them later), convenience in defense and difficulty in storming, maximum shooting space.\n\n\n\n\n\n\n\n\n\n\n\n"
+			"Build 'Gunsmith's Workshop', buy some weapons to defend against random attacks, and Gather resources:\n"
+			"Buy some wood and stone in shop, collect pumpkins or grain and sell in the shop if you dont have money.\n\n\n\n\n\n\n\n\n"
+			"Now you have a choice: you can build assembler, make dynamite and start blasting gold and stone\n"
+			"to get ores. Pros: fast, easy, clearing space. Cons: not everywhere there are ores, it is impossible\n" 
+			"to live on such an economy for a long time.\n\n\n\n\n\n\n\n"
+			"you can capture several mines that will bring you resources. Pros: free resources, restriction of movement\n"
+			"for neutrals, benefits for the future. Cons: You have to leave the base, making it temporarily defenseless.\n\n"
+			"\nWIP, THE GUIDE WILL BE CONTINUED LATER."
+			"";
+			GUI::DrawText(HelpText1, TopLeft + Vec2f(32,32), white);
+			
+			GUI::DrawIcon("Info_MakeFaction.png", 1, Vec2f(96, 48), TopLeft + Vec2f(32, 280), 1.0f);
+			
+			GUI::DrawText("Gunsmith", TopLeft + Vec2f(32, 440), white);
+			GUI::DrawIcon("Gunsmith.png", 1, Vec2f(40, 24), TopLeft + Vec2f(32, 460), 1.0f);
+			
+			GUI::DrawText("Shop", TopLeft + Vec2f(150, 425), white);
+			GUI::DrawIcon("TradingPost.png", 4, Vec2f(32, 32), TopLeft + Vec2f(150, 444), 1.0f);
+			
+			GUI::DrawText("Assembler", TopLeft + Vec2f(32, 558), white);
+			GUI::DrawIcon("Assembler_Icon.png", 1, Vec2f(48, 30), TopLeft + Vec2f(31,574), 1.0f);
+			
+			GUI::DrawText("Mine", TopLeft + Vec2f(460, 670), white);
+			GUI::DrawIcon("CoalMine.png", 1, Vec2f(60, 32), TopLeft + Vec2f(459, 680), 1.0f);
+		}
 	}
-}*/
+}
 
 string getBounty(CPlayer@ this) 
 {
