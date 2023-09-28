@@ -40,7 +40,7 @@ int hovered_accolade = -1;
 int hovered_age = -1;
 int hovered_tier = -1;
 int page = 0;
-int maxpage = 10;
+int maxpage = 1;
 int delay;
 bool draw_age = false;
 bool draw_tier = false;
@@ -912,7 +912,7 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 }
 
 
-/*void onRender(CRules@ this) //Uhh
+void onRender(CRules@ this)
 {
 	if(draw)
 	{
@@ -921,14 +921,15 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 		Vec2f center = getDriver().getScreenCenterPos();
 		Vec2f TopLeft = center - Vec2f(410, 400);
 		Vec2f RightDown = center + Vec2f(410, 400);
+		Vec2f LeftDown = center + Vec2f(-410, 400);
 		CControls@ controls = getControls();
 		Vec2f mousePos = controls.getMouseScreenPos();
 		
 		GUI::DrawFramedPane(TopLeft, RightDown);
 
 		//Close button
-		Vec2f BPos1 = Vec2f(RightDown - Vec2f(150, 80));
-		Vec2f BPos2 = Vec2f(RightDown - Vec2f(32, 32));
+		Vec2f BPos1 = Vec2f(LeftDown + Vec2f(32, -80));
+		Vec2f BPos2 = Vec2f(LeftDown + Vec2f(150, -32));
 		bool hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
 		if (hover)
 		{
@@ -954,7 +955,7 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 			GUI::DrawIcon("Info_Image.png", 1, Vec2f(1444, 689), TopLeft + Vec2f(32, 32), 0.19f);
 			
 			//Info
-			string text = "Welcome to [Territory Control: Balanced]\n\n"+
+			string text = "Welcome to [Territory Control: Tactical]\n\n"+
 			"This is a modded verison of Hope TC, aiming at Tactical, Team-Based, Competitive and more Realistic gameplay.\n\n\n\n"+
 			"Mod Rules:\n\n"+
 			" - Don't block neutral spawn, only wood or stone can be used but the player should be allowed to leave it.\n\n"+
@@ -972,8 +973,8 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 			GUI::DrawTextCentered(text, center + Vec2f(3,140), white);
 			
 			//Help Button
-			BPos1 = Vec2f(RightDown - Vec2f(296, 80));
-			BPos2 = Vec2f(RightDown - Vec2f(168, 32));
+			BPos1 = Vec2f(LeftDown + Vec2f(168, -80));
+			BPos2 = Vec2f(LeftDown + Vec2f(296, -32));
 			hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
 			if (hover)
 			{
@@ -997,29 +998,33 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 		else
 		{
 			//Next and previous page buttons
-			BPos1 = Vec2f(RightDown - Vec2f(296, 80));
-			BPos2 = Vec2f(RightDown - Vec2f(168, 32));
-			hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
-			if (hover)
+			BPos1 = Vec2f(LeftDown + Vec2f(314, -80));
+			BPos2 = Vec2f(LeftDown + Vec2f(442, -32));
+			if (maxpage > page)
 			{
-				GUI::DrawButton(BPos1, BPos2);
-				
-				if (controls.isKeyJustPressed(KEY_LBUTTON) && delay < time)
+				hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
+				if (hover)
 				{
-					Sound::Play("option");
+					GUI::DrawButton(BPos1, BPos2);
+					
+					if (controls.isKeyJustPressed(KEY_LBUTTON) && delay < time)
+					{
+						Sound::Play("option");
 
-					delay = getGameTime() + 2;
-					if (maxpage != page) page++;
+						delay = getGameTime() + 2;
+						page++;
+					}
+				}
+				else
+				{
+					GUI::DrawPane(BPos1, BPos2, 0xffcfcfcf);
 				}
 			}
-			else
-			{
-				GUI::DrawPane(BPos1, BPos2, 0xffcfcfcf);
-			}
+			else GUI::DrawButtonPressed(BPos1, BPos2);
 			GUI::DrawTextCentered("Next Page", BPos1 + Vec2f(60, 25), white);
 			
-			BPos1 = Vec2f(RightDown - Vec2f(442, 80));
-			BPos2 = Vec2f(RightDown - Vec2f(314, 32));
+			BPos1 = Vec2f(LeftDown + Vec2f(168, -80));
+			BPos2 = Vec2f(LeftDown + Vec2f(296, -32));
 			hover = mousePos.x > BPos1.x && mousePos.x < BPos2.x && mousePos.y > BPos1.y && mousePos.y < BPos2.y;
 			if (hover)
 			{
@@ -1044,7 +1049,7 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 		if(page == 1)
 		{
 			string HelpText1 = " - What is this mod about?\n\n"
-			"Territory Control: Balanced is a mod about surviving in an anarchic world, conquering land,\n"
+			"Territory Control: Tactical is a mod about surviving in an anarchic world, conquering land,\n"
 			"establishing your power and fighting other factions.\n"
 			"Or about creating global chaos, or building an industry, or roleplay, depending on what you like.\n\n"
 			" - How can I survive without being stomped?\n\n"
@@ -1053,17 +1058,17 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 			"IMPORTANT: Remember that your main resource is time, and often the winner is not the one who\n"
 			"knows how to fight, but the one who knows how to plan and manage time.\n\n\n"
 			"Approximate development plan:\n\n"
-			"Join an already existing faction or make faction: Choose a good place for defense and select\n"
-			"'Found A Faction!' in construction menu. The criteria for a place for a base are: the presence of a store\n"
-			"and a mine (more on them later), convenience in defense and difficulty in storming, maximum shooting space.\n\n\n\n\n\n\n\n\n\n\n\n"
+			"Join an already existing faction or make a new faction: Choose a good place for defense and select\n"
+			"'Found A Faction!' in construction menu. The criteria for a place for a base are: the presence of shop\n"
+			"and mine (more on them later), convenience in defense and difficulty in storming, maximum shooting space.\n\n\n\n\n\n\n\n\n\n\n\n"
 			"Build 'Gunsmith's Workshop', buy some weapons to defend against random attacks, and Gather resources:\n"
 			"Buy some wood and stone in shop, collect pumpkins or grain and sell in the shop if you dont have money.\n\n\n\n\n\n\n\n\n"
 			"Now you have a choice: you can build assembler, make dynamite and start blasting gold and stone\n"
 			"to get ores. Pros: fast, easy, clearing space. Cons: not everywhere there are ores, it is impossible\n" 
 			"to live on such an economy for a long time.\n\n\n\n\n\n\n\n"
 			"you can capture several mines that will bring you resources. Pros: free resources, restriction of movement\n"
-			"for neutrals, benefits for the future. Cons: You have to leave the base, making it temporarily defenseless\n\n."
-			""
+			"for neutrals, benefits for the future. Cons: You have to leave the base, making it temporarily defenseless.\n\n"
+			"\nWIP, THE GUIDE WILL BE CONTINUED LATER."
 			"";
 			GUI::DrawText(HelpText1, TopLeft + Vec2f(32,32), white);
 			
@@ -1078,11 +1083,11 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 			GUI::DrawText("Assembler", TopLeft + Vec2f(32, 558), white);
 			GUI::DrawIcon("Assembler_Icon.png", 1, Vec2f(48, 30), TopLeft + Vec2f(31,574), 1.0f);
 			
-			GUI::DrawText("Mine", TopLeft + Vec2f(32, 670), white);
-			GUI::DrawIcon("CoalMine.png", 1, Vec2f(60, 32), TopLeft + Vec2f(31, 680), 1.0f);
+			GUI::DrawText("Mine", TopLeft + Vec2f(460, 670), white);
+			GUI::DrawIcon("CoalMine.png", 1, Vec2f(60, 32), TopLeft + Vec2f(459, 680), 1.0f);
 		}
 	}
-}*/
+}
 
 string getBounty(CPlayer@ this) 
 {
