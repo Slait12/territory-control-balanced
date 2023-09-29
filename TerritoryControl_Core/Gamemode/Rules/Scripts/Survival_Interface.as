@@ -937,8 +937,6 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 		case -180322787: // Slait48ssSdarussian
 		case 117862738: // Samuel2745
 		{
-			col = SColor(255, 80, 80, 255);
-			return "TC:T Creator";
 			col = SColor(255, 255, 0, 0);
 			return "Moderator";
 		}
