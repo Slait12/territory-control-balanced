@@ -113,7 +113,7 @@ void Reset(CRules@ this)
 	for (int i = 0; i < getPlayersCount(); i++)
 	{
 		CPlayer@ player = getPlayer(i);
-		if (player is null) continue;
+		if (player is null) return;
 
 		player.server_setCoins(1500);
 	}
