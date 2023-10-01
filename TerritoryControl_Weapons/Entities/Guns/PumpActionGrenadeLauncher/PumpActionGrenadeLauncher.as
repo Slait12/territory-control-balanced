@@ -74,9 +74,9 @@ void onInit(CBlob@ this)
 				this.SendCommand(this.getCommandID("set_grenade"),params);
 			}
 		}
-		/*this.Sync("ProjBlob", true);
+		this.Sync("ProjBlob", true);
 		this.Sync("settings.AMMO_BLOB", true);
-		this.Sync("AmmoTypeNumber", true);*/
+		this.Sync("AmmoTypeNumber", true);
 	}
 }
 
