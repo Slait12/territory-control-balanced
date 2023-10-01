@@ -189,6 +189,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("rp46", 1, "RP-46 (1)");
+		AddRequirement(i.reqs, "blob", "rifle", "Bolt Action Rifle", 1);
 		AddRequirement(i.reqs, "blob", "dp27", "DP-27", 1);
 		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 2);
 		AddRequirement(i.reqs, "blob", "mat_copperingot", "Copper Ingot", 5);
@@ -221,13 +222,15 @@ void onInit(CBlob@ this)
 	}
 	{
 		AssemblerItem i("nitro700", 1, "Nitro 700 (1)");
-		AddRequirement(i.reqs, "blob", "boomstick", "Boomstick", 2);
+		AddRequirement(i.reqs, "blob", "rifle", "Bolt Action Rifle", 1);
+		AddRequirement(i.reqs, "blob", "boomstick", "Boomstick", 1);
 		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 3);
 		items.push_back(i);
 	}
 	{
 		AssemblerItem i("tkb521", 1, "TKB-521 (1)");
 		AddRequirement(i.reqs, "blob", "dp27", "DP-27", 1);
+		AddRequirement(i.reqs, "blob", "leverrifle", "Lever Action Rifle", 1);
 		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 5);
 		items.push_back(i);
 	}

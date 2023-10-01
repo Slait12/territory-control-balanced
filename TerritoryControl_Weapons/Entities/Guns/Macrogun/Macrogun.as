@@ -56,5 +56,4 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSoundLoop");
 	this.Tag("CustomSpread");
 	this.Tag("medium weight");
-	this.Tag("CrouchAiming");
 }

@@ -52,5 +52,4 @@ void onInit(CBlob@ this)
 	this.Tag("medium weight");
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 	this.set_u16("CustomAccelerationSpeed", 5);
-	this.Tag("CrouchAiming");
 }

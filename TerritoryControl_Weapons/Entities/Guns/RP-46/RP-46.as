@@ -26,7 +26,7 @@ void onInit(CBlob@ this)
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
 	
 	//Spread & Cursor
-	settings.B_SPREAD = 3; //the higher the value, the more 'uncontrollable' bullets get
+	settings.B_SPREAD = 2; //the higher the value, the more 'uncontrollable' bullets get
 	//settings.INCREASE_SPREAD = false; //Should the spread increase as you shoot. Default is false
 	//settings.SPREAD_FACTOR = 0.0; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * Max:(SPREAD_FACTOR, (Number of shoots * SPREAD_FACTOR)). Does not affect cursor.
 	//settings.MAX_SPREAD = 10; //Maximum spread the weapon can reach. Also determines how big cursor can become
@@ -54,5 +54,4 @@ void onInit(CBlob@ this)
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 	this.set_f32("CustomBulletLength", 18.0f);
 	this.set_u16("CustomAccelerationSpeed", 4);
-	this.Tag("CrouchAiming");
 }
