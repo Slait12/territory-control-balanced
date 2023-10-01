@@ -59,7 +59,7 @@ void onInit(CBlob@ this)
 	this.set_string("CustomSoundPickup", "SAR_Pickup.ogg");
 }
 
-void onTick(CBlob@ this)
+/*void onTick(CBlob@ this)
 {
 	if (this.isAttached())
 	{
