@@ -9,7 +9,29 @@
 // if your health is lower than it was last time you got hit
 f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
-	ShieldVars@ shieldVars = getShieldVars(this);
+	bool hitters = customData == Hitters::stomp || customData == Hitters::builder ||
+	               customData == Hitters::sword || customData == Hitters::shield  ||
+	               customData == Hitters::arrow || customData == Hitters::bite    ||
+	               customData == Hitters::stab  || customData == HittersTC::staff ||
+	               customData == HittersTC::hammer;
+
+	bool knightHitters = customData == HittersTC::bullet_low_cal || customData == HittersTC::shotgun || customData == Hitters::spikes || 
+						isExplosionHitter(customData);
+
+	bool guardHitters = customData == HittersTC::bullet_low_cal || customData == HittersTC::bullet_high_cal || 
+	                    customData == HittersTC::shotgun || customData == Hitters::spikes;
+
+	//knight hitters
+    if (this.getName() == "knight" || this.hasTag("dead") || this is hitterBlob) 
+	{
+		if (!knightHitters && !hitters) return damage;
+	}
+	//royalguard hitters
+	if (this.getName() == "royalguard" && !hitters && !guardHitters)
+	{
+		if (customData == HittersTC::bullet_high_cal && damage <= 1.0f) return 0.0f;
+		return damage;
+	}
 
 	// no shield when stunned
 	if (isKnocked(this) && !isJustKnocked(this))
@@ -18,48 +40,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 	}
 
 	if (blockAttack(this, velocity, 0.0f) && this.hasTag("shielded"))
-	{			
-		f32 dmg = damage;
-		switch (customData)
-		{
-			case Hitters::arrow:
-			dmg *= 0.25f;
-			break;
-				
-			case Hitters::sword:
-			case Hitters::stab:
-			dmg *= 2.0f;
-			break;
-				
-			case HittersTC::bayonet:
-			dmg *= 5.0f;
-			break;
-					
-			case Hitters::keg:
-			case Hitters::bomb:
-			case Hitters::explosion:
-			case Hitters::bomb_arrow:
-			dmg *= 4.0f;
-			break;
-					
-			case HittersTC::shotgun:
-			case HittersTC::bullet_low_cal:
-			dmg *= 0.5f;
-			break;
-		}
-		if (this.getName() == "royalguard")
-		switch (customData)
-		{
-			case HittersTC::bayonet:
-			dmg *= 2.0f;
-			break;
-			
-			case HittersTC::bullet_high_cal:
-			case HittersTC::bullet_low_cal:
-			dmg *= 0.25f;
-			break;
-		}
-	
+	{
 		if (isExplosionHitter(customData)) // bomb jump
 		{
 			Vec2f vel = this.getVelocity();
@@ -89,44 +70,28 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 			this.AddForce(bombforce);
 			this.Tag("dont stop til ground");
-			return 0.0f;
 
 		}
-		else if (shieldVars.shieldHealth >= dmg)
-		{	
-			//print("was " + shieldVars.shieldHealth);
-			shieldVars.shieldHealth = shieldVars.shieldHealth - dmg;
-			
-			if (isClient())
-			{
-				this.Tag("shieldDoesBlock");
-				this.set_f32("shieldDamage", dmg);
-				this.set_Vec2f("shieldDamageVel", velocity);
-				this.set_Vec2f("ShieldWorldPoint", worldPoint);
-
-				if (customData == HittersTC::bullet_low_cal || customData == HittersTC::bullet_high_cal || customData == HittersTC::shotgun)
-				{
-					this.getSprite().PlaySound("BulletDodge" + XORRandom(3), 1.25f, 0.8f);
-				}
-			}
-			this.set("shield vars", shieldVars);
-			//print("now " + shieldVars.shieldHealth);
-			return 0.0f;
-		}
-		else
+		else if (exceedsShieldBreakForce(this, damage) && customData != Hitters::arrow)
 		{
-			//print("was " + shieldVars.shieldHealth);
-			f32 damg = damage - shieldVars.shieldHealth;
-			
-			shieldVars.shieldHealth = 0;
 			knockShieldDown(this);
 			this.Tag("force_knock");
-			
-			//print("now " + shieldVars.shieldHealth);
-			this.set("shield vars", shieldVars);
-			return damg;
 		}
-		this.set("shield vars", shieldVars);
+
+		if (isClient())
+		{
+			this.Tag("shieldDoesBlock");
+			this.set_f32("shieldDamage", damage);
+			this.set_Vec2f("shieldDamageVel", velocity);
+			this.set_Vec2f("ShieldWorldPoint", worldPoint);
+
+			if (customData == HittersTC::bullet_low_cal || customData == HittersTC::bullet_high_cal || customData == HittersTC::shotgun)
+			{
+				this.getSprite().PlaySound("BulletDodge" + XORRandom(3), 1.25f, 0.8f);
+			}
+		}
+
+		return 0.0f;
 	}
 	else
 	{
@@ -138,6 +103,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 			this.set_Vec2f("ShieldWorldPoint", worldPoint);
 		}
 	}
+
 	return damage; //no block, damage goes through
 }
 

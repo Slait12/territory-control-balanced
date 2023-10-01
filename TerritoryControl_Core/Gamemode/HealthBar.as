@@ -1,5 +1,4 @@
 // draws a health bar on mouse hover
-#include "ShieldCommon.as";
 
 
 void onRender(CSprite@ this)
@@ -67,28 +66,5 @@ void onRender(CSprite@ this)
 				// GUI::DrawRectangle(Vec2f(pos2d.x - (overheal * 12), pos2d.y + y + 2 + offset_y_overheal), Vec2f(pos2d.x + (overheal * 12), pos2d.y + y + dim.y - 2 + offset_y_overheal), SColor(0xfffbb818));
 			}
 		}
-	}
-	//shows shield health
-	if (blob is null) return;
-	CPlayer@ player = blob.getPlayer();
-	if (player is null) return;
-	if (player.isLocal() && blob.hasTag("shielded"))
-	{
-		ShieldVars@ shieldVars = getShieldVars(blob);
-		if (shieldVars is null) return;
-		
-		f32 ratio = shieldVars.shieldHealth / shieldVars.shieldMaxHealth;
-		f32 ratio_clamped = Maths::Min(ratio, 1);
-		
-		Vec2f pos2d = blob.getInterpolatedScreenPos() + Vec2f(0, blob.getHeight()-75);
-		Vec2f dim = Vec2f(24, 8);
-		
-		const f32 zoom = getCamera().targetDistance * getDriver().getResolutionScaleFactor();
-		const f32 y = blob.getHeight() * zoom;
-		
-		Vec2f blobpos = (Vec2f(pos2d.x-dim.x,pos2d.y+y)+Vec2f(pos2d.x+dim.x,pos2d.y+y+dim.y))*0.5f;
-		
-		GUI::DrawRectangle(Vec2f(pos2d.x - dim.x - 2, pos2d.y + y - 2), Vec2f(pos2d.x + dim.x + 2, pos2d.y + y + dim.y + 2));
-		GUI::DrawRectangle(Vec2f(pos2d.x - dim.x + 2, pos2d.y + y + 2), Vec2f(pos2d.x - dim.x + ratio_clamped * 2.0f * dim.x - 2, pos2d.y + y + dim.y - 2), SColor(255, 180, 180, 180));
 	}
 }
