@@ -51,11 +51,11 @@ void onInit(CBlob@ this)
 	this.set_u8("clickReload", 0); //'Click' moment after shooting
 	this.set_string("CustomSoundPickup", "Boomstick_Pickup.ogg");
 	
-	this.set_u8("AmmoTypeNumber", 0);
-	this.set_u32("showTime", 0);
+	//this.set_u8("AmmoTypeNumber", 0);
+	//this.set_u32("showTime", 0);
 }
 
-void onTick(CBlob@ this)
+/*void onTick(CBlob@ this)
 {
 	if (this.isAttached())
 	{
@@ -283,14 +283,14 @@ void onRender(CSprite@ this)
 		GUI::DrawTextCentered("Ammo: " + drawtext, pos, SColor(255, 255, 255, 255));
 		return;
 	}
-}
+}*/
 
 
 
 
 
 
-/*void GetButtonsFor(CBlob@ this, CBlob@ caller)
+void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {
 	if (this.getDistanceTo(caller) > 96.0f) return;
 	CBlob@ carried = caller.getCarriedBlob();
@@ -348,4 +348,4 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 			this.set("gun_settings", @settings);
 		}
 	}
-}*/
+}
