@@ -8,7 +8,7 @@
 #include "MakeSeed.as";
 
 void onInit(CSprite@ this)
-{	
+{
 	CBlob@ blob = this.getBlob();
 	if (blob is null) return;
 	// Building
@@ -18,8 +18,6 @@ void onInit(CSprite@ this)
 	this.SetEmitSoundSpeed(0.5f);
 	this.SetEmitSoundPaused(false);
 	bool state = blob.get_bool("state");
-	bool InfTask = blob.get_bool("InfTask");
-	
 	if (!state && blob.hasTag("togglesupport"))
 	{
 		this.SetEmitSoundPaused(true);
@@ -72,18 +70,16 @@ void onTick(CSprite@ this)
 	{
 		if(this.getSpriteLayer("gear1") !is null){
 			this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
-	}
-		if(this.getSpriteLayer("gear2") !is null){
-			this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
-	}
-		if(this.getSpriteLayer("gear3") !is null){
-			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
-	}
-	
-	
-	
+		}
+			if(this.getSpriteLayer("gear2") !is null){
+				this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+		}
+			if(this.getSpriteLayer("gear3") !is null){
+				this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+		}
 	}
 }
+
 class AssemblerItem
 {
 	string resultname;
@@ -252,29 +248,8 @@ void onInit(CBlob@ this)
 	this.Tag("hassound");
 	
 	this.addCommandID("set");
-	this.addCommandID("IncreaseTask1");
-	this.addCommandID("IncreaseTask2");
-	this.addCommandID("IncreaseTask3");
-	this.addCommandID("IncreaseTask4");
-	this.addCommandID("IncreaseTask5");
-	this.addCommandID("IncreaseTask6");
-	this.addCommandID("IncreaseTask7");
-	this.addCommandID("IncreaseTask8");
-	this.addCommandID("IncreaseTask9");
-	this.addCommandID("IncreaseTask10");
-	this.addCommandID("IncreaseTask11");
-	this.addCommandID("IncreaseTask12");
-	this.addCommandID("IncreaseTask13");
-	this.addCommandID("IncreaseTask14");
-	this.addCommandID("assembler_sync");
-	
-	this.set_bool("InfTask", true);
 
 	this.set_u8("crafting", 0);
-	
-	this.set_u16("ProduceTask", 0);
-	
-	this.set_string("drawText", "Production Plan: Unlimited");
 	
 	this.Tag("ignore extractor");
 }
@@ -293,10 +268,8 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 
 void AssemblerMenu(CBlob@ this, CBlob@ caller)
 {
-	if (caller.isMyPlayer())
+	if(caller.isMyPlayer())
 	{
-		string CountText = "Production Plan: " + this.get_u16("ProduceTask") + " Items";
-		
 		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 6), "Set Assembly");
 		if (menu !is null)
 		{
@@ -317,6 +290,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 				{
 					text = "Already Assembling: " + item.title;
 				}
+
 				CGridButton @butt = menu.AddButton("$assembler_icon" + i + "$", text, this.getCommandID("set"), pack);
 				butt.hoverText = item.title + "\n" + getButtonRequirementsText(item.reqs, false);
 				if(this.get_u8("crafting") == i)
@@ -325,218 +299,19 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 				}
 			}
 		}
-		CGridMenu@ qmenu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, -240.0f), this, Vec2f(7, 2), CountText);
-		if (qmenu !is null)
-		{
-			for(uint i = 1; i < 15; i += 1)
-			{
-
-				int teamnum = this.getTeamNum();
-				if (teamnum > 6) teamnum = 7;
-				AddIconToken("$assembler_qicon" + i + "$", "AssemblerIcons2.png", Vec2f(20, 16), i - 1, teamnum);
-
-				switch(i)
-				{
-					case 1:
-					{
-						this.set_string("qtext", "Add 1 Item");
-						break;
-					}
-					case 2:
-					{
-						this.set_string("qtext", "Add 5 Items");
-						break;
-					}
-					case 3:
-					{
-						this.set_string("qtext", "Add 10 Items");
-						break;
-					}
-					case 4:
-					{
-						this.set_string("qtext", "Add 20 Items");
-						break;
-					}
-					case 5:
-					{
-						this.set_string("qtext", "Add 50 Items");
-						break;
-					}
-					case 6:
-					{
-						this.set_string("qtext", "Add 100 Items");
-						break;
-					}
-					case 7:
-					{
-						this.set_string("qtext", "Unlimited Production");
-						break;
-					}
-					case 8:
-					{
-						this.set_string("qtext", "Remove 1 Item");
-						break;
-					}
-					case 9:
-					{
-						this.set_string("qtext", "Remove 5 Items");
-						break;
-					}
-					case 10:
-					{
-						this.set_string("qtext", "Remove 10 Items");
-						break;
-					}
-					case 11:
-					{
-						this.set_string("qtext", "Remove 20 Items");
-						break;
-					}
-					case 12:
-					{
-						this.set_string("qtext", "Remove 50 Items");
-						break;
-					}
-					case 13:
-					{
-						this.set_string("qtext", "Remove 100 Items");
-						break;
-					}
-					case 14:
-					{
-						this.set_string("qtext", "Reset Plan");
-						break;
-					}
-				}
-				CBitStream params;
-				params.write_u16(caller.getNetworkID());
-				CGridButton @butt = qmenu.AddButton("$assembler_qicon" + i + "$", (this.get_string("qtext")), this.getCommandID("IncreaseTask" + i), params);	
-			}
-		}	
 	}
 }
 
-void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
+void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 {
 	if (cmd == this.getCommandID("set"))
 	{
 		u8 setting = params.read_u8();
 		this.set_u8("crafting", setting);
 	}
-	else if (cmd == this.getCommandID("IncreaseTask1"))
-	{
-		IncreaseTask(this, 1);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask2"))
-	{
-		IncreaseTask(this, 5);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask3"))
-	{
-		IncreaseTask(this, 10);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask4"))
-	{
-		IncreaseTask(this, 20);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask5"))
-	{
-		IncreaseTask(this, 50);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask6"))
-	{
-		IncreaseTask(this, 100);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask7"))
-	{
-		TaskSetInf(this);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask8"))
-	{
-		DecreaseTask(this, 1);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask9"))
-	{
-		DecreaseTask(this, 5);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask10"))
-	{
-		DecreaseTask(this, 10);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask11"))
-	{
-		DecreaseTask(this, 20);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask12"))
-	{
-		DecreaseTask(this, 50);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask13"))
-	{
-		DecreaseTask(this, 100);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("IncreaseTask14"))
-	{
-		TaskReset(this);
-		CBlob@ caller = getBlobByNetworkID(params.read_u16());
-		if (caller is null) return;
-		AssemblerMenu(this, caller);
-	}
-	else if (cmd == this.getCommandID("assembler_sync"))
-	{
-		if (isClient())
-		{
-			u16 task = params.read_u16();
-			string dtxt = params.read_string();
-			bool inf = params.read_bool();
-			string qtxt = params.read_string();
-			
-			this.set_string("DrawText", dtxt);
-			this.set_string("qtext", qtxt);
-			this.set_u16("ProduceTask", task);
-			this.set_bool("InfTask", inf);		
-		}
-	}
 }
+
+
 
 void onTick(CBlob@ this)
 {
@@ -549,8 +324,9 @@ void onTick(CBlob@ this)
 	AssemblerItem item = items[crafting];
 	CInventory@ inv = this.getInventory();
 
+
 	CBitStream missing;
-	if (hasRequirements(inv, item.reqs, missing) && (this.get_u16("ProduceTask") > 0 || this.get_bool("InfTask")))
+	if (hasRequirements(inv, item.reqs, missing))
 	{
 		if (isServer())
 		{
@@ -558,10 +334,6 @@ void onTick(CBlob@ this)
 			mat.server_SetQuantity(item.resultcount);
 
 			server_TakeRequirements(inv, item.reqs);
-		}
-		if (!this.get_bool("InfTask"))
-		{
-			DecreaseTask(this, item.resultcount);
 		}
 
 		if(isClient())
@@ -572,75 +344,7 @@ void onTick(CBlob@ this)
 	}
 }
 
-void IncreaseTask(CBlob@ this, u16 incr_quantity)
-{
-	this.set_u16("ProduceTask", (this.get_u16("ProduceTask") + incr_quantity));
-	this.set_bool("InfTask", false);
-	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	server_Sync(this);
-}
 
-void DecreaseTask(CBlob@ this, u16 incr_quantity)
-{
-	if (incr_quantity < (this.get_u16("ProduceTask")))
-	{
-		this.set_u16("ProduceTask", (this.get_u16("ProduceTask") - incr_quantity));
-	}
-	else
-	{
-		this.set_u16("ProduceTask", 0);
-	}
-	this.set_bool("InfTask", false);
-	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	server_Sync(this);
-}
-
-void TaskReset(CBlob@ this)
-{
-	this.set_u16("ProduceTask", 0);
-	this.set_bool("InfTask", false);
-	this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	server_Sync(this);
-}
-
-void TaskSetInf(CBlob@ this)
-{
-	this.set_bool("InfTask", !this.get_bool("InfTask"));
-	if (this.get_bool("InfTask"))
-	{
-		this.set_string("drawText", "Production Plan: Unlimited");
-	}
-	else
-	{
-		this.set_string("drawText", "Production Plan: " + (this.get_u16("ProduceTask")) + " Items");
-	}
-	server_Sync(this);
-}
-
-void server_Sync(CBlob@ this)
-{
-	if (isServer())
-	{
-		CBitStream stream;
-		stream.write_u16(this.get_u16("ProduceTask"));
-		stream.write_string(this.get_string("DrawText"));
-		stream.write_bool(this.get_bool("InfTask"));
-		stream.write_string(this.get_string("qtext"));
-		
-		this.SendCommand(this.getCommandID("assembler_sync"), stream);
-	}
-}
-
-void onRender(CSprite@ this)
-{
-	CBlob@ local = getLocalPlayerBlob();
-	CBlob@ b = this.getBlob();
-	if(local !is null && local.isMyPlayer() && getMap().getBlobAtPosition(getControls().getMouseWorldPos()) is b)
-	{
-		GUI::SetFont("MENU");
-		GUI::DrawText(b.get_string("drawText"), b.getInterpolatedScreenPos() + Vec2f(-40 ,-40), SColor(255,255,255,255).getInterpolated(SColor(255,255,255,255), b.get_f32("percentageToMax")));
-	}
-}
 
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 {
@@ -694,12 +398,12 @@ void onAddToInventory( CBlob@ this, CBlob@ blob )
 {
 	if(blob.getName() != "gyromat") return;
 
-	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+	this.getCurrentScript().tickFrequency = Maths::Max(1, 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1));
 }
 
 void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
 {
 	if(blob.getName() != "gyromat") return;
 	
-	this.getCurrentScript().tickFrequency = 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+	this.getCurrentScript().tickFrequency = Maths::Max(1, 60 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1));
 }
