@@ -867,11 +867,11 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[3].push_back(b);
 	}
 	{
-		BuildBlock b(0, "industrialassembler", "$icon_industrialassembler$", "Industrial Assembler:\n\nAn improved version of assembler capable of mass production of weapons, equipment and explosives at reduced prices.");
+		BuildBlock b(0, "industrialassembler", "$icon_industrialassembler$", "Industrial Assembler:\n\nAn improved version of assembler capable of mass production of weapons, equipment and explosives at reduced prices.\nTEMPORARY REMOVED");
 		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 20);
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
 		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper wire", 20);
-		//AddRequirement(b.reqs, "blob", "adminbuilder", "You have to be an Engineer", 1);
+		AddRequirement(b.reqs, "blob", "adminbuilder", "TEMPORARY REMOVED", 1);
 		b.buildOnGround = true;
 		b.size.Set(40, 24);
 		blocks[3].push_back(b);
