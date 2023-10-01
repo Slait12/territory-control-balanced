@@ -204,7 +204,7 @@ void onTick(CBlob@ this)
 			// Loop firing sound
 			if (this.hasTag("CustomSoundLoop"))
 			{
-				sprite.SetEmitSoundPaused(!(pressing_shoot && this.get_u8("clip") > 0 && !this.get_bool("doReload") && (Burst >= this.get_u16("CustomAccelerationSpeed") || isBot)));
+				sprite.SetEmitSoundPaused(!(pressing_shoot && this.get_u8("clip") > 0 && !this.get_bool("doReload")));
 			}
 
 			// Start reload sequence when pressing [R]
@@ -311,6 +311,7 @@ void onTick(CBlob@ this)
 					else
 					{
 						actionInterval = settings.FIRE_INTERVAL * Maths::Max(1, this.get_u16("CustomAccelerationSpeed") - Maths::Max(1, Burst));
+						sprite.SetEmitSoundSpeed(Maths::Min(1, Maths::Max(1, Burst) / this.get_u16("CustomAccelerationSpeed")));
 					}
 					this.set_u32("lastshot", getGameTime());
 
@@ -365,7 +366,6 @@ void onTick(CBlob@ this)
 
 					// Shooting sound
 					if (!this.hasTag("CustomSoundLoop")) sprite.PlaySound(settings.FIRE_SOUND, shoot_volume);
-					else if(Burst < this.get_u16("CustomAccelerationSpeed") && !isBot) sprite.PlaySound(this.get_string("CustomSoundDuringAcceleration"), shoot_volume);
 
 					// Gun 'kickback' anim
 					this.set_f32("gun_recoil_current", this.exists("CustomGunRecoil") ? this.get_u32("CustomGunRecoil") : 3);

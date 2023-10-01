@@ -79,9 +79,6 @@ class GunSettings
 	/// this.Tag("CustomSpread"); //Changes a shotgun's accuracy by by setting all bullets in a certain direction- kind of weird
 	///
 	///	this.Tag("sniper"); //Bullets will deal double damage over certain distance
-	///
-	///	this.set_u16("CustomAccelerationSpeed", u16 number of shoots); //Sets how many shots must be fired for the weapon to reach full speed
-	///	this.set_string("CustomSoundDuringAcceleration", string fileName); //Fire sound that will be played until the weapon reaches full speed. Not looped.
 
 	/// PROJECTILE SETTINGS
 	/// > These are variables for guns that shoot actual blobs rather than bullets- e.g bazooka
