@@ -54,7 +54,7 @@ void onTick(CBlob@ this)
 		{
 			this.getSprite().PlaySound("ProduceSound.ogg");
 			this.getSprite().PlaySound("BombMake.ogg");
-				ParticleAnimated("LargeSmoke", this.getPosition() + Vec2f(0,-20), Vec2f(0.3f + (XORRandom(4) * 0.1f), -0.75f + (XORRandom(3) * -0.1f)), 0, 1.00f + (XORRandom(10) * 0.1f), 10 + XORRandom(10), 0, false);
+			//	ParticleAnimated("LargeSmoke", this.getPosition() + Vec2f(0,-20), Vec2f(0.3f + (XORRandom(4) * 0.1f), -0.75f + (XORRandom(3) * -0.1f)), 0, 1.00f + (XORRandom(10) * 0.1f), 10 + XORRandom(10), 0, false);
 		}
 	}
 	for (int i = 0; i < matNames.length; i++)
@@ -86,7 +86,7 @@ void onTick(CBlob@ this)
 			{
 				this.getSprite().PlaySound("ProduceSound.ogg");
 				this.getSprite().PlaySound("BombMake.ogg");
-				ParticleAnimated("LargeSmoke", this.getPosition() + Vec2f(0,-20), Vec2f(0.3f + (XORRandom(4) * 0.1f), -0.75f + (XORRandom(3) * -0.1f)), 0, 1.00f + (XORRandom(10) * 0.1f), 10 + XORRandom(10), 0, false);
+			//	ParticleAnimated("LargeSmoke", this.getPosition() + Vec2f(0,-20), Vec2f(0.3f + (XORRandom(4) * 0.1f), -0.75f + (XORRandom(3) * -0.1f)), 0, 1.00f + (XORRandom(10) * 0.1f), 10 + XORRandom(10), 0, false);
 			}
 		}
 	}
