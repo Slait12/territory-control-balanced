@@ -213,7 +213,6 @@ void onTick(CBlob@ this)
 				!this.get_bool("beginReload") && !this.get_bool("doReload") && 
 				this.get_u8("clip") < settings.TOTAL && HasAmmo(this))
 			{
-				printf("e");
 				this.set_bool("beginReload", true);
 			}
 
