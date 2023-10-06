@@ -9,6 +9,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 
 void onInit(CBlob@ this)
 {
+	this.addCommandID("switch");
 	GunSettings settings = GunSettings();
 
 	//General
@@ -57,9 +58,10 @@ void onInit(CBlob@ this)
 	this.set_u8("CustomKnock", 2);
 	this.Tag("powerful");
 	this.set_string("CustomSoundPickup", "SAR_Pickup.ogg");
+	this.set_bool("mode", false);
 }
 
-/*void onTick(CBlob@ this)
+void onTick(CBlob@ this)
 {
 	if (this.isAttached())
 	{
@@ -68,9 +70,25 @@ void onInit(CBlob@ this)
 		
 		if (holder is null) return;
 
-		if (point.isKeyJustPressed(key_action2) && !this.get_bool("doReload"))
+		if (point.isKeyJustPressed(key_action2))
 		{
-			this.Sync("mode", true);
+			CBitStream params;
+			this.SendCommand(this.getCommandID("switch"), params);
+		}
+	}
+}
+
+void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
+{
+	if (cmd == this.getCommandID("switch"))
+	{
+		if(this.get_u8("actionInterval") == 0)
+		{
+			AttachmentPoint@ point = this.getAttachments().getAttachmentPointByName("PICKUP");
+			CBlob@ holder = point.getOccupied();
+			if (holder is null) return;
+			print("ayy");
+			
 			if (!this.get_bool("mode"))
 			{
 				GunSettings settings = GunSettings();
@@ -117,6 +135,7 @@ void onInit(CBlob@ this)
 				
 				this.Untag("CustomSemiAuto");
 				this.set_bool("mode", true);
+				print("66ayy");
 			}
 			else
 			{
@@ -166,15 +185,19 @@ void onInit(CBlob@ this)
 				//Custom
 				this.Tag("CustomSemiAuto");
 				this.set_bool("mode", false);
+				print("ayy22");
 			}
-			CBlob@ mat = server_CreateBlob("mat_rifleammo", -1, holder.getPosition());//give back ammo
-			mat.server_SetQuantity(this.get_u8("clip"));
+			if (isServer())
+			{
+				CBlob@ mat = server_CreateBlob("mat_rifleammo", -1, holder.getPosition());//give back ammo
+				mat.server_SetQuantity(this.get_u8("clip"));
+			}
 			this.set_u8("clip", 0); //unload gun
+			this.set_u8("actionInterval", 3);
 			if(isClient())
 			{
 				this.getSprite().PlaySound("AK47Cycle.ogg", 3.00f, 1.00f);
 			}
-			this.Sync("mode", true);
 		}
 	}
 }
