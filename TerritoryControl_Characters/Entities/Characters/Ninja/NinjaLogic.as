@@ -57,7 +57,7 @@ void onInit(CBlob@ this)
 	this.set("ninjaInfo", @ninja);
 
 	this.set_f32("gib health", -3.0f);
-	addShieldVars(this, SHIELD_BLOCK_ANGLE, 2.0f, 5.0f);
+	addShieldVars(this, SHIELD_BLOCK_ANGLE, 1.0f);
 	ninja_actorlimit_setup(this);
 	this.getShape().SetRotationsAllowed(false);
 	this.getShape().getConsts().net_threshold_multiplier = 0.5f;
