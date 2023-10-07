@@ -117,7 +117,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy.\n\nGood for medium range combat and long shootouts.\n\nCrouch to reduce spread. $icon_rifleammo$\n\nAmmo Capacity = 50\n\nDamage = 3.25\n\nFire Rate = 5");
+		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy.\n\nGood for medium range combat and long shootouts. $icon_rifleammo$\n\nAmmo Capacity = 50\n\nDamage = 3.25\n\nFire Rate = 5");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 2);
@@ -131,7 +131,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and high damage.\n\nDeals a lot of damage and is good for suppressive fire.\n\nCrouch to reduce spread. $icon_rifleammo$\n\nAmmo Capacity = 100\n\nDamage = 1.5\n\nFire Rate = 15");
+		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and high damage.\n\nDeals a lot of damage and is good for suppressive fire. $icon_rifleammo$\n\nAmmo Capacity = 100\n\nDamage = 1.5\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
@@ -175,7 +175,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.\n\nGood for breaking through walls.\nAmmo Capacity = 1\n\nDamage = 7.56\n\nFire Rate = 0.75\n\nUses Steel Ingots.");
+		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.\n\nIdeal for breaking through walls and has strong knockback.\nAmmo Capacity = 1\n\nDamage = 7.56\n\nFire Rate = 0.75\n\nUses Steel Ingots.");
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 6);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 40);

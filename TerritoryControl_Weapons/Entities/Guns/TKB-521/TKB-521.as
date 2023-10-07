@@ -26,7 +26,7 @@ void onInit(CBlob@ this)
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
 	
 	//Spread & Cursor
-	settings.B_SPREAD = 8; //the higher the value, the more 'uncontrollable' bullets get
+	settings.B_SPREAD = 4; //the higher the value, the more 'uncontrollable' bullets get
 	//settings.INCREASE_SPREAD = false; //Should the spread increase as you shoot. Default is false
 	//settings.SPREAD_FACTOR = 0.0; //How much spread will increase as you shoot. Formula of increasing is: B_SPREAD * Max:(SPREAD_FACTOR, (Number of shoots * SPREAD_FACTOR)). Does not affect cursor.
 	settings.MAX_SPREAD = 6; //Maximum spread the weapon can reach. Also determines how big cursor can become
@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 	//settings.ENLARGE_FACTOR = 1; //Multiplier of how much cursor will enlarge as you shoot.
 
 	//Recoil
-	settings.G_RECOIL = -13; //0 is default, adds recoil aiming up
+	settings.G_RECOIL = -17; //0 is default, adds recoil aiming up
 	settings.G_RANDOMX = true; //Should we randomly move x
 	settings.G_RANDOMY = false; //Should we randomly move y, it ignores g_recoil
 	settings.G_RECOILT = 5; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
@@ -57,5 +57,4 @@ void onInit(CBlob@ this)
 	this.set_u16("CustomAccelerationSpeed", 7);
 	this.set_string("CustomSoundDuringAcceleration", "TKB521_Shoot_Once.ogg");
 	this.Tag("heavy weight");
-	this.Tag("CrouchAiming");
 }

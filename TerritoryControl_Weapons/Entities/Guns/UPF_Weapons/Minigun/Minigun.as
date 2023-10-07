@@ -58,5 +58,4 @@ void onInit(CBlob@ this)
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
 	this.set_u16("CustomAccelerationSpeed", 15);
 	this.set_string("CustomSoundDuringAcceleration", "Minigun_Shoot_Once.ogg");
-	this.Tag("CrouchAiming");
 }

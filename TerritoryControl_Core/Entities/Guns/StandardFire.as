@@ -12,7 +12,6 @@
 #include "BulletCase.as";
 #include "Recoil.as";
 #include "DeityCommon.as";
-#include "CrouchCommon.as";
 
 const uint8 NO_AMMO_INTERVAL = 25;
  
@@ -319,11 +318,6 @@ void onTick(CBlob@ this)
 
 					f32 spr = 0;
 					f32 tempspr = settings.B_SPREAD * Maths::Max(1, (this.get_u16("Burst") * settings.SPREAD_FACTOR));
-					
-					if (this.hasTag("CrouchAiming"))
-					{
-						if (isCrouching(holder)) tempspr = tempspr * 0.5;
-					}
 						
 					if ((settings.B_SPREAD != 0 && settings.B_PER_SHOT == 1))
 					{

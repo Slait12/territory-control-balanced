@@ -141,7 +141,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians.\n\nCrouch to reduce spread. $icon_gatlingammo$\n\nAmmo Capacity = 50\n\nDamage = 1\n\nFire Rate = 15");
+		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians. $icon_gatlingammo$\n\nAmmo Capacity = 50\n\nDamage = 1\n\nFire Rate = 15");
 		AddRequirement(s.requirements, "coin", "", "Coins", 800); //1000c
 		//AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150); //405c
 		//AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2); //20c
