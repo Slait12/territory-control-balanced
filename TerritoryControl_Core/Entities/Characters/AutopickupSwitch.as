@@ -54,15 +54,15 @@ void DrawAutopickupSwitch(CBlob@ this, CGridMenu@ menu, CBlob@ forBlob)
 			CGridButton@ button = tool.AddButton((rules.get_bool(player_name + "autopickup") ? "$unlock$" : "$lock$"), "", this.getCommandID("player pickup logic"), Vec2f(1, 1), params);
 			if (button !is null)
 			{
-				button.SetHoverText((rules.get_bool(player_name + "autopickup") ? "Enable Auto Pickup" : "Disable Auto Pickup"));
+				button.SetHoverText((rules.get_bool(player_name + "autopickup") ? "Disable Auto Pickup" : " Enable Auto Pickup"));
 			}
 		} else {
 			CBitStream params;
 			params.write_u16(this.getNetworkID());
-			CGridButton@ button = tool.AddButton((this.get_bool("pickup") ? "$unlock$" : "$lock$"), "", this.getCommandID("structure pickup logic"), Vec2f(1, 1), params);
+			CGridButton@ button = tool.AddButton((this.get_bool("pickup") ? "$lock$" : "$unlock$"), "", this.getCommandID("structure pickup logic"), Vec2f(1, 1), params);
 			if (button !is null)
 			{
-				button.SetHoverText((this.get_bool("pickup") ? "Enable Auto Pickup" : "Disable Auto Pickup"));
+				button.SetHoverText((this.get_bool("pickup") ? "Disable Auto Pickup" : "Enable Auto Pickup"));
 			}
 		}
 	}

@@ -335,7 +335,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 
 				int teamnum = this.getTeamNum();
 				if (teamnum > 6) teamnum = 7;
-				AddIconToken("$assembler_icon" + i + "$", "AssemblerIcons.png", Vec2f(16, 16), i, teamnum);
+				AddIconToken("$assembler_icon" + i + "$", "BombAssemblerIcons.png", Vec2f(16, 16), i, teamnum);
 
 				string text = "Set to Assemble: " + item.title;
 				if(this.get_u8("crafting") == i)
