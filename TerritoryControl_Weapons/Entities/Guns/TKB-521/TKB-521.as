@@ -35,7 +35,7 @@ void onInit(CBlob@ this)
 	//settings.ENLARGE_FACTOR = 1; //Multiplier of how much cursor will enlarge as you shoot.
 
 	//Recoil
-	settings.G_RECOIL = -17; //0 is default, adds recoil aiming up
+	settings.G_RECOIL = -25; //0 is default, adds recoil aiming up
 	settings.G_RANDOMX = true; //Should we randomly move x
 	settings.G_RANDOMY = false; //Should we randomly move y, it ignores g_recoil
 	settings.G_RECOILT = 5; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
@@ -50,11 +50,10 @@ void onInit(CBlob@ this)
 	settings.MUZZLE_OFFSET = Vec2f(-23, -1.5); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
+	this.Tag("heavy weight");
 	
 	//Custom
 	this.set_f32("CustomShootVolume", 11.0f);
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
-	this.set_u16("CustomAccelerationSpeed", 7);
-	this.set_string("CustomSoundDuringAcceleration", "TKB521_Shoot_Once.ogg");
-	this.Tag("heavy weight");
+	this.set_u16("CustomAccelerationSpeed", 8);
 }
