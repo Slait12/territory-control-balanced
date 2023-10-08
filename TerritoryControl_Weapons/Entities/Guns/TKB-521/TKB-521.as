@@ -55,5 +55,4 @@ void onInit(CBlob@ this)
 	//Custom
 	this.set_f32("CustomShootVolume", 11.0f);
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
-	this.set_u16("CustomAccelerationSpeed", 8);
 }

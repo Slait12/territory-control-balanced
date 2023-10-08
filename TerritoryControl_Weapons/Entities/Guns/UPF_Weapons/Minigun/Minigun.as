@@ -11,7 +11,7 @@ void onInit(CBlob@ this)
 	GunSettings settings = GunSettings();
 
 	//General
-	settings.CLIP = 150; //Amount of ammunition in the gun at creation
+	settings.CLIP = 0; //Amount of ammunition in the gun at creation
 	settings.TOTAL = 150; //Max amount of ammo that can be in a clip
 	settings.FIRE_INTERVAL = 1; //Time in between shots
 	settings.RELOAD_TIME = 180; //Time it takes to reload (in ticks)
@@ -56,5 +56,4 @@ void onInit(CBlob@ this)
 	this.Tag("heavy weight");
 	this.Tag("powerful");
 	this.set_string("CustomSoundPickup", "DP27_Pickup.ogg");
-	this.set_u16("CustomAccelerationSpeed", 20);
 }
