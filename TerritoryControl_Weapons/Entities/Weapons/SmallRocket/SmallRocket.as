@@ -60,14 +60,6 @@ void onTick(CBlob@ this)
 void MakeParticle(CBlob@ this, const Vec2f vel, const string filename = "SmallSteam")
 {
 	Vec2f offset = Vec2f(XORRandom(16)-8, XORRandom(8)-4).RotateBy(this.getAngleDegrees());
-	CMap@ map = getMap(); // fire things up if standing under
-	if (isServer() && map !is null)
-	{
-		for (u8 i = 0; i < 10; i++)
-		{
-			map.server_setFireWorldspace(this.getPosition()+offset+Vec2f(XORRandom(24)-12, XORRandom(32)-16), true);
-		}
-	}
 	if (!isClient()) return;
 	ParticleAnimated(filename, this.getPosition() + offset, vel, float(XORRandom(360)), 1.0f, 2 + XORRandom(3), -0.1f, false);
 }
