@@ -29,24 +29,6 @@ void onInit(CBlob@ this)
 	this.SetMinimapRenderAlways(true);
 
 	AddIconToken("$icon_oil$","Material_Oil.png",Vec2f(16,16),0);
-
-	//SHOP
-	this.set_Vec2f("shop offset",Vec2f(5,5));
-	this.set_Vec2f("shop menu size",Vec2f(1,1));
-	this.set_string("shop description","Pump Jack");
-	
-	if (this.hasTag("name_changed"))
-	{
-		this.setInventoryName(this.get_string("text"));
-		this.set_string("shop description", this.get_string("text"));
-	}
-	
-	this.set_u8("shop icon", 25);
-	{
-		ShopItem@ s = addShopItem(this, "Buy 1 Oil Drum (50 l)", "$mat_oil$", "mat_oil-50", "Buy 50 litres of oil for 400 coins.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 400);
-		s.spawnNothing = true;
-	}
 }
 
 void onInit(CSprite@ this)
@@ -101,7 +83,7 @@ void onTick(CBlob@ this)
 		if (storage !is null)
 		{
 			MakeMat(storage, this.getPosition(), "mat_oil", XORRandom(3));
-		}
+		}	
 		else if (this.getInventory().getCount("mat_oil") < 450)
 		{
 			MakeMat(this, this.getPosition(), "mat_oil", XORRandom(3));
@@ -112,7 +94,6 @@ void onTick(CBlob@ this)
 CBlob@ FindStorage(u8 team)
 {
 	if (team >= 100) return null;
-	if (XORRandom(4)==0) return null; // 25% chance not to put oil in ur storage
 
 	CBlob@[] blobs;
 	getBlobsByName("oiltank", @blobs);
@@ -154,7 +135,8 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 
 void onAddToInventory(CBlob@ this,CBlob@ blob) //i'll keep it just to be sure
 {
-	if(blob.getName()!="mat_oil"){
+	if(blob.getName()!="mat_oil")
+	{
 		this.server_PutOutInventory(blob);
 	}
 }
@@ -164,85 +146,3 @@ bool isInventoryAccessible(CBlob@ this,CBlob@ forBlob)
 	//return (forBlob.isOverlapping(this));
 }
 
-void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
-{
-	if(cmd == this.getCommandID("shop made item"))
-	{
-		this.getSprite().PlaySound("/ChaChing.ogg");
-
-		u16 caller, item;
-
-		if(!params.saferead_netid(caller) || !params.saferead_netid(item))
-			return;
-
-		string name = params.read_string();
-		CBlob@ callerBlob = getBlobByNetworkID(caller);
-
-		if (callerBlob is null) return;
-
-		if (isServer())
-		{
-			string[] spl = name.split("-");
-
-			if (spl[0] == "coin")
-			{
-				CPlayer@ callerPlayer = callerBlob.getPlayer();
-				if (callerPlayer is null) return;
-
-				callerPlayer.server_setCoins(callerPlayer.getCoins() +  parseInt(spl[1]));
-			}
-			else if (name.findFirst("mat_") != -1)
-			{
-				CPlayer@ callerPlayer = callerBlob.getPlayer();
-				if (callerPlayer is null) return;
-
-				CBlob@ mat = server_CreateBlob(spl[0]);
-
-				if(mat !is null) {
-					mat.Tag("do not set materials");
-					mat.server_SetQuantity(parseInt(spl[1]));
-					if(!callerBlob.server_PutInInventory(mat)) {
-						mat.setPosition(callerBlob.getPosition());
-					}
-				}
-			}
-			else
-			{
-				CBlob@ blob = server_CreateBlob(spl[0], callerBlob.getTeamNum(), this.getPosition());
-
-				if (blob is null) return;
-
-				if (!blob.canBePutInInventory(callerBlob))
-				{
-					callerBlob.server_Pickup(blob);
-				}
-				else if (callerBlob.getInventory() !is null && !callerBlob.getInventory().isFull())
-				{
-					callerBlob.server_PutInInventory(blob);
-				}
-			}
-		}
-	}
-	if (cmd == this.getCommandID("write"))
-	{
-		if (isServer())
-		{
-			CBlob @caller = getBlobByNetworkID(params.read_u16());
-			CBlob @carried = getBlobByNetworkID(params.read_u16());
-
-			if (caller !is null && carried !is null)
-			{
-				this.set_string("text", carried.get_string("text"));
-				this.Sync("text", true);
-				this.set_string("shop description", this.get_string("text"));
-				this.Sync("shop description", true);
-				carried.server_Die();
-				this.Tag("name_changed");
-			}
-		}
-		if (isClient())
-		{
-			this.setInventoryName(this.get_string("text"));
-		}
-	}
-}
